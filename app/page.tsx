@@ -14,9 +14,9 @@ const directions = [
 ];
 
 const nowBuilding = [
-  { name: "VoyageAI v2", desc: "多 Provider 路由 + 成本优化", color: "cyan" },
-  { name: "RAG 知识库 v2", desc: "多文档源 + 领域适配", color: "purple" },
-  { name: "AI 工作流实验", desc: "LangGraph 多 Agent 编排", color: "green" },
+  { name: "VoyageAI v2", desc: "多 Provider 路由 + 成本优化", color: "cyan", progress: "active" },
+  { name: "RAG 知识库 v2", desc: "多文档源 + 领域适配", color: "purple", progress: "active" },
+  { name: "AI 工作流实验", desc: "LangGraph 多 Agent 编排", color: "green", progress: "exploring" },
 ];
 
 const featuredProjects = [
