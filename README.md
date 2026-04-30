@@ -20,7 +20,7 @@
 | 语言 | TypeScript |
 | 样式 | Tailwind CSS + 自定义深空主题 |
 | 图标 | Lucide React |
-| 部署 | Vercel |
+| 部署 | Vercel + Cloudflare Workers |
 
 ## 快速启动
 
@@ -50,11 +50,21 @@ npm run dev
 
 ## 部署说明
 
-项目使用 Vercel 自动部署，推送到 `main` 分支后会自动构建上线：
+`main` 是唯一的开发主分支：
+
+- 推送到 `main` 后，Vercel 会基于 `main` 自动构建部署。
+- GitHub Actions 会把 `main` 自动同步到 `cloudflare/workers-autoconfig`。
+- Cloudflare 分支仅作为部署镜像分支，不再承载独立业务代码。
 
 ```bash
 git push origin main
-# Vercel 自动部署，约 1-2 分钟完成
+```
+
+如果需要本地验证 Cloudflare 构建流程，可使用：
+
+```bash
+npm run preview
+npm run deploy
 ```
 
 ## License
