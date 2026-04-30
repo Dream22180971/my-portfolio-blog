@@ -1,53 +1,56 @@
 import Link from "next/link";
-import { ArrowRight, MapPin, Calendar } from "lucide-react";
-import { GithubIcon, MailIcon } from "@/components/SocialIcons";
+import { ArrowRight, MapPin, Zap, Target, Sparkles } from "lucide-react";
+import { GithubIcon, MailIcon, WechatIcon } from "@/components/SocialIcons";
 
-const stats = [
-  { number: "3", label: "Projects", color: "cyan" },
-  { number: "2", label: "Skills", color: "purple" },
-  { number: "∞", label: "Ideas", color: "green" },
+const highlights = [
+  { number: "5+", label: "AI 项目", color: "cyan" },
+  { number: "RAG", label: "核心方向", color: "purple" },
+  { number: "∞", label: "探索中", color: "green" },
 ];
 
-const projects = [
+const featuredProjects = [
   {
     name: "VoyageAI",
-    desc: "AI-powered intelligent travel planning system",
+    value: "让 AI 规划你的旅行，从需求到行程一步到位",
     tags: ["Vue 3", "FastAPI", "AI Agent"],
+    result: "完整前后端 AI 应用，支持个性化行程规划与多轮对话",
     href: "https://github.com/Dream22180971/VoyageAI",
     emoji: "✈",
     color: "cyan",
   },
   {
-    name: "RAG Knowledge Base",
-    desc: "Enterprise-level intelligent Q&A platform with LangChain",
+    name: "RAG 知识库问答",
+    value: "让大模型「读懂」你的文档，精准回答业务问题",
     tags: ["LangChain", "FAISS", "DashScope"],
+    result: "4 参考来源，1033ms 响应，索引缓存秒级加载",
     href: "https://github.com/Dream22180971/rag-knowledge-base-demo",
     emoji: "📚",
     color: "purple",
   },
   {
-    name: "Coze E-commerce Bot",
-    desc: "Intelligent customer service bot for e-commerce scenarios",
+    name: "Coze 电商智能客服",
+    value: "7×24 小时自动处理退换货、物流、产品咨询",
     tags: ["Coze", "Agent", "Knowledge Base"],
+    result: "已发布 Agent Store，16 条 Q&A + 3 份知识库文档",
     href: "https://github.com/Dream22180971/coze-ecommerce-bot",
     emoji: "🤖",
     color: "green",
   },
 ];
 
-const latestArticles = [
-  {
-    title: "Building a RAG System from Scratch",
-    date: "2026-04-26",
-    tags: ["RAG", "LangChain", "AI"],
-    href: "/blog/rag-from-scratch",
-  },
-  {
-    title: "AI Agent Development Practice Guide",
-    date: "2026-04-24",
-    tags: ["Agent", "LangGraph", "Tutorial"],
-    href: "/blog/agent-guide",
-  },
+const techStack = [
+  "Python",
+  "LangChain",
+  "LangGraph",
+  "RAG / FAISS",
+  "FastAPI",
+  "Vue 3",
+  "Next.js",
+  "TypeScript",
+  "Coze",
+  "TailwindCSS",
+  "Docker",
+  "Git",
 ];
 
 export default function HomePage() {
@@ -55,34 +58,47 @@ export default function HomePage() {
     <div className="space-y-16 animate-fade-in">
       {/* Hero Section */}
       <section className="space-y-6">
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 text-xs font-mono text-text-secondary">
-            <MapPin className="w-3 h-3" />
-            <span>Nanjing, China</span>
-            <span className="opacity-30">•</span>
-            <Calendar className="w-3 h-3" />
-            <span>Available now</span>
-          </div>
+        <div className="flex items-center gap-2 text-xs font-mono text-text-secondary">
+          <MapPin className="w-3 h-3" />
+          <span>南京</span>
+          <span className="opacity-30">•</span>
+          <span>AI 落地顾问 / RAG 方向</span>
+          <span className="opacity-30">•</span>
+          <span>备考 IELTS 6.5+</span>
         </div>
 
         <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-          <span className="text-text-primary">Building </span>
-          <span className="bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
-            AI Agents
-          </span>
+          <span className="text-text-primary">用 AI 解决</span>
           <br />
-          <span className="text-text-primary">for the real world</span>
+          <span className="bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
+            真实业务问题
+          </span>
         </h1>
 
         <p className="text-lg text-text-secondary max-w-2xl leading-relaxed">
-          Automated testing engineer transitioning to AI Agent development. 
-          Building RAG knowledge bases, Coze bots, and LLM-powered applications.
-          Currently preparing for IELTS while crafting production-ready AI solutions.
+          自动化测试工程师 → AI Agent 开发者。专注 RAG 知识库与智能体搭建，
+          帮企业把大模型从「听起来很酷」变成「用起来很爽」。
         </p>
+
+        {/* 能力标签 */}
+        <div className="flex flex-wrap gap-2">
+          <span className="tag tag-cyan flex items-center gap-1">
+            <Target className="w-3 h-3" /> RAG 知识库
+          </span>
+          <span className="tag tag-purple flex items-center gap-1">
+            <Zap className="w-3 h-3" /> AI Agent 搭建
+          </span>
+          <span className="tag tag-green flex items-center gap-1">
+            <Sparkles className="w-3 h-3" /> Coze 低代码
+          </span>
+          <span className="tag tag-cyan flex items-center gap-1">
+            <span>🔧</span> 测试工程
+          </span>
+        </div>
 
         <div className="flex flex-wrap gap-3 pt-4">
           <Link href="/projects" className="btn-primary">
-            <span>View Projects</span>
+            <span>查看项目</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
           <a
@@ -94,16 +110,20 @@ export default function HomePage() {
             <GithubIcon className="w-4 h-4" />
             <span>GitHub</span>
           </a>
-          <a href="mailto:sean@example.com" className="btn-secondary">
+          <a href="mailto:3310103904@qq.com" className="btn-secondary">
             <MailIcon className="w-4 h-4" />
-            <span>Contact</span>
+            <span>邮箱</span>
           </a>
+          <span className="btn-secondary cursor-default" title="微信号: drmr2022">
+            <WechatIcon className="w-4 h-4" />
+            <span>drmr2022</span>
+          </span>
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* 数字概览 */}
       <section className="grid grid-cols-3 gap-4">
-        {stats.map((stat, i) => (
+        {highlights.map((stat, i) => (
           <div
             key={stat.label}
             className={`card-glow rounded-xl p-6 text-center animate-slide-up stagger-${i + 1}`}
@@ -126,99 +146,51 @@ export default function HomePage() {
         ))}
       </section>
 
-      {/* Recent Projects */}
+      {/* 重点项目 */}
       <section className="space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-text-primary">Recent Projects</h2>
+          <h2 className="text-xl font-semibold text-text-primary">重点项目</h2>
           <Link href="/projects" className="text-sm font-mono text-neon-cyan hover:underline">
-            View all →
+            查看全部 →
           </Link>
         </div>
 
-        <div className="grid gap-4">
-          {projects.map((project, i) => (
+        <div className="grid md:grid-cols-3 gap-4">
+          {featuredProjects.map((project, i) => (
             <a
               key={project.name}
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`card-glow rounded-xl p-6 animate-slide-up stagger-${i + 1} group`}
+              className={`card-glow rounded-xl p-6 animate-slide-up stagger-${i + 1} group flex flex-col`}
             >
-              <div className="flex items-start gap-4">
-                <span className="text-3xl">{project.emoji}</span>
-                <div className="flex-1 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-text-primary group-hover:text-neon-cyan transition-colors">
-                      {project.name}
-                    </h3>
-                    <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-neon-cyan transition-colors" />
-                  </div>
-                  <p className="text-sm text-text-secondary">{project.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="tag tag-cyan">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+              <span className="text-3xl mb-3">{project.emoji}</span>
+              <h3 className="font-semibold text-text-primary group-hover:text-neon-cyan transition-colors mb-2">
+                {project.name}
+              </h3>
+              <p className="text-sm text-text-secondary mb-3">{project.value}</p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.tags.map((tag) => (
+                  <span key={tag} className={`tag tag-${project.color}`}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              {/* 成果 */}
+              <div className="mt-auto pt-3 border-t border-space-border">
+                <div className="text-xs font-mono text-neon-cyan mb-1">成果</div>
+                <p className="text-sm text-text-secondary">{project.result}</p>
               </div>
             </a>
           ))}
         </div>
       </section>
 
-      {/* Latest Articles */}
-      <section className="space-y-6">
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-text-primary">Latest Articles</h2>
-          <Link href="/blog" className="text-sm font-mono text-neon-cyan hover:underline">
-            Read more →
-          </Link>
-        </div>
-
-        <div className="space-y-3">
-          {latestArticles.map((article) => (
-            <Link
-              key={article.title}
-              href={article.href}
-              className="block card-glow rounded-xl p-5 group hover:border-neon-cyan/30 transition-all"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-medium text-text-primary group-hover:text-neon-cyan transition-colors">
-                  {article.title}
-                </h3>
-                <span className="text-xs font-mono text-text-muted">{article.date}</span>
-              </div>
-              <div className="flex gap-2">
-                {article.tags.map((tag) => (
-                  <span key={tag} className="tag tag-purple">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Tech Stack */}
+      {/* 技术栈 */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-text-primary">Tech Stack</h2>
+        <h2 className="text-xl font-semibold text-text-primary">技术栈</h2>
         <div className="flex flex-wrap gap-2">
-          {[
-            "Next.js",
-            "TypeScript",
-            "Python",
-            "LangChain",
-            "LangGraph",
-            "FastAPI",
-            "Vue 3",
-            "TailwindCSS",
-            "FAISS",
-            "Coze",
-            "Docker",
-          ].map((tech) => (
+          {techStack.map((tech) => (
             <span key={tech} className="tag tag-cyan">
               {tech}
             </span>

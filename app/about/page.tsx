@@ -1,22 +1,22 @@
-import { MapPin, GraduationCap, Briefcase, Code2 } from "lucide-react";
+import { MapPin, GraduationCap, Rocket, Compass, Coffee, Code2, MessageSquare } from "lucide-react";
 
 const timeline = [
   {
     year: "2026",
-    title: "AI Agent Developer",
-    desc: "Transitioning to AI development. Building RAG systems, AI agents, and exploring LangGraph/LangChain ecosystem.",
+    title: "AI Agent 开发者",
+    desc: "转型成功，RAG 知识库 + Coze Bot + AI Agent 项目落地，博客上线。",
     icon: "🤖",
   },
   {
     year: "2024",
-    title: "Automated Testing Engineer",
-    desc: "Working in QA with focus on test automation, CI/CD pipelines, and Python scripting.",
+    title: "自动化测试工程师",
+    desc: "QA 岗位，Python automation、CI/CD、接口测试，顺便把 Python 练熟了。",
     icon: "🧪",
   },
   {
-    year: "Education",
-    title: "Computer Science Foundation",
-    desc: "Solid background in algorithms, data structures, and software engineering principles.",
+    year: "基石",
+    title: "计算机科班出身",
+    desc: "数据结构、算法、软件工程基础扎实（当年考试没挂科）。",
     icon: "📚",
   },
 ];
@@ -25,63 +25,75 @@ const skills = {
   "AI & LLM": [
     "LangChain",
     "LangGraph",
-    "RAG Systems",
+    "RAG 系统",
     "FAISS",
     "DashScope",
-    "Coze Platform",
+    "Coze 平台",
     "Prompt Engineering",
   ],
-  "Frontend": ["Next.js", "React", "TypeScript", "Vue 3", "TailwindCSS"],
-  "Backend": ["Python", "FastAPI", "Node.js", "SQLite"],
-  "Tools": ["Git", "Docker", "GitHub Actions", "Vercel"],
+  "前端": ["Next.js", "React", "TypeScript", "Vue 3", "TailwindCSS"],
+  "后端": ["Python", "FastAPI", "Node.js", "SQLite"],
+  "工具": ["Git", "Docker", "GitHub Actions", "Vercel"],
 };
-
-const values = [
-  {
-    title: "Build to Learn",
-    desc: "Every project is a learning opportunity. I ship code to understand concepts deeply.",
-  },
-  {
-    title: "Production First",
-    desc: "Clean, maintainable code over quick hacks. Real projects > toy demos.",
-  },
-  {
-    title: "Share Openly",
-    desc: "Open source everything. Documentation is a love letter to your future self.",
-  },
-];
 
 export default function AboutPage() {
   return (
     <div className="space-y-12 animate-fade-in">
       <div>
-        <h1 className="text-3xl font-bold text-text-primary mb-2">About Me</h1>
+        <h1 className="text-3xl font-bold text-text-primary mb-2">关于我</h1>
         <p className="text-text-secondary">
-          Automated testing engineer → AI Agent developer
+          自动化测试工程师 → AI Agent 开发者
         </p>
       </div>
 
-      {/* Intro */}
+      {/* 你是谁 */}
       <section className="card-glow rounded-xl p-6 space-y-4">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center text-2xl font-bold text-white">
-            SW
+            肖
           </div>
           <div>
             <h2 className="text-xl font-semibold text-text-primary">seanwalter</h2>
-            <p className="text-sm text-text-secondary">Dream22180971</p>
+            <p className="text-sm text-text-secondary">Dream22180971 @ GitHub</p>
           </div>
         </div>
-        <p className="text-text-secondary leading-relaxed">
-          Based in Nanjing, China. Former automated testing engineer, now on a mission to 
-          become an AI Agent developer. I spend my days building RAG knowledge bases, 
-          experimenting with multi-agent systems, and preparing for IELTS to level up 
-          my English skills.
-        </p>
-        <div className="flex items-center gap-4 text-sm text-text-secondary">
+
+        {/* 新增：你是谁 */}
+        <div className="pt-2">
+          <div className="text-xs font-mono text-neon-cyan mb-2">我是谁</div>
+          <p className="text-text-secondary leading-relaxed">
+            一个从测试岗转型到 AI 方向的开发者，南京人，正在备考雅思（IELTS 6.5）。
+            写代码不是为了炫技，是为了解决问题。
+          </p>
+        </div>
+
+        {/* 你在做什么方向 */}
+        <div className="pt-2">
+          <div className="text-xs font-mono text-neon-purple mb-2 flex items-center gap-2">
+            <Rocket className="w-3 h-3" /> 当前方向
+          </div>
+          <p className="text-text-secondary leading-relaxed">
+            <strong>RAG 知识库</strong>和<strong>AI Agent 搭建</strong>。已有的项目：
+            VoyageAI（旅行规划）、RAG Knowledge Base Demo、Coze 电商智能客服。
+            正在准备把「运营助手 Agent」做出来。
+          </p>
+        </div>
+
+        {/* 你在探索什么 */}
+        <div className="pt-2">
+          <div className="text-xs font-mono text-neon-green mb-2 flex items-center gap-2">
+            <Compass className="w-3 h-3" /> 正在探索
+          </div>
+          <p className="text-text-secondary leading-relaxed">
+            LangGraph 多智能体协作、Graphify 代码结构图谱、企业级 RAG 落地最佳实践、
+            怎么把大模型变成「真有用」而不是「听起来很酷」。
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-4 pt-2 text-sm text-text-secondary">
           <span className="flex items-center gap-2">
             <MapPin className="w-4 h-4 text-neon-cyan" />
-            Nanjing, China
+            南京
           </span>
           <a
             href="https://github.com/Dream22180971"
@@ -90,14 +102,22 @@ export default function AboutPage() {
             className="flex items-center gap-2 hover:text-neon-cyan transition-colors"
           >
             <Code2 className="w-4 h-4" />
-            github.com/Dream22180971
+            GitHub
           </a>
+          <a href="mailto:3310103904@qq.com" className="flex items-center gap-2 hover:text-neon-cyan transition-colors">
+            <MessageSquare className="w-4 h-4" />
+            3310103904@qq.com
+          </a>
+          <span className="flex items-center gap-2">
+            <Coffee className="w-4 h-4" />
+            微信: drmr2022
+          </span>
         </div>
       </section>
 
       {/* Timeline */}
       <section className="space-y-6">
-        <h2 className="text-xl font-semibold text-text-primary">Journey</h2>
+        <h2 className="text-xl font-semibold text-text-primary">经历</h2>
         <div className="relative">
           <div className="absolute left-4 top-0 bottom-0 w-px bg-space-border" />
           <div className="space-y-6">
@@ -120,7 +140,7 @@ export default function AboutPage() {
 
       {/* Skills */}
       <section className="space-y-6">
-        <h2 className="text-xl font-semibold text-text-primary">Skills</h2>
+        <h2 className="text-xl font-semibold text-text-primary">技能</h2>
         <div className="grid md:grid-cols-2 gap-4">
           {Object.entries(skills).map(([category, items], i) => (
             <div
@@ -140,20 +160,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values */}
-      <section className="space-y-6">
-        <h2 className="text-xl font-semibold text-text-primary">Values</h2>
-        <div className="grid md:grid-cols-3 gap-4">
-          {values.map((value, i) => (
-            <div
-              key={value.title}
-              className={`card-glow rounded-xl p-5 text-center animate-slide-up stagger-${i + 1}`}
-            >
-              <h3 className="font-semibold text-text-primary mb-2">{value.title}</h3>
-              <p className="text-sm text-text-secondary">{value.desc}</p>
-            </div>
-          ))}
-        </div>
+      {/* 一点点人感 */}
+      <section className="card-glow rounded-xl p-6 space-y-4">
+        <h2 className="text-xl font-semibold text-text-primary">工作之外</h2>
+        <p className="text-text-secondary leading-relaxed">
+          周末会去南京周边爬山，偶尔写写公众号「晚年暖心话」（给中老年读者看的），
+          抖音发发 AI 学习笔记。雅思备考中，目标是 6.5，每天背单词 + 练口语。
+        </p>
       </section>
     </div>
   );

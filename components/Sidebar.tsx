@@ -2,18 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { GithubIcon, MailIcon, WechatIcon } from "./SocialIcons";
 
 const navItems = [
-  { href: "/", label: "Home", icon: "⌘" },
-  { href: "/projects", label: "Projects", icon: "◈" },
-  { href: "/blog", label: "Blog", icon: "◇" },
-  { href: "/about", label: "About", icon: "○" },
-  { href: "/experiments", label: "Experiments", icon: "△" },
-];
-
-const socialLinks = [
-  { href: "https://github.com/Dream22180971", label: "GitHub", icon: "⟨⟩" },
-  { href: "mailto:sean@example.com", label: "Email", icon: "✉" },
+  { href: "/", label: "首页", icon: "⌘" },
+  { href: "/projects", label: "项目", icon: "◈" },
+  { href: "/blog", label: "文章", icon: "◇" },
+  { href: "/about", label: "关于", icon: "○" },
+  { href: "/experiments", label: "实验", icon: "△" },
 ];
 
 export function Sidebar() {
@@ -25,13 +21,13 @@ export function Sidebar() {
       <div className="p-6 border-b border-space-border">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center text-white font-bold font-mono">
-            SW
+            肖
           </div>
           <div>
             <div className="font-mono text-sm text-neon-cyan group-hover:text-white transition-colors">
               seanwalter
             </div>
-            <div className="text-xs text-text-secondary">AI Agent Developer</div>
+            <div className="text-xs text-text-secondary">AI Agent 开发者</div>
           </div>
         </Link>
       </div>
@@ -56,20 +52,31 @@ export function Sidebar() {
       {/* 社交链接 */}
       <div className="p-4 border-t border-space-border">
         <div className="flex gap-2">
-          {socialLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center py-2 rounded-lg border border-space-border text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/30 transition-all text-xs font-mono"
-            >
-              {link.icon}
-            </a>
-          ))}
+          <a
+            href="https://github.com/Dream22180971"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center py-2 rounded-lg border border-space-border text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/30 transition-all"
+            title="GitHub"
+          >
+            <GithubIcon className="w-4 h-4" />
+          </a>
+          <a
+            href="mailto:3310103904@qq.com"
+            className="flex-1 flex items-center justify-center py-2 rounded-lg border border-space-border text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/30 transition-all"
+            title="邮箱"
+          >
+            <MailIcon className="w-4 h-4" />
+          </a>
+          <span
+            className="flex-1 flex items-center justify-center py-2 rounded-lg border border-space-border text-text-secondary cursor-default"
+            title="微信: drmr2022"
+          >
+            <WechatIcon className="w-4 h-4" />
+          </span>
         </div>
         <div className="mt-3 text-center text-xs text-text-muted">
-          © 2026
+          © 2026 · 南京
         </div>
       </div>
 
@@ -77,7 +84,7 @@ export function Sidebar() {
       <div className="px-6 py-3 border-t border-space-border">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
-          <span className="text-xs font-mono text-text-secondary">Available for work</span>
+          <span className="text-xs font-mono text-text-secondary">求职中 / 接项目中</span>
         </div>
       </div>
     </aside>

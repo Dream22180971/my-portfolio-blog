@@ -3,8 +3,8 @@ import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 
 export const metadata: Metadata = {
-  title: "seanwalter | AI Agent Developer",
-  description: "AI Agent Developer & RAG Knowledge Base Specialist",
+  title: "seanwalter | AI Agent 开发者",
+  description: "AI Agent 开发者，专注 RAG 知识库与智能体搭建。南京，备考 IELTS 6.5+。",
 };
 
 export default function RootLayout({
