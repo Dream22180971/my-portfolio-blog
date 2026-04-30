@@ -139,7 +139,7 @@ function PageContent() {
                 </h1>
               </div>
 
-              <p className="text-lg text-text-secondary max-w-2xl leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-text-secondary max-w-2xl leading-relaxed">
                 <span className="text-neon-cyan font-medium">专注 AI 应用开发 + AI Agent 落地</span>，把大模型从「听起来很酷」变成「用起来很爽」
               </p>
 
@@ -151,7 +151,7 @@ function PageContent() {
                 ))}
               </div>
 
-              <div className="flex flex-wrap gap-6 mt-10">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-6 mt-8 sm:mt-10">
                 <a href="https://github.com/Dream22180971" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-text-secondary hover:text-neon-cyan transition-colors">
                   <GithubIcon className="w-[18px] h-[18px]" /> GitHub
                 </a>
@@ -166,9 +166,9 @@ function PageContent() {
 
             {/* Stats */}
             <section className="mb-16">
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {stats.map((s) => (
-                  <div key={s.label} className="p-6 rounded-xl bg-bg-secondary border border-border-primary text-center">
+                  <div key={s.label} className="p-4 sm:p-6 rounded-xl bg-bg-secondary border border-border-primary text-center">
                     <div className={`text-3xl font-bold text-neon-${s.color} mb-1`}>{s.number}</div>
                     <div className="text-sm text-text-secondary">{s.label}</div>
                   </div>
