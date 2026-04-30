@@ -6,6 +6,59 @@ import { useState, useEffect } from "react";
 import { LanguageProvider, useLanguage } from "../components/LanguageContext";
 import { LanguageToggle } from "../components/LanguageToggle";
 import { Sidebar } from "../components/Sidebar";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const mobileNavItems = [
+  { href: "/", label: "首页" },
+  { href: "/projects", label: "项目" },
+  { href: "/blog", label: "文章" },
+  { href: "/about", label: "关于" },
+  { href: "/experiments", label: "实验" },
+  { href: "/contact", label: "联系" },
+];
+
+function MobileNav({ onClose }: { onClose: () => void }) {
+  const pathname = usePathname();
+
+  return (
+    <div className="flex flex-col h-full px-6 py-4">
+      <div className="flex items-center justify-between mb-8">
+        <div className="font-mono text-neon-cyan text-lg">seanwalter</div>
+        <button onClick={onClose} className="p-2 rounded-lg text-text-secondary hover:text-white">
+          <X size={20} />
+        </button>
+      </div>
+      <nav className="flex-1 space-y-2">
+        {mobileNavItems.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={onClose}
+              className={`block px-4 py-3 rounded-xl text-base font-medium transition-all ${
+                isActive
+                  ? "bg-neon-cyan/15 text-neon-cyan border border-neon-cyan/30"
+                  : "text-text-secondary hover:bg-bg-secondary hover:text-text-primary"
+              }`}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
+      </nav>
+      <div className="pt-4 border-t border-space-border space-y-3">
+        <a href="mailto:3310103904@qq.com" className="flex items-center gap-2 text-sm text-text-secondary">
+          <Mail size={14} /> 3310103904@qq.com
+        </a>
+        <div className="flex items-center gap-2 text-sm text-text-secondary">
+          <span>微信</span> drmr2022
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const directions = [
   "AI 应用开发",
@@ -14,8 +67,8 @@ const directions = [
 
 const stats = [
   { number: "3+", label: "个人项目", color: "cyan" },
-  { number: "1033ms", label: "RAG 响应", color: "purple" },
-  { number: "Vercel", label: "自动部署", color: "green" },
+  { number: "4", label: "文档源", color: "purple" },
+  { number: "2", label: "平台部署", color: "green" },
 ];
 
 const nowBuilding = [
@@ -50,7 +103,7 @@ function PageContent() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-bg-primary text-text-primary">
+    <div className="min-h-screen bg-gradient-to-br from-[#0a0e17] via-[#0f172a] to-[#1a0a2e] text-text-primary space-grid noise-overlay">
       <div className="fixed top-4 right-4 z-50 flex items-center gap-3">
         <LanguageToggle />
         <button
@@ -62,8 +115,8 @@ function PageContent() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-bg-primary pt-16">
-          <Sidebar />
+        <div className="md:hidden fixed inset-0 z-40 bg-space-bg/95 backdrop-blur-xl pt-16">
+          <MobileNav onClose={() => setMobileMenuOpen(false)} />
         </div>
       )}
 
@@ -87,7 +140,7 @@ function PageContent() {
               </div>
 
               <p className="text-lg text-text-secondary max-w-2xl leading-relaxed">
-                <span className="text-neon-cyan font-medium">专注 AI 应用开发</span>，把大模型从「听起来很酷」变成「用起来很爽」？
+                <span className="text-neon-cyan font-medium">专注 AI 应用开发 + AI Agent 落地</span>，把大模型从「听起来很酷」变成「用起来很爽」
               </p>
 
               <div className="flex flex-wrap gap-2 mt-6">
