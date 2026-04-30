@@ -136,8 +136,9 @@ function PageContent() {
                   <span className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse" />
                   {t("status", "开放求职")}
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                  {t("hero_title", "把 AI 想法")} <span className="text-neon-cyan">→</span> {t("hero_title2", "变成可用的产品")}
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+                  {t("hero_title", "把 AI 想法")}<br className="hidden sm:block" />
+                  <span className="text-neon-cyan">{t("hero_title2", "变成可用的产品")}</span>
                 </h1>
               </div>
 
