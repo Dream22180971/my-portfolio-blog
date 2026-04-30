@@ -25,6 +25,7 @@ body {
   color: #e2e8f0;
   font-family: "Inter", system-ui, sans-serif;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* 网格背景 */
@@ -51,17 +52,33 @@ body {
   opacity: 0.4;
 }
 
+.tech-orbs::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(0, 212, 255, 0.14), transparent 26%),
+    radial-gradient(circle at 78% 18%, rgba(124, 58, 237, 0.14), transparent 24%),
+    radial-gradient(circle at 60% 72%, rgba(16, 185, 129, 0.08), transparent 20%);
+  z-index: -1;
+}
+
 /* 发光边框卡片 */
 .card-glow {
-  background: rgba(17, 24, 39, 0.8);
+  background:
+    linear-gradient(180deg, rgba(17, 24, 39, 0.9), rgba(13, 18, 32, 0.94));
   border: 1px solid rgba(0, 212, 255, 0.08);
   backdrop-filter: blur(12px);
   transition: all 0.3s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 .card-glow:hover {
   border-color: rgba(0, 212, 255, 0.35);
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+  box-shadow:
+    0 0 30px rgba(0, 212, 255, 0.12),
+    0 0 60px rgba(124, 58, 237, 0.08);
   transform: translateY(-2px);
 }
 
@@ -128,7 +145,7 @@ body {
 
 .nav-item:hover,
 .nav-item.active {
-  background: rgba(0, 212, 255, 0.08);
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.08));
   color: #00d4ff;
 }
 

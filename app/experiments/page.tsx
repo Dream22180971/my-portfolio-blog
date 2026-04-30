@@ -1,42 +1,57 @@
-import { FlaskConical, ExternalLink } from "lucide-react";
+import { ArrowUpRight, FlaskConical, Sparkles } from "lucide-react";
 
 const experiments = [
   {
-    name: "AI Wordbook",
-    desc: "Spaced repetition vocabulary learning powered by AI. Generate word lists, track progress, remember forever.",
-    tags: ["AI", "Learning", "React"],
-    status: "paused",
-    emoji: "📖",
+    name: "TestPilotAgent",
+    desc: "把自动化测试经验和 LLM 结合，探索用 Agent 自动生成测试思路、用例草稿和验证流程。",
+    tags: ["Python", "AI Agent", "Testing"],
+    status: "active",
+    emoji: "🧪",
+    href: "https://github.com/Dream22180971/TestPilotAgent",
+  },
+  {
+    name: "运营助手 Agent",
+    desc: "围绕 GitHub API、项目进度和任务结构做信息聚合，验证 AI 在个人工作流里的可用性。",
+    tags: ["Next.js", "Octokit", "SQLite"],
+    status: "active",
+    emoji: "⚙️",
+    href: "https://github.com/Dream22180971/operation-assistant",
   },
   {
     name: "Food Menu App",
-    desc: "Daily meal decision helper. Built with Trae AI, exploring solo-agent development patterns.",
-    tags: ["Vue", "Trae AI", "Experiment"],
-    status: "active",
-    emoji: "🍽",
+    desc: "一个偏生活化的小实验，用 Trae AI 辅助快速搭建餐食决策工具，验证单人开发的提效边界。",
+    tags: ["HTML", "Trae AI", "原型实验"],
+    status: "paused",
+    emoji: "🍽️",
+    href: "https://github.com/Dream22180971/food-menu-app",
   },
   {
-    name: "Graphify Integration",
-    desc: "Exploring knowledge graph-based code understanding. Token compression ratio 71.5x vs traditional RAG.",
-    tags: ["Graph", "AI", "Research"],
+    name: "知识图谱理解方向",
+    desc: "继续研究基于图结构的代码理解与知识组织方式，关注比传统 RAG 更紧凑的上下文表达。",
+    tags: ["Graph", "代码理解", "Research"],
     status: "research",
     emoji: "🕸",
+    href: "https://github.com/Dream22180971/my-portfolio-blog",
   },
 ];
 
 const statusMap = {
-  active: { label: "Active", color: "text-neon-green" },
-  paused: { label: "Paused", color: "text-neon-amber" },
-  research: { label: "Research", color: "text-neon-purple" },
+  active: { label: "进行中", color: "text-neon-green" },
+  paused: { label: "暂缓中", color: "text-[#f59e0b]" },
+  research: { label: "研究中", color: "text-neon-purple" },
 };
 
 export default function ExperimentsPage() {
   return (
-    <div className="space-y-8 animate-fade-in">
-      <div>
-        <h1 className="text-3xl font-bold text-text-primary mb-2">Experiments</h1>
-        <p className="text-text-secondary">
-          Playground for ideas, prototypes, and things I'm exploring.
+    <div className="mx-auto max-w-5xl space-y-8 animate-fade-in">
+      <div className="space-y-3">
+        <div className="inline-flex items-center gap-2 rounded-full border border-neon-cyan/25 bg-neon-cyan/10 px-3 py-1 text-xs text-neon-cyan">
+          <Sparkles className="h-3.5 w-3.5" />
+          实验场 / 原型验证
+        </div>
+        <h1 className="text-3xl font-bold text-text-primary mb-2">实验</h1>
+        <p className="max-w-3xl leading-7 text-text-secondary">
+          这里放的是正在试、值得试、或者暂时还没做成但很有价值的方向。大多都和我现有仓库、Agent 工作流和真实开发习惯有关。
         </p>
       </div>
 
@@ -44,8 +59,11 @@ export default function ExperimentsPage() {
         {experiments.map((exp, i) => {
           const status = statusMap[exp.status as keyof typeof statusMap];
           return (
-            <div
+            <a
               key={exp.name}
+              href={exp.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`card-glow rounded-xl p-6 animate-slide-up stagger-${i + 1}`}
             >
               <div className="flex items-start gap-4">
@@ -55,21 +73,24 @@ export default function ExperimentsPage() {
                     <h3 className="font-semibold text-lg text-text-primary">
                       {exp.name}
                     </h3>
-                    <span className={`text-xs font-mono ${status.color}`}>
-                      ● {status.label}
-                    </span>
+                    <div className="flex items-center gap-3">
+                      <span className={`text-xs font-mono ${status.color}`}>
+                        ● {status.label}
+                      </span>
+                      <ArrowUpRight className="h-4 w-4 text-text-muted" />
+                    </div>
                   </div>
-                  <p className="text-sm text-text-secondary">{exp.desc}</p>
+                  <p className="text-sm leading-7 text-text-secondary">{exp.desc}</p>
                   <div className="flex flex-wrap gap-2">
-                    {exp.tags.map((tag) => (
-                      <span key={tag} className="tag tag-purple">
+                    {exp.tags.map((tag, index) => (
+                      <span key={tag} className={`tag ${index === 0 ? "tag-cyan" : "tag-purple"}`}>
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           );
         })}
       </div>
@@ -77,7 +98,7 @@ export default function ExperimentsPage() {
       <div className="card-glow rounded-xl p-6 text-center">
         <FlaskConical className="w-8 h-8 text-neon-cyan mx-auto mb-3" />
         <p className="text-text-secondary text-sm">
-          More experiments coming soon. Follow my GitHub to see what I'm building.
+          更多实验会继续补充，重点会围绕 AI 工作流、个人生产力工具和更真实的 Agent 使用场景展开。
         </p>
       </div>
     </div>

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { GithubIcon, MailIcon, WechatIcon } from "./SocialIcons";
-import { LanguageToggle } from "./LanguageToggle";
 
 const navItems = [
   { href: "/", label: "首页", icon: "⌘" },
@@ -17,7 +16,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 flex-col bg-space-bg/80 backdrop-blur-xl border-r border-space-border z-40">
+    <aside className="hidden md:flex fixed left-0 top-0 bottom-0 z-40 w-64 flex-col border-r border-space-border bg-space-bg/80 backdrop-blur-xl">
       {/* Logo */}
       <div className="p-6 border-b border-space-border">
         <Link href="/" className="flex items-center gap-3 group">
@@ -31,11 +30,6 @@ export function Sidebar() {
             <div className="text-xs text-text-secondary">AI Agent 开发者</div>
           </div>
         </Link>
-      </div>
-
-      {/* 语言切换 */}
-      <div className="px-4 py-3 border-b border-space-border">
-        <LanguageToggle />
       </div>
 
       {/* 导航 */}
@@ -90,7 +84,7 @@ export function Sidebar() {
       <div className="px-6 py-3 border-t border-space-border">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
-          <span className="text-xs font-mono text-text-secondary">求职中 / 接项目中</span>
+          <span className="text-xs font-mono text-text-secondary">持续构建中 / 持续迭代中</span>
         </div>
       </div>
     </aside>

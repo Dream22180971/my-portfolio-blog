@@ -1,133 +1,108 @@
-"use client";
-
 import Link from "next/link";
-import { Clock, Tag } from "lucide-react";
-import { useLanguage } from "@/components/LanguageContext";
+import { ArrowUpRight, CalendarDays, Clock3, Sparkles } from "lucide-react";
 
-const articles = {
-  zh: [
-    {
-      title: "从零搭建企业级 RAG 知识库",
-      date: "2026-04-26",
-      readTime: "8 分钟",
-      excerpt: "使用 LangChain + FAISS + DashScope 搭建企业级 RAG 知识库的完整指南，包含文档加载、语义搜索和性能优化。",
-      tags: ["RAG", "LangChain", "AI", "教程"],
-      slug: "rag-from-scratch",
-      featured: true,
-    },
-    {
-      title: "AI Agent 开发实战指南",
-      date: "2026-04-24",
-      readTime: "12 分钟",
-      excerpt: "使用 LangGraph 构建 AI Agent 的实战教程，涵盖状态管理、工具调用和多 Agent 协作模式。",
-      tags: ["Agent", "LangGraph", "教程"],
-      slug: "agent-guide",
-      featured: false,
-    },
-    {
-      title: "为什么我从 Chroma 切换到 FAISS",
-      date: "2026-04-26",
-      readTime: "5 分钟",
-      excerpt: "排查 Chroma 在 Windows 上的 SIGKILL 问题并迁移到 FAISS 向量存储，性能对比和经验总结。",
-      tags: ["FAISS", "Chroma", "调试", "Windows"],
-      slug: "chroma-to-faiss",
-      featured: false,
-    },
-  ],
-  en: [
-    {
-      title: "Building a RAG System from Scratch",
-      date: "2026-04-26",
-      readTime: "8 min",
-      excerpt: "A complete guide to building an enterprise RAG knowledge base with LangChain, FAISS, and DashScope. From document loading to semantic search.",
-      tags: ["RAG", "LangChain", "AI", "Tutorial"],
-      slug: "rag-from-scratch",
-      featured: true,
-    },
-    {
-      title: "AI Agent Development Practice Guide",
-      date: "2026-04-24",
-      readTime: "12 min",
-      excerpt: "Hands-on tutorial on building AI agents with LangGraph. Covers state management, tool calling, and multi-agent orchestration patterns.",
-      tags: ["Agent", "LangGraph", "Tutorial"],
-      slug: "agent-guide",
-      featured: false,
-    },
-    {
-      title: "Why I Switched from Chroma to FAISS",
-      date: "2026-04-26",
-      readTime: "5 min",
-      excerpt: "Debugging Chroma's SIGKILL issue on Windows and migrating to FAISS for stable vector storage. Performance comparison and lessons learned.",
-      tags: ["FAISS", "Chroma", "Debug", "Windows"],
-      slug: "chroma-to-faiss",
-      featured: false,
-    },
-  ],
-};
-
-const pageContent = {
-  zh: {
-    title: "文章",
-    description: "分享 AI、开发和成长路上的思考。",
-    readTime: "阅读",
-    featured: "精选",
+const articles = [
+  {
+    title: "从零搭建企业级 RAG 知识库",
+    date: "2026-04-26",
+    readTime: "8 分钟",
+    excerpt:
+      "从文档清洗、向量索引到答案溯源，完整拆解一个可运行、可验证、可复盘的企业级 RAG 知识库方案。",
+    tags: ["RAG", "LangChain", "FAISS", "实战拆解"],
+    slug: "rag-from-scratch",
+    featured: true,
   },
-  en: {
-    title: "Blog",
-    description: "Writing about AI, development, and the journey.",
-    readTime: "min read",
-    featured: "Featured",
+  {
+    title: "AI Agent 开发实战指南",
+    date: "2026-04-24",
+    readTime: "12 分钟",
+    excerpt:
+      "围绕状态管理、工具调用和多 Agent 协作，把 LangGraph 从概念说明落到真实工程实现。",
+    tags: ["Agent", "LangGraph", "工程实践"],
+    slug: "agent-guide",
+    featured: false,
   },
-};
+  {
+    title: "为什么我从 Chroma 切换到 FAISS",
+    date: "2026-04-26",
+    readTime: "5 分钟",
+    excerpt:
+      "记录一次 Windows 环境下的排障与迁移过程，以及向量库选择背后的稳定性和可维护性判断。",
+    tags: ["FAISS", "Chroma", "排障", "Windows"],
+    slug: "chroma-to-faiss",
+    featured: false,
+  },
+];
 
 export default function BlogPage() {
-  const { language } = useLanguage();
-  const articlesList = articles[language];
-  const content = pageContent[language];
-
   return (
-    <div className="space-y-8 animate-fade-in">
-      <div>
-        <h1 className="text-3xl font-bold text-text-primary mb-2">{content.title}</h1>
-        <p className="text-text-secondary">{content.description}</p>
+    <div className="mx-auto max-w-4xl space-y-8 animate-fade-in">
+      <div className="space-y-3">
+        <div className="inline-flex items-center gap-2 rounded-full border border-neon-purple/25 bg-neon-purple/10 px-3 py-1 text-xs text-[#c4b5fd]">
+          <Sparkles className="h-3.5 w-3.5" />
+          技术沉淀 / 思考记录
+        </div>
+        <h1 className="text-3xl font-bold text-text-primary md:text-4xl">文章</h1>
+        <p className="max-w-2xl leading-7 text-text-secondary">
+          分享 AI 应用开发、Agent 工程实践，以及从测试转向产品化开发过程中的方法和判断。
+        </p>
       </div>
 
-      <div className="space-y-4">
-        {articlesList.map((article, i) => (
+      <div className="space-y-5">
+        {articles.map((article, i) => (
           <Link
             key={article.slug}
             href={`/blog/${article.slug}`}
-            className={`card-glow rounded-xl p-6 group animate-slide-up stagger-${Math.min(i + 1, 5)} ${
-              article.featured ? "border-neon-purple/20" : ""
+            className={`card-glow group block overflow-hidden rounded-2xl p-6 animate-slide-up stagger-${Math.min(
+              i + 1,
+              5
+            )} ${
+              article.featured
+                ? "border-neon-purple/25 bg-[linear-gradient(135deg,rgba(124,58,237,0.12),rgba(17,24,39,0.88))]"
+                : ""
             }`}
           >
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-mono text-text-muted">
-                  <Clock className="w-3 h-3" />
-                  <span>{article.readTime}</span>
-                  <span className="opacity-30">•</span>
-                  <span>{article.date}</span>
-                </div>
-                {article.featured && (
-                  <span className="tag tag-purple text-xs">{content.featured}</span>
-                )}
+            <div className="flex flex-col gap-5 md:flex-row md:items-start">
+              <div className="hidden h-28 w-24 rounded-2xl border border-space-border bg-[radial-gradient(circle_at_top,rgba(0,212,255,0.22),transparent_42%),linear-gradient(180deg,rgba(17,24,39,0.95),rgba(10,14,23,0.9))] md:flex md:flex-col md:items-center md:justify-center">
+                <span className="text-2xl font-bold text-neon-cyan">{String(i + 1).padStart(2, "0")}</span>
+                <span className="mt-1 text-[11px] uppercase tracking-[0.3em] text-text-muted">note</span>
               </div>
 
-              <h2 className="text-xl font-semibold text-text-primary group-hover:text-neon-cyan transition-colors">
-                {article.title}
-              </h2>
+              <div className="flex-1 space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-text-muted">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Clock3 className="h-3.5 w-3.5" />
+                      {article.readTime}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <CalendarDays className="h-3.5 w-3.5" />
+                      {article.date}
+                    </span>
+                  </div>
+                  {article.featured && (
+                    <span className="tag tag-purple text-xs">精选文章</span>
+                  )}
+                </div>
 
-              <p className="text-sm text-text-secondary leading-relaxed">
-                {article.excerpt}
-              </p>
+                <div className="flex items-start justify-between gap-4">
+                  <h2 className="text-xl font-semibold leading-8 text-text-primary group-hover:text-neon-cyan transition-colors md:text-2xl">
+                    {article.title}
+                  </h2>
+                  <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-text-muted group-hover:text-neon-cyan transition-colors" />
+                </div>
 
-              <div className="flex flex-wrap gap-2 pt-2">
-                {article.tags.map((tag) => (
-                  <span key={tag} className="tag tag-cyan">
-                    {tag}
-                  </span>
-                ))}
+                <p className="text-sm leading-7 text-text-secondary md:text-[15px]">
+                  {article.excerpt}
+                </p>
+
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {article.tags.map((tag, index) => (
+                    <span key={tag} className={`tag ${index === 0 ? "tag-cyan" : "tag-purple"}`}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </Link>

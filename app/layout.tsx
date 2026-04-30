@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
-import { LanguageProvider } from "@/components/LanguageContext";
-import { LanguageToggle } from "@/components/LanguageToggle";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "seanwalter | AI Agent 开发者",
@@ -16,11 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className="space-grid noise-overlay">
+      <body className="space-grid noise-overlay tech-orbs">
         {/* 移动端顶部导航 */}
-        <header className="md:hidden fixed top-0 left-0 right-0 z-50 bg-space-bg/90 backdrop-blur-xl border-b border-space-border">
-          <div className="flex items-center justify-between px-4 py-3">
-            <span className="font-mono text-sm text-neon-cyan">seanwalter</span>
+        <header className="md:hidden fixed top-0 left-0 right-0 z-50 border-b border-space-border bg-space-bg/90 backdrop-blur-xl">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+            <Link href="/" className="font-mono text-sm text-neon-cyan">
+              seanwalter
+            </Link>
             <MobileNav />
           </div>
         </header>
@@ -29,9 +30,9 @@ export default function RootLayout({
         <Sidebar />
 
         {/* 主内容区 */}
-        <main className="md:ml-64 min-h-screen pt-16 md:pt-0">
-          <div className="max-w-4xl mx-auto px-6 py-8">
-            <LanguageProvider>{children}</LanguageProvider>
+        <main className="min-h-screen pt-16 md:ml-64 md:pt-0">
+          <div className="mx-auto max-w-6xl px-5 py-8 sm:px-6 md:px-8 md:py-12">
+            {children}
           </div>
         </main>
       </body>
@@ -41,22 +42,23 @@ export default function RootLayout({
 
 function MobileNav() {
   const navItems = [
-    { href: "/", label: "首页", icon: "⬡" },
-    { href: "/projects", label: "项目", icon: "◈" },
-    { href: "/blog", label: "文章", icon: "◇" },
-    { href: "/about", label: "关于", icon: "○" },
+    { href: "/", label: "首页" },
+    { href: "/projects", label: "项目" },
+    { href: "/blog", label: "文章" },
+    { href: "/about", label: "关于" },
+    { href: "/experiments", label: "实验" },
   ];
 
   return (
     <div className="flex gap-1">
       {navItems.map((item) => (
-        <a
+        <Link
           key={item.href}
           href={item.href}
           className="px-3 py-1 text-xs font-mono text-text-secondary hover:text-neon-cyan transition-colors"
         >
           {item.label}
-        </a>
+        </Link>
       ))}
     </div>
   );

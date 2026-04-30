@@ -1,4 +1,4 @@
-import { MapPin, GraduationCap, Rocket, Compass, Coffee, Code2, MessageSquare } from "lucide-react";
+import { MapPin, Rocket, Compass, Coffee, Code2, MessageSquare, BookOpen, BrainCircuit } from "lucide-react";
 
 const timeline = [
   {
@@ -38,7 +38,7 @@ const skills = {
 
 export default function AboutPage() {
   return (
-    <div className="space-y-12 animate-fade-in">
+    <div className="mx-auto max-w-5xl space-y-12 animate-fade-in">
       <div>
         <h1 className="text-3xl font-bold text-text-primary mb-2">关于我</h1>
         <p className="text-text-secondary">
@@ -165,8 +165,23 @@ export default function AboutPage() {
         <h2 className="text-xl font-semibold text-text-primary">工作之外</h2>
         <p className="text-text-secondary leading-relaxed">
           周末会去南京周边爬山，偶尔写写公众号「晚年暖心话」（给中老年读者看的），
-          抖音发发 AI 学习笔记。雅思备考中，目标是 6.5，每天背单词 + 练口语。
+          也会持续发一些 AI 学习笔记。平时喜欢看书，尤其关注哲学、心理学和那些能帮助人理解自我、
+          理解选择与长期主义的内容。雅思备考中，目标是 6.5，每天背单词、练口语，也把阅读当成让自己慢下来的一种方式。
         </p>
+        <div className="flex flex-wrap gap-2 pt-2">
+          <span className="tag tag-cyan">
+            <BookOpen className="mr-1 h-3 w-3" />
+            喜欢看书
+          </span>
+          <span className="tag tag-purple">
+            <BrainCircuit className="mr-1 h-3 w-3" />
+            哲学 / 心理学
+          </span>
+          <span className="tag tag-green">
+            <Coffee className="mr-1 h-3 w-3" />
+            爬山 / 写作 / 备考
+          </span>
+        </div>
       </section>
     </div>
   );

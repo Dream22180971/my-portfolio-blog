@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Star, GitFork, Trophy } from "lucide-react";
 import { GithubIcon } from "@/components/SocialIcons";
 
