@@ -1,164 +1,233 @@
-import { Star, GitFork, Trophy } from "lucide-react";
+import { ArrowUpRight, FolderKanban, Sparkles, Trophy, Wrench } from "lucide-react";
 import { GithubIcon } from "@/components/SocialIcons";
 
 const projects = [
   {
     name: "VoyageAI",
-    desc: "AI 智能旅行规划系统，从用户需求到完整行程一步生成",
-    tags: ["Vue 3", "FastAPI", "AI Agent"],
+    desc: "AI 智能旅行规划系统，从需求输入、路线生成到结果导出形成完整闭环。",
+    tags: ["Vue 3", "FastAPI", "AI 应用"],
     github: "https://github.com/Dream22180971/VoyageAI",
-    stars: 0,
-    forks: 0,
     emoji: "✈",
     color: "cyan",
-    result: "完整前后端应用，多轮对话 + 个性化行程规划",
+    result: "前后端完整联调，支持云端部署、移动端适配和结构化行程输出。",
   },
   {
     name: "RAG 知识库问答",
-    desc: "企业级 RAG 演示项目，让大模型「读懂」你的文档",
+    desc: "企业级 RAG 演示项目，让大模型真正理解并检索你的私有文档。",
     tags: ["LangChain", "FAISS", "DashScope", "Streamlit"],
     github: "https://github.com/Dream22180971/rag-knowledge-base-demo",
-    stars: 0,
-    forks: 0,
     emoji: "📚",
     color: "purple",
-    result: "4 参考来源，1033ms 响应，索引缓存秒级加载",
+    result: "完成多来源问答、检索增强和答案溯源，索引缓存达到秒级加载。",
   },
   {
     name: "Coze 电商智能客服",
     desc: "基于 Coze 的智能客服机器人，7×24 小时自动应答",
-    tags: ["Coze", "Agent", "Knowledge Base"],
+    tags: ["Coze", "Agent", "知识库"],
     github: "https://github.com/Dream22180971/coze-ecommerce-bot",
-    stars: 0,
-    forks: 0,
     emoji: "🤖",
     color: "green",
     result: "已发布 Agent Store，16 条 Q&A + 3 份知识库文档",
   },
   {
     name: "TestPilotAgent",
-    desc: "AI 驱动的自动化测试 Agent，探索用 LLM 自动生成测试用例",
-    tags: ["Python", "AI Agent", "Testing"],
+    desc: "AI 驱动的自动化测试 Agent，探索用 LLM 辅助测试设计、场景拆解和验证流程。",
+    tags: ["Python", "AI Agent", "测试工程"],
     github: "https://github.com/Dream22180971/TestPilotAgent",
-    stars: 0,
-    forks: 0,
     emoji: "🧪",
     color: "amber",
-    result: "探索阶段，测试框架搭建中",
+    result: "围绕测试工程经验延展出的 Agent 方向，持续验证生成式测试工作流。",
   },
   {
     name: "运营助手 Agent",
-    desc: "项目进度管理 Web App，对接 GitHub API 自动追踪进度",
+    desc: "项目进度管理 Web App，对接 GitHub API 自动追踪进度与任务状态。",
     tags: ["Next.js", "SQLite", "Octokit"],
     github: "https://github.com/Dream22180971/operation-assistant",
-    stars: 0,
-    forks: 0,
     emoji: "⚡",
     color: "cyan",
     result: "v0.1 规划中，需求文档已完成",
   },
+  {
+    name: "Food Menu App",
+    desc: "面向日常决策的小型原型实验，验证 AI 辅助快速开发的效率边界。",
+    tags: ["HTML", "Trae AI", "原型实验"],
+    github: "https://github.com/Dream22180971/food-menu-app",
+    emoji: "🍽️",
+    color: "purple",
+    result: "快速完成可交互界面雏形，用于验证单人快速交付模式。",
+  },
+  {
+    name: "BaiyueMedicalSalesSystemTest",
+    desc: "基于 pytest + requests 的接口自动化测试框架，沉淀测试工程方法与执行链路。",
+    tags: ["Pytest", "Requests", "自动化测试"],
+    github: "https://github.com/Dream22180971/BaiyueMedicalSalesSystemTest",
+    emoji: "🔍",
+    color: "green",
+    result: "聚焦接口自动化执行、测试数据组织与结果校验能力。",
+  },
+  {
+    name: "KeyGuardTool",
+    desc: "本地密码管理工具原型，验证本地存储、安全交互与轻应用体验设计。",
+    tags: ["Tool", "安全", "前端原型"],
+    github: "https://github.com/Dream22180971/KeyGuardTool",
+    emoji: "🔐",
+    color: "amber",
+    result: "围绕轻量工具产品做功能、交互和本地数据管理探索。",
+  },
 ];
 
-const categories = ["全部", "AI Agent", "Web 应用", "探索中"];
+const highlights = [
+  { value: "8", label: "当前展示项目" },
+  { value: "3", label: "AI / Agent 方向" },
+  { value: "2", label: "测试 / 工具类项目" },
+];
+
+const filters = ["AI 应用", "Agent 工作流", "测试工程", "工具产品"];
 
 export default function ProjectsPage() {
   return (
-    <div className="space-y-8 animate-fade-in">
-      <div>
-        <h1 className="text-3xl font-bold text-text-primary mb-2">项目</h1>
-        <p className="text-text-secondary">
-          每个项目都是一次学习机会，代码可运行，文档可追溯。
+    <div className="space-y-10 animate-fade-in">
+      <section className="relative overflow-hidden rounded-[28px] border border-space-border/80 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_26%),linear-gradient(145deg,rgba(15,23,42,0.94),rgba(10,14,23,0.98))] px-6 py-8 shadow-[0_0_80px_rgba(124,58,237,0.08)] sm:px-8 md:px-10">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(124,58,237,0.04),transparent)]" />
+        <div className="relative space-y-6">
+          <div className="inline-flex items-center gap-2 rounded-full border border-neon-purple/25 bg-neon-purple/10 px-3 py-1 text-xs text-[#c4b5fd]">
+            <Sparkles className="h-3.5 w-3.5" />
+            项目档案 / 可运行 / 可追溯 / 可扩展
+          </div>
+          <div className="max-w-3xl space-y-3">
+            <h1 className="text-3xl font-bold text-text-primary md:text-4xl">项目</h1>
+            <p className="leading-7 text-text-secondary">
+              这里收录了我近阶段公开沉淀的 AI 应用、Agent 工作流、测试工程实验和工具类项目。
+              我更关心它们是否真的可用、是否能解释清楚，以及是否值得继续迭代。
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {filters.map((item, index) => (
+              <span
+                key={item}
+                className={`tag ${index % 2 === 0 ? "tag-cyan" : "tag-purple"}`}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3">
+            {highlights.map((item) => (
+              <div key={item.label} className="rounded-2xl border border-space-border bg-white/5 px-5 py-5">
+                <div className="text-3xl font-bold text-neon-cyan">{item.value}</div>
+                <div className="mt-1 text-sm text-text-secondary">{item.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="flex items-center gap-2 text-xl font-semibold text-text-primary">
+          <FolderKanban className="h-5 w-5 text-neon-cyan" />
+          仓库项目
+        </h2>
+        <p className="text-sm leading-7 text-text-secondary">
+          从 AI 产品原型到测试工程实验，这些仓库一起构成了我当前的能力地图。
         </p>
-      </div>
-
-      {/* 分类筛选 */}
-      <div className="flex gap-2 flex-wrap">
-        {categories.map((cat, i) => (
-          <button
-            key={cat}
-            className={`px-4 py-2 rounded-lg font-mono text-sm transition-all ${
-              i === 0
-                ? "bg-neon-cyan/20 text-neon-cyan border border-neon-cyan/40"
-                : "bg-space-card border border-space-border text-text-secondary hover:border-space-border/60"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* 项目网格 */}
-      <div className="grid md:grid-cols-2 gap-4">
-        {projects.map((project, i) => (
-          <div
-            key={project.name}
-            className={`card-glow rounded-xl p-6 animate-slide-up stagger-${Math.min(i + 1, 5)}`}
-          >
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <span className="text-4xl">{project.emoji}</span>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-lg text-text-primary">
-                      {project.name}
-                    </h3>
-                    <div className="flex gap-2">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-lg text-text-muted hover:text-neon-cyan hover:bg-neon-cyan/10 transition-all"
-                      >
-                        <GithubIcon className="w-4 h-4" />
-                      </a>
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {projects.map((project, i) => (
+            <a
+              key={project.name}
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`card-glow group rounded-2xl p-6 animate-slide-up stagger-${Math.min(i + 1, 5)}`}
+            >
+              <div className="space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-space-border bg-white/5 text-3xl">
+                    {project.emoji}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <h3 className="text-lg font-semibold text-text-primary group-hover:text-neon-cyan transition-colors">
+                          {project.name}
+                        </h3>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {project.tags.slice(0, 2).map((tag) => (
+                            <span
+                              key={tag}
+                              className={`tag ${
+                                project.color === "cyan"
+                                  ? "tag-cyan"
+                                  : project.color === "purple"
+                                  ? "tag-purple"
+                                  : project.color === "green"
+                                  ? "tag-green"
+                                  : "tag-purple"
+                              }`}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 text-text-muted">
+                        <GithubIcon className="h-4 w-4" />
+                        <ArrowUpRight className="h-4 w-4 group-hover:text-neon-cyan transition-colors" />
+                      </div>
                     </div>
                   </div>
+                </div>
 
-                  <div className="flex gap-3 mt-1 text-xs font-mono text-text-muted">
-                    <span className="flex items-center gap-1">
-                      <Star className="w-3 h-3" /> {project.stars}
+                <p className="min-h-[84px] text-sm leading-7 text-text-secondary">
+                  {project.desc}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.slice(2).map((tag, index) => (
+                    <span
+                      key={tag}
+                      className={`tag ${index % 2 === 0 ? "tag-cyan" : "tag-purple"}`}
+                    >
+                      {tag}
                     </span>
-                    <span className="flex items-center gap-1">
-                      <GitFork className="w-3 h-3" /> {project.forks}
-                    </span>
+                  ))}
+                </div>
+
+                <div className="border-t border-space-border pt-4">
+                  <div className="mb-2 flex items-center gap-2 text-xs font-mono text-neon-cyan">
+                    <Trophy className="h-3.5 w-3.5" />
+                    项目亮点
                   </div>
+                  <p className="text-sm leading-7 text-text-secondary">{project.result}</p>
                 </div>
               </div>
+            </a>
+          ))}
+        </div>
+      </section>
 
-              <p className="text-sm text-text-secondary leading-relaxed">
-                {project.desc}
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className={`tag ${
-                      project.color === "cyan"
-                        ? "tag-cyan"
-                        : project.color === "purple"
-                        ? "tag-purple"
-                        : project.color === "amber"
-                        ? "tag-purple"
-                        : "tag-green"
-                    }`}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* 成果 */}
-              <div className="pt-3 border-t border-space-border">
-                <div className="flex items-center gap-2 text-xs font-mono text-neon-cyan mb-1">
-                  <Trophy className="w-3 h-3" /> 成果
-                </div>
-                <p className="text-sm text-text-secondary">{project.result}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <section className="grid gap-4 lg:grid-cols-2">
+        <div className="card-glow rounded-2xl p-6">
+          <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-text-primary">
+            <Wrench className="h-5 w-5 text-neon-purple" />
+            我在项目里关注什么
+          </h3>
+          <p className="text-sm leading-7 text-text-secondary">
+            不管是 AI 应用、Agent 工具还是测试工程类仓库，我都倾向于把“能跑”继续推进到“能解释、能维护、能继续迭代”。
+            所以仓库里通常会同时保留实现、文档、部署思路和问题复盘。
+          </p>
+        </div>
+        <div className="card-glow rounded-2xl p-6">
+          <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-text-primary">
+            <Sparkles className="h-5 w-5 text-neon-cyan" />
+            下一步补充方向
+          </h3>
+          <p className="text-sm leading-7 text-text-secondary">
+            后续还会继续补充测试工程沉淀、自动化实践、AI 辅助开发实验和更多可公开的完整项目，让项目页既能展示成果，也能反映真实成长路径。
+          </p>
+        </div>
+      </section>
     </div>
   );
 }

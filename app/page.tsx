@@ -1,5 +1,15 @@
 import Link from "next/link";
-import { ArrowUpRight, BookOpen, Mail, Sparkles, Target, Zap } from "lucide-react";
+import {
+  ArrowUpRight,
+  BookOpen,
+  Bug,
+  Mail,
+  SearchCheck,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Zap,
+} from "lucide-react";
 import { GithubIcon } from "../components/SocialIcons";
 
 const directions = ["AI 应用开发", "AI Agent 产品化", "RAG 系统落地"];
@@ -60,6 +70,27 @@ const capabilityCards = [
   {
     title: "从 Demo 到可用",
     desc: "更关注稳定性、可维护性和真实使用体验，而不只是做一个演示。",
+  },
+];
+
+const testingStrengths = [
+  {
+    title: "测试设计与质量闭环",
+    icon: ShieldCheck,
+    desc: "能独立完成测试方案、测试点提炼、用例设计与结果复盘，把质量风险前移到需求和设计阶段。",
+    metric: "1000+ 高覆盖率用例设计经验",
+  },
+  {
+    title: "接口 / 兼容 / 端到端验证",
+    icon: SearchCheck,
+    desc: "熟悉接口测试、数据校验、跨端联动、兼容性与稳定性验证，能从用户链路视角推进问题闭环。",
+    metric: "350+ 缺陷跟踪与回归验证",
+  },
+  {
+    title: "自动化与 AI 提效",
+    icon: Bug,
+    desc: "参与自动化脚本建设、CI/CD 环境协同，也会把 AI 用在测试设计、失败分析和缺陷定位提效上。",
+    metric: "定位效率提升约 60%，自动化覆盖率达到 100%",
   },
 ];
 
@@ -227,6 +258,38 @@ export default function HomePage() {
               </div>
             </a>
           ))}
+        </div>
+      </section>
+
+      <section className="space-y-5">
+        <div className="flex items-center gap-2 text-xl font-semibold">
+          <ShieldCheck className="h-5 w-5 text-neon-purple" />
+          测试工程能力
+        </div>
+        <p className="max-w-3xl text-sm leading-7 text-text-secondary">
+          除了 AI 应用开发，我也有完整的测试工程背景，覆盖测试设计、接口验证、自动化执行、日志分析与质量复盘。
+          这些能力会直接反哺我现在做产品时对稳定性、边界条件和交付质量的要求。
+        </p>
+
+        <div className="grid gap-4 lg:grid-cols-3">
+          {testingStrengths.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <div key={item.title} className="card-glow rounded-2xl p-6">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="rounded-2xl border border-neon-purple/20 bg-neon-purple/10 p-3">
+                    <Icon className="h-5 w-5 text-neon-purple" />
+                  </div>
+                  <h3 className="text-base font-semibold text-text-primary">{item.title}</h3>
+                </div>
+                <p className="text-sm leading-7 text-text-secondary">{item.desc}</p>
+                <div className="mt-4 rounded-xl border border-space-border bg-white/5 px-4 py-3 text-sm text-neon-cyan">
+                  {item.metric}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
     </div>

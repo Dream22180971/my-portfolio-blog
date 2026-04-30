@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import Link from "next/link";
+import { MobileTopNav } from "@/components/MobileTopNav";
 
 export const metadata: Metadata = {
   title: "seanwalter | AI Agent 开发者",
@@ -22,7 +23,7 @@ export default function RootLayout({
             <Link href="/" className="font-mono text-sm text-neon-cyan">
               seanwalter
             </Link>
-            <MobileNav />
+            <MobileTopNav />
           </div>
         </header>
 
@@ -37,29 +38,5 @@ export default function RootLayout({
         </main>
       </body>
     </html>
-  );
-}
-
-function MobileNav() {
-  const navItems = [
-    { href: "/", label: "首页" },
-    { href: "/projects", label: "项目" },
-    { href: "/blog", label: "文章" },
-    { href: "/about", label: "关于" },
-    { href: "/experiments", label: "实验" },
-  ];
-
-  return (
-    <div className="flex gap-1">
-      {navItems.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className="px-3 py-1 text-xs font-mono text-text-secondary hover:text-neon-cyan transition-colors"
-        >
-          {item.label}
-        </Link>
-      ))}
-    </div>
   );
 }
