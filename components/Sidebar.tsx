@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { GithubIcon, MailIcon, WechatIcon } from "./SocialIcons";
 
@@ -68,12 +69,33 @@ export function Sidebar() {
           >
             <MailIcon className="w-4 h-4" />
           </a>
-          <span
-            className="flex-1 flex items-center justify-center py-2 rounded-lg border border-space-border text-text-secondary cursor-default"
-            title="微信: drmr2022"
-          >
-            <WechatIcon className="w-4 h-4" />
-          </span>
+          <div className="relative flex-1 group">
+            <button
+              type="button"
+              className="w-full flex items-center justify-center py-2 rounded-lg border border-space-border text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/30 transition-all"
+              aria-label="微信二维码"
+              title="微信: drmr2022"
+            >
+              <WechatIcon className="w-4 h-4" />
+            </button>
+            <div className="pointer-events-none absolute bottom-full left-1/2 mb-3 w-44 -translate-x-1/2 opacity-0 scale-95 transition-all duration-150 group-hover:opacity-100 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:scale-100">
+              <div className="rounded-xl border border-space-border bg-space-bg/95 backdrop-blur-xl p-2 shadow-[0_16px_48px_rgba(0,0,0,0.45)]">
+                <div className="overflow-hidden rounded-lg bg-white">
+                  <Image
+                    src="/about/my-erweima.jpg"
+                    alt="微信二维码"
+                    width={320}
+                    height={320}
+                    className="h-auto w-full"
+                    priority
+                  />
+                </div>
+                <div className="mt-2 text-center text-[11px] font-mono text-text-secondary">
+                  扫码添加微信
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="mt-3 text-center text-xs text-text-muted">
           © 2026 · 南京

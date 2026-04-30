@@ -149,7 +149,7 @@ export default function ProjectsPage() {
                   <div className="min-w-0 flex-1">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <h3 className="text-lg font-semibold text-text-primary group-hover:text-neon-cyan transition-colors">
+                        <h3 className="text-lg font-semibold text-text-primary group-hover:text-neon-cyan transition-colors whitespace-normal break-words">
                           {project.name}
                         </h3>
                         <div className="mt-2 flex flex-wrap gap-2">

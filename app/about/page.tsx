@@ -164,8 +164,7 @@ export default function AboutPage() {
       <section className="card-glow rounded-xl p-6 space-y-4">
         <h2 className="text-xl font-semibold text-text-primary">工作之外</h2>
         <p className="text-text-secondary leading-relaxed">
-          周末会去南京周边爬山，偶尔写写公众号「晚年暖心话」（给中老年读者看的），
-          也会持续发一些 AI 学习笔记。平时喜欢看书，尤其关注哲学、心理学和那些能帮助人理解自我、
+          周末会去南京周边爬山，偶尔写写公众号，也会持续发一些 AI 学习笔记。平时喜欢看书，尤其关注哲学、心理学和那些能帮助人理解自我、
           理解选择与长期主义的内容。雅思备考中，目标是 6.5，每天背单词、练口语，也把阅读当成让自己慢下来的一种方式。
         </p>
         <div className="flex flex-wrap gap-2 pt-2">
