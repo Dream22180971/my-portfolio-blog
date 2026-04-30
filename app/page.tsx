@@ -3,9 +3,20 @@ import { ArrowRight, MapPin, Zap, Target, Sparkles } from "lucide-react";
 import { GithubIcon, MailIcon, WechatIcon } from "@/components/SocialIcons";
 
 const highlights = [
-  { number: "5+", label: "AI 项目", color: "cyan" },
-  { number: "RAG", label: "核心方向", color: "purple" },
-  { number: "∞", label: "探索中", color: "green" },
+  { number: "3", label: "上线项目", color: "cyan" },
+  { number: "1033ms", label: "RAG 响应", color: "purple" },
+  { number: "1", label: "Vercel 部署", color: "green" },
+];
+
+const directions = [
+  "RAG 知识库",
+  "AI Agent 产品",
+];
+
+const nowBuilding = [
+  { name: "VoyageAI v2", desc: "多 Provider 路由 + 成本优化", color: "cyan" },
+  { name: "RAG 知识库 v2", desc: "多文档源 + 领域适配", color: "purple" },
+  { name: "AI 工作流实验", desc: "LangGraph 多 Agent 编排", color: "green" },
 ];
 
 const featuredProjects = [
@@ -62,23 +73,31 @@ export default function HomePage() {
           <MapPin className="w-3 h-3" />
           <span>南京</span>
           <span className="opacity-30">•</span>
-          <span>AI 落地顾问 / RAG 方向</span>
+          <span>AI 独立开发者</span>
           <span className="opacity-30">•</span>
           <span>备考 IELTS 6.5+</span>
         </div>
 
         <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-          <span className="text-text-primary">用 AI 解决</span>
+          <span className="text-text-primary">把 AI 想法</span>
           <br />
           <span className="bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
-            真实业务问题
+            变成可用的产品
           </span>
         </h1>
 
         <p className="text-lg text-text-secondary max-w-2xl leading-relaxed">
-          自动化测试工程师 → AI Agent 开发者。专注 RAG 知识库与智能体搭建，
-          帮企业把大模型从「听起来很酷」变成「用起来很爽」。
+          <span className="text-neon-cyan font-medium">专注 RAG + AI Agent 落地</span>，把大模型从「听起来很酷」变成「用起来很爽」。
         </p>
+
+        {/* 方向标签 */}
+        <div className="flex flex-wrap gap-2">
+          {directions.map((dir) => (
+            <span key={dir} className="tag tag-cyan/60">
+              {dir}
+            </span>
+          ))}
+        </div>
 
         {/* 能力标签 */}
         <div className="flex flex-wrap gap-2">
@@ -86,7 +105,7 @@ export default function HomePage() {
             <Target className="w-3 h-3" /> RAG 知识库
           </span>
           <span className="tag tag-purple flex items-center gap-1">
-            <Zap className="w-3 h-3" /> AI Agent 搭建
+            <Zap className="w-3 h-3" /> AI 工具
           </span>
           <span className="tag tag-green flex items-center gap-1">
             <Sparkles className="w-3 h-3" /> Coze 低代码
@@ -98,7 +117,7 @@ export default function HomePage() {
 
         <div className="flex flex-wrap gap-3 pt-4">
           <Link href="/projects" className="btn-primary">
-            <span>查看项目</span>
+            <span>查看产品</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
           <a
@@ -146,10 +165,31 @@ export default function HomePage() {
         ))}
       </section>
 
-      {/* 重点项目 */}
+      {/* 正在构建 */}
+      <section className="space-y-4">
+        <div className="flex items-center gap-2">
+          <span className="text-xl">🔥</span>
+          <h2 className="text-xl font-semibold text-text-primary">正在构建</h2>
+        </div>
+        <div className="grid gap-3">
+          {nowBuilding.map((item) => (
+            <div key={item.name} className="card-elevated rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <div className="font-medium text-text-primary">{item.name}</div>
+                <div className="text-sm text-text-secondary">{item.desc}</div>
+              </div>
+              <span className={`tag tag-${item.color}`}>
+                {item.progress === 'active' ? '进行中' : '探索中'}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 产品 / 工具 / 实验 */}
       <section className="space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-text-primary">重点项目</h2>
+          <h2 className="text-xl font-semibold text-text-primary">产品 / 工具 / 实验</h2>
           <Link href="/projects" className="text-sm font-mono text-neon-cyan hover:underline">
             查看全部 →
           </Link>
@@ -188,7 +228,7 @@ export default function HomePage() {
 
       {/* 技术栈 */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-text-primary">技术栈</h2>
+        <h2 className="text-xl font-semibold text-text-primary">工具箱</h2>
         <div className="flex flex-wrap gap-2">
           {techStack.map((tech) => (
             <span key={tech} className="tag tag-cyan">
