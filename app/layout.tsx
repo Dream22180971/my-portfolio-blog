@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
+import { LanguageProvider } from "@/components/LanguageContext";
+import { LanguageToggle } from "@/components/LanguageToggle";
 
 export const metadata: Metadata = {
   title: "seanwalter | AI Agent 开发者",
@@ -29,7 +31,7 @@ export default function RootLayout({
         {/* 主内容区 */}
         <main className="md:ml-64 min-h-screen pt-16 md:pt-0">
           <div className="max-w-4xl mx-auto px-6 py-8">
-            {children}
+            <LanguageProvider>{children}</LanguageProvider>
           </div>
         </main>
       </body>

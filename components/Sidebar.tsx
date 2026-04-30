@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { GithubIcon, MailIcon, WechatIcon } from "./SocialIcons";
+import { LanguageToggle } from "./LanguageToggle";
 
 const navItems = [
   { href: "/", label: "首页", icon: "⌘" },
@@ -30,6 +31,11 @@ export function Sidebar() {
             <div className="text-xs text-text-secondary">AI Agent 开发者</div>
           </div>
         </Link>
+      </div>
+
+      {/* 语言切换 */}
+      <div className="px-4 py-3 border-b border-space-border">
+        <LanguageToggle />
       </div>
 
       {/* 导航 */}
