@@ -1,16 +1,21 @@
-import Link from "next/link";
-import { ArrowRight, MapPin, Zap, Target, Sparkles } from "lucide-react";
-import { GithubIcon, MailIcon, WechatIcon } from "@/components/SocialIcons";
+"use client";
 
-const highlights = [
-  { number: "3", label: "上线项目", color: "cyan" },
-  { number: "1033ms", label: "RAG 响应", color: "purple" },
-  { number: "1", label: "Vercel 部署", color: "green" },
-];
+import { Mail, Target, Zap, Globe, BookOpen, ExternalLink, Menu, X } from "lucide-react";
+import { GithubIcon } from "../components/SocialIcons";
+import { useState, useEffect } from "react";
+import { LanguageProvider, useLanguage } from "../components/LanguageContext";
+import { LanguageToggle } from "../components/LanguageToggle";
+import { Sidebar } from "../components/Sidebar";
 
 const directions = [
-  "RAG 知识库",
+  "AI 应用开发",
   "AI Agent 产品",
+];
+
+const stats = [
+  { number: "3+", label: "个人项目", color: "cyan" },
+  { number: "1033ms", label: "RAG 响应", color: "purple" },
+  { number: "Vercel", label: "自动部署", color: "green" },
 ];
 
 const nowBuilding = [
@@ -21,222 +26,196 @@ const nowBuilding = [
 
 const featuredProjects = [
   {
-    name: "VoyageAI",
-    value: "让 AI 规划你的旅行，从需求到行程一步到位",
-    tags: ["Vue 3", "FastAPI", "AI Agent"],
-    result: "完整前后端 AI 应用，支持个性化行程规划与多轮对话",
-    href: "https://github.com/Dream22180971/VoyageAI",
-    emoji: "✈",
-    color: "cyan",
-  },
-  {
     name: "RAG 知识库问答",
-    value: "让大模型「读懂」你的文档，精准回答业务问题",
-    tags: ["LangChain", "FAISS", "DashScope"],
-    result: "4 参考来源，1033ms 响应，索引缓存秒级加载",
+    desc: "企业级智能问答系统，支持 PDF/MD/TXT 多格式文档，LangChain + FAISS + DashScope",
+    tags: ["LangChain", "FAISS", "DashScope", "Streamlit"],
     href: "https://github.com/Dream22180971/rag-knowledge-base-demo",
-    emoji: "📚",
-    color: "purple",
   },
   {
-    name: "Coze 电商智能客服",
-    value: "7×24 小时自动处理退换货、物流、产品咨询",
-    tags: ["Coze", "Agent", "Knowledge Base"],
-    result: "已发布 Agent Store，16 条 Q&A + 3 份知识库文档",
+    name: "Coze 电商机器人",
+    desc: "低代码电商智能客服，支持多轮对话、FAQ 知识库、自动推荐，Coze 平台",
+    tags: ["Coze", "Agent", "知识库", "电商"],
     href: "https://github.com/Dream22180971/coze-ecommerce-bot",
-    emoji: "🤖",
-    color: "green",
+  },
+  {
+    name: "VoyageAI 旅行规划",
+    desc: "AI 驱动的旅行规划系统，支持多城市多天行程智能生成，Vue 3 + FastAPI",
+    tags: ["Vue 3", "FastAPI", "AI", "旅行"],
+    href: "https://github.com/Dream22180971/VoyageAI",
   },
 ];
 
-const techStack = [
-  "Python",
-  "LangChain",
-  "LangGraph",
-  "RAG / FAISS",
-  "FastAPI",
-  "Vue 3",
-  "Next.js",
-  "TypeScript",
-  "Coze",
-  "TailwindCSS",
-  "Docker",
-  "Git",
-];
+function PageContent() {
+  const { t } = useLanguage();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-export default function HomePage() {
   return (
-    <div className="space-y-16 animate-fade-in">
-      {/* Hero Section */}
-      <section className="space-y-6">
-        <div className="flex items-center gap-2 text-xs font-mono text-text-secondary">
-          <MapPin className="w-3 h-3" />
-          <span>南京</span>
-          <span className="opacity-30">•</span>
-          <span>AI 独立开发者</span>
-          <span className="opacity-30">•</span>
-          <span>备考 IELTS 6.5+</span>
+    <div className="min-h-screen bg-bg-primary text-text-primary">
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-3">
+        <LanguageToggle />
+        <button
+          className="md:hidden p-2 rounded-lg bg-bg-secondary border border-border-primary text-text-primary"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
+
+      {mobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-40 bg-bg-primary pt-16">
+          <Sidebar />
+        </div>
+      )}
+
+      <div className="flex">
+        <div className="hidden md:block w-64 fixed left-0 top-0 h-screen">
+          <Sidebar />
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-          <span className="text-text-primary">把 AI 想法</span>
-          <br />
-          <span className="bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
-            变成可用的产品
-          </span>
-        </h1>
-
-        <p className="text-lg text-text-secondary max-w-2xl leading-relaxed">
-          <span className="text-neon-cyan font-medium">专注 RAG + AI Agent 落地</span>，把大模型从「听起来很酷」变成「用起来很爽」。
-        </p>
-
-        {/* 方向标签 */}
-        <div className="flex flex-wrap gap-2">
-          {directions.map((dir) => (
-            <span key={dir} className="tag tag-cyan/60">
-              {dir}
-            </span>
-          ))}
-        </div>
-
-        {/* 能力标签 */}
-        <div className="flex flex-wrap gap-2">
-          <span className="tag tag-cyan flex items-center gap-1">
-            <Target className="w-3 h-3" /> RAG 知识库
-          </span>
-          <span className="tag tag-purple flex items-center gap-1">
-            <Zap className="w-3 h-3" /> AI 工具
-          </span>
-          <span className="tag tag-green flex items-center gap-1">
-            <Sparkles className="w-3 h-3" /> Coze 低代码
-          </span>
-          <span className="tag tag-cyan flex items-center gap-1">
-            <span>🔧</span> 测试工程
-          </span>
-        </div>
-
-        <div className="flex flex-wrap gap-3 pt-4">
-          <Link href="/projects" className="btn-primary">
-            <span>查看产品</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-          <a
-            href="https://github.com/Dream22180971"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary"
-          >
-            <GithubIcon className="w-4 h-4" />
-            <span>GitHub</span>
-          </a>
-          <a href="mailto:3310103904@qq.com" className="btn-secondary">
-            <MailIcon className="w-4 h-4" />
-            <span>邮箱</span>
-          </a>
-          <span className="btn-secondary cursor-default" title="微信号: drmr2022">
-            <WechatIcon className="w-4 h-4" />
-            <span>drmr2022</span>
-          </span>
-        </div>
-      </section>
-
-      {/* 数字概览 */}
-      <section className="grid grid-cols-3 gap-4">
-        {highlights.map((stat, i) => (
-          <div
-            key={stat.label}
-            className={`card-glow rounded-xl p-6 text-center animate-slide-up stagger-${i + 1}`}
-          >
-            <div
-              className={`stat-number ${
-                stat.color === "purple"
-                  ? "bg-gradient-to-r from-neon-purple to-neon-cyan"
-                  : stat.color === "green"
-                  ? "bg-gradient-to-r from-neon-green to-neon-cyan"
-                  : ""
-              }`}
-            >
-              {stat.number}
-            </div>
-            <div className="text-sm font-mono text-text-secondary mt-2">
-              {stat.label}
-            </div>
-          </div>
-        ))}
-      </section>
-
-      {/* 正在构建 */}
-      <section className="space-y-4">
-        <div className="flex items-center gap-2">
-          <span className="text-xl">🔥</span>
-          <h2 className="text-xl font-semibold text-text-primary">正在构建</h2>
-        </div>
-        <div className="grid gap-3">
-          {nowBuilding.map((item) => (
-            <div key={item.name} className="card-elevated rounded-xl p-4 flex items-center justify-between">
-              <div>
-                <div className="font-medium text-text-primary">{item.name}</div>
-                <div className="text-sm text-text-secondary">{item.desc}</div>
+        <main className="flex-1 md:ml-64">
+          <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
+            {/* Hero Section */}
+            <section className="mb-20">
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan text-sm mb-6">
+                  <span className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse" />
+                  {t("status", "开放求职")}
+                </div>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                  {t("hero_title", "把 AI 想法")} <span className="text-neon-cyan">→</span> {t("hero_title2", "变成可用的产品")}
+                </h1>
               </div>
-              <span className={`tag tag-${item.color}`}>
-                {item.progress === 'active' ? '进行中' : '探索中'}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* 产品 / 工具 / 实验 */}
-      <section className="space-y-6">
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-text-primary">产品 / 工具 / 实验</h2>
-          <Link href="/projects" className="text-sm font-mono text-neon-cyan hover:underline">
-            查看全部 →
-          </Link>
-        </div>
+              <p className="text-lg text-text-secondary max-w-2xl leading-relaxed">
+                <span className="text-neon-cyan font-medium">专注 AI 应用开发</span>，把大模型从「听起来很酷」变成「用起来很爽」？
+              </p>
 
-        <div className="grid md:grid-cols-3 gap-4">
-          {featuredProjects.map((project, i) => (
-            <a
-              key={project.name}
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`card-glow rounded-xl p-6 animate-slide-up stagger-${i + 1} group flex flex-col`}
-            >
-              <span className="text-3xl mb-3">{project.emoji}</span>
-              <h3 className="font-semibold text-text-primary group-hover:text-neon-cyan transition-colors mb-2">
-                {project.name}
-              </h3>
-              <p className="text-sm text-text-secondary mb-3">{project.value}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag) => (
-                  <span key={tag} className={`tag tag-${project.color}`}>
-                    {tag}
+              <div className="flex flex-wrap gap-2 mt-6">
+                {directions.map((d) => (
+                  <span key={d} className="px-3 py-1 rounded-full bg-bg-secondary border border-border-primary text-sm">
+                    {d}
                   </span>
                 ))}
               </div>
-              {/* 成果 */}
-              <div className="mt-auto pt-3 border-t border-space-border">
-                <div className="text-xs font-mono text-neon-cyan mb-1">成果</div>
-                <p className="text-sm text-text-secondary">{project.result}</p>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
 
-      {/* 技术栈 */}
-      <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-text-primary">工具箱</h2>
-        <div className="flex flex-wrap gap-2">
-          {techStack.map((tech) => (
-            <span key={tech} className="tag tag-cyan">
-              {tech}
-            </span>
-          ))}
-        </div>
-      </section>
+              <div className="flex flex-wrap gap-6 mt-10">
+                <a href="https://github.com/Dream22180971" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-text-secondary hover:text-neon-cyan transition-colors">
+                  <GithubIcon className="w-[18px] h-[18px]" /> GitHub
+                </a>
+                <a href="mailto:3310103904@qq.com" className="flex items-center gap-2 text-text-secondary hover:text-neon-cyan transition-colors">
+                  <Mail size={18} /> 3310103904@qq.com
+                </a>
+                <span className="flex items-center gap-2 text-text-secondary">
+                  <span className="text-xs px-2 py-0.5 rounded bg-bg-secondary border border-border-primary">微信</span> drmr2022
+                </span>
+              </div>
+            </section>
+
+            {/* Stats */}
+            <section className="mb-16">
+              <div className="grid grid-cols-3 gap-4">
+                {stats.map((s) => (
+                  <div key={s.label} className="p-6 rounded-xl bg-bg-secondary border border-border-primary text-center">
+                    <div className={`text-3xl font-bold text-neon-${s.color} mb-1`}>{s.number}</div>
+                    <div className="text-sm text-text-secondary">{s.label}</div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Now Building */}
+            <section className="mb-16">
+              <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                <Zap size={18} className="text-neon-cyan" />
+                {t("now_building", "正在构建")}
+              </h2>
+              <div className="space-y-4">
+                {nowBuilding.map((item) => (
+                  <div key={item.name} className="p-5 rounded-xl bg-bg-secondary border border-border-primary flex items-start justify-between gap-4 hover:border-neon-cyan/50 transition-colors">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="font-medium">{item.name}</span>
+                        <span className={`tag tag-${item.color}`}>
+                          {item.progress === "active" ? "进行中" : "探索中"}
+                        </span>
+                      </div>
+                      <p className="text-sm text-text-secondary">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Featured Projects */}
+            <section className="mb-16">
+              <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                <Target size={18} className="text-neon-purple" />
+                {t("projects", "精选项目")}
+              </h2>
+              <div className="grid gap-5">
+                {featuredProjects.map((p) => (
+                  <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer"
+                    className="group p-6 rounded-xl bg-bg-secondary border border-border-primary hover:border-neon-purple/50 transition-all hover:scale-[1.01]">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="font-semibold group-hover:text-neon-purple transition-colors">{p.name}</h3>
+                      <ExternalLink size={16} className="text-text-secondary group-hover:text-neon-purple" />
+                    </div>
+                    <p className="text-sm text-text-secondary mb-4">{p.desc}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {p.tags.map((tag) => (
+                        <span key={tag} className="tag tag-purple">{tag}</span>
+                      ))}
+                    </div>
+                  </a>
+                ))}
+              </div>
+              <div className="mt-6 text-center">
+                <a href="/projects" className="text-neon-cyan hover:underline text-sm">
+                  {t("view_all", "查看全部项目 →")}
+                </a>
+              </div>
+            </section>
+
+            {/* About teaser */}
+            <section className="mb-16">
+              <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                <BookOpen size={18} className="text-neon-green" />
+                {t("about_me", "关于我")}
+              </h2>
+              <div className="p-6 rounded-xl bg-bg-secondary border border-border-primary">
+                <p className="text-text-secondary">
+                  {t("about_desc", "自动化测试工程师，备考雅思，转型 AI 应用开发方向。热衷于用 RAG、Agent、低代码等技术解决实际问题。")}
+                </p>
+                <a href="/about" className="inline-flex items-center gap-1 mt-4 text-neon-cyan hover:underline text-sm">
+                  {t("more", "了解更多 →")}
+                </a>
+              </div>
+            </section>
+
+            {/* Contact */}
+            <section className="text-center py-8">
+              <p className="text-text-secondary mb-4">{t("contact_hint", "欢迎 AI 产品合作 / 独立开发项目交流")}</p>
+              <div className="flex justify-center gap-4">
+                <a href="mailto:3310103904@qq.com" className="px-5 py-2 rounded-lg bg-neon-cyan text-bg-primary font-medium hover:opacity-90 transition-opacity">
+                  {t("email_me", "写邮件")}
+                </a>
+                <a href="https://github.com/Dream22180971" target="_blank" rel="noopener noreferrer"
+                  className="px-5 py-2 rounded-lg bg-bg-secondary border border-neon-cyan/50 text-neon-cyan font-medium hover:border-neon-cyan transition-colors">
+                  GitHub
+                </a>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
     </div>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <LanguageProvider>
+      <PageContent />
+    </LanguageProvider>
   );
 }
