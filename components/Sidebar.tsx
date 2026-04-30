@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { GithubIcon, MailIcon, WechatIcon } from "./SocialIcons";
 
 const navItems = [
@@ -15,6 +15,36 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const wechatId = "drmr2022";
+  const [copied, setCopied] = useState(false);
+  const resetTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) window.clearTimeout(resetTimerRef.current);
+    };
+  }, []);
+
+  async function copyWechatId() {
+    try {
+      await navigator.clipboard.writeText(wechatId);
+      setCopied(true);
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = wechatId;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.top = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+      setCopied(true);
+    }
+
+    if (resetTimerRef.current) window.clearTimeout(resetTimerRef.current);
+    resetTimerRef.current = window.setTimeout(() => setCopied(false), 1200);
+  }
 
   return (
     <aside className="hidden md:flex fixed left-0 top-0 bottom-0 z-40 w-64 flex-col border-r border-space-border bg-space-bg/80 backdrop-blur-xl">
@@ -69,31 +99,23 @@ export function Sidebar() {
           >
             <MailIcon className="w-4 h-4" />
           </a>
-          <div className="relative flex-1 group">
+          <div className="relative flex-1">
             <button
               type="button"
+              onClick={copyWechatId}
               className="w-full flex items-center justify-center py-2 rounded-lg border border-space-border text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/30 transition-all"
-              aria-label="微信二维码"
-              title="微信: drmr2022"
+              aria-label={`点击复制微信号 ${wechatId}`}
+              title={`微信: ${wechatId}`}
             >
               <WechatIcon className="w-4 h-4" />
             </button>
-            <div className="pointer-events-none absolute bottom-full left-1/2 mb-3 w-44 -translate-x-1/2 opacity-0 scale-95 transition-all duration-150 group-hover:opacity-100 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:scale-100">
-              <div className="rounded-xl border border-space-border bg-space-bg/95 backdrop-blur-xl p-2 shadow-[0_16px_48px_rgba(0,0,0,0.45)]">
-                <div className="overflow-hidden rounded-lg bg-white">
-                  <Image
-                    src="/about/my-erweima.jpg"
-                    alt="微信二维码"
-                    width={320}
-                    height={320}
-                    className="h-auto w-full"
-                    priority
-                  />
-                </div>
-                <div className="mt-2 text-center text-[11px] font-mono text-text-secondary">
-                  扫码添加微信
-                </div>
-              </div>
+            <div
+              className={`pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded-lg border border-space-border bg-space-bg/95 px-2 py-1 text-[11px] font-mono text-text-secondary shadow-[0_12px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-all ${
+                copied ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"
+              }`}
+              aria-hidden={!copied}
+            >
+              已复制
             </div>
           </div>
         </div>
