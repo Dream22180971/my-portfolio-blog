@@ -108,7 +108,6 @@ function PageContent() {
         <Link href="/blog" className="md:hidden px-3 py-1.5 text-xs font-medium rounded-lg border border-space-border text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/30 transition-all">
           文章
         </Link>
-        <LanguageToggle />
         <button
           className="md:hidden p-2 rounded-lg bg-bg-secondary border border-border-primary text-text-primary"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
