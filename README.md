@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# my-ai-portfolio
 
-## Getting Started
+一个展示 AI 技术积累与项目作品的个人作品集网站，深空仪表盘风格，支持中英双语切换。
 
-First, run the development server:
+**在线预览**: https://seanwalter.vercel.app
+
+## 功能亮点
+
+- 🎨 深空主题仪表盘风格（#0a0e17 深空黑 + #00d4ff 信号青）
+- 🌐 中英双语自由切换（Language Toggle）
+- 📱 完美响应式布局（Desktop / Tablet / Mobile）
+- 🚀 6 个完整页面（首页 / Projects / Blog / About / Experiments / Contact）
+- 💫 暗色流畅动画，卡片光效，玻璃态导航栏
+
+## 技术栈
+
+| 类别 | 技术 |
+|------|------|
+| 框架 | Next.js 14 (App Router) |
+| 语言 | TypeScript |
+| 样式 | Tailwind CSS + 自定义深空主题 |
+| 图标 | Lucide React |
+| 部署 | Vercel |
+
+## 快速启动
 
 ```bash
+# 克隆仓库
+git clone https://github.com/Dream22js0971/my-portfolio-blog.git
+cd my-portfolio-blog
+
+# 安装依赖
+npm install
+
+# 本地开发
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 打开 http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 主要项目
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| 项目 | 描述 | 技术栈 |
+|------|------|--------|
+| VoyageAI | AI 旅行规划助手 | Vue3 + FastAPI |
+| rag-knowledge-base-demo | 企业级 RAG 知识库问答 | LangChain + FAISS + Streamlit |
+| coze-ecommerce-bot | Coze 电商智能客服机器人 | Coze Agent |
+| TestPilotAgent | AI Agent 自动化测试 | Python |
+| operation-assistant | AI 运维工具 | TypeScript |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 部署说明
 
-## Learn More
+项目使用 Vercel 自动部署，推送到 `main` 分支后会自动构建上线：
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+git push origin main
+# Vercel 自动部署，约 1-2 分钟完成
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
