@@ -104,13 +104,16 @@ function PageContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0a0e17] via-[#0f172a] to-[#1a0a2e] text-text-primary space-grid noise-overlay">
-      <div className="fixed top-4 right-4 z-50 flex items-center gap-3">
+      <div className="fixed top-3 right-3 z-50 flex items-center gap-2">
+        <Link href="/blog" className="md:hidden px-3 py-1.5 text-xs font-medium rounded-lg border border-space-border text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/30 transition-all">
+          文章
+        </Link>
         <LanguageToggle />
         <button
           className="md:hidden p-2 rounded-lg bg-bg-secondary border border-border-primary text-text-primary"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
       </div>
 
