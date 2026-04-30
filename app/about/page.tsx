@@ -62,7 +62,7 @@ export default function AboutPage() {
         <div className="pt-2">
           <div className="text-xs font-mono text-neon-cyan mb-2">我是谁</div>
           <p className="text-text-secondary leading-relaxed">
-            一个从测试岗转型到 AI 方向的开发者，南京人，正在备考雅思（IELTS 6.5）。
+            一个从测试岗转型到 AI 方向的开发者，正在备考雅思（IELTS 6.5）。
             写代码不是为了炫技，是为了解决问题。
           </p>
         </div>
