@@ -2,35 +2,40 @@
 
 import { useEffect, useState } from "react";
 
-export function Typewriter({ text, speed = 100 }: { text: string; speed?: number }) {
+export function Typewriter({ text, speed = 80, pause = 2000 }: { text: string; speed?: number; pause?: number }) {
   const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
+  const [phase, setPhase] = useState<"typing" | "pausing" | "deleting">("typing");
 
   useEffect(() => {
-    let i = 0;
-    const timer = setInterval(() => {
-      if (i < text.length) {
-        setDisplayed(text.slice(0, i + 1));
-        i++;
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (phase === "typing") {
+      if (displayed.length < text.length) {
+        timer = setTimeout(() => {
+          setDisplayed(text.slice(0, displayed.length + 1));
+        }, speed);
       } else {
-        setDone(true);
-        clearInterval(timer);
+        timer = setTimeout(() => setPhase("deleting"), pause);
       }
-    }, speed);
-    return () => clearInterval(timer);
-  }, [text, speed]);
+    } else if (phase === "deleting") {
+      if (displayed.length > 0) {
+        timer = setTimeout(() => {
+          setDisplayed(text.slice(0, displayed.length - 1));
+        }, speed / 2);
+      } else {
+        setPhase("typing");
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayed, phase, text, speed, pause]);
 
   return (
     <span className="inline-flex items-center">
       <span className="bg-gradient-to-r from-neon-cyan via-[#7dd3fc] to-neon-purple bg-clip-text text-transparent">
         {displayed}
       </span>
-      <span
-        className={`ml-0.5 inline-block w-[3px] h-[1.1em] bg-neon-cyan align-middle ${
-          done ? "animate-pulse" : ""
-        }`}
-        style={!done ? { opacity: 1 } : undefined}
-      />
+      <span className="ml-0.5 inline-block w-[3px] h-[1.1em] bg-neon-cyan align-middle animate-pulse" />
     </span>
   );
 }
