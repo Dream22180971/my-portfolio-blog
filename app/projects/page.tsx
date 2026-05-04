@@ -56,30 +56,12 @@ const projects = [
     color: "purple",
     result: "快速完成可交互界面雏形，用于验证单人快速交付模式。",
   },
-  {
-    name: "BaiyueMedicalSalesSystemTest",
-    desc: "基于 pytest + requests 的接口自动化测试框架，沉淀测试工程方法与执行链路。",
-    tags: ["Pytest", "Requests", "自动化测试"],
-    github: "https://github.com/Dream22180971/BaiyueMedicalSalesSystemTest",
-    emoji: "🔍",
-    color: "green",
-    result: "聚焦接口自动化执行、测试数据组织与结果校验能力。",
-  },
-  {
-    name: "KeyGuardTool",
-    desc: "本地密码管理工具原型，验证本地存储、安全交互与轻应用体验设计。",
-    tags: ["Tool", "安全", "前端原型"],
-    github: "https://github.com/Dream22180971/KeyGuardTool",
-    emoji: "🔐",
-    color: "amber",
-    result: "围绕轻量工具产品做功能、交互和本地数据管理探索。",
-  },
 ];
 
 const highlights = [
-  { value: "8", label: "当前展示项目" },
+  { value: "6", label: "当前展示项目" },
   { value: "3", label: "AI / Agent 方向" },
-  { value: "2", label: "测试 / 工具类项目" },
+  { value: "1", label: "测试 / 工具类项目" },
 ];
 
 const filters = ["AI 应用", "Agent 工作流", "测试工程", "工具产品"];
