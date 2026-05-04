@@ -1,40 +1,10 @@
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, Clock3, Sparkles } from "lucide-react";
-
-const articles = [
-  {
-    title: "从零搭建企业级 RAG 知识库",
-    date: "2026-04-26",
-    readTime: "8 分钟",
-    excerpt:
-      "从文档清洗、向量索引到答案溯源，完整拆解一个可运行、可验证、可复盘的企业级 RAG 知识库方案。",
-    tags: ["RAG", "LangChain", "FAISS", "实战拆解"],
-    slug: "rag-from-scratch",
-    featured: true,
-  },
-  {
-    title: "AI Agent 开发实战指南",
-    date: "2026-04-24",
-    readTime: "12 分钟",
-    excerpt:
-      "围绕状态管理、工具调用和多 Agent 协作，把 LangGraph 从概念说明落到真实工程实现。",
-    tags: ["Agent", "LangGraph", "工程实践"],
-    slug: "agent-guide",
-    featured: false,
-  },
-  {
-    title: "为什么我从 Chroma 切换到 FAISS",
-    date: "2026-04-26",
-    readTime: "5 分钟",
-    excerpt:
-      "记录一次 Windows 环境下的排障与迁移过程，以及向量库选择背后的稳定性和可维护性判断。",
-    tags: ["FAISS", "Chroma", "排障", "Windows"],
-    slug: "chroma-to-faiss",
-    featured: false,
-  },
-];
+import { getAllPosts } from "@/lib/blog";
 
 export default function BlogPage() {
+  const articles = getAllPosts();
+
   return (
     <div className="mx-auto max-w-4xl space-y-8 animate-fade-in">
       <div className="space-y-3">
