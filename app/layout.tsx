@@ -3,6 +3,7 @@ import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import Link from "next/link";
 import { MobileTopNav } from "@/components/MobileTopNav";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "seanwalter | AI Agent 开发者",
@@ -36,6 +37,7 @@ export default function RootLayout({
             {children}
           </div>
         </main>
+        <Analytics />
       </body>
     </html>
   );
