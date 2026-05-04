@@ -11,6 +11,9 @@ import {
   Zap,
 } from "lucide-react";
 import { GithubIcon } from "../components/SocialIcons";
+import { Typewriter } from "../components/Typewriter";
+import { FadeIn } from "../components/FadeIn";
+import { MarqueeTicker } from "../components/MarqueeTicker";
 
 const directions = ["AI 应用开发", "AI Agent 产品化", "RAG 系统落地"];
 
@@ -106,10 +109,7 @@ export default function HomePage() {
           </div>
 
           <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            把 AI 想法
-            <span className="mt-1 block bg-gradient-to-r from-neon-cyan via-[#7dd3fc] to-neon-purple bg-clip-text text-transparent">
-              变成可用的产品
-            </span>
+            <Typewriter text="把 AI 想法变成可用的产品" speed={80} />
           </h1>
 
           <p className="mt-6 max-w-3xl text-base leading-8 text-text-secondary sm:text-lg">
@@ -181,6 +181,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      <FadeIn>
+        <MarqueeTicker />
+      </FadeIn>
+
+      <FadeIn>
       <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-4">
           <h2 className="flex items-center gap-2 text-xl font-semibold">
@@ -221,7 +226,9 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      </FadeIn>
 
+      <FadeIn>
       <section className="space-y-5">
         <div className="flex items-center justify-between gap-4">
           <h2 className="flex items-center gap-2 text-xl font-semibold">
@@ -260,7 +267,9 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      </FadeIn>
 
+      <FadeIn>
       <section className="space-y-5">
         <div className="flex items-center gap-2 text-xl font-semibold">
           <ShieldCheck className="h-5 w-5 text-neon-purple" />
@@ -292,6 +301,7 @@ export default function HomePage() {
           })}
         </div>
       </section>
+      </FadeIn>
     </div>
   );
 }
