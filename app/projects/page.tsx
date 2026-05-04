@@ -39,13 +39,13 @@ const projects = [
     result: "围绕测试工程经验延展出的 Agent 方向，持续验证生成式测试工作流。",
   },
   {
-    name: "运营助手 Agent",
-    desc: "项目进度管理 Web App，对接 GitHub API 自动追踪进度与任务状态。",
-    tags: ["Next.js", "SQLite", "Octokit"],
+    name: "运营 AI 内容助手",
+    desc: "面向自媒体运营人的 AI 内容生成工具，支持账号定位、多平台内容创作和智能对话。",
+    tags: ["React 18", "Vite", "OpenAI SDK"],
     github: "https://github.com/Dream22180971/operation-assistant",
     emoji: "⚡",
     color: "cyan",
-    result: "v0.1 规划中，需求文档已完成",
+    result: "支持小红书/抖音/公众号多平台内容生成，集成通义千问/DeepSeek/Kimi 等国产模型。",
   },
   {
     name: "Food Menu App",
