@@ -93,6 +93,7 @@ body {
   font-family: "JetBrains Mono", monospace;
   border: 1px solid;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .tag-cyan {
