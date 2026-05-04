@@ -147,7 +147,7 @@ export default function AboutPage() {
           <p className="text-text-secondary leading-relaxed">
             <strong>RAG 知识库</strong>和<strong>AI Agent 搭建</strong>。已有的项目：
             VoyageAI（旅行规划）、RAG Knowledge Base Demo、Coze 电商智能客服。
-            正在准备把「运营助手 Agent」做出来。
+            「运营 AI 内容助手」已上线，支持小红书/抖音/公众号多平台内容生成。
           </p>
         </div>
 

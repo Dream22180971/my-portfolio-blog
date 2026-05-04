@@ -10,9 +10,9 @@ const experiments = [
     href: "https://github.com/Dream22180971/TestPilotAgent",
   },
   {
-    name: "运营助手 Agent",
-    desc: "围绕 GitHub API、项目进度和任务结构做信息聚合，验证 AI 在个人工作流里的可用性。",
-    tags: ["Next.js", "Octokit", "SQLite"],
+    name: "运营 AI 内容助手",
+    desc: "面向自媒体运营人的 AI 内容生成工具，支持账号定位、多平台内容创作和智能对话。",
+    tags: ["React 18", "Vite", "OpenAI SDK"],
     status: "active",
     emoji: "⚙️",
     href: "https://github.com/Dream22180971/operation-assistant",

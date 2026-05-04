@@ -28,10 +28,10 @@ const nowBuilding = [
     progress: "进行中",
   },
   {
-    name: "运营助手 Agent",
-    desc: "围绕 GitHub API 做进度追踪和任务辅助。",
+    name: "运营 AI 内容助手",
+    desc: "自媒体运营人的 AI 内容生成工具，支持多平台创作。",
     color: "purple",
-    progress: "设计中",
+    progress: "已上线",
   },
   {
     name: "TestPilotAgent",
@@ -55,9 +55,9 @@ const featuredProjects = [
     href: "https://github.com/Dream22180971/VoyageAI",
   },
   {
-    name: "运营助手 Agent",
-    desc: "围绕项目进度、任务拆解和 GitHub 数据汇总的智能运营工具。",
-    tags: ["Next.js", "SQLite", "Octokit", "Agent"],
+    name: "运营 AI 内容助手",
+    desc: "面向自媒体运营人的 AI 内容生成工具，支持账号定位、多平台内容创作和智能对话。",
+    tags: ["React 18", "Vite", "OpenAI SDK"],
     href: "https://github.com/Dream22180971/operation-assistant",
   },
 ];
