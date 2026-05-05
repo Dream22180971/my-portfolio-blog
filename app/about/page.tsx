@@ -1,4 +1,16 @@
+import type { Metadata } from "next";
 import { MapPin, Rocket, Compass, Coffee, Code2, MessageSquare, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "关于我 | seanwalter",
+  description: "AI Agent 开发者，从测试工程师转型。专注 RAG 知识库、AI Agent 产品化与自动化工作流。",
+  alternates: { canonical: "https://seanwalter.top/about" },
+  openGraph: {
+    title: "关于我 | seanwalter",
+    description: "AI Agent 开发者，从测试工程师转型。专注 RAG 知识库、AI Agent 产品化与自动化工作流。",
+    url: "https://seanwalter.top/about",
+  },
+};
 
 const timeline = [
   {

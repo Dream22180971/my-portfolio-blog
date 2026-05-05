@@ -1,6 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, Clock3, Sparkles } from "lucide-react";
 import { getAllPosts } from "@/lib/blog-data";
+
+export const metadata: Metadata = {
+  title: "博客 | seanwalter",
+  description: "AI Agent 开发实战笔记：RAG、LLM、自动化测试、AI 产品化。",
+  alternates: { canonical: "https://seanwalter.top/blog" },
+  openGraph: {
+    title: "博客 | seanwalter",
+    description: "AI Agent 开发实战笔记：RAG、LLM、自动化测试、AI 产品化。",
+    url: "https://seanwalter.top/blog",
+  },
+};
 
 export default function BlogPage() {
   const articles = getAllPosts();

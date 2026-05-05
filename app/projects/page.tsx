@@ -1,5 +1,17 @@
+import type { Metadata } from "next";
 import { ArrowUpRight, FolderKanban, Sparkles, Trophy, Wrench } from "lucide-react";
 import { GithubIcon } from "@/components/SocialIcons";
+
+export const metadata: Metadata = {
+  title: "项目 | seanwalter",
+  description: "AI Agent、RAG 知识库、自动化测试相关的开源项目和实验。",
+  alternates: { canonical: "https://seanwalter.top/projects" },
+  openGraph: {
+    title: "项目 | seanwalter",
+    description: "AI Agent、RAG 知识库、自动化测试相关的开源项目和实验。",
+    url: "https://seanwalter.top/projects",
+  },
+};
 
 const projects = [
   {
