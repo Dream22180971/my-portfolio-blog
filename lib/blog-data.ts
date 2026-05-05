@@ -14,6 +14,222 @@ export interface BlogPost extends BlogPostMeta {
 
 const posts: BlogPost[] = [
   {
+    slug: "blog-seo-geo-optimization",
+    title: "别光写代码不写 meta 标签：我给博客做了 SEO 和 GEO 优化的全过程",
+    date: "2026-05-05",
+    readTime: "10 分钟",
+    excerpt: "花一小时补齐 sitemap、robots、Open Graph、JSON-LD、canonical URL，覆盖 Google + Bing 双引擎。不花钱、不影响用户体验。",
+    tags: ["SEO", "GEO", "Google", "Bing", "博客优化", "结构化数据"],
+    content: `> 你花 3 小时写的博客文章，Google 和 Bing 根本不知道它存在。这不是内容问题，是你连门都没开。
+
+## 写在前面
+
+我的博客 seanwalter.top 上线快一周了，文章写了好几篇，但打开 Google Analytics 一看——访问量惨淡。
+
+不是内容不行，是**搜索引擎根本找不到我**。
+
+原因很简单：我只管写代码、部署上线，从来没做过任何 SEO 优化。没有 sitemap，没有 robots.txt，没有结构化数据，分享链接到微信的时候光秃秃一个 URL，连标题和描述都没有。
+
+今天花了一个小时，把这些基础全部补齐了，覆盖了 Google 和 Bing 两大搜索引擎。以下是我做了什么、为什么做、做完之后有什么效果。
+
+---
+
+## 一、SEO 和 GEO 到底是什么？
+
+先说人话。
+
+**SEO（Search Engine Optimization）** = 让搜索引擎能找到你、理解你、把你排在前面。
+
+**GEO（Generative Engine Optimization）** = 让 ChatGPT、Perplexity、Google AI 这些 AI 搜索引擎能引用你的内容。
+
+两者的关系：SEO 是地基，GEO 是上层建筑。基础 SEO 做不好，GEO 根本没戏。
+
+> **一句话区别：SEO 让人搜到你，GEO 让 AI 引用你。**
+
+---
+
+## 二、我检查了什么
+
+打开我的博客源码，逐项检查：
+
+| 检查项 | 状态 | 影响 |
+|--------|------|------|
+| sitemap.xml | 没有 | 搜索引擎不知道我有哪些页面 |
+| robots.txt | 没有 | 爬虫不知道哪些能抓 |
+| Open Graph 标签 | 没有 | 分享链接没有预览图和描述 |
+| JSON-LD 结构化数据 | 没有 | 搜索引擎不知道我是谁、文章是什么 |
+| canonical URL | 没有 | 可能被判定为重复内容 |
+| Twitter Card | 没有 | 推特分享也是光秃秃的 |
+| Google Analytics | 有 | 至少能看数据 |
+| Google Search Console | 没提交 | 没人告诉 Google 我存在 |
+| Bing Webmaster | 没提交 | Bing 也不知道我存在 |
+
+**结论：我的博客在所有搜索引擎眼里都是隐形的。**
+
+---
+
+## 三、我做了什么（具体改动）
+
+### 1. sitemap.xml —— 告诉搜索引擎"我有哪些页面"
+
+Next.js 的 App Router 原生支持，写一个 \`sitemap.ts\` 就行：
+
+\`\`\`typescript
+// app/sitemap.ts
+export default function sitemap() {
+  return [
+    { url: "https://seanwalter.top", priority: 1 },
+    { url: "https://seanwalter.top/blog", priority: 0.9 },
+    { url: "https://seanwalter.top/about", priority: 0.8 },
+    // ...博客文章自动生成
+  ];
+}
+\`\`\`
+
+构建时自动生成，不需要手动维护。Google 和 Bing 都能读。
+
+### 2. robots.txt —— 告诉爬虫"什么能抓什么不能抓"
+
+\`\`\`typescript
+// app/robots.ts
+export default function robots() {
+  return {
+    rules: { userAgent: "*", allow: "/", disallow: ["/api/", "/_next/"] },
+    sitemap: "https://seanwalter.top/sitemap.xml",
+  };
+}
+\`\`\`
+
+### 3. Open Graph 标签 —— 分享链接时显示标题和描述
+
+在 \`layout.tsx\` 的 metadata 里加上：
+
+\`\`\`typescript
+openGraph: {
+  type: "website",
+  locale: "zh_CN",
+  url: "https://seanwalter.top",
+  siteName: "seanwalter",
+  title: "seanwalter | AI Agent 开发者",
+  description: "AI Agent 开发者，专注 RAG 知识库与智能体搭建。",
+},
+twitter: {
+  card: "summary_large_image",
+  title: "seanwalter | AI Agent 开发者",
+  description: "AI Agent 开发者，专注 RAG 知识库与智能体搭建。",
+},
+\`\`\`
+
+以前分享链接到微信：一个光秃秃的 URL。
+现在：标题 + 描述 + 网站名。
+
+### 4. JSON-LD 结构化数据 —— 告诉 AI "我是谁"
+
+\`\`\`json
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "seanwalter",
+  "url": "https://seanwalter.top",
+  "jobTitle": "AI Agent 开发者",
+  "knowsAbout": ["AI Agent", "RAG", "LangChain", "LLM", "自动化测试"]
+}
+\`\`\`
+
+这个东西用户看不到，但 Google 和 AI 引擎看到后，会建立你的知识面板——搜"seanwalter"的时候右侧显示你的个人信息。
+
+每篇博客文章也加了 \`Article\` 类型的 JSON-LD，包含标题、日期、作者、标签。
+
+### 5. canonical URL —— 防止被当成重复内容
+
+每个页面都加了 \`canonical\` 链接，告诉搜索引擎"这个页面的唯一地址是这里"。
+
+### 6. 提交搜索引擎站长平台
+
+这是最关键的一步——光写代码不够，得主动告诉搜索引擎你存在。
+
+**Google Search Console：**
+- 打开 https://search.google.com/search-console
+- 添加资源 → 输入 \`https://seanwalter.top\`
+- 验证方式：HTML meta 标签（加一行代码就行）
+- 提交 sitemap.xml
+
+**Bing Webmaster Tools：**
+- 打开 https://www.bing.com/webmasters
+- 用微软账号登录 → 添加站点
+- 验证方式：也是 HTML meta 标签
+- 提交 sitemap.xml
+
+> **两个平台的验证代码都写在同一个 \`layout.tsx\` 里，一次部署全搞定。**
+
+---
+
+## 四、这些优化花钱吗？
+
+**全部免费。**
+
+| 项目 | 费用 |
+|------|------|
+| sitemap / robots.txt | 0（代码生成） |
+| Open Graph / JSON-LD | 0（写在 HTML 里） |
+| Google Analytics | 0（免费版够用） |
+| Google Search Console | 0 |
+| Bing Webmaster Tools | 0 |
+
+唯一可能花钱的是你想买个 OG 预览图，但 Canva 免费版就能做。
+
+---
+
+## 五、优化完有什么变化？
+
+### 对搜索引擎
+- Google 和 Bing 都能正确收录所有页面
+- 搜"AI 测试自动化"、"RAG 知识库"等关键词时有机会出现
+- 分享链接到社交媒体时自动显示标题和描述
+
+### 对 AI 引擎
+- ChatGPT / Perplexity 能正确引用你的内容
+- 结构化数据让 AI 知道"这是一个叫 seanwalter 的 AI Agent 开发者"
+
+### 对用户
+- **零影响**——这些都是 HTML \`<head>\` 里的元数据，页面没有任何视觉变化
+- 加载速度不受影响
+
+> **花一小时改代码，换来的是 Google + Bing 都能找到你、分享链接更好看、AI 能引用你。不花钱、不影响用户体验。**
+
+---
+
+## 六、关于百度要不要做？
+
+我查了一下，百度站长平台也是免费的，但有两个问题：
+1. 百度对 Next.js 这种前端渲染的项目抓取不稳定，收录可能很慢
+2. 技术博客的读者大概率用 Google 或 Bing，百度的投入产出比不高
+
+**我的建议：先把 Google + Bing 跑起来，有精力再加百度。**
+
+---
+
+## 七、你也可以照着做
+
+如果你也有一个 Next.js 博客，照着这个清单检查一遍：
+
+1. 有没有 \`sitemap.ts\`？
+2. 有没有 \`robots.ts\`？
+3. \`metadata\` 里有没有 \`openGraph\` 和 \`twitter\`？
+4. 有没有 JSON-LD 结构化数据？
+5. 有没有 \`canonical\` URL？
+6. 有没有提交 Google Search Console？
+7. 有没有提交 Bing Webmaster Tools？
+
+七个全没有？那你和我之前一样——在所有搜索引擎眼里都是隐形的。
+
+**花一小时补上，比多写一篇文章有用。**
+
+---
+
+*这是我的博客 SEO/GEO 优化实战记录，覆盖 Google + Bing 双引擎。如果你也在做个人博客，希望对你有帮助。*`,
+  },
+  {
     slug: "ai-testing-automation-system",
     title: "AI如何重塑测试工作：从辅助工具到自动化体系的构建",
     date: "2026-05-04",
