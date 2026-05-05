@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MapPin, Rocket, Compass, Coffee, Code2, MessageSquare, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe, Music } from "lucide-react";
+import { MapPin, Rocket, Compass, Coffee, Code2, MessageSquare, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe, Music, Film } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "关于我 | seanwalter",
@@ -353,6 +353,28 @@ export default function AboutPage() {
             薛之谦
           </span>
         </div>
+      </section>
+
+      {/* 名字的由来 */}
+      <section className="card-glow rounded-xl p-6 space-y-4">
+        <h2 className="text-xl font-semibold text-text-primary flex items-center gap-2">
+          <Film className="w-5 h-5 text-neon-purple" />
+          名字的由来
+        </h2>
+        <blockquote className="border-l-2 border-neon-purple/40 pl-4 space-y-2">
+          <p className="text-sm text-text-secondary italic leading-7">
+            "To see the world, things dangerous to come to, to see behind walls, draw closer, to find each other, and to feel. That is the purpose of life."
+          </p>
+          <p className="text-sm text-text-secondary leading-7">
+            看见世界，冲破险境，看见彼此，靠近彼此，感受一切。这就是生活的意义。
+          </p>
+          <p className="text-xs text-text-muted">——《白日梦想家》The Secret Life of Walter Mitty</p>
+        </blockquote>
+        <p className="text-text-secondary leading-relaxed">
+          这部电影是我网名的来源。<strong className="text-text-primary">Sean</strong> 是片中那个满世界拍照、拍完就消失的传奇摄影师；
+          <strong className="text-text-primary">Walter</strong> 是那个坐在办公桌前做白日梦、最终真正走出去的普通人。
+          一个是理想中的自己，一个是正在成为的自己。
+        </p>
       </section>
     </div>
   );
