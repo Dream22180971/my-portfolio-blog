@@ -4,6 +4,7 @@ import { Sidebar } from "@/components/Sidebar";
 import Link from "next/link";
 import { MobileTopNav } from "@/components/MobileTopNav";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: "seanwalter | AI Agent 开发者",
@@ -38,6 +39,9 @@ export default function RootLayout({
           </div>
         </main>
         <Analytics />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );
