@@ -30,7 +30,7 @@ export const metadata: Metadata = {
       "AI Agent 开发者，专注 RAG 知识库与智能体搭建。南京，备考 IELTS 6.5+。",
   },
   other: {
-    "google-site-verification": "",
+    "google-site-verification": "9se3lC-jMLixEVV8hbGoFQGNloTL07v-tQGBZ3FYqvo",
   },
 };
 
