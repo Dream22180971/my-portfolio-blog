@@ -190,7 +190,7 @@ export default function HomePage() {
       </FadeIn>
 
       <FadeIn>
-      <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+      <section className="grid gap-4 lg:grid-cols-2">
         <div className="space-y-4">
           <h2 className="flex items-center gap-2 text-xl font-semibold">
             <Zap className="h-5 w-5 text-neon-cyan" />
@@ -200,7 +200,7 @@ export default function HomePage() {
             {nowBuilding.map((item) => (
               <div
                 key={item.name}
-                className="card-glow rounded-2xl px-5 py-6"
+                className="card-glow rounded-2xl px-5 py-5"
               >
                 <div className="mb-2 flex flex-wrap items-center gap-3">
                   <span className="text-base font-semibold text-text-primary">{item.name}</span>
@@ -220,7 +220,7 @@ export default function HomePage() {
           {capabilityCards.map((item, index) => (
             <div
               key={item.title}
-              className={`card-glow rounded-2xl px-5 py-4 ${
+              className={`card-glow rounded-2xl px-5 py-5 ${
                 index === 0 ? "border-neon-cyan/20" : "border-neon-purple/20"
               }`}
             >
