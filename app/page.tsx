@@ -217,17 +217,21 @@ export default function HomePage() {
             <Target className="h-5 w-5 text-neon-purple" />
             我能提供什么
           </h2>
-          {capabilityCards.map((item, index) => (
-            <div
-              key={item.title}
-              className={`card-glow rounded-2xl px-5 py-5 ${
-                index === 0 ? "border-neon-cyan/20" : "border-neon-purple/20"
-              }`}
-            >
-              <div className="mb-2 text-base font-semibold text-text-primary">{item.title}</div>
-              <p className="text-sm leading-7 text-text-secondary">{item.desc}</p>
-            </div>
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {capabilityCards.map((item, index) => (
+              <div
+                key={item.title}
+                className={`card-glow rounded-2xl px-5 py-5 ${
+                  index === 2 ? "col-span-2" : ""
+                } ${
+                  index === 0 ? "border-neon-cyan/20" : "border-neon-purple/20"
+                }`}
+              >
+                <div className="mb-2 text-base font-semibold text-text-primary">{item.title}</div>
+                <p className="text-sm leading-7 text-text-secondary">{item.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
       </FadeIn>
