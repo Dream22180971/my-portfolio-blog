@@ -200,7 +200,7 @@ export default function HomePage() {
             {nowBuilding.map((item) => (
               <div
                 key={item.name}
-                className="card-glow rounded-2xl px-5 py-5"
+                className="card-glow rounded-2xl px-5 py-6"
               >
                 <div className="mb-2 flex flex-wrap items-center gap-3">
                   <span className="text-base font-semibold text-text-primary">{item.name}</span>
