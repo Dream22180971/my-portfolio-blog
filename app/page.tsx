@@ -74,6 +74,10 @@ const capabilityCards = [
     title: "从 Demo 到可用",
     desc: "更关注稳定性、可维护性和真实使用体验，而不只是做一个演示。",
   },
+  {
+    title: "从技术到表达",
+    desc: "能把复杂技术写成普通人看得懂的内容，让产品自己会说话。博客、文档、产品文案都是能力的一部分。",
+  },
 ];
 
 const testingStrengths = [
