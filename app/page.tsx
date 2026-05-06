@@ -3,14 +3,13 @@ import {
   ArrowUpRight,
   BookOpen,
   Bug,
-  Mail,
   SearchCheck,
   ShieldCheck,
   Sparkles,
   Target,
   Zap,
 } from "lucide-react";
-import { GithubIcon } from "../components/SocialIcons";
+import { GithubIcon, GiteeIcon } from "../components/SocialIcons";
 import { Typewriter } from "../components/Typewriter";
 import { FadeIn } from "../components/FadeIn";
 import { MarqueeTicker } from "../components/MarqueeTicker";
@@ -147,18 +146,14 @@ export default function HomePage() {
               GitHub
             </a>
             <a
-              href="mailto:3310103904@qq.com"
+              href="https://gitee.com/dreamer22180971"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-neon-cyan transition-colors"
             >
-              <Mail className="h-[18px] w-[18px]" />
-              3310103904@qq.com
+              <GiteeIcon className="h-[18px] w-[18px]" />
+              Gitee
             </a>
-            <span className="flex items-center gap-2">
-              <span className="rounded border border-space-border bg-white/5 px-2 py-0.5 text-xs text-text-muted">
-                微信
-              </span>
-              drmr2022
-            </span>
           </div>
 
           <div className="mt-10 grid w-full gap-4 sm:grid-cols-3">

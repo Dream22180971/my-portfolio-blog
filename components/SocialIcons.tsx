@@ -15,6 +15,14 @@ export function MailIcon({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
+export function GiteeIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 6.63 5.37 12 12 12s12-5.37 12-12S18.63 0 12 0zm4.44 6.22H9.54c-.73 0-1.32.59-1.32 1.32v8.92c0 .73.59 1.32 1.32 1.32h.66c.73 0 1.32-.59 1.32-1.32v-2.64h4.92c.73 0 1.32-.59 1.32-1.32V7.54c0-.73-.59-1.32-1.32-1.32z" />
+    </svg>
+  );
+}
+
 export function WechatIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
