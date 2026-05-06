@@ -3176,3 +3176,9 @@ export function getAllPosts(): BlogPostMeta[] {
 export function getPostBySlug(slug: string): BlogPost | null {
   return posts.find((p) => p.slug === slug) ?? null;
 }
+
+export const POSTS_PER_PAGE = 10;
+
+export function getTotalPages(): number {
+  return Math.ceil(posts.length / POSTS_PER_PAGE);
+}
