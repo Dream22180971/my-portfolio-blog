@@ -200,7 +200,7 @@ export default function HomePage() {
             {nowBuilding.map((item) => (
               <div
                 key={item.name}
-                className="card-glow rounded-2xl px-5 py-4"
+                className="card-glow rounded-2xl px-5 py-5"
               >
                 <div className="mb-2 flex flex-wrap items-center gap-3">
                   <span className="text-base font-semibold text-text-primary">{item.name}</span>
@@ -220,12 +220,12 @@ export default function HomePage() {
           {capabilityCards.map((item, index) => (
             <div
               key={item.title}
-              className={`card-glow rounded-2xl px-5 py-5 ${
+              className={`card-glow rounded-2xl px-5 py-4 ${
                 index === 0 ? "border-neon-cyan/20" : "border-neon-purple/20"
               }`}
             >
               <div className="mb-2 text-base font-semibold text-text-primary">{item.title}</div>
-              <p className="text-sm leading-7 text-text-secondary">{item.desc}</p>
+              <p className="text-sm leading-6 text-text-secondary">{item.desc}</p>
             </div>
           ))}
         </div>
