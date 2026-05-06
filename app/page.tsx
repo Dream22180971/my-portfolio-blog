@@ -68,15 +68,15 @@ const featuredProjects = [
 const capabilityCards = [
   {
     title: "从想法到 MVP",
-    desc: "能把模糊需求拆成页面、接口、数据流和可验证结果。",
+    desc: "能把模糊需求拆成页面、接口、数据流和可验证结果。从一句「我想做一个 XX」到能跑的原型，中间的路径我来画。",
   },
   {
     title: "从 Demo 到可用",
-    desc: "更关注稳定性、可维护性和真实使用体验，而不只是做一个演示。",
+    desc: "更关注稳定性、可维护性和真实使用体验。边界条件、异常处理、加载状态——演示可以跳过，产品不行。",
   },
   {
     title: "从技术到表达",
-    desc: "能把复杂技术写成普通人看得懂的内容，让产品自己会说话。博客、文档、产品文案都是能力的一部分。",
+    desc: "能把复杂技术写成普通人看得懂的内容。博客、文档、产品文案都是能力的一部分，让产品自己会说话。",
   },
 ];
 
@@ -196,17 +196,17 @@ export default function HomePage() {
             <Zap className="h-5 w-5 text-neon-cyan" />
             正在构建
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-3">
             {nowBuilding.map((item) => (
               <div
                 key={item.name}
-                className="card-glow rounded-2xl px-5 py-5"
+                className="card-glow rounded-2xl px-5 py-4"
               >
-                <div className="mb-3 flex flex-wrap items-center gap-3">
+                <div className="mb-2 flex flex-wrap items-center gap-3">
                   <span className="text-base font-semibold text-text-primary">{item.name}</span>
                   <span className={`tag tag-${item.color}`}>{item.progress}</span>
                 </div>
-                <p className="text-sm leading-7 text-text-secondary">{item.desc}</p>
+                <p className="text-sm leading-6 text-text-secondary">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -217,21 +217,17 @@ export default function HomePage() {
             <Target className="h-5 w-5 text-neon-purple" />
             我能提供什么
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {capabilityCards.map((item, index) => (
-              <div
-                key={item.title}
-                className={`card-glow rounded-2xl px-5 py-5 ${
-                  index === 2 ? "col-span-2" : ""
-                } ${
-                  index === 0 ? "border-neon-cyan/20" : "border-neon-purple/20"
-                }`}
-              >
-                <div className="mb-2 text-base font-semibold text-text-primary">{item.title}</div>
-                <p className="text-sm leading-7 text-text-secondary">{item.desc}</p>
-              </div>
-            ))}
-          </div>
+          {capabilityCards.map((item, index) => (
+            <div
+              key={item.title}
+              className={`card-glow rounded-2xl px-5 py-5 ${
+                index === 0 ? "border-neon-cyan/20" : "border-neon-purple/20"
+              }`}
+            >
+              <div className="mb-2 text-base font-semibold text-text-primary">{item.title}</div>
+              <p className="text-sm leading-7 text-text-secondary">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
       </FadeIn>
