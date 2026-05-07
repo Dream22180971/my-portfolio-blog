@@ -123,7 +123,7 @@ export default function AboutPage() {
       <div>
         <h1 className="text-3xl font-bold text-text-primary mb-2">关于我</h1>
         <p className="text-text-secondary">
-          自动化测试工程师 → AI Agent 开发者
+          软件测试工程师 → AI 独立开发者
         </p>
       </div>
 
