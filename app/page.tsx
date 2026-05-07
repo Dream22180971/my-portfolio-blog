@@ -3,14 +3,16 @@ import {
   ArrowUpRight,
   BookOpen,
   Bug,
-  Mail,
   SearchCheck,
   ShieldCheck,
   Sparkles,
   Target,
   Zap,
 } from "lucide-react";
-import { GithubIcon } from "../components/SocialIcons";
+import { GithubIcon, GiteeIcon } from "../components/SocialIcons";
+import { Typewriter } from "../components/Typewriter";
+import { FadeIn } from "../components/FadeIn";
+import { MarqueeTicker } from "../components/MarqueeTicker";
 
 const directions = ["AI 应用开发", "AI Agent 产品化", "RAG 系统落地"];
 
@@ -65,11 +67,15 @@ const featuredProjects = [
 const capabilityCards = [
   {
     title: "从想法到 MVP",
-    desc: "能把模糊需求拆成页面、接口、数据流和可验证结果。",
+    desc: "从一句「我想做一个 XX」到能跑的原型，中间的路径我来画。",
   },
   {
     title: "从 Demo 到可用",
-    desc: "更关注稳定性、可维护性和真实使用体验，而不只是做一个演示。",
+    desc: "不只让功能跑起来，更让它在真实场景里站得住。",
+  },
+  {
+    title: "从技术到表达",
+    desc: "把复杂技术写成普通人看得懂的内容，让产品自己会说话。",
   },
 ];
 
@@ -106,10 +112,7 @@ export default function HomePage() {
           </div>
 
           <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            把 AI 想法
-            <span className="mt-1 block bg-gradient-to-r from-neon-cyan via-[#7dd3fc] to-neon-purple bg-clip-text text-transparent">
-              变成可用的产品
-            </span>
+            <Typewriter text="用 AI 把想法变成产品" speed={80} />
           </h1>
 
           <p className="mt-6 max-w-3xl text-base leading-8 text-text-secondary sm:text-lg">
@@ -143,18 +146,14 @@ export default function HomePage() {
               GitHub
             </a>
             <a
-              href="mailto:3310103904@qq.com"
+              href="https://gitee.com/dreamer22180971"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-neon-cyan transition-colors"
             >
-              <Mail className="h-[18px] w-[18px]" />
-              3310103904@qq.com
+              <GiteeIcon className="h-[18px] w-[18px]" />
+              Gitee
             </a>
-            <span className="flex items-center gap-2">
-              <span className="rounded border border-space-border bg-white/5 px-2 py-0.5 text-xs text-text-muted">
-                微信
-              </span>
-              drmr2022
-            </span>
           </div>
 
           <div className="mt-10 grid w-full gap-4 sm:grid-cols-3">
@@ -181,23 +180,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+      <FadeIn>
+        <MarqueeTicker />
+      </FadeIn>
+
+      <FadeIn>
+      <section className="grid gap-4 lg:grid-cols-2">
         <div className="space-y-4">
           <h2 className="flex items-center gap-2 text-xl font-semibold">
             <Zap className="h-5 w-5 text-neon-cyan" />
             正在构建
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-3">
             {nowBuilding.map((item) => (
               <div
                 key={item.name}
                 className="card-glow rounded-2xl px-5 py-5"
               >
-                <div className="mb-3 flex flex-wrap items-center gap-3">
+                <div className="mb-2 flex flex-wrap items-center gap-3">
                   <span className="text-base font-semibold text-text-primary">{item.name}</span>
                   <span className={`tag tag-${item.color}`}>{item.progress}</span>
                 </div>
-                <p className="text-sm leading-7 text-text-secondary">{item.desc}</p>
+                <p className="text-sm leading-6 text-text-secondary">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -216,12 +220,14 @@ export default function HomePage() {
               }`}
             >
               <div className="mb-2 text-base font-semibold text-text-primary">{item.title}</div>
-              <p className="text-sm leading-7 text-text-secondary">{item.desc}</p>
+              <p className="text-sm leading-6 text-text-secondary">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
+      </FadeIn>
 
+      <FadeIn>
       <section className="space-y-5">
         <div className="flex items-center justify-between gap-4">
           <h2 className="flex items-center gap-2 text-xl font-semibold">
@@ -260,7 +266,9 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      </FadeIn>
 
+      <FadeIn>
       <section className="space-y-5">
         <div className="flex items-center gap-2 text-xl font-semibold">
           <ShieldCheck className="h-5 w-5 text-neon-purple" />
@@ -292,6 +300,7 @@ export default function HomePage() {
           })}
         </div>
       </section>
+      </FadeIn>
     </div>
   );
 }

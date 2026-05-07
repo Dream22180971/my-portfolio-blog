@@ -12,9 +12,29 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
+
+  const url = `https://seanwalter.top/blog/${slug}`;
+
   return {
     title: `${post.title} | seanwalter`,
     description: post.excerpt,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: "article",
+      url,
+      title: post.title,
+      description: post.excerpt,
+      publishedTime: post.date,
+      authors: ["seanwalter"],
+      tags: post.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+    },
   };
 }
 
@@ -29,8 +49,34 @@ export default async function BlogArticlePage({
 
   const htmlContent = markdownToHtml(post.content);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    author: {
+      "@type": "Person",
+      name: "seanwalter",
+      url: "https://seanwalter.top",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "seanwalter",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://seanwalter.top/blog/${slug}`,
+    },
+    keywords: post.tags.join(", "),
+  };
+
   return (
     <div className="mx-auto max-w-3xl animate-fade-in">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/blog"
         className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-neon-cyan transition-colors"

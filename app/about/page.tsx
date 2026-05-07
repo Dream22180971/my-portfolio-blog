@@ -1,4 +1,16 @@
-import { MapPin, Rocket, Compass, Coffee, Code2, MessageSquare, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe } from "lucide-react";
+import type { Metadata } from "next";
+import { MapPin, Rocket, Compass, Coffee, Code2, MessageSquare, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe, Music, Film } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "关于我 | seanwalter",
+  description: "AI Agent 开发者，从测试工程师转型。专注 RAG 知识库、AI Agent 产品化与自动化工作流。",
+  alternates: { canonical: "https://seanwalter.top/about" },
+  openGraph: {
+    title: "关于我 | seanwalter",
+    description: "AI Agent 开发者，从测试工程师转型。专注 RAG 知识库、AI Agent 产品化与自动化工作流。",
+    url: "https://seanwalter.top/about",
+  },
+};
 
 const timeline = [
   {
@@ -321,7 +333,7 @@ export default function AboutPage() {
         <h2 className="text-xl font-semibold text-text-primary">工作之外</h2>
         <p className="text-text-secondary leading-relaxed">
           周末会去南京周边爬山，偶尔写写公众号，也会持续发一些 AI 学习笔记。平时喜欢看书，尤其关注哲学、心理学和那些能帮助人理解自我、
-          理解选择与长期主义的内容。雅思备考中，目标是 6.5，每天背单词、练口语，也把阅读当成让自己慢下来的一种方式。
+          理解选择与长期主义的内容。低谷期靠薛之谦的歌撑过来——他的歌词像一面镜子，照见那些自己不愿意承认的情绪。雅思备考中，目标是 6.5，每天背单词、练口语，也把阅读当成让自己慢下来的一种方式。
         </p>
         <div className="flex flex-wrap gap-2 pt-2">
           <span className="tag tag-cyan">
@@ -336,7 +348,33 @@ export default function AboutPage() {
             <Coffee className="mr-1 h-3 w-3" />
             爬山 / 写作 / 备考
           </span>
+          <span className="tag tag-purple">
+            <Music className="mr-1 h-3 w-3" />
+            薛之谦
+          </span>
         </div>
+      </section>
+
+      {/* 名字的由来 */}
+      <section className="card-glow rounded-xl p-6 space-y-4">
+        <h2 className="text-xl font-semibold text-text-primary flex items-center gap-2">
+          <Film className="w-5 h-5 text-neon-purple" />
+          名字的由来
+        </h2>
+        <blockquote className="border-l-2 border-neon-purple/40 pl-4 space-y-2">
+          <p className="text-sm text-text-secondary italic leading-7">
+            "To see the world, things dangerous to come to, to see behind walls, draw closer, to find each other, and to feel. That is the purpose of life."
+          </p>
+          <p className="text-sm text-text-secondary leading-7">
+            看见世界，冲破险境，看见彼此，靠近彼此，感受一切。这就是生活的意义。
+          </p>
+          <p className="text-xs text-text-muted">——《白日梦想家》The Secret Life of Walter Mitty</p>
+        </blockquote>
+        <p className="text-text-secondary leading-relaxed">
+          这部电影是我网名的来源。<strong className="text-text-primary">Sean</strong> 是片中那个满世界拍照、拍完就消失的传奇摄影师；
+          <strong className="text-text-primary">Walter</strong> 是那个坐在办公桌前做白日梦、最终真正走出去的普通人。
+          一个是理想中的自己，一个是正在成为的自己。
+        </p>
       </section>
     </div>
   );
