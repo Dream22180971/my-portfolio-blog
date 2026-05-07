@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { MapPin, Rocket, Compass, Coffee, Code2, MessageSquare, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe, Music, Film, Camera } from "lucide-react";
+import { Rocket, Compass, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe, Music, Film, Camera, Code2, Coffee } from "lucide-react";
+import { ContactBar } from "@/components/ContactBar";
 import { buildPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -165,34 +166,12 @@ export default function AboutPage() {
             <Compass className="w-3 h-3" /> 正在探索
           </div>
           <p className="text-text-secondary leading-relaxed">
-            LangGraph 多智能体协作、Graphify 代码结构图谱、企业级 RAG 落地最佳实践、
+            LangGraph 多智能体协作、Graphify 代码结构图谱、企业级 Agent 落地最佳实践、
             怎么把大模型变成「真有用」而不是「听起来很酷」。
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-4 pt-2 text-sm text-text-secondary">
-          <span className="flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-neon-cyan" />
-            南京
-          </span>
-          <a
-            href="https://github.com/Dream22180971"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-neon-cyan transition-colors"
-          >
-            <Code2 className="w-4 h-4" />
-            GitHub
-          </a>
-          <a href="mailto:3310103904@qq.com" className="flex items-center gap-2 hover:text-neon-cyan transition-colors">
-            <MessageSquare className="w-4 h-4" />
-            3310103904@qq.com
-          </a>
-          <span className="flex items-center gap-2">
-            <Coffee className="w-4 h-4" />
-            微信: drmr2022
-          </span>
-        </div>
+        <ContactBar email="3310103904@qq.com" wechat="drmr2022" />
       </section>
 
       {/* Timeline */}
