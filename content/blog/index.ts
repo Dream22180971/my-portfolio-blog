@@ -16,6 +16,7 @@ import post15 from "./hangcaitong-airport-ai-case";
 import post16 from "./ai-landing-four-steps";
 import post17 from "./ai-agent-build-steps";
 import post18 from "./ai-seo-2026";
+import post19 from "./ai-poisoning-315-exposed";
 
 export const posts = [
   post01,
@@ -36,4 +37,5 @@ export const posts = [
   post16,
   post17,
   post18,
+  post19,
 ];
