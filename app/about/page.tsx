@@ -13,19 +13,19 @@ const timeline = [
   {
     year: "2026",
     title: "AI Agent 开发者",
-    desc: "转型成功，RAG 知识库 + Coze Bot + AI Agent 项目落地，博客上线。",
+    desc: "转型探索中，RAG 知识库 + Coze Bot + AI Agent 项目落地，博客上线。",
     icon: "🤖",
   },
   {
-    year: "2024",
-    title: "自动化测试工程师",
-    desc: "QA 岗位，Python automation、CI/CD、接口测试，顺便把 Python 练熟了。",
+    year: "2022-2026",
+    title: "软件测试工程师",
+    desc: "功能测试、接口测试、自动化测试、性能测试，从手工测试到搭建 CI/CD 持续集成流水线，把质量保障做进了全流程。",
     icon: "🧪",
   },
   {
-    year: "基石",
-    title: "计算机科班出身",
-    desc: "数据结构、算法、软件工程基础扎实（当年考试没挂科）。",
+    year: "2018-2022",
+    title: "计算机科学与技术专业在读",
+    desc: "数据结构、操作系统、计算机网络、计算机组成原理、数据库系统、软件工程，四年把计算机的里里外外摸了一遍。",
     icon: "📚",
   },
 ];
