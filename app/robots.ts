@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { getCanonicalUrl } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/_next/"],
     },
-    sitemap: "https://seanwalter.top/sitemap.xml",
+    sitemap: getCanonicalUrl("/sitemap.xml"),
   };
 }

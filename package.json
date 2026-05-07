@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "verify:site": "node scripts/verify-site.mjs",
+    "check": "npm run lint && npm run build && npm run verify:site"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.4",

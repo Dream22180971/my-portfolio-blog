@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
 import { Sparkles } from "lucide-react";
 import { getAllPosts } from "@/lib/blog-data";
+import { buildPageMetadata } from "@/lib/site";
 import BlogListClient from "./BlogListClient";
 
-export const metadata: Metadata = {
-  title: "博客 | seanwalter",
+export const metadata: Metadata = buildPageMetadata({
+  title: "博客",
   description: "AI Agent 开发实战笔记：RAG、LLM、自动化测试、AI 产品化。",
-  alternates: { canonical: "https://seanwalter.top/blog" },
-  openGraph: {
-    title: "博客 | seanwalter",
-    description: "AI Agent 开发实战笔记：RAG、LLM、自动化测试、AI 产品化。",
-    url: "https://seanwalter.top/blog",
-  },
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const articles = getAllPosts();

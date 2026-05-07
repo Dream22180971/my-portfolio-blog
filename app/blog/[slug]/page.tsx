@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock3 } from "lucide-react";
 import { getPostBySlug, getAllPosts } from "@/lib/blog-data";
 import { markdownToHtml } from "@/lib/markdown";
+import { SITE_AUTHOR, SITE_NAME, SITE_URL, buildPageMetadata, getCanonicalUrl } from "@/lib/site";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -13,29 +14,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getPostBySlug(slug);
   if (!post) return {};
 
-  const url = `https://seanwalter.top/blog/${slug}`;
-
-  return {
-    title: `${post.title} | seanwalter`,
+  return buildPageMetadata({
+    title: post.title,
     description: post.excerpt,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      type: "article",
-      url,
-      title: post.title,
-      description: post.excerpt,
-      publishedTime: post.date,
-      authors: ["seanwalter"],
-      tags: post.tags,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
-    },
-  };
+    path: `/blog/${slug}`,
+    type: "article",
+    publishedTime: post.date,
+    tags: post.tags,
+  });
 }
 
 export default async function BlogArticlePage({
@@ -57,16 +43,16 @@ export default async function BlogArticlePage({
     datePublished: post.date,
     author: {
       "@type": "Person",
-      name: "seanwalter",
-      url: "https://seanwalter.top",
+      name: SITE_AUTHOR,
+      url: SITE_URL,
     },
     publisher: {
       "@type": "Person",
-      name: "seanwalter",
+      name: SITE_NAME,
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://seanwalter.top/blog/${slug}`,
+      "@id": getCanonicalUrl(`/blog/${slug}`),
     },
     keywords: post.tags.join(", "),
   };

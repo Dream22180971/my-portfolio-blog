@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
 import { MapPin, Rocket, Compass, Coffee, Code2, MessageSquare, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe, Music, Film } from "lucide-react";
+import { buildPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "关于我 | seanwalter",
+export const metadata: Metadata = buildPageMetadata({
+  title: "关于我",
   description: "AI Agent 开发者，从测试工程师转型。专注 RAG 知识库、AI Agent 产品化与自动化工作流。",
-  alternates: { canonical: "https://seanwalter.top/about" },
-  openGraph: {
-    title: "关于我 | seanwalter",
-    description: "AI Agent 开发者，从测试工程师转型。专注 RAG 知识库、AI Agent 产品化与自动化工作流。",
-    url: "https://seanwalter.top/about",
-  },
-};
+  path: "/about",
+});
 
 const timeline = [
   {
@@ -363,7 +359,8 @@ export default function AboutPage() {
         </h2>
         <blockquote className="border-l-2 border-neon-purple/40 pl-4 space-y-2">
           <p className="text-sm text-text-secondary italic leading-7">
-            "To see the world, things dangerous to come to, to see behind walls, draw closer, to find each other, and to feel. That is the purpose of life."
+            &ldquo;To see the world, things dangerous to come to, to see behind walls, draw closer,
+            to find each other, and to feel. That is the purpose of life.&rdquo;
           </p>
           <p className="text-sm text-text-secondary leading-7">
             看见世界，冲破险境，看见彼此，靠近彼此，感受一切。这就是生活的意义。

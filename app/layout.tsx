@@ -1,37 +1,32 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import Link from "next/link";
 import { MobileTopNav } from "@/components/MobileTopNav";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import {
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+  SITE_URL,
+  buildPageMetadata,
+  personJsonLd,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "seanwalter | AI Agent 开发者",
-  description:
-    "AI Agent 开发者，专注 RAG 知识库与智能体搭建。南京，备考 IELTS 6.5+。",
-  metadataBase: new URL("https://seanwalter.top"),
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "zh_CN",
-    url: "https://seanwalter.top",
-    siteName: "seanwalter",
-    title: "seanwalter | AI Agent 开发者",
-    description:
-      "AI Agent 开发者，专注 RAG 知识库与智能体搭建。南京，备考 IELTS 6.5+。",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "seanwalter | AI Agent 开发者",
-    description:
-      "AI Agent 开发者，专注 RAG 知识库与智能体搭建。南京，备考 IELTS 6.5+。",
-  },
+  ...buildPageMetadata(),
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   other: {
     "google-site-verification": "9se3lC-jMLixEVV8hbGoFQGNloTL07v-tQGBZ3FYqvo",
     "msvalidate.01": "E5167EE042796C91514A8AEE884BD3B3",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0e17",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -45,22 +40,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "seanwalter",
-              url: "https://seanwalter.top",
-              jobTitle: "AI Agent 开发者",
-              description: "AI Agent 开发者，专注 RAG 知识库与智能体搭建",
-              sameAs: ["https://github.com/Dream22180971"],
-              knowsAbout: [
-                "AI Agent",
-                "RAG",
-                "LangChain",
-                "LLM",
-                "自动化测试",
-              ],
-            }),
+            __html: JSON.stringify(personJsonLd),
           }}
         />
       </head>
@@ -85,6 +65,9 @@ export default function RootLayout({
           </div>
         </main>
         <Analytics />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );

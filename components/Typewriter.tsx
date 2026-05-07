@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export function Typewriter({ text, speed = 80, pause = 2000 }: { text: string; speed?: number; pause?: number }) {
   const [displayed, setDisplayed] = useState("");
-  const [phase, setPhase] = useState<"typing" | "pausing" | "deleting">("typing");
+  const [phase, setPhase] = useState<"typing" | "deleting">("typing");
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
@@ -23,7 +23,9 @@ export function Typewriter({ text, speed = 80, pause = 2000 }: { text: string; s
           setDisplayed(text.slice(0, displayed.length - 1));
         }, speed / 2);
       } else {
-        setPhase("typing");
+        timer = setTimeout(() => {
+          setPhase("typing");
+        }, 0);
       }
     }
 

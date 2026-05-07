@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import { ArrowUpRight, FlaskConical, Sparkles } from "lucide-react";
+import { buildPageMetadata } from "@/lib/site";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "实验",
+  description: "围绕 AI Agent、测试自动化、原型验证和代码理解方向的实验记录与探索。",
+  path: "/experiments",
+});
 
 const experiments = [
   {
