@@ -144,7 +144,6 @@ export default function AboutPage() {
           <div className="text-xs font-mono text-neon-cyan mb-2">我是谁</div>
           <p className="text-text-secondary leading-relaxed">
             一个从测试岗转型到 AI 方向的开发者，持续探索 AI Agent 产品化与自动化工作流。
-            写代码不是为了炫技，是为了解决问题。
           </p>
         </div>
 
