@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MapPin, Rocket, Compass, Coffee, Code2, MessageSquare, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe, Music, Film } from "lucide-react";
+import { MapPin, Rocket, Compass, Coffee, Code2, MessageSquare, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe, Music, Film, Camera } from "lucide-react";
 import { buildPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -328,8 +328,7 @@ export default function AboutPage() {
       <section className="card-glow rounded-xl p-6 space-y-4">
         <h2 className="text-xl font-semibold text-text-primary">工作之外</h2>
         <p className="text-text-secondary leading-relaxed">
-          周末会去南京周边爬山，偶尔写写公众号，也会持续发一些 AI 学习笔记。平时喜欢看书，尤其关注哲学、心理学和那些能帮助人理解自我、
-          理解选择与长期主义的内容。低谷期靠薛之谦的歌撑过来——他的歌词像一面镜子，照见那些自己不愿意承认的情绪。雅思备考中，目标是 6.5，每天背单词、练口语，也把阅读当成让自己慢下来的一种方式。
+          周末会去南京周边爬山，偶尔写写公众号，也会持续发一些 AI 学习笔记。平时喜欢看书，尤其关注哲学、心理学和那些能帮助人理解自我、理解选择与长期主义的内容。喜欢音乐，流行、摇滚、民谣都听。歌单很杂，人在歌里找自己。也爱拍照，不挑器材不修图。现在随手按下的，都是以后往回看的。翻书和按快门，是两件能让我慢下来的事。
         </p>
         <div className="flex flex-wrap gap-2 pt-2">
           <span className="tag tag-cyan">
@@ -340,13 +339,17 @@ export default function AboutPage() {
             <BrainCircuit className="mr-1 h-3 w-3" />
             哲学 / 心理学
           </span>
+          <span className="tag tag-cyan">
+            <Camera className="mr-1 h-3 w-3" />
+            摄影 / 记录
+          </span>
           <span className="tag tag-green">
             <Coffee className="mr-1 h-3 w-3" />
-            爬山 / 写作 / 备考
+            爬山 / 写作
           </span>
           <span className="tag tag-purple">
             <Music className="mr-1 h-3 w-3" />
-            薛之谦
+            音乐 / 流行 / 民谣
           </span>
         </div>
       </section>
