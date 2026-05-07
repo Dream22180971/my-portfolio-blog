@@ -1,4 +1,6 @@
 const rules: [RegExp, string | ((...args: string[]) => string)][] = [
+  // Images (must be before links)
+  [/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" class="blog-image" />'],
   // Code blocks (must be before other rules)
   [/```[\s\S]*?```/g, (match: string) => {
     const code = match.replace(/```\w*\n?/, "").replace(/```$/, "");
@@ -54,6 +56,8 @@ function wrapParagraphs(html: string): string {
       trimmed.startsWith("<hr") ||
       trimmed.startsWith("<pre") ||
       trimmed.startsWith("<blockquote") ||
+      trimmed.startsWith("<table") ||
+      trimmed.startsWith("<img") ||
       trimmed.startsWith("<li") ||
       trimmed.startsWith("</")
     ) {
@@ -79,8 +83,61 @@ function wrapParagraphs(html: string): string {
   return result.join("\n");
 }
 
+function parseTables(md: string): string {
+  const lines = md.split("\n");
+  const result: string[] = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    // Detect table start: line starts with | and next line is a separator
+    if (
+      /^\|.+\|$/.test(line.trim()) &&
+      i + 1 < lines.length &&
+      /^\|[-:| ]+\|$/.test(lines[i + 1].trim())
+    ) {
+      const headerCells = parseTableRow(line);
+      const bodyRows: string[][] = [];
+
+      i += 2; // skip separator
+      while (i < lines.length && /^\|.+\|$/.test(lines[i].trim())) {
+        bodyRows.push(parseTableRow(lines[i]));
+        i++;
+      }
+
+      result.push(buildTableHtml(headerCells, bodyRows));
+      continue;
+    }
+
+    result.push(line);
+    i++;
+  }
+
+  return result.join("\n");
+}
+
+function parseTableRow(line: string): string[] {
+  return line
+    .trim()
+    .replace(/^\||\|$/g, "")
+    .split("|")
+    .map((cell) => cell.trim());
+}
+
+function buildTableHtml(headers: string[], rows: string[][]): string {
+  const thead = `<thead><tr>${headers.map((h) => `<th>${h}</th>`).join("")}</tr></thead>`;
+  const tbody = `<tbody>${rows
+    .map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`)
+    .join("")}</tbody>`;
+  return `<table class="blog-table">${thead}${tbody}</table>`;
+}
+
 export function markdownToHtml(md: string): string {
   let html = md;
+
+  // Parse tables first (before inline rules)
+  html = parseTables(html);
 
   // Apply inline rules
   for (const [pattern, replacement] of rules) {
