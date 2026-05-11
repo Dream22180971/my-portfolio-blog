@@ -1,9 +1,24 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, CalendarDays, Clock3 } from "lucide-react";
+import { ArrowLeft, CalendarDays, Clock3, FileText } from "lucide-react";
 import { getPostBySlug, getAllPosts } from "@/lib/blog-data";
 import { markdownToHtml } from "@/lib/markdown";
 import { SITE_AUTHOR, SITE_NAME, SITE_URL, buildPageMetadata, getCanonicalUrl } from "@/lib/site";
+
+function countWords(md: string): string {
+  // 去掉 markdown 语法
+  const plain = md
+    .replace(/[#*`\[\]()>!|~=_\-]/g, " ")
+    .replace(/\{%.*?%\}/g, " ")
+    .replace(/<[^>]*>/g, " ");
+  const chinese = (plain.match(/[一-鿿㐀-䶿]/g) || []).length;
+  const english = (plain.match(/[a-zA-Z]+/g) || []).length;
+  const digits = (plain.match(/\d+/g) || []).length;
+  const total = chinese + english + digits;
+  if (total >= 10000) return `${(total / 10000).toFixed(1)}万字`;
+  if (total >= 1000) return `${(total / 1000).toFixed(0)}k字`;
+  return `${total}字`;
+}
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -81,6 +96,10 @@ export default async function BlogArticlePage({
             <span className="inline-flex items-center gap-1.5">
               <Clock3 className="h-3.5 w-3.5" />
               {post.readTime}
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <FileText className="h-3.5 w-3.5" />
+              {countWords(post.content)}
             </span>
           </div>
 
