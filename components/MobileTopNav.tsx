@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { href: "/", label: "首页" },
-  { href: "/projects", label: "项目" },
   { href: "/blog", label: "文章" },
+  { href: "/projects", label: "项目" },
   { href: "/about", label: "关于" },
   { href: "/experiments", label: "实验" },
 ];
