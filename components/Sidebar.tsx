@@ -58,7 +58,7 @@ export function Sidebar() {
             <div className="font-mono text-sm text-neon-cyan group-hover:text-white transition-colors">
               seanwalter
             </div>
-            <div className="text-xs text-text-secondary">AI Agent 开发者</div>
+            <div className="text-xs text-text-secondary">AI 独立开发者</div>
           </div>
         </Link>
       </div>

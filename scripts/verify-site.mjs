@@ -80,7 +80,7 @@ async function fetchText(pathname) {
 
 async function runChecks() {
   const home = await fetchText("/");
-  assertIncludes(home, "<title>seanwalter | AI Agent 开发者</title>", "home title");
+  assertIncludes(home, "<title>seanwalter | AI 独立开发者</title>", "home title");
   assertIncludes(home, 'rel="canonical" href="https://seanwalter.top"', "home canonical");
 
   const blog = await fetchText("/blog");
