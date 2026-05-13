@@ -28,18 +28,22 @@ const nowBuilding = [
     desc: "多模型路由、成本控制、行程体验优化。",
     color: "cyan",
     progress: "进行中",
+    liveUrl: "https://voyageai.seanwalter.top/",
+    githubUrl: "https://github.com/Dream22180971/VoyageAI",
+  },
+  {
+    name: "YouRenTool",
+    desc: "桌面密码管理器，AES-256 加密，安全存储与一键填充。",
+    color: "green",
+    progress: "已上线",
+    liveUrl: "https://youren.seanwalter.top/",
+    githubUrl: "https://github.com/Dream22180971/YouRenTool",
   },
   {
     name: "运营 AI 内容助手",
     desc: "自媒体运营人的 AI 内容生成工具，支持多平台创作。",
     color: "purple",
     progress: "已上线",
-  },
-  {
-    name: "TestPilotAgent",
-    desc: "把测试场景、用例生成和验证流串成一个 Agent 工作流。",
-    color: "green",
-    progress: "实验中",
   },
 ];
 
@@ -202,6 +206,32 @@ export default function HomePage() {
                   <span className={`tag tag-${item.color}`}>{item.progress}</span>
                 </div>
                 <p className="text-sm leading-6 text-text-secondary">{item.desc}</p>
+                {(item.liveUrl || item.githubUrl) && (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {item.liveUrl && (
+                      <a
+                        href={item.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-lg border border-neon-cyan/30 bg-neon-cyan/10 px-3 py-1 text-xs font-medium text-neon-cyan transition hover:bg-neon-cyan/20"
+                      >
+                        在线体验
+                        <ArrowUpRight className="h-3 w-3" />
+                      </a>
+                    )}
+                    {item.githubUrl && (
+                      <a
+                        href={item.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-lg border border-text-secondary/20 bg-white/5 px-3 py-1 text-xs font-medium text-text-secondary transition hover:bg-white/10"
+                      >
+                        GitHub
+                        <ArrowUpRight className="h-3 w-3" />
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>
