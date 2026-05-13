@@ -25,9 +25,9 @@ const stats = [
 const nowBuilding = [
   {
     name: "VoyageAI",
-    desc: "多模型路由、成本控制、行程体验优化。",
+    desc: "AI 旅行规划系统，输入偏好即可生成行程、预算拆分与行前清单。",
     color: "cyan",
-    progress: "进行中",
+    progress: "已上线",
     liveUrl: "https://voyageai.seanwalter.top/",
     githubUrl: "https://github.com/Dream22180971/VoyageAI",
   },
