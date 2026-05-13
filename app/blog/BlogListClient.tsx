@@ -8,38 +8,23 @@ import { POSTS_PER_PAGE } from "@/lib/blog-data";
 
 export default function BlogListClient({ articles }: { articles: BlogPostMeta[] }) {
   const [search, setSearch] = useState("");
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
 
-  const allTags = useMemo(() => {
-    const tagCount = new Map<string, number>();
-    articles.forEach((a) => a.tags.forEach((t) => tagCount.set(t, (tagCount.get(t) || 0) + 1)));
-    return [...tagCount.entries()]
-      .sort((a, b) => b[1] - a[1])
-      .map(([tag, count]) => ({ tag, count }));
-  }, [articles]);
-
   const filteredArticles = useMemo(() => {
-    let result = articles;
-    if (selectedTag) {
-      result = result.filter((a) => a.tags.includes(selectedTag));
-    }
-    if (search.trim()) {
-      const q = search.toLowerCase();
-      result = result.filter(
-        (a) =>
-          a.title.toLowerCase().includes(q) ||
-          a.excerpt.toLowerCase().includes(q) ||
-          a.tags.some((t) => t.toLowerCase().includes(q))
-      );
-    }
-    return result;
-  }, [articles, selectedTag, search]);
+    if (!search.trim()) return articles;
+    const q = search.toLowerCase();
+    return articles.filter(
+      (a) =>
+        a.title.toLowerCase().includes(q) ||
+        a.excerpt.toLowerCase().includes(q) ||
+        a.tags.some((t) => t.toLowerCase().includes(q))
+    );
+  }, [articles, search]);
 
   const visibleArticles = filteredArticles.slice(0, visibleCount);
   const hasMore = visibleCount < filteredArticles.length;
 
-  const isFiltering = !!search.trim() || !!selectedTag;
+  const isFiltering = !!search.trim();
 
   return (
     <>
@@ -63,49 +48,17 @@ export default function BlogListClient({ articles }: { articles: BlogPostMeta[] 
         )}
       </div>
 
-      {/* 标签筛选 */}
-      <div className="flex flex-wrap gap-2">
-        <button
-          onClick={() => { setSelectedTag(null); setVisibleCount(POSTS_PER_PAGE); }}
-          className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
-            !selectedTag
-              ? "border border-neon-cyan/40 bg-neon-cyan/10 text-neon-cyan"
-              : "border border-space-border bg-space-card text-text-secondary hover:border-neon-cyan/40 hover:text-neon-cyan"
-          }`}
-        >
-          全部
-        </button>
-        {allTags.map(({ tag, count }) => (
-          <button
-            key={tag}
-            onClick={() => {
-              setSelectedTag(selectedTag === tag ? null : tag);
-              setVisibleCount(POSTS_PER_PAGE);
-            }}
-            className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
-              selectedTag === tag
-                ? "border border-neon-cyan/40 bg-neon-cyan/10 text-neon-cyan"
-                : "border border-space-border bg-space-card text-text-secondary hover:border-neon-cyan/40 hover:text-neon-cyan"
-            }`}
-          >
-            {tag}
-            <span className="ml-1 text-text-muted">({count})</span>
-          </button>
-        ))}
-      </div>
-
       {/* 筛选状态提示 */}
       {isFiltering && (
         <div className="flex items-center justify-between rounded-lg border border-space-border bg-space-card px-4 py-2 text-sm text-text-secondary">
           <span>
             找到 <span className="text-neon-cyan">{filteredArticles.length}</span> 篇文章
-            {selectedTag && <> · 标签「{selectedTag}」</>}
           </span>
           <button
-            onClick={() => { setSearch(""); setSelectedTag(null); setVisibleCount(POSTS_PER_PAGE); }}
+            onClick={() => { setSearch(""); setVisibleCount(POSTS_PER_PAGE); }}
             className="text-text-muted hover:text-neon-cyan transition-colors"
           >
-            清除筛选
+            清除
           </button>
         </div>
       )}
@@ -115,7 +68,7 @@ export default function BlogListClient({ articles }: { articles: BlogPostMeta[] 
           <div className="py-16 text-center text-text-muted">
             <p className="text-lg">没有找到相关文章</p>
             <button
-              onClick={() => { setSearch(""); setSelectedTag(null); }}
+              onClick={() => setSearch("")}
               className="mt-3 text-sm text-neon-cyan hover:underline"
             >
               清除筛选
