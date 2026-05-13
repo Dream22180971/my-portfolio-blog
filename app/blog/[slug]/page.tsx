@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock3, FileText } from "lucide-react";
+import ShareButton from "./ShareButton";
 import { getPostBySlug, getAllPosts } from "@/lib/blog-data";
 import { markdownToHtml } from "@/lib/markdown";
 import { SITE_AUTHOR, SITE_NAME, SITE_URL, buildPageMetadata, getCanonicalUrl } from "@/lib/site";
@@ -111,12 +112,15 @@ export default async function BlogArticlePage({
             {post.excerpt}
           </p>
 
-          <div className="flex flex-wrap gap-2">
-            {post.tags.map((tag, index) => (
-              <span key={tag} className={`tag ${index % 2 === 0 ? "tag-cyan" : "tag-purple"}`}>
-                {tag}
-              </span>
-            ))}
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap gap-2">
+              {post.tags.map((tag, index) => (
+                <span key={tag} className={`tag ${index % 2 === 0 ? "tag-cyan" : "tag-purple"}`}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <ShareButton title={post.title} />
           </div>
         </header>
 
