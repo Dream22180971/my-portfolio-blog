@@ -6,9 +6,15 @@ const rules: [RegExp, string | ((...args: string[]) => string)][] = [
     const code = match.replace(/```\w*\n?/, "").replace(/```$/, "");
     return `<pre><code>${escapeHtml(code.trim())}</code></pre>`;
   }],
-  // Headers
+  // Headers (with ids for anchor links)
   [/^### (.+)$/gm, "<h3>$1</h3>"],
-  [/^## (.+)$/gm, "<h2>$1</h2>"],
+  [/^## (.+)$/gm, (_match: string, title: string) => {
+    const id = title
+      .toLowerCase()
+      .replace(/[^\w一-龥]+/g, "-")
+      .replace(/^-|-$/g, "");
+    return `<h2 id="${id}">${title}</h2>`;
+  }],
   // Horizontal rule
   [/^---$/gm, "<hr />"],
   // Blockquotes

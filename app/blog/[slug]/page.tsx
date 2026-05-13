@@ -76,7 +76,7 @@ export default async function BlogArticlePage({
   };
 
   return (
-    <div className="mx-auto max-w-3xl animate-fade-in">
+    <div className="mx-auto max-w-5xl animate-fade-in">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -89,50 +89,56 @@ export default async function BlogArticlePage({
         返回文章列表
       </Link>
 
-      <article className="space-y-8">
-        <header className="space-y-4">
-          <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-text-muted">
-            <span className="inline-flex items-center gap-1.5">
-              <CalendarDays className="h-3.5 w-3.5" />
-              {post.date}
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Clock3 className="h-3.5 w-3.5" />
-              {post.readTime}
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <FileText className="h-3.5 w-3.5" />
-              {countWords(post.content)}
-            </span>
-          </div>
-
-          <h1 className="text-3xl font-bold leading-tight text-text-primary md:text-4xl">
-            {post.title}
-          </h1>
-
-          <p className="text-lg leading-8 text-text-secondary">
-            {post.excerpt}
-          </p>
-
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag, index) => (
-                <span key={tag} className={`tag ${index % 2 === 0 ? "tag-cyan" : "tag-purple"}`}>
-                  {tag}
-                </span>
-              ))}
+      <div className="flex gap-8">
+        <article className="flex-1 min-w-0 space-y-8">
+          <header className="space-y-4">
+            <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-text-muted">
+              <span className="inline-flex items-center gap-1.5">
+                <CalendarDays className="h-3.5 w-3.5" />
+                {post.date}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Clock3 className="h-3.5 w-3.5" />
+                {post.readTime}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <FileText className="h-3.5 w-3.5" />
+                {countWords(post.content)}
+              </span>
             </div>
-            <ShareButton title={post.title} />
-          </div>
-        </header>
 
-        <div className="h-px bg-space-border" />
+            <h1 className="text-3xl font-bold leading-tight text-text-primary md:text-4xl">
+              {post.title}
+            </h1>
 
-        <div
-          className="prose-blog"
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
-        />
-      </article>
+            <p className="text-lg leading-8 text-text-secondary">
+              {post.excerpt}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag, index) => (
+                  <span key={tag} className={`tag ${index % 2 === 0 ? "tag-cyan" : "tag-purple"}`}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <ShareButton title={post.title} />
+            </div>
+          </header>
+
+          <div className="h-px bg-space-border" />
+
+          <div
+            className="prose-blog"
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
+          />
+        </article>
+
+        <div className="hidden xl:block">
+          <TableOfContents content={post.content} />
+        </div>
+      </div>
 
       <BackToTop />
     </div>
