@@ -45,6 +45,7 @@ export function buildPageMetadata({
       siteName: SITE_NAME,
       title: fullTitle,
       description,
+      images: [`${SITE_URL}${path}/opengraph-image`],
       ...(publishedTime ? { publishedTime } : {}),
       ...(tags ? { tags } : {}),
       ...(type === "article" ? { authors: [SITE_AUTHOR] } : {}),
@@ -53,6 +54,7 @@ export function buildPageMetadata({
       card: "summary_large_image",
       title: fullTitle,
       description,
+      images: [`${SITE_URL}${path}/opengraph-image`],
     },
   };
 }
