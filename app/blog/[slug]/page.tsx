@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock3, FileText } from "lucide-react";
 import ShareButton from "./ShareButton";
+import BackToTop from "./BackToTop";
+import { TableOfContents } from "./TableOfContents";
 import { getPostBySlug, getAllPosts } from "@/lib/blog-data";
 import { markdownToHtml } from "@/lib/markdown";
 import { SITE_AUTHOR, SITE_NAME, SITE_URL, buildPageMetadata, getCanonicalUrl } from "@/lib/site";
@@ -131,6 +133,8 @@ export default async function BlogArticlePage({
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
       </article>
+
+      <BackToTop />
     </div>
   );
 }
