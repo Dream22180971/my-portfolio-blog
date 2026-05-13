@@ -26,10 +26,10 @@ export default function ShareButton({ title }: ShareButtonProps) {
 
   async function copyLink() {
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(`${title} ${window.location.href}`);
     } catch {
       const input = document.createElement("input");
-      input.value = window.location.href;
+      input.value = `${title} ${window.location.href}`;
       document.body.appendChild(input);
       input.select();
       document.execCommand("copy");
