@@ -24,7 +24,7 @@ const stats = [
 
 const nowBuilding = [
   {
-    name: "VoyageAI v2",
+    name: "VoyageAI",
     desc: "多模型路由、成本控制、行程体验优化。",
     color: "cyan",
     progress: "进行中",
