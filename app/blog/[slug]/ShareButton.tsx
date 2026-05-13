@@ -17,7 +17,6 @@ export default function ShareButton({ title }: ShareButtonProps) {
     function handleClick(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
-        setShowWechat(false);
       }
     }
     document.addEventListener("mousedown", handleClick);
