@@ -10,7 +10,6 @@ import {
   Zap,
 } from "lucide-react";
 import { GithubIcon, GiteeIcon } from "../components/SocialIcons";
-import { Typewriter } from "../components/Typewriter";
 import { FadeIn } from "../components/FadeIn";
 import { MarqueeTicker } from "../components/MarqueeTicker";
 
@@ -116,7 +115,7 @@ export default function HomePage() {
           </div>
 
           <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            <Typewriter text="用 AI 把想法变成产品" speed={80} />
+            用 AI 把想法变成产品
           </h1>
 
           <p className="mt-6 max-w-3xl text-base leading-8 text-text-secondary sm:text-lg">
