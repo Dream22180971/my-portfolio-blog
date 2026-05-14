@@ -7,10 +7,14 @@ import { GithubIcon, MailIcon, WechatIcon, XIcon } from "./SocialIcons";
 function CopyTooltip({ wechatId }: { wechatId: string }) {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(wechatId);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(wechatId);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // clipboard API not available
+    }
   };
 
   return (

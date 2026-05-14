@@ -4,6 +4,7 @@ import { Sidebar } from "@/components/Sidebar";
 import Link from "next/link";
 import { MobileTopNav } from "@/components/MobileTopNav";
 import { Analytics } from "@vercel/analytics/next";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -25,8 +26,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0e17",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F5F0E8" },
+    { color: "#0a0e17" },
+  ],
+  colorScheme: "dark light",
 };
 
 export default function RootLayout({
@@ -35,8 +39,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="zh-CN" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var t = localStorage.getItem('theme');
+                  if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                  document.documentElement.setAttribute('data-theme', t);
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
         <link
           rel="alternate"
           type="application/rss+xml"
@@ -51,6 +68,7 @@ export default function RootLayout({
         />
       </head>
       <body className="space-grid noise-overlay tech-orbs">
+        <ThemeProvider>
         {/* 绉诲姩绔《閮ㄥ鑸?*/}
         <header className="md:hidden fixed top-0 left-0 right-0 z-50 border-b border-space-border bg-space-bg/90 backdrop-blur-xl">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
@@ -71,6 +89,7 @@ export default function RootLayout({
           </div>
         </main>
         <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

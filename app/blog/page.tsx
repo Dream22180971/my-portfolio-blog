@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Sparkles } from "lucide-react";
 import { getAllPosts } from "@/lib/blog-data";
 import { buildPageMetadata } from "@/lib/site";
@@ -16,7 +17,7 @@ export default function BlogPage() {
   return (
     <div className="mx-auto max-w-4xl space-y-8 animate-fade-in">
       <div className="space-y-3">
-        <div className="inline-flex items-center gap-2 rounded-full border border-neon-purple/25 bg-neon-purple/10 px-3 py-1 text-xs text-[#c4b5fd]">
+        <div className="inline-flex items-center gap-2 rounded-full border border-neon-purple/25 bg-neon-purple/10 px-3 py-1 text-xs text-neon-purple-light">
           <Sparkles className="h-3.5 w-3.5" />
           技术沉淀 / 思考记录
         </div>
@@ -26,7 +27,9 @@ export default function BlogPage() {
         </p>
       </div>
 
-      <BlogListClient articles={articles} />
+      <Suspense>
+        <BlogListClient articles={articles} />
+      </Suspense>
     </div>
   );
 }

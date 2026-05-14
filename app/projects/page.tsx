@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowUpRight, FolderKanban, Sparkles, Trophy, Wrench } from "lucide-react";
 import { GithubIcon } from "@/components/SocialIcons";
 import { buildPageMetadata } from "@/lib/site";
+import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "项目",
@@ -77,10 +78,10 @@ const filters = ["AI 应用", "Agent 工作流", "测试工程", "工具产品"]
 export default function ProjectsPage() {
   return (
     <div className="space-y-10 animate-fade-in">
-      <section className="relative overflow-hidden rounded-[28px] border border-space-border/80 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_26%),linear-gradient(145deg,rgba(15,23,42,0.94),rgba(10,14,23,0.98))] px-6 py-8 shadow-[0_0_80px_rgba(124,58,237,0.08)] sm:px-8 md:px-10">
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(124,58,237,0.04),transparent)]" />
+      <section className="relative overflow-hidden rounded-[28px] border border-space-border/80 hero-purple px-6 py-8 shadow-[0_0_80px_rgba(124,58,237,0.08)] sm:px-8 md:px-10">
+        <div className="absolute inset-0 hero-overlay-purple" />
         <div className="relative space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-neon-purple/25 bg-neon-purple/10 px-3 py-1 text-xs text-[#c4b5fd]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-neon-purple/25 bg-neon-purple/10 px-3 py-1 text-xs text-neon-purple-light">
             <Sparkles className="h-3.5 w-3.5" />
             项目档案 / 可运行 / 可追溯 / 可扩展
           </div>
@@ -96,7 +97,7 @@ export default function ProjectsPage() {
             {filters.map((item, index) => (
               <span
                 key={item}
-                className={`tag ${index % 2 === 0 ? "tag-cyan" : "tag-purple"}`}
+                className={cn("tag", index % 2 === 0 ? "tag-cyan" : "tag-purple")}
               >
                 {item}
               </span>
@@ -105,7 +106,7 @@ export default function ProjectsPage() {
 
           <div className="grid gap-4 sm:grid-cols-3">
             {highlights.map((item) => (
-              <div key={item.label} className="rounded-2xl border border-space-border bg-white/5 px-5 py-5">
+              <div key={item.label} className="stat-card rounded-2xl border border-space-border px-5 py-5">
                 <div className="text-3xl font-bold text-neon-cyan">{item.value}</div>
                 <div className="mt-1 text-sm text-text-secondary">{item.label}</div>
               </div>
@@ -129,11 +130,11 @@ export default function ProjectsPage() {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className={`card-glow group rounded-2xl p-6 animate-slide-up stagger-${Math.min(i + 1, 5)}`}
+              className={cn("card-glow group rounded-2xl p-6 animate-slide-up", `stagger-${Math.min(i + 1, 5)}`)}
             >
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-space-border bg-white/5 text-3xl">
+                  <div className="emoji-card flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-space-border text-3xl">
                     {project.emoji}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -146,15 +147,12 @@ export default function ProjectsPage() {
                           {project.tags.slice(0, 2).map((tag) => (
                             <span
                               key={tag}
-                              className={`tag ${
-                                project.color === "cyan"
-                                  ? "tag-cyan"
-                                  : project.color === "purple"
-                                  ? "tag-purple"
-                                  : project.color === "green"
-                                  ? "tag-green"
-                                  : "tag-purple"
-                              }`}
+                              className={cn(
+                                "tag",
+                                project.color === "cyan" && "tag-cyan",
+                                project.color === "purple" && "tag-purple",
+                                project.color === "green" && "tag-green"
+                              )}
                             >
                               {tag}
                             </span>
@@ -177,7 +175,7 @@ export default function ProjectsPage() {
                   {project.tags.slice(2).map((tag, index) => (
                     <span
                       key={tag}
-                      className={`tag ${index % 2 === 0 ? "tag-cyan" : "tag-purple"}`}
+                      className={cn("tag", index % 2 === 0 ? "tag-cyan" : "tag-purple")}
                     >
                       {tag}
                     </span>

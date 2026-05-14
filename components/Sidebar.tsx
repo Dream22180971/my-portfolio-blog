@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { GithubIcon, MailIcon, WechatIcon } from "./SocialIcons";
+import { ThemeToggle } from "./ThemeToggle";
+import { cn } from "@/lib/cn";
 
 const navItems = [
   { href: "/", label: "首页", icon: "⌘" },
@@ -30,16 +32,8 @@ export function Sidebar() {
       await navigator.clipboard.writeText(wechatId);
       setCopied(true);
     } catch {
-      const textarea = document.createElement("textarea");
-      textarea.value = wechatId;
-      textarea.setAttribute("readonly", "");
-      textarea.style.position = "fixed";
-      textarea.style.top = "-9999px";
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textarea);
-      setCopied(true);
+      // clipboard API not available (non-HTTPS context)
+      return;
     }
 
     if (resetTimerRef.current) window.clearTimeout(resetTimerRef.current);
@@ -71,7 +65,7 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`nav-item ${isActive ? "active" : ""}`}
+              className={cn("nav-item", isActive && "active")}
             >
               <span className="text-sm opacity-60">{item.icon}</span>
               <span>{item.label}</span>
@@ -110,9 +104,10 @@ export function Sidebar() {
               <WechatIcon className="w-4 h-4" />
             </button>
             <div
-              className={`pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded-lg border border-space-border bg-space-bg/95 px-2 py-1 text-[11px] font-mono text-text-secondary shadow-[0_12px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-all ${
+              className={cn(
+                "pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded-lg border border-space-border bg-space-bg/95 px-2 py-1 text-[11px] font-mono text-text-secondary shadow-[0_12px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-all",
                 copied ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"
-              }`}
+              )}
               aria-hidden={!copied}
             >
               已复制
@@ -122,6 +117,11 @@ export function Sidebar() {
         <div className="mt-3 text-center text-xs text-text-muted">
           © 2026 · 南京
         </div>
+      </div>
+
+      {/* 主题切换 */}
+      <div className="px-4 pb-2">
+        <ThemeToggle />
       </div>
 
       {/* 状态指示 */}

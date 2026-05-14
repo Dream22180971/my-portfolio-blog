@@ -49,6 +49,7 @@ export function buildPageMetadata({
       description,
       images: [`${SITE_URL}${path}/opengraph-image`],
       ...(publishedTime ? { publishedTime } : {}),
+      ...(modifiedTime ? { modifiedTime } : {}),
       ...(tags ? { tags } : {}),
       ...(type === "article" ? { authors: [SITE_AUTHOR] } : {}),
     },

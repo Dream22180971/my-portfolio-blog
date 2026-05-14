@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowUpRight, CalendarDays, Clock3, ChevronDown, Search, X } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blog-data";
 import { POSTS_PER_PAGE } from "@/lib/blog-data";
+import { cn } from "@/lib/cn";
 
 export default function BlogListClient({ articles }: { articles: BlogPostMeta[] }) {
   const searchParams = useSearchParams();
@@ -109,17 +110,14 @@ export default function BlogListClient({ articles }: { articles: BlogPostMeta[] 
           <Link
             key={article.slug}
             href={`/blog/${article.slug}`}
-            className={`card-glow group block overflow-hidden rounded-2xl p-6 animate-slide-up stagger-${Math.min(
-              i + 1,
-              5
-            )} ${
-              article.featured
-                ? "border-neon-purple/25 bg-[linear-gradient(135deg,rgba(124,58,237,0.12),rgba(17,24,39,0.88))]"
-                : ""
-            }`}
+            className={cn(
+              "card-glow group block overflow-hidden rounded-2xl p-6 animate-slide-up",
+              `stagger-${Math.min(i + 1, 5)}`,
+              article.featured && "border-neon-purple/25 blog-card-featured"
+            )}
           >
             <div className="flex flex-col gap-5 md:flex-row md:items-start">
-              <div className="hidden h-28 w-24 rounded-2xl border border-space-border bg-[radial-gradient(circle_at_top,rgba(0,212,255,0.22),transparent_42%),linear-gradient(180deg,rgba(17,24,39,0.95),rgba(10,14,23,0.9))] md:flex md:flex-col md:items-center md:justify-center">
+              <div className="hidden h-28 w-24 rounded-2xl border border-space-border blog-thumb md:flex md:flex-col md:items-center md:justify-center">
                 <span className="text-2xl font-bold text-neon-cyan">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -158,7 +156,7 @@ export default function BlogListClient({ articles }: { articles: BlogPostMeta[] 
 
                 <div className="flex flex-wrap gap-2 pt-1">
                   {article.tags.map((tag, idx) => (
-                    <span key={tag} className={`tag ${idx === 0 ? "tag-cyan" : "tag-purple"}`}>
+                    <span key={tag} className={cn("tag", idx === 0 ? "tag-cyan" : "tag-purple")}>
                       {tag}
                     </span>
                   ))}
@@ -173,7 +171,7 @@ export default function BlogListClient({ articles }: { articles: BlogPostMeta[] 
         <div className="flex justify-center pt-6">
           <button
             onClick={() => setVisibleCount((c) => Math.min(c + POSTS_PER_PAGE, articles.length))}
-            className="group inline-flex items-center gap-2 rounded-full border border-neon-purple/30 bg-neon-purple/10 px-6 py-3 text-sm text-[#c4b5fd] transition-all hover:border-neon-purple/60 hover:bg-neon-purple/20 hover:text-neon-cyan"
+            className="group inline-flex items-center gap-2 rounded-full border border-neon-purple/30 bg-neon-purple/10 px-6 py-3 text-sm text-neon-purple-light transition-all hover:border-neon-purple/60 hover:bg-neon-purple/20 hover:text-neon-cyan"
           >
             加载更多
             <ChevronDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />

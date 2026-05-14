@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowUpRight, FlaskConical, Sparkles } from "lucide-react";
 import { buildPageMetadata } from "@/lib/site";
+import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "实验",
@@ -45,7 +46,7 @@ const experiments = [
 
 const statusMap = {
   active: { label: "进行中", color: "text-neon-green" },
-  paused: { label: "暂缓中", color: "text-[#f59e0b]" },
+  paused: { label: "暂缓中", color: "text-neon-amber" },
   research: { label: "研究中", color: "text-neon-purple" },
 };
 
@@ -72,7 +73,7 @@ export default function ExperimentsPage() {
               href={exp.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`card-glow rounded-xl p-6 animate-slide-up stagger-${i + 1}`}
+              className={cn("card-glow rounded-xl p-6 animate-slide-up", `stagger-${i + 1}`)}
             >
               <div className="flex items-start gap-4">
                 <span className="text-4xl">{exp.emoji}</span>
@@ -91,7 +92,7 @@ export default function ExperimentsPage() {
                   <p className="text-sm leading-7 text-text-secondary">{exp.desc}</p>
                   <div className="flex flex-wrap gap-2">
                     {exp.tags.map((tag, index) => (
-                      <span key={tag} className={`tag ${index === 0 ? "tag-cyan" : "tag-purple"}`}>
+                      <span key={tag} className={cn("tag", index === 0 ? "tag-cyan" : "tag-purple")}>
                         {tag}
                       </span>
                     ))}

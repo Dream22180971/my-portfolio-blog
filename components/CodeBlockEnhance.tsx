@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export function CodeBlockEnhance() {
+  const cleanupRef = useRef<Array<() => void>>([]);
+
   useEffect(() => {
     const container = document.querySelector(".prose-blog");
     if (!container) return;
 
-    const pres = container.querySelectorAll("pre");
-    pres.forEach((pre) => {
+    function enhancePre(pre: HTMLPreElement) {
       if (pre.querySelector(".copy-btn")) return;
 
       const btn = document.createElement("button");
@@ -20,10 +21,12 @@ export function CodeBlockEnhance() {
       pre.style.position = "relative";
       pre.appendChild(btn);
 
-      pre.addEventListener("mouseenter", () => (btn.style.opacity = "1"));
-      pre.addEventListener("mouseleave", () => (btn.style.opacity = "0"));
+      const onEnter = () => (btn.style.opacity = "1");
+      const onLeave = () => (btn.style.opacity = "0");
+      pre.addEventListener("mouseenter", onEnter);
+      pre.addEventListener("mouseleave", onLeave);
 
-      btn.addEventListener("click", async () => {
+      const onClick = async () => {
         const code = pre.querySelector("code");
         if (!code) return;
         await navigator.clipboard.writeText(code.textContent || "");
@@ -33,8 +36,36 @@ export function CodeBlockEnhance() {
           btn.textContent = "复制";
           btn.style.color = "#94a3b8";
         }, 1500);
+      };
+      btn.addEventListener("click", onClick);
+
+      cleanupRef.current.push(() => {
+        pre.removeEventListener("mouseenter", onEnter);
+        pre.removeEventListener("mouseleave", onLeave);
+        btn.removeEventListener("click", onClick);
+        btn.remove();
       });
+    }
+
+    container.querySelectorAll("pre").forEach(enhancePre);
+
+    const observer = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        for (const node of m.addedNodes) {
+          if (node instanceof HTMLPreElement) enhancePre(node);
+          if (node instanceof HTMLElement) {
+            node.querySelectorAll("pre").forEach(enhancePre);
+          }
+        }
+      }
     });
+    observer.observe(container, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      cleanupRef.current.forEach((fn) => fn());
+      cleanupRef.current = [];
+    };
   }, []);
 
   return null;

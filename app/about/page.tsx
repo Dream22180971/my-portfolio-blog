@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Rocket, Compass, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe, Music, Film, Camera, Code2, Coffee } from "lucide-react";
 import { ContactBar } from "@/components/ContactBar";
 import { buildPageMetadata } from "@/lib/site";
+import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "关于我",
@@ -236,12 +237,11 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {capabilityMatrix.map((item, i) => {
             const Icon = item.icon;
-            const colorClass =
-              item.color === "cyan"
-                ? "border-neon-cyan/20 bg-neon-cyan/10 text-neon-cyan"
-                : item.color === "purple"
-                ? "border-neon-purple/20 bg-neon-purple/10 text-neon-purple"
-                : "border-neon-green/20 bg-neon-green/10 text-neon-green";
+            const colorClass = cn(
+              item.color === "cyan" && "border-neon-cyan/20 bg-neon-cyan/10 text-neon-cyan",
+              item.color === "purple" && "border-neon-purple/20 bg-neon-purple/10 text-neon-purple",
+              item.color === "green" && "border-neon-green/20 bg-neon-green/10 text-neon-green"
+            );
 
             return (
               <div
@@ -279,23 +279,21 @@ export default function AboutPage() {
         </div>
         <div className="grid md:grid-cols-2 gap-4">
           {contentMatrix.map((item, i) => {
-            const borderColor =
-              item.color === "cyan"
-                ? "border-l-neon-cyan"
-                : item.color === "purple"
-                ? "border-l-neon-purple"
-                : "border-l-neon-green";
-            const nameColor =
-              item.color === "cyan"
-                ? "text-neon-cyan"
-                : item.color === "purple"
-                ? "text-neon-purple"
-                : "text-neon-green";
+            const borderColor = cn(
+              item.color === "cyan" && "border-l-neon-cyan",
+              item.color === "purple" && "border-l-neon-purple",
+              item.color === "green" && "border-l-neon-green"
+            );
+            const nameColor = cn(
+              item.color === "cyan" && "text-neon-cyan",
+              item.color === "purple" && "text-neon-purple",
+              item.color === "green" && "text-neon-green"
+            );
 
             return (
               <div
                 key={item.name}
-                className={`card-glow rounded-xl p-5 border-l-2 ${borderColor} animate-slide-up`}
+                className={cn("card-glow rounded-xl p-5 border-l-2 animate-slide-up", borderColor)}
                 style={{ animationDelay: `${i * 80}ms` }}
               >
                 <div className="flex items-center gap-2 mb-1">

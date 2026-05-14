@@ -12,6 +12,7 @@ import { TableOfContents } from "./TableOfContents";
 import { getPostBySlug, getAllPosts } from "@/lib/blog-data";
 import { markdownToHtml } from "@/lib/markdown";
 import { SITE_AUTHOR, SITE_NAME, SITE_URL, buildPageMetadata, getCanonicalUrl } from "@/lib/site";
+import { cn } from "@/lib/cn";
 
 function countWords(md: string): string {
   // 去掉 markdown 语法
@@ -43,6 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/blog/${slug}`,
     type: "article",
     publishedTime: post.date,
+    modifiedTime: post.lastModified ?? post.date,
     tags: post.tags,
   });
 }
@@ -64,6 +66,8 @@ export default async function BlogArticlePage({
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
+    dateModified: post.lastModified ?? post.date,
+    image: `${SITE_URL}/blog/${slug}/opengraph-image`,
     author: {
       "@type": "Person",
       name: SITE_AUTHOR,
@@ -72,6 +76,7 @@ export default async function BlogArticlePage({
     publisher: {
       "@type": "Person",
       name: SITE_NAME,
+      url: SITE_URL,
     },
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -125,7 +130,7 @@ export default async function BlogArticlePage({
             <div className="flex flex-wrap items-center gap-3">
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag, index) => (
-                  <span key={tag} className={`tag ${index % 2 === 0 ? "tag-cyan" : "tag-purple"}`}>
+                  <span key={tag} className={cn("tag", index % 2 === 0 ? "tag-cyan" : "tag-purple")}>
                     {tag}
                   </span>
                 ))}

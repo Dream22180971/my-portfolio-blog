@@ -34,7 +34,7 @@ export function Typewriter({ text, speed = 80, pause = 2000 }: { text: string; s
 
   return (
     <span className="inline-flex items-center">
-      <span className="bg-gradient-to-r from-neon-cyan via-[#7dd3fc] to-neon-purple bg-clip-text text-transparent">
+      <span className="bg-gradient-to-r from-neon-cyan via-neon-cyan-light to-neon-purple bg-clip-text text-transparent">
         {displayed}
       </span>
       <span className="ml-0.5 inline-block w-[3px] h-[1.1em] bg-neon-cyan align-middle animate-pulse" />

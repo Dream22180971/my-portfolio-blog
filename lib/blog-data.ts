@@ -15,18 +15,20 @@ export interface BlogPost extends BlogPostMeta {
   content: string;
 }
 
+const allPosts: BlogPostMeta[] = [...posts]
+  .sort((a, b) => {
+    const dateDiff = new Date(b.date).getTime() - new Date(a.date).getTime();
+    if (dateDiff !== 0) return dateDiff;
+    return posts.indexOf(b) - posts.indexOf(a);
+  })
+  .map((post) => {
+    const { content, ...meta } = post;
+    void content;
+    return { ...meta, lastModified: (post as Record<string, unknown>).lastModified ?? meta.date } as BlogPostMeta;
+  });
+
 export function getAllPosts(): BlogPostMeta[] {
-  return [...posts]
-    .sort((a, b) => {
-      const dateDiff = new Date(b.date).getTime() - new Date(a.date).getTime();
-      if (dateDiff !== 0) return dateDiff;
-      return posts.indexOf(b) - posts.indexOf(a);
-    })
-    .map((post) => {
-      const { content, ...meta } = post;
-      void content;
-      return { ...meta, lastModified: meta.lastModified ?? meta.date };
-    });
+  return allPosts;
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
@@ -36,7 +38,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
 export const POSTS_PER_PAGE = 10;
 
 export function getTotalPages(): number {
-  return Math.ceil(posts.length / POSTS_PER_PAGE);
+  return Math.ceil(allPosts.length / POSTS_PER_PAGE);
 }
 
 export function getRelatedPosts(
@@ -44,7 +46,7 @@ export function getRelatedPosts(
   tags: string[],
   limit = 3
 ): BlogPostMeta[] {
-  return getAllPosts()
+  return allPosts
     .filter((post) => post.slug !== slug)
     .map((post) => ({
       ...post,
@@ -56,5 +58,6 @@ export function getRelatedPosts(
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     })
     .slice(0, limit)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     .map(({ score, ...rest }) => rest);
 }

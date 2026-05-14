@@ -1,8 +1,11 @@
 "use client";
 
 import Giscus from "@giscus/react";
+import { useTheme } from "./ThemeProvider";
 
 export function Comments() {
+  const { theme } = useTheme();
+
   return (
     <div className="mt-12 pt-8 border-t border-space-border">
       <h2 className="text-xl font-semibold text-text-primary mb-6">评论</h2>
@@ -16,7 +19,7 @@ export function Comments() {
         reactionsEnabled="1"
         emitMetadata="0"
         inputPosition="bottom"
-        theme="preferred_color_scheme"
+        theme={theme === "dark" ? "dark" : "light"}
         lang="zh-CN"
       />
     </div>

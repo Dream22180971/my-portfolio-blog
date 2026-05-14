@@ -12,6 +12,7 @@ import {
 import { GithubIcon, GiteeIcon } from "../components/SocialIcons";
 import { FadeIn } from "../components/FadeIn";
 import { MarqueeTicker } from "../components/MarqueeTicker";
+import { cn } from "@/lib/cn";
 
 const directions = ["AI 应用开发", "AI Agent 产品化", "自动化工作流"];
 
@@ -106,8 +107,8 @@ const testingStrengths = [
 export default function HomePage() {
   return (
     <div className="space-y-12 md:space-y-16">
-      <section className="relative overflow-hidden rounded-[28px] border border-space-border/80 bg-[radial-gradient(circle_at_top,rgba(0,212,255,0.18),transparent_28%),linear-gradient(145deg,rgba(15,23,42,0.94),rgba(10,14,23,0.98))] px-6 py-10 shadow-[0_0_80px_rgba(0,212,255,0.08)] sm:px-8 md:px-12 md:py-14">
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(0,212,255,0.03),transparent)]" />
+      <section className="relative overflow-hidden rounded-[28px] border border-space-border/80 hero-cyan px-6 py-10 shadow-[0_0_80px_rgba(0,212,255,0.08)] sm:px-8 md:px-12 md:py-14">
+        <div className="absolute inset-0 hero-overlay-cyan" />
         <div className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-neon-cyan/25 bg-neon-cyan/10 px-4 py-1.5 text-sm text-neon-cyan shadow-[0_0_30px_rgba(0,212,255,0.08)]">
             <Sparkles className="h-4 w-4" />
@@ -115,7 +116,7 @@ export default function HomePage() {
           </div>
 
           <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            <span className="bg-gradient-to-r from-neon-cyan via-[#7dd3fc] to-neon-purple bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-neon-cyan via-neon-cyan-light to-neon-purple bg-clip-text text-transparent">
               用 AI 把想法变成产品
             </span>
           </h1>
@@ -128,11 +129,12 @@ export default function HomePage() {
             {directions.map((direction, index) => (
               <span
                 key={direction}
-                className={`rounded-full border px-4 py-2 text-sm shadow-[inset_0_0_20px_rgba(255,255,255,0.02)] ${
+                className={cn(
+                  "rounded-full border px-4 py-2 text-sm hero-glow-inset",
                   index === 1
-                    ? "border-neon-purple/30 bg-neon-purple/10 text-[#c4b5fd]"
-                    : "border-space-border bg-white/5 text-text-primary"
-                }`}
+                    ? "border-neon-purple/30 bg-neon-purple/10 text-neon-purple-light"
+                    : "border-space-border direction-tag text-text-primary"
+                )}
               >
                 {direction}
               </span>
@@ -164,16 +166,15 @@ export default function HomePage() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-space-border bg-white/5 px-5 py-6 shadow-[0_0_30px_rgba(0,0,0,0.15)]"
+                className="stat-card rounded-2xl border border-space-border px-5 py-6"
               >
                 <div
-                  className={`mb-2 text-4xl font-bold ${
-                    stat.color === "cyan"
-                      ? "text-neon-cyan"
-                      : stat.color === "purple"
-                      ? "text-neon-purple"
-                      : "text-neon-green"
-                  }`}
+                  className={cn(
+                    "mb-2 text-4xl font-bold",
+                    stat.color === "cyan" && "text-neon-cyan",
+                    stat.color === "purple" && "text-neon-purple",
+                    stat.color === "green" && "text-neon-green"
+                  )}
                 >
                   {stat.number}
                 </div>
@@ -224,7 +225,7 @@ export default function HomePage() {
                         href={item.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-lg border border-text-secondary/20 bg-white/5 px-3 py-1 text-xs font-medium text-text-secondary transition hover:bg-white/10"
+                        className="hero-link-btn inline-flex items-center gap-1 rounded-lg border border-text-secondary/20 px-3 py-1 text-xs font-medium text-text-secondary transition"
                       >
                         GitHub
                         <ArrowUpRight className="h-3 w-3" />
@@ -245,9 +246,10 @@ export default function HomePage() {
           {capabilityCards.map((item, index) => (
             <div
               key={item.title}
-              className={`card-glow rounded-2xl px-5 py-5 ${
+              className={cn(
+                "card-glow rounded-2xl px-5 py-5",
                 index === 0 ? "border-neon-cyan/20" : "border-neon-purple/20"
-              }`}
+              )}
             >
               <div className="mb-2 text-base font-semibold text-text-primary">{item.title}</div>
               <p className="text-sm leading-6 text-text-secondary">{item.desc}</p>
@@ -287,7 +289,7 @@ export default function HomePage() {
               <p className="min-h-[72px] text-sm leading-7 text-text-secondary">{project.desc}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.tags.map((tag, index) => (
-                  <span key={tag} className={`tag ${index % 2 === 0 ? "tag-cyan" : "tag-purple"}`}>
+                  <span key={tag} className={cn("tag", index % 2 === 0 ? "tag-cyan" : "tag-purple")}>
                     {tag}
                   </span>
                 ))}
@@ -322,7 +324,7 @@ export default function HomePage() {
                   <h3 className="text-base font-semibold text-text-primary">{item.title}</h3>
                 </div>
                 <p className="text-sm leading-7 text-text-secondary">{item.desc}</p>
-                <div className="mt-4 rounded-xl border border-space-border bg-white/5 px-4 py-3 text-sm text-neon-cyan">
+                <div className="metric-card mt-4 rounded-xl border border-space-border px-4 py-3 text-sm text-neon-cyan">
                   {item.metric}
                 </div>
               </div>
