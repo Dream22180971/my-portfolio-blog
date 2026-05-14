@@ -6,6 +6,7 @@ import { MobileTopNav } from "@/components/MobileTopNav";
 import { Analytics } from "@vercel/analytics/next";
 import {
   SITE_DESCRIPTION,
+  SITE_NAME,
   SITE_TITLE,
   SITE_URL,
   buildPageMetadata,
@@ -36,6 +37,12 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${SITE_NAME} RSS`}
+          href="/feed.xml"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

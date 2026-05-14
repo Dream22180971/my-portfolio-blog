@@ -1,14 +1,44 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useCallback } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, Clock3, ChevronDown, Search, X } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blog-data";
 import { POSTS_PER_PAGE } from "@/lib/blog-data";
 
 export default function BlogListClient({ articles }: { articles: BlogPostMeta[] }) {
-  const [search, setSearch] = useState("");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const initialQuery = searchParams.get("q") || "";
+  const [search, setSearch] = useState(initialQuery);
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const updateUrl = useCallback(
+    (q: string) => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(() => {
+        const params = new URLSearchParams();
+        if (q) params.set("q", q);
+        const qs = params.toString();
+        router.replace(`/blog${qs ? `?${qs}` : ""}`, { scroll: false });
+      }, 300);
+    },
+    [router]
+  );
+
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    setVisibleCount(POSTS_PER_PAGE);
+    updateUrl(value);
+  };
+
+  const clearSearch = () => {
+    setSearch("");
+    setVisibleCount(POSTS_PER_PAGE);
+    router.replace("/blog", { scroll: false });
+  };
 
   const filteredArticles = useMemo(() => {
     if (!search.trim()) return articles;
@@ -34,13 +64,13 @@ export default function BlogListClient({ articles }: { articles: BlogPostMeta[] 
         <input
           type="text"
           value={search}
-          onChange={(e) => { setSearch(e.target.value); setVisibleCount(POSTS_PER_PAGE); }}
+          onChange={(e) => handleSearchChange(e.target.value)}
           placeholder="搜索文章标题、摘要或标签..."
           className="w-full rounded-xl border border-space-border bg-space-card py-3 pl-11 pr-10 text-sm text-text-primary placeholder:text-text-muted outline-none transition-colors focus:border-neon-cyan"
         />
         {search && (
           <button
-            onClick={() => setSearch("")}
+            onClick={clearSearch}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-neon-cyan transition-colors"
           >
             <X className="h-4 w-4" />
@@ -55,7 +85,7 @@ export default function BlogListClient({ articles }: { articles: BlogPostMeta[] 
             找到 <span className="text-neon-cyan">{filteredArticles.length}</span> 篇文章
           </span>
           <button
-            onClick={() => { setSearch(""); setVisibleCount(POSTS_PER_PAGE); }}
+            onClick={clearSearch}
             className="text-text-muted hover:text-neon-cyan transition-colors"
           >
             清除
@@ -68,7 +98,7 @@ export default function BlogListClient({ articles }: { articles: BlogPostMeta[] 
           <div className="py-16 text-center text-text-muted">
             <p className="text-lg">没有找到相关文章</p>
             <button
-              onClick={() => setSearch("")}
+              onClick={clearSearch}
               className="mt-3 text-sm text-neon-cyan hover:underline"
             >
               清除筛选

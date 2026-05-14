@@ -14,6 +14,7 @@ type MetadataInput = {
   path?: string;
   type?: "website" | "article";
   publishedTime?: string;
+  modifiedTime?: string;
   tags?: string[];
 };
 
@@ -27,6 +28,7 @@ export function buildPageMetadata({
   path = "/",
   type = "website",
   publishedTime,
+  modifiedTime,
   tags,
 }: MetadataInput = {}): Metadata {
   const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_TITLE;

@@ -4,6 +4,8 @@ import { ArrowLeft, CalendarDays, Clock3, FileText } from "lucide-react";
 import ShareButton from "./ShareButton";
 import BackToTop from "./BackToTop";
 import ViewCount from "./ViewCount";
+import ReadingProgress from "./ReadingProgress";
+import { RelatedPosts } from "./RelatedPosts";
 import { CodeBlockEnhance } from "@/components/CodeBlockEnhance";
 import { Comments } from "@/components/Comments";
 import { TableOfContents } from "./TableOfContents";
@@ -80,6 +82,7 @@ export default async function BlogArticlePage({
 
   return (
     <div className="mx-auto max-w-5xl animate-fade-in">
+      <ReadingProgress />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -146,6 +149,8 @@ export default async function BlogArticlePage({
       </div>
 
       <Comments />
+
+      <RelatedPosts slug={slug} tags={post.tags} />
 
       <BackToTop />
     </div>
