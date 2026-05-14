@@ -3,7 +3,9 @@ import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock3, FileText } from "lucide-react";
 import ShareButton from "./ShareButton";
 import BackToTop from "./BackToTop";
+import ViewCount from "./ViewCount";
 import { CodeBlockEnhance } from "@/components/CodeBlockEnhance";
+import { Comments } from "@/components/Comments";
 import { TableOfContents } from "./TableOfContents";
 import { getPostBySlug, getAllPosts } from "@/lib/blog-data";
 import { markdownToHtml } from "@/lib/markdown";
@@ -106,6 +108,7 @@ export default async function BlogArticlePage({
                 <FileText className="h-3.5 w-3.5" />
                 {countWords(post.content)}
               </span>
+              <ViewCount slug={slug} />
             </div>
 
             <h1 className="text-3xl font-bold leading-tight text-text-primary md:text-4xl">
@@ -141,6 +144,8 @@ export default async function BlogArticlePage({
           <TableOfContents content={post.content} />
         </div>
       </div>
+
+      <Comments />
 
       <BackToTop />
     </div>
