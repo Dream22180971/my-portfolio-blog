@@ -115,7 +115,9 @@ export default function HomePage() {
           </div>
 
           <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            用 AI 把想法变成产品
+            <span className="bg-gradient-to-r from-neon-cyan via-[#7dd3fc] to-neon-purple bg-clip-text text-transparent">
+              用 AI 把想法变成产品
+            </span>
           </h1>
 
           <p className="mt-6 max-w-3xl text-base leading-8 text-text-secondary sm:text-lg">
