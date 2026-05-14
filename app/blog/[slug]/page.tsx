@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock3, FileText } from "lucide-react";
 import ShareButton from "./ShareButton";
 import BackToTop from "./BackToTop";
+import { CodeBlockEnhance } from "@/components/CodeBlockEnhance";
 import { TableOfContents } from "./TableOfContents";
 import { getPostBySlug, getAllPosts } from "@/lib/blog-data";
 import { markdownToHtml } from "@/lib/markdown";
@@ -133,6 +134,7 @@ export default async function BlogArticlePage({
             className="prose-blog"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
+          <CodeBlockEnhance />
         </article>
 
         <div className="hidden xl:block">
