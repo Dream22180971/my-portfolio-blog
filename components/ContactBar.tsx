@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { MapPin } from "lucide-react";
-import { GithubIcon, MailIcon, WechatIcon } from "./SocialIcons";
+import { GithubIcon, MailIcon, WechatIcon, XIcon } from "./SocialIcons";
 
 function CopyTooltip({ wechatId }: { wechatId: string }) {
   const [copied, setCopied] = useState(false);
@@ -45,6 +45,16 @@ export function ContactBar({ email, wechat }: { email: string; wechat: string })
       >
         <GithubIcon className="w-4 h-4" />
         GitHub
+      </a>
+      <a
+        href="https://x.com/sean_walter0717"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-2 hover:text-neon-cyan transition-colors"
+        title="X / Twitter"
+      >
+        <XIcon className="w-4 h-4" />
+        X
       </a>
       <span className="relative group">
         <a

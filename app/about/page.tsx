@@ -173,8 +173,7 @@ export default function AboutPage() {
             <Compass className="w-3 h-3" /> 正在探索
           </div>
           <p className="text-text-secondary leading-relaxed">
-            LangGraph 多智能体协作、Graphify 代码结构图谱、企业级 Agent 落地最佳实践、
-            怎么把大模型变成「真有用」而不是「听起来很酷」。
+            AI 应用开发、AI 应用出海、AI 商业变现、AI 用户增长、AI 内容运营、AI 视频创作、AI 图文创作。
           </p>
         </div>
 
