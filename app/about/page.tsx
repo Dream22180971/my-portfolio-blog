@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
 const timeline = [
   {
     year: "2026",
-    title: "AI Agent 开发者",
+    title: "AI 独立开发者",
     desc: "转型探索中，RAG 知识库 + Coze Bot + AI Agent 项目落地，博客上线。",
     icon: "🤖",
   },
@@ -139,11 +139,19 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* 新增：你是谁 */}
+        {/* 我是谁 */}
         <div className="pt-2">
           <div className="text-xs font-mono text-neon-cyan mb-2">我是谁</div>
           <p className="text-text-secondary leading-relaxed">
-            一个从测试岗转型到 AI 方向的开发者，持续探索 AI Agent 产品化与自动化工作流。
+            肖恩沃尔特（seanwalter），一个从测试岗转型到 AI 方向的开发者，正在学习和拥抱AI，持续探索 AI Agent 产品化与自动化工作流。
+          </p>
+        </div>
+
+        {/* 关于本站 */}
+        <div className="pt-2">
+          <div className="text-xs font-mono text-neon-purple mb-2">关于本站</div>
+          <p className="text-text-secondary leading-relaxed">
+            建立于 2026 年 5 月 1 日，是本人的博客技术站，持续记录与分享本人成长路上的点滴内容，欢迎收藏。
           </p>
         </div>
 
