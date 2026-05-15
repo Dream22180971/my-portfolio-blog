@@ -152,7 +152,7 @@ export default function AboutPage() {
         <div className="pt-2">
           <div className="text-xs font-mono text-neon-purple mb-2">关于本站</div>
           <p className="text-text-secondary leading-relaxed">
-            建立于 2026 年 5 月 1 日，是本人的博客技术站，持续记录与分享本人成长路上的点滴内容，欢迎收藏。
+            建立于 2026 年 5 月 1 日，是本人的博客技术站，免费托管于 Vercel，基于 Next.js 构建。持续记录与分享成长路上的点滴，欢迎收藏。
           </p>
         </div>
 
