@@ -122,7 +122,7 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-6 max-w-3xl text-base leading-8 text-text-secondary sm:text-lg">
-            专注 AI 应用开发与 Agent 智能体设计，正在探索AI在企业业务中的落地实践。
+            以软件测试为根基，以 AI Agent 为方向，探索智能化的质量保障与业务落地。
           </p>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
