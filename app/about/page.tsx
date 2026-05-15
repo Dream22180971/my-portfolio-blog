@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Rocket, Compass, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe, Music, Film, Camera, Code2, Coffee } from "lucide-react";
+import { Rocket, Compass, BookOpen, BrainCircuit, Wand2, PenTool, Lightbulb, Globe, Music, Film, Camera, Code2, Coffee, User } from "lucide-react";
 import { ContactBar } from "@/components/ContactBar";
 import { buildPageMetadata } from "@/lib/site";
 import { cn } from "@/lib/cn";
@@ -142,7 +142,9 @@ export default function AboutPage() {
 
         {/* 我是谁 */}
         <div className="pt-2">
-          <div className="text-xs font-mono text-neon-cyan mb-2">我是谁</div>
+          <div className="text-xs font-mono text-neon-cyan mb-2 flex items-center gap-2">
+            <User className="w-3 h-3" /> 我是谁
+          </div>
           <p className="text-text-secondary leading-relaxed">
             肖恩沃尔特（seanwalter），一个从测试岗转型到 AI 方向的开发者，正在学习和拥抱AI，持续探索 AI Agent 产品化与自动化工作流。
           </p>
@@ -150,7 +152,9 @@ export default function AboutPage() {
 
         {/* 关于本站 */}
         <div className="pt-2">
-          <div className="text-xs font-mono text-neon-purple mb-2">关于本站</div>
+          <div className="text-xs font-mono text-neon-purple mb-2 flex items-center gap-2">
+            <Globe className="w-3 h-3" /> 关于本站
+          </div>
           <p className="text-text-secondary leading-relaxed">
             建立于 2026 年 5 月 1 日，是本人的博客技术站，免费托管于 Vercel，基于 Next.js 构建。持续记录与分享成长路上的点滴，欢迎收藏。
           </p>
