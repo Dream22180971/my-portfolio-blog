@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { DesktopPet } from "./DesktopPet";
 import { GithubIcon, MailIcon, WechatIcon } from "./SocialIcons";
 import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/cn";
@@ -58,7 +59,7 @@ export function Sidebar() {
       </div>
 
       {/* 导航 */}
-      <nav className="flex-1 p-4 space-y-1">
+      <nav className="flex-1 p-4 space-y-1 relative">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           return (
@@ -72,6 +73,10 @@ export function Sidebar() {
             </Link>
           );
         })}
+        {/* 桌面宠物 */}
+        <div className="absolute bottom-1 left-1/2 -translate-x-1/2">
+          <DesktopPet />
+        </div>
       </nav>
 
       {/* 社交链接 */}
