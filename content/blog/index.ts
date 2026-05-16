@@ -23,6 +23,7 @@ import post22 from "./ai-digitalization-enterprise";
 import post23 from "./enterprise-software-overview";
 import post24 from "./tdd-prompt-tuning";
 import post25 from "./ai-api-relay-station";
+import post26 from "./ai-testing-three-stages-2026";
 
 export const posts = [
   post01,
@@ -50,4 +51,5 @@ export const posts = [
   post23,
   post24,
   post25,
+  post26,
 ];
