@@ -22,6 +22,7 @@ import post21 from "./ai-cross-border-ecommerce";
 import post22 from "./ai-digitalization-enterprise";
 import post23 from "./enterprise-software-overview";
 import post24 from "./tdd-prompt-tuning";
+import post25 from "./ai-api-relay-station";
 
 export const posts = [
   post01,
@@ -48,4 +49,5 @@ export const posts = [
   post22,
   post23,
   post24,
+  post25,
 ];
