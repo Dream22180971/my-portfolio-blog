@@ -24,6 +24,7 @@ import post23 from "./enterprise-software-overview";
 import post24 from "./tdd-prompt-tuning";
 import post25 from "./ai-api-relay-station";
 import post26 from "./ai-testing-three-stages-2026";
+import post27 from "./dify-platform-guide";
 
 export const posts = [
   post01,
@@ -52,4 +53,5 @@ export const posts = [
   post24,
   post25,
   post26,
+  post27,
 ];
