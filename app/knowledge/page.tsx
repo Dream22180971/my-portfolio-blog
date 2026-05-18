@@ -17,6 +17,14 @@ const knowledgeArticles = [
     tags: ["Android", "iOS", "ADB", "测试"],
     icon: "📱",
   },
+  {
+    slug: "claude-code-commands",
+    title: "Claude Code 命令手册",
+    subtitle: "完整参考手册",
+    description: "Claude Code 交互式斜杠命令、终端 CLI、键盘快捷键、自定义扩展完整参考，26 个斜杠命令 + 7 个 CLI 命令 + 6 个快捷键",
+    tags: ["Claude Code", "AI", "CLI", "开发工具"],
+    icon: "📋",
+  },
 ];
 
 export default function KnowledgePage() {

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-const sections = [
+const defaultSections = [
   { id: "sec-env", label: "环境准备" },
   { id: "sec-dev", label: "设备管理" },
   { id: "sec-app", label: "应用管理" },
@@ -22,7 +22,15 @@ const sections = [
   { id: "sec-issues", label: "问题排查" },
 ];
 
-export function KnowledgeLayout({ children }: { children: ReactNode }) {
+export type SectionItem = { id: string; label: string };
+
+export function KnowledgeLayout({
+  children,
+  sections = defaultSections,
+}: {
+  children: ReactNode;
+  sections?: SectionItem[];
+}) {
   const [activeSection, setActiveSection] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const navRef = useRef<HTMLDivElement>(null);
