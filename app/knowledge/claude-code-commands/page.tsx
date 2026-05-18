@@ -5,37 +5,49 @@ import { KnowledgeLayout, type SectionItem } from "@/components/KnowledgeLayout"
 
 export const metadata = buildPageMetadata({
   title: "Claude Code 命令手册 — 完整参考",
-  description: "Claude Code 交互式斜杠命令、终端 CLI、键盘快捷键、自定义扩展完整参考手册",
+  description: "Claude Code 交互式斜杠命令、终端 CLI、CLI 参数、键盘快捷键、自定义扩展、新特性完整参考手册",
   path: "/knowledge/claude-code-commands",
-  tags: ["Claude Code", "AI", "CLI", "开发工具"],
+  tags: ["Claude Code", "AI", "CLI", "开发工具", "Hooks", "Plugins", "Agents"],
 });
 
 const slashCommands = [
-  ["/init", "初始化项目，生成 CLAUDE.md 记忆文件，存储项目规范与技术栈", "首次使用推荐执行，AI 将记住项目上下文"],
-  ["/memory", "快速编辑 CLAUDE.md，补充或修改长期记忆", "适合追加编码规范、依赖说明等"],
-  ["/add-dir <路径>", "添加额外目录作为工作区，扩大 Claude 可访问范围", "/add-dir ../shared-lib"],
+  // 项目管理
+  ["/init", "初始化项目，生成 CLAUDE.md 记忆文件", "首次使用推荐执行"],
+  ["/memory", "快速编辑 CLAUDE.md，补充或修改长期记忆", "追加编码规范、依赖说明等"],
+  ["/add-dir <路径>", "添加额外目录作为工作区", "/add-dir ../shared-lib"],
+  // 对话管理
   ["/clear", "清除当前会话对话历史，开启全新上下文", "适合重新开始复杂任务"],
-  ["/compact [说明]", "压缩对话上下文，通过生成摘要节省 Token", '/compact "重点在数据库优化"'],
+  ["/compact [说明]", "压缩对话上下文，通过摘要节省 Token", '/compact "重点在数据库优化"'],
   ["/context", "展示上下文 Token 使用情况（已用/上限）", "帮助控制成本"],
-  ["/resume", "切换到其他历史会话，继续之前的工作", "显示会话列表后选择 ID 恢复"],
-  ["/rewind", "回退到之前的检查点，撤销一系列操作", "适合实验性修改后恢复"],
-  ["/review", "请求代码审查，分析代码并提供优化建议", "审查当前未提交的改动"],
-  ["/pr_comments", "查看 GitHub Pull Request 中的评论", "需要 GitHub 集成配置"],
+  ["/resume", "切换到其他历史会话", "显示会话列表后选择 ID 恢复"],
+  ["/rewind", "回退到之前的检查点", "适合实验性修改后恢复"],
+  // 代码开发
+  ["/review", "请求代码审查并提供优化建议", "审查当前未提交的改动"],
+  ["/pr_comments", "查看 GitHub PR 中的评论", "需要 GitHub 集成"],
   ["/diff", "显示工作区相对于上次提交的差异", "快速查看未暂存改动"],
-  ["/config", "查看或修改 Claude Code 配置（主题、模型等）", "交互式修改偏好"],
+  // 系统配置
+  ["/config", "查看或修改 Claude Code 配置", "主题、模型等偏好"],
   ["/model [模型名]", "会话中动态切换 AI 模型", "/model sonnet 或 /model opus"],
-  ["/permissions", "查看或更新 Claude 可使用的工具权限", "细粒度控制安全边界"],
-  ["/status", "查看账户状态、系统信息和连接情况", "诊断环境问题"],
-  ["/cost", "显示当前会话 Token 使用量和预估费用", "实时监控支出"],
-  ["/usage", "查看套餐使用量和速率限制状态", "API 速率参考"],
-  ["/doctor", "对 Claude Code 安装和环境进行诊断", "遇到异常时首选"],
-  ["/login / /logout", "登录或登出 Anthropic 账户", "用于授权管理"],
+  ["/permissions", "查看或更新工具权限", "细粒度控制安全边界"],
+  ["/status", "查看账户状态和系统信息", "诊断环境问题"],
+  ["/cost", "显示 Token 使用量和预估费用", "实时监控支出"],
+  ["/usage", "查看套餐使用量和速率限制", "API 速率参考"],
+  ["/doctor", "对安装和环境进行诊断", "遇到异常时首选"],
+  ["/login / /logout", "登录或登出 Anthropic 账户", "授权管理"],
+  // 扩展能力
   ["/mcp", "管理 MCP 连接，接入外部数据源", "扩展能力"],
-  ["/terminal-setup", "配置终端，方便使用 Shift+Enter 多行输入", "提升输入体验"],
+  ["/skill <名称>", "调用已注册的 Skill 技能", "/frontend-design、/webapp-testing"],
+  ["/loop [间隔] <提示词>", "按间隔循环执行提示词", "/loop 5m /check-deploy"],
+  ["/update-config", "配置 settings.json、hooks、权限、环境变量", "自动化行为设置"],
+  ["/keybindings-help", "自定义键盘快捷键", "修改 ~/.claude/keybindings.json"],
+  ["/fewer-permission-prompts", "自动白名单只读命令，减少权限弹窗", "提升操作流畅度"],
+  // 输入与模式
+  ["/terminal-setup", "配置终端多行输入", "启用 Shift+Enter"],
   ["/vim", "进入 Vim 编辑模式", "经典键位支持"],
+  ["/plan", "进入计划模式，先生成计划再分步实施", "大型重构利器"],
+  // 其他
   ["/help", "显示所有命令帮助", "/help shortcuts 看快捷键"],
   ["/bug <说明>", "向 Anthropic 报告 Bug", "帮助官方改进"],
-  ["/plan", "进入计划模式，先生成计划再分步实施", "大型重构利器"],
   ["/exit", "退出当前会话（也可用 Ctrl+D）", ""],
 ];
 
@@ -47,6 +59,13 @@ const cliCommands = [
   ['claude "提示词"', "携带初始提示启动交互式会话", 'claude "修复登录页样式"'],
   ['cat file | claude -p "..."', "通过管道传递文件内容作为上下文", 'cat app.js | claude -p "审查这个文件"'],
   ["claude update", "将 Claude Code 更新到最新版本", "claude update"],
+  ["claude auth", "管理登录认证（登录/登出/查看状态）", "claude auth status"],
+  ["claude config", "查看或修改全局配置项", "claude config set theme dark"],
+  ["claude install", "安装 Claude Code 到系统 PATH", "claude install"],
+  ["claude project", "管理项目级配置与记忆", "claude project init"],
+  ["claude agents", "列出和管理已注册的 Agent", "claude agents list"],
+  ["claude plugin", "管理插件的安装、更新和卸载", "claude plugin list"],
+  ["claude setup-token", "配置 API Token 进行本地认证", "claude setup-token"],
 ];
 
 const shortcuts = [
@@ -54,15 +73,39 @@ const shortcuts = [
   ["Ctrl + D", "退出当前会话"],
   ["Ctrl + L", "清空当前终端屏幕"],
   ["Ctrl + R", "在会话历史中搜索之前输入的命令"],
+  ["Escape", "中断生成 / 返回输入框 / 关闭弹窗"],
   ["Shift + Tab", "在普通模式、自动接受模式和计划模式间切换"],
   ["Shift + Enter", "实现多行输入，方便编写复杂提示词"],
+];
+
+const cliFlags = [
+  ["--agent <name>", "指定使用的自定义 Agent", "claude --agent code-reviewer"],
+  ["--bare", "最小化模式，禁用所有扩展和 hooks", "claude --bare"],
+  ["--effort <level>", "设置推理努力程度: low / medium / high", "claude --effort high"],
+  ["--fork-session", "分叉当前会话创建新分支", "claude --fork-session"],
+  ["--json-schema <schema>", "定义输出的 JSON Schema 结构", 'claude -p --json-schema schema.json'],
+  ["--max-budget-usd <amount>", "设置单次会话最大预算（美元）", "claude --max-budget-usd 5"],
+  ["-w / --worktree", "在 Git worktree 隔离环境中工作", "claude -w"],
+  ["--remote-control", "启用手机远程控制", "claude --remote-control"],
+  ["--model <model>", "指定使用的 AI 模型", "claude --model opus"],
+  ["--permission-mode <mode>", "设置权限模式: default / auto-accept", "claude --permission-mode auto-accept"],
+  ["--system-prompt <prompt>", "追加自定义系统提示词", 'claude --system-prompt "你是测试专家"'],
+  ["--append-system-prompt <prompt>", "在默认系统提示后追加内容", 'claude --append-system-prompt "遵循ESLint规范"'],
+  ["--mcp-config <file>", "指定 MCP 服务器配置文件路径", "claude --mcp-config servers.json"],
+  ["--resume <session-id>", "恢复指定会话（等同 -r）", "claude --resume abc123"],
+  ["--output-format <format>", "输出格式: text / json / stream-json", "claude -p --output-format json"],
+  ["--verbose", "输出详细调试日志", "claude --verbose"],
+  ["--no-cache", "禁用提示词缓存", "claude --no-cache"],
+  ["--debug", "开启调试模式，输出内部状态", "claude --debug"],
 ];
 
 const sections: SectionItem[] = [
   { id: "sec-slash", label: "斜杠命令" },
   { id: "sec-cli", label: "CLI 命令" },
+  { id: "sec-flags", label: "CLI 参数" },
   { id: "sec-shortcuts", label: "快捷键" },
   { id: "sec-custom", label: "自定义命令" },
+  { id: "sec-features", label: "新特性" },
   { id: "sec-tips", label: "实用贴士" },
 ];
 
@@ -87,10 +130,10 @@ export default function ClaudeCodeCommandsPage() {
             交互式斜杠命令 · 终端 CLI · 快捷键 · 自定义扩展 — 完整参考手册
           </p>
           <div className="flex flex-wrap gap-6 text-sm text-text-secondary">
-            <span>26 斜杠命令</span>
-            <span>7 CLI 命令</span>
-            <span>6 快捷键</span>
-            <span>自定义扩展</span>
+            <span>31 斜杠命令</span>
+            <span>14 CLI 命令</span>
+            <span>7 快捷键</span>
+            <span>15+ CLI 参数</span>
           </div>
         </div>
 
@@ -173,6 +216,33 @@ export default function ClaudeCodeCommandsPage() {
           </Card>
         </section>
 
+        {/* ========== 3.5 CLI 参数 ========== */}
+        <section id="sec-flags" data-knowledge-section className="mb-14">
+          <SectionHeader icon="🔧" color="blue" title="CLI 参数" badge="启动时传入" />
+          <Card>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-space-border">
+                    <th className="text-left px-4 py-3 font-semibold text-text-primary bg-neon-cyan/5 w-1/4">参数</th>
+                    <th className="text-left px-4 py-3 font-semibold text-text-primary bg-neon-cyan/5">功能说明</th>
+                    <th className="text-left px-4 py-3 font-semibold text-text-primary bg-neon-cyan/5 w-1/4">示例</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cliFlags.map(([flag, desc, example], i) => (
+                    <tr key={i} className="border-b border-space-border/50 last:border-b-0 hover:bg-neon-cyan/[0.02]">
+                      <td className="px-4 py-2.5"><code className="text-xs">{flag}</code></td>
+                      <td className="px-4 py-2.5 text-text-secondary text-xs">{desc}</td>
+                      <td className="px-4 py-2.5"><code className="text-xs">{example}</code></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        </section>
+
         {/* ========== 4. 自定义命令 ========== */}
         <section id="sec-custom" data-knowledge-section className="mb-14">
           <SectionHeader icon="🛠" color="orange" title="自定义命令" badge="打造专属快捷指令" />
@@ -196,7 +266,44 @@ $ARGUMENTS
           </Card>
         </section>
 
-        {/* ========== 5. 实用贴士 ========== */}
+        {/* ========== 6. 新特性 ========== */}
+        <section id="sec-features" data-knowledge-section className="mb-14">
+          <SectionHeader icon="🚀" color="purple" title="新特性" badge="近期更新亮点" />
+          <Card>
+            <div className="space-y-5 text-sm">
+              <div className="rounded-xl border border-neon-cyan/20 bg-neon-cyan/5 p-4">
+                <p className="text-neon-cyan font-semibold mb-1">🪝 Hooks</p>
+                <p className="text-text-secondary">在工具调用前后自动执行自定义脚本，实现自动化流水线。配置在 <code>settings.json</code> 的 <code>hooks</code> 字段，支持 <code>PreToolUse</code>、<code>PostToolUse</code>、<code>Notification</code> 等事件。</p>
+              </div>
+              <div className="rounded-xl border border-neon-purple/20 bg-neon-purple/5 p-4">
+                <p className="text-neon-purple font-semibold mb-1">🔌 Plugins</p>
+                <p className="text-text-secondary">第三方插件生态，通过 <code>claude plugin install</code> 安装。插件可以注册自定义工具、MCP 服务器、Skills 等，扩展 Claude Code 能力边界。</p>
+              </div>
+              <div className="rounded-xl border border-neon-green/20 bg-neon-green/5 p-4">
+                <p className="text-neon-green font-semibold mb-1">🤖 Agents</p>
+                <p className="text-text-secondary">注册和管理自定义 Agent。通过 <code>claude agents</code> 管理，每个 Agent 有独立的系统提示词、工具权限和模型配置，可复用复杂工作流。</p>
+              </div>
+              <div className="rounded-xl border border-neon-yellow/20 bg-neon-yellow/5 p-4">
+                <p className="text-neon-yellow font-semibold mb-1">📡 Remote Control</p>
+                <p className="text-text-secondary">手机远程控制 Claude Code 会话。启动时加 <code>--remote-control</code> 参数，手机扫码即可远程查看进度、发送指令。</p>
+              </div>
+              <div className="rounded-xl border border-neon-cyan/20 bg-neon-cyan/5 p-4">
+                <p className="text-neon-cyan font-semibold mb-1">🌳 Worktrees</p>
+                <p className="text-text-secondary">在隔离的 Git worktree 中工作，不影响主分支。使用 <code>-w</code> 或 <code>--worktree</code> 参数启动，完成后可选择保留或删除。</p>
+              </div>
+              <div className="rounded-xl border border-neon-purple/20 bg-neon-purple/5 p-4">
+                <p className="text-neon-purple font-semibold mb-1">📊 Structured Output</p>
+                <p className="text-text-secondary">通过 <code>--json-schema</code> 参数定义输出 JSON Schema，Claude 的回复会严格遵循指定结构，方便程序化解析。</p>
+              </div>
+              <div className="rounded-xl border border-neon-green/20 bg-neon-green/5 p-4">
+                <p className="text-neon-green font-semibold mb-1">⚡ Streaming</p>
+                <p className="text-text-secondary">使用 <code>-p</code> 非交互模式时，输出实时流式返回而非等全部生成完毕。适合管道集成和实时监控。</p>
+              </div>
+            </div>
+          </Card>
+        </section>
+
+        {/* ========== 7. 实用贴士 ========== */}
         <section id="sec-tips" data-knowledge-section className="mb-14">
           <SectionHeader icon="💡" color="green" title="实用贴士" />
           <Card>

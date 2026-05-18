@@ -21,7 +21,7 @@ const knowledgeArticles = [
     slug: "claude-code-commands",
     title: "Claude Code 命令手册",
     subtitle: "完整参考手册",
-    description: "Claude Code 交互式斜杠命令、终端 CLI、键盘快捷键、自定义扩展完整参考，26 个斜杠命令 + 7 个 CLI 命令 + 6 个快捷键",
+    description: "Claude Code 交互式斜杠命令、终端 CLI、CLI 参数、键盘快捷键、自定义扩展、新特性完整参考，31 个斜杠命令 + 14 个 CLI 命令 + 18 个参数 + 7 个快捷键",
     tags: ["Claude Code", "AI", "CLI", "开发工具"],
     icon: "📋",
   },
