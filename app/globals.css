@@ -817,3 +817,96 @@ code {
 [data-theme="light"] .shadow-\[0_0_30px_rgba\(0\,212\,255\,0\.08\)\] {
   box-shadow: 0 0 16px rgba(0, 100, 200, 0.06) !important;
 }
+
+/* ========== 知识库页面 ========== */
+.prose-knowledge code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8125em;
+  background: rgba(0, 212, 255, 0.1);
+  color: #00d4ff;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.prose-knowledge pre {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.prose-knowledge pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+.prose-knowledge .copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 10px;
+  font-size: 11px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  background: rgba(0, 0, 0, 0.5);
+  color: #94a3b8;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s;
+  z-index: 10;
+  font-family: inherit;
+}
+
+.prose-knowledge pre:hover .copy-btn {
+  opacity: 1;
+}
+
+.prose-knowledge .copy-btn:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+  color: #e2e8f0;
+}
+
+.prose-knowledge .copy-btn.copied {
+  color: #00d4ff;
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+/* 隐藏滚动条但保留滚动功能 */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* 亮色主题：知识库覆盖 */
+[data-theme="light"] .prose-knowledge code {
+  background: rgba(0, 100, 200, 0.08);
+  color: #0369a1;
+}
+
+[data-theme="light"] .prose-knowledge .copy-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 100, 200, 0.2);
+  color: #64748b;
+}
+
+[data-theme="light"] .prose-knowledge .copy-btn:hover {
+  border-color: rgba(0, 100, 200, 0.4);
+  color: #1a2a3a;
+}
+
+[data-theme="light"] .prose-knowledge .copy-btn.copied {
+  color: #0369a1;
+}
+
+[data-theme="light"] .text-neon-yellow {
+  color: #b45309 !important;
+}
+
+[data-theme="light"] .hover\:border-neon-red\/30:hover {
+  border-color: rgba(220, 38, 38, 0.35) !important;
+}
