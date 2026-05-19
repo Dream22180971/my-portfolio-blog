@@ -13,7 +13,12 @@
 ## 截图
 
 <!-- TODO: 替换为实际截图链接 -->
-<!-- ![Home](public/screenshots/home.png) -->
+<img width="2536" height="1346" alt="image" src="https://github.com/user-attachments/assets/9ef8af31-20bb-4672-93ce-c02b51b82c51" />
+<img width="2522" height="1272" alt="image" src="https://github.com/user-attachments/assets/f0a09709-8535-4d20-819d-9fc9491ca660" />
+
+<img width="2547" height="1346" alt="image" src="https://github.com/user-attachments/assets/b41a7294-1ef9-4e6f-995f-7dc3275ba734" />
+<img width="2551" height="1346" alt="image" src="https://github.com/user-attachments/assets/aec3787c-8b94-4b9e-a7d2-f693ca83093d" />
+
 <!-- ![Blog](public/screenshots/blog.png) -->
 <!-- ![Projects](public/screenshots/projects.png) -->
 
