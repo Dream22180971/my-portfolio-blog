@@ -10,6 +10,14 @@ export const metadata = buildPageMetadata({
 
 const knowledgeArticles = [
   {
+    slug: "database-commands",
+    title: "企业级数据库命令手册",
+    subtitle: "5 大数据库 350+ 命令",
+    description: "MySQL/PostgreSQL/Redis/MongoDB/Elasticsearch 企业级命令一站式参考，覆盖连接管理、CRUD、索引优化、备份恢复、高可用、性能调优等场景",
+    tags: ["MySQL", "PostgreSQL", "Redis", "MongoDB", "Elasticsearch"],
+    icon: "🗄️",
+  },
+  {
     slug: "adb-commands",
     title: "ADB 命令使用手册",
     subtitle: "Android & iOS 设备操控指南",
