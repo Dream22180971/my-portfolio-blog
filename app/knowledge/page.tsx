@@ -10,6 +10,14 @@ export const metadata = buildPageMetadata({
 
 const knowledgeArticles = [
   {
+    slug: "linux-commands",
+    title: "Linux 企业级命令手册",
+    subtitle: "22 章 260+ 命令",
+    description: "服务器运维、DevOps自动化、安全审计、性能调优一站式参考，覆盖CentOS/Ubuntu/RHEL，18个企业实战场景",
+    tags: ["Linux", "运维", "Docker", "Kubernetes", "DevOps"],
+    icon: "🐧",
+  },
+  {
     slug: "database-commands",
     title: "企业级数据库命令手册",
     subtitle: "5 大数据库 350+ 命令",
