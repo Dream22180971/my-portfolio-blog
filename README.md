@@ -1,17 +1,160 @@
-# my-ai-portfolio
+# DaydreamerBlog
 
-一个展示 AI 技术积累、博客文章与项目作品的个人技术网站，深空仪表盘风格。
+> AI 技术积累、项目作品与知识库的个人技术主页，深空仪表盘风格。
 
-**在线预览**: https://seanwalter.top
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?style=flat&logo=vercel)](https://seanwalter.top)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js)](https://nextjs.org)
 
-## 功能亮点
+**[seanwalter.top](https://seanwalter.top)** · [Blog](https://seanwalter.top/blog) · [Projects](https://seanwalter.top/projects) · [Knowledge](https://seanwalter.top/knowledge)
 
-- 🎨 深空主题仪表盘风格（`#0a0e17` 深空黑 + `#00d4ff` 信号青）
-- 📱 响应式布局，覆盖 Desktop / Tablet / Mobile
-- 🚀 5 个核心页面：Home / Projects / Blog / About / Experiments
-- 💫 暗色流畅动画、卡片光效、玻璃态导航栏
-- 📝 博客文章静态生成，并带有 `sitemap`、`robots`、`manifest` 等基础 SEO 能力
-- ✅ 内置基础回归检查，覆盖 metadata、主路由与文章页渲染
+---
+
+## 截图
+
+<!-- TODO: 替换为实际截图链接 -->
+<!-- ![Home](public/screenshots/home.png) -->
+<!-- ![Blog](public/screenshots/blog.png) -->
+<!-- ![Projects](public/screenshots/projects.png) -->
+
+> 截图待补充。本地启动后访问 [seanwalter.top](https://seanwalter.top) 查看实际效果。
+
+---
+
+## 它是什么
+
+DaydreamerBlog 是一个**深空仪表盘风格的技术主页**，集合了博客文章、项目展示和知识库三大模块。
+
+它不是又一个千篇一律的 Hexo 博客——而是用 Next.js 16 + Tailwind CSS 4 构建的**单页应用**，拥有：
+
+- 沉浸式暗色主题（`#0a0e17` 深空黑 + `#00d4ff` 信号青）
+- 可交互的桌面宠物（眼动追踪 + 点击粒子特效）
+- 27 篇 AI 主题技术博客
+- 6 个项目作品展示页
+- 3 份命令手册知识库
+- Giscus 评论系统 + 阅读进度条 + 目录导航
+
+---
+
+## 为什么做
+
+大多数开发者博客长得都一样——Hexo 主题、千篇一律的卡片布局、没有记忆点。
+
+我想要一个**能代表自己技术审美**的主页：
+
+- 用深空仪表盘风格传递「AI 产品感」
+- 用桌面宠物增加交互温度
+- 用 TypeScript 内联博客内容，绕过 Cloudflare Workers 无文件系统的限制
+- 内置回归检查脚本，每次部署前自动验证所有页面
+
+这不是一个博客模板，而是一个**技术名片**。
+
+---
+
+## 核心功能
+
+| 功能 | 状态 | 说明 |
+|------|------|------|
+| 深空主题 | ✅ | 暗色/亮色切换，`#0a0e17` 深空黑 + `#00d4ff` 信号青 |
+| 博客系统 | ✅ | 27 篇文章，搜索过滤，阅读进度条，目录导航 |
+| 项目展示 | ✅ | 6 个项目，技术标签，GitHub 链接 |
+| 知识库 | ✅ | ADB / Claude Code / Linux 命令手册 |
+| 桌面宠物 | ✅ | SVG 吉祥物，眼动追踪，点击粒子，睡眠模式 |
+| Giscus 评论 | ✅ | 基于 GitHub Discussions 的评论系统 |
+| 阅读计数 | ✅ | Cloudflare Worker + KV 持久化计数 |
+| 动态 OG 图 | ✅ | 每篇文章自动生成 OpenGraph 社交分享图 |
+| SEO 全套 | ✅ | sitemap / robots / manifest / RSS / JSON-LD |
+| 回归检查 | ✅ | `npm run check` 自动验证所有页面渲染和元数据 |
+
+---
+
+## 技术架构
+
+```
+┌─────────────────────────────────────────┐
+│              Frontend (Next.js 16)       │
+│  App Router · TypeScript · Tailwind 4   │
+├─────────────┬─────────────┬─────────────┤
+│  /          │  /blog      │  /projects  │
+│  首页       │  博客列表   │  项目展示   │
+│  Hero+Stats │  搜索过滤   │  技术标签   │
+├─────────────┼─────────────┼─────────────┤
+│  /knowledge │  /about     │  /experiments│
+│  命令手册   │  个人介绍   │  实验项目   │
+├─────────────┴─────────────┴─────────────┤
+│  Components: DesktopPet · FadeIn · Giscus│
+│  MarqueeTicker · ThemeToggle · Typewriter│
+├─────────────────────────────────────────┤
+│  Blog Content: TS 内联（非 MDX）        │
+│  自定义 Markdown Parser (lib/markdown.ts)│
+├─────────────────────────────────────────┤
+│  Cloudflare Worker: 阅读计数 (KV)       │
+│  Vercel: 部署 + Analytics               │
+└─────────────────────────────────────────┘
+```
+
+---
+
+## 快速开始
+
+```bash
+git clone https://github.com/Dream22180971/my-portfolio-blog.git
+cd my-portfolio-blog
+npm install
+npm run dev
+```
+
+访问 `http://localhost:3000`
+
+### 部署前检查
+
+```bash
+npm run check
+```
+
+依次执行 lint → build → 验证所有页面渲染、元数据、sitemap。
+
+---
+
+## 使用示例
+
+### 写一篇新博客
+
+1. 在 `content/blog/` 下新建 TypeScript 文件
+2. 导出 `BlogPost` 对象（slug、title、date、tags、content）
+3. 在 `content/blog/index.ts` 中导入并注册
+4. `npm run check` 验证无误后推送
+
+### 添加新项目
+
+在 `app/projects/page.tsx` 的项目数组中添加条目，包含名称、描述、技术栈、GitHub 链接。
+
+### 本地验证
+
+```bash
+npm run check
+```
+
+自动检查：所有页面标题、canonical URL、JSON-LD 结构化数据、sitemap 条目、robots.txt、manifest。
+
+---
+
+## Roadmap
+
+- [x] 深空仪表盘主题
+- [x] 27 篇 AI 技术博客
+- [x] 桌面宠物（眼动追踪 + 粒子）
+- [x] Giscus 评论系统
+- [x] Cloudflare Worker 阅读计数
+- [x] 动态 OG 图生成
+- [x] RSS Feed + Image Sitemap
+- [x] 回归检查脚本
+- [ ] 博客文章配图优化
+- [ ] 知识库内容扩充
+- [ ] 实验项目页完善
+- [ ] 多语言支持（中/英）
+
+---
 
 ## 技术栈
 
@@ -21,54 +164,14 @@
 | 语言 | TypeScript |
 | 样式 | Tailwind CSS 4 |
 | 图标 | Lucide React |
-| 部署 | Vercel |
+| 评论 | Giscus (GitHub Discussions) |
+| 分析 | Vercel Analytics + Google Tag |
+| 计数 | Cloudflare Workers + KV |
+| 部署 | Vercel (主站) · Cloudflare (Worker) |
+| 字体 | Inter (正文) · JetBrains Mono (代码) |
 
-## 快速启动
-
-```bash
-git clone https://github.com/Dream22180971/my-portfolio-blog.git
-cd my-portfolio-blog
-npm install
-npm run dev
-```
-
-本地访问：`http://localhost:3000`
-
-## 本地检查
-
-```bash
-npm run check
-```
-
-这会依次执行：
-
-- `npm run lint`
-- `npm run build`
-- `npm run verify:site`
-
-## 主要项目
-
-| 项目 | 描述 | 技术栈 |
-|------|------|--------|
-| VoyageAI | AI 旅行规划助手 | Vue3 + FastAPI |
-| rag-knowledge-base-demo | 企业级 RAG 知识库问答 | LangChain + FAISS + Streamlit |
-| coze-ecommerce-bot | Coze 电商智能客服机器人 | Coze Agent |
-| TestPilotAgent | AI Agent 自动化测试 | Python |
-| operation-assistant | AI 运营工具 | TypeScript |
-
-## 部署说明
-
-当前采用 `git push + Vercel` 的直接部署方式。
-
-推荐流程：
-
-```bash
-npm run check
-git push origin main
-```
-
-推送到 `main` 后，Vercel 会自动构建并上线。
+---
 
 ## License
 
-MIT
+[MIT](./LICENSE)
