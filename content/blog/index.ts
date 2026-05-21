@@ -25,6 +25,7 @@ import post24 from "./tdd-prompt-tuning";
 import post25 from "./ai-api-relay-station";
 import post26 from "./ai-testing-three-stages-2026";
 import post27 from "./dify-platform-guide";
+import post28 from "./ai-maintain-legacy-project";
 
 export const posts = [
   post01,
@@ -54,4 +55,5 @@ export const posts = [
   post25,
   post26,
   post27,
+  post28,
 ];
