@@ -1,11 +1,6 @@
 const rules: [RegExp, string | ((...args: string[]) => string)][] = [
   // Images (must be before links)
   [/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" class="blog-image" />'],
-  // Code blocks (must be before other rules)
-  [/```[\s\S]*?```/g, (match: string) => {
-    const code = match.replace(/```\w*\n?/, "").replace(/```$/, "");
-    return `<pre><code>${escapeHtml(code.trim())}</code></pre>`;
-  }],
   // Headers (with ids for anchor links)
   [/^### (.+)$/gm, "<h3>$1</h3>"],
   [/^## (.+)$/gm, (_match: string, title: string) => {
@@ -145,6 +140,15 @@ export function markdownToHtml(md: string): string {
   // Parse tables first (before inline rules)
   html = parseTables(html);
 
+  // Extract code blocks first to protect them from other rules
+  const codeBlocks: string[] = [];
+  html = html.replace(/```[\s\S]*?```/g, (match: string) => {
+    const code = match.replace(/```\w*\n?/, "").replace(/```$/, "");
+    const placeholder = `\x00CODE_BLOCK_${codeBlocks.length}\x00`;
+    codeBlocks.push(`<pre><code>${escapeHtml(code.trim())}</code></pre>`);
+    return placeholder;
+  });
+
   // Apply inline rules
   for (const [pattern, replacement] of rules) {
     if (typeof replacement === "function") {
@@ -153,6 +157,11 @@ export function markdownToHtml(md: string): string {
       html = html.replace(pattern, replacement);
     }
   }
+
+  // Restore code blocks
+  html = html.replace(/\x00CODE_BLOCK_(\d+)\x00/g, (_: string, index: string) => {
+    return codeBlocks[parseInt(index)];
+  });
 
   // Merge consecutive blockquotes
   html = html.replace(/<\/blockquote>\n<blockquote>/g, "\n");
