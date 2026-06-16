@@ -462,6 +462,27 @@ code {
   padding: 0;
 }
 
+.prose-blog .blog-mermaid {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.24);
+  overflow-x: auto;
+}
+
+.prose-blog .blog-mermaid svg {
+  max-width: 100%;
+  height: auto;
+  overflow: visible !important;
+}
+
+.prose-blog .blog-mermaid foreignObject,
+.prose-blog .blog-mermaid .label,
+.prose-blog .blog-mermaid .nodeLabel {
+  overflow: visible !important;
+}
+
 .prose-blog .blog-table {
   width: 100%;
   margin: 1.5rem 0;
@@ -636,6 +657,11 @@ code {
 
 [data-theme="light"] .prose-blog pre {
   background: #EDE8DD !important;
+  border-color: rgba(0, 100, 200, 0.12);
+}
+
+[data-theme="light"] .prose-blog .blog-mermaid {
+  background: #EDE8DD;
   border-color: rgba(0, 100, 200, 0.12);
 }
 

@@ -220,6 +220,13 @@ AI 用 \`ref=e7\` 直接定位 Submit 按钮。
 
 ### 内置三件套：Planner → Generator → Healer
 
+\`\`\`mermaid
+flowchart LR
+  A[Planner<br/>生成测试计划] --> B[Generator<br/>转成测试文件]
+  B --> C[Healer<br/>失败时自动修复]
+  C -.失败反馈.-> A
+\`\`\`
+
 Playwright Test 现在内置了三个 Agent，组成完整的 Agentic 测试流水线：
 
 | Agent | 做什么 |
@@ -267,16 +274,13 @@ Playwright 的 AI 集成层（MCP）是它爆发式增长的核心原因。
 
 现在企业 AI+测试的真正架构：
 
-\`\`\`txt
-LLM（大语言模型）
-  ↓
-Context & Skill Layer（上下文与技能层）
-  ↓
-Agent Orchestrator（智能体编排器，Plan → Act → Verify 循环）
-  ↓
-MCP Tool Layer（工具层）
-  ↓
-Testing Infrastructure（测试基础设施）
+\`\`\`mermaid
+flowchart TD
+  A[LLM<br/>大语言模型] --> B[Context and Skill Layer<br/>上下文与技能层]
+  B --> C[Agent Orchestrator<br/>Plan / Act / Verify 循环]
+  C --> D[MCP Tool Layer<br/>工具层]
+  D --> E[Testing Infrastructure<br/>测试基础设施]
+  C -.失败时重新规划.-> B
 \`\`\`
 
 关键在中间那层：**Plan-Act-Verify（规划-执行-验证）推理循环**。

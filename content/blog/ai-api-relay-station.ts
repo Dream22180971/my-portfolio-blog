@@ -23,8 +23,12 @@ const post = {
 
 流程很简单：
 
-\`\`\`
-你的应用 → 中转站服务器 → 官方API（OpenAI/Claude/Gemini）→ 中转站 → 你的应用
+\`\`\`mermaid
+flowchart LR
+  A[你的应用] --> B[中转站服务器]
+  B --> C[官方 API<br/>OpenAI / Claude / Gemini]
+  C --> B
+  B --> A
 \`\`\`
 
 中转站用自己的API密钥去调官方接口，拿到结果后原样返回给你。对你的代码来说，唯一的变化是把API地址从官方域名换成中转站的域名，其余一切照旧。
@@ -128,11 +132,11 @@ const post = {
 最常用的方案是 **One API**（GitHub开源项目），Docker一键部署：
 
 \`\`\`bash
-docker run --name one-api -d \\
-  --restart always \\
-  -p 3000:3000 \\
-  -e TZ=Asia/Shanghai \\
-  -v /home/ubuntu/data/one-api:/data \\
+docker run --name one-api -d \
+  --restart always \
+  -p 3000:3000 \
+  -e TZ=Asia/Shanghai \
+  -v /home/ubuntu/data/one-api:/data \
   justsong/one-api
 \`\`\`
 

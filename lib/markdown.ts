@@ -40,9 +40,19 @@ function wrapParagraphs(html: string): string {
   const lines = html.split("\n");
   const result: string[] = [];
   let inList = false;
+  let rawBlockEnd: string | null = null;
 
   for (const line of lines) {
     const trimmed = line.trim();
+
+    if (rawBlockEnd) {
+      result.push(line);
+      if (trimmed.includes(rawBlockEnd)) {
+        rawBlockEnd = null;
+      }
+      continue;
+    }
+
     if (!trimmed) {
       if (inList) {
         result.push("</ul>");
@@ -56,6 +66,7 @@ function wrapParagraphs(html: string): string {
       trimmed.startsWith("<h") ||
       trimmed.startsWith("<hr") ||
       trimmed.startsWith("<pre") ||
+      trimmed.startsWith("<div") ||
       trimmed.startsWith("<blockquote") ||
       trimmed.startsWith("<table") ||
       trimmed.startsWith("<img") ||
@@ -70,6 +81,12 @@ function wrapParagraphs(html: string): string {
         inList = false;
       }
       result.push(trimmed);
+      if (trimmed.startsWith("<pre") && !trimmed.includes("</pre>")) {
+        rawBlockEnd = "</pre>";
+      }
+      if (trimmed.startsWith("<div") && !trimmed.includes("</div>")) {
+        rawBlockEnd = "</div>";
+      }
       continue;
     }
 
@@ -143,9 +160,19 @@ export function markdownToHtml(md: string): string {
   // Extract code blocks first to protect them from other rules
   const codeBlocks: string[] = [];
   html = html.replace(/```[\s\S]*?```/g, (match: string) => {
-    const code = match.replace(/```\w*\n?/, "").replace(/```$/, "");
+    const language = match.match(/^```([a-zA-Z0-9_-]+)?/)?.[1] ?? "";
+    const code = match.replace(/^```[a-zA-Z0-9_-]*\n?/, "").replace(/```$/, "");
     const placeholder = `\x00CODE_BLOCK_${codeBlocks.length}\x00`;
-    codeBlocks.push(`<pre><code>${escapeHtml(code.trim())}</code></pre>`);
+    const escapedCode = escapeHtml(code.trim());
+
+    if (language.toLowerCase() === "mermaid") {
+      codeBlocks.push(
+        `<div class="blog-mermaid mermaid" data-mermaid-source="${escapedCode}">${escapedCode}</div>`
+      );
+    } else {
+      codeBlocks.push(`<pre><code>${escapedCode}</code></pre>`);
+    }
+
     return placeholder;
   });
 

@@ -8,6 +8,7 @@ import ReadingProgress from "./ReadingProgress";
 import { RelatedPosts } from "./RelatedPosts";
 import { CodeBlockEnhance } from "@/components/CodeBlockEnhance";
 import { Comments } from "@/components/Comments";
+import { MermaidRenderer } from "@/components/MermaidRenderer";
 import { TableOfContents } from "./TableOfContents";
 import { getPostBySlug, getAllPosts } from "@/lib/blog-data";
 import { markdownToHtml } from "@/lib/markdown";
@@ -146,6 +147,7 @@ export default async function BlogArticlePage({
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
           <CodeBlockEnhance />
+          <MermaidRenderer />
         </article>
 
         <div className="hidden xl:block">
