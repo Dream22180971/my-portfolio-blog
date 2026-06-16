@@ -27,6 +27,7 @@ import post26 from "./ai-testing-three-stages-2026";
 import post27 from "./dify-platform-guide";
 import post28 from "./ai-maintain-legacy-project";
 import post29 from "./ai-npl-disposal-2026";
+import post30 from "./kuaishou-genrec-testing-paradigm";
 
 export const posts = [
   post01,
@@ -58,4 +59,5 @@ export const posts = [
   post27,
   post28,
   post29,
+  post30,
 ];
