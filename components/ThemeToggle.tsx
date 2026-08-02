@@ -4,12 +4,13 @@ import { Sun, Moon } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
 export function ThemeToggle() {
-  const { theme, toggle } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <button
-      onClick={toggle}
+      type="button"
       className="theme-toggle"
+      data-theme-toggle
       aria-label={`切换到${theme === "dark" ? "亮色" : "暗色"}主题`}
     >
       {theme === "dark" ? (

@@ -44,11 +44,51 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
+                var root = document.documentElement;
+
                 try {
                   var t = localStorage.getItem('theme');
                   if (!t) t = 'dark';
-                  document.documentElement.setAttribute('data-theme', t);
-                } catch(e) {}
+                  root.setAttribute('data-theme', t);
+                } catch(e) {
+                  root.setAttribute('data-theme', 'dark');
+                }
+
+                if (window.__seanwalterThemeToggleReady) return;
+                window.__seanwalterThemeToggleReady = true;
+
+                function syncThemeToggle(theme) {
+                  var isLight = theme === 'light';
+                  var toggles = document.querySelectorAll('[data-theme-toggle]');
+
+                  toggles.forEach(function(toggle) {
+                    toggle.setAttribute('aria-label', isLight ? '切换到暗色主题' : '切换到亮色主题');
+                    var label = toggle.querySelector('span');
+                    if (label) label.textContent = isLight ? '暗色模式' : '亮色模式';
+                  });
+                }
+
+                document.addEventListener('DOMContentLoaded', function() {
+                  syncThemeToggle(root.getAttribute('data-theme'));
+                });
+
+                document.addEventListener('click', function(event) {
+                  var target = event.target;
+                  if (!target || !target.closest) return;
+
+                  var toggle = target.closest('[data-theme-toggle]');
+                  if (!toggle) return;
+
+                  var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                  root.setAttribute('data-theme', next);
+                  syncThemeToggle(next);
+
+                  try {
+                    localStorage.setItem('theme', next);
+                  } catch(e) {}
+
+                  window.dispatchEvent(new Event('seanwalter-theme-change'));
+                });
               })();
             `,
           }}

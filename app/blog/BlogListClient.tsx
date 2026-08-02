@@ -111,7 +111,10 @@ export default function BlogListClient({
               <time className="article-archive__date" dateTime={article.date}>
                 {article.date.replaceAll("-", ".")}
               </time>
-              <h2 className="article-archive__title">{article.title}</h2>
+              <div>
+                <h2 className="article-archive__title">{article.title}</h2>
+                <p className="article-archive__excerpt">{article.excerpt}</p>
+              </div>
               <span className="article-archive__arrow" aria-hidden="true">↗</span>
             </Link>
           ))}

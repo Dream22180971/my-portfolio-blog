@@ -26,64 +26,18 @@ const timeline = [
   },
 ];
 
-const skills = {
-  "AI & LLM": [
-    "LangChain",
-    "LangGraph",
-    "RAG 系统",
-    "FAISS",
-    "DashScope",
-    "Coze 平台",
-    "Prompt Engineering",
-  ],
-  "前端": ["Next.js", "React", "TypeScript", "Vue 3", "TailwindCSS"],
-  "后端": ["Python", "FastAPI", "Node.js", "SQLite"],
-  "工具": ["Git", "Docker", "GitHub Actions", "Vercel"],
-};
-
-const capabilityMatrix = [
+const coreAbilities = [
   {
-    title: "多平台内容写作",
-    desc: "公众号 / 抖音 / 小红书三平台写作框架，掌握各平台算法逻辑和标题公式。",
-    tags: ["爆款标题", "算法适配", "种草写法"],
+    title: "质量工程判断力",
+    desc: "从测试视角识别边界、风险与成功标准，把质量判断前置到产品方案。",
   },
   {
-    title: "AI Skill 体系",
-    desc: "自建 Skill 系统覆盖内容生产、设计原型、数据分析，把 AI 能力封装成可复用工具。",
-    tags: ["Skill 设计", "工作流", "自动化"],
+    title: "AI Agent / RAG 落地",
+    desc: "将检索、工作流与模型能力组织成能被真实用户使用和验证的产品路径。",
   },
   {
-    title: "产品思维顾问",
-    desc: "集成鱼皮产品心法 + 孙子兵法战略 + 鬼谷子说服力等决策框架，辅助产品和商业判断。",
-    tags: ["产品决策", "战略分析", "影响力"],
-  },
-  {
-    title: "古典智慧决策",
-    desc: "道德经 / 王阳明心学 / 韩非子权力 / 庄子逍遥，用东方哲学解决现代问题。",
-    tags: ["认知升级", "领导力", "心性修炼"],
-  },
-  {
-    title: "HTML 原型与动画",
-    desc: "花叔 Design 能力：高保真原型、交互动画、幻灯片、视频导出，一个 HTML 搞定。",
-    tags: ["原型设计", "GSAP 动画", "MP4 导出"],
-  },
-];
-
-const contentMatrix = [
-  {
-    name: "seanwalter",
-    platform: "博客 + GitHub",
-    desc: "AI Agent 开发者的技术阵地，项目复盘与深度文章",
-  },
-  {
-    name: "白日梦想家",
-    platform: "小红书 + 闲鱼",
-    desc: "AI 工具测评 · 效率技巧 · 设计模板，数字产品变现",
-  },
-  {
-    name: "肖恩的AI产品日记",
-    platform: "抖音",
-    desc: "AI 产品实操记录，爆款长文 2.3 万播放，真实踩坑分享",
+    title: "从 0 到 1 的产品验证",
+    desc: "用原型、反馈与迭代，把还不确定的想法收敛成下一步可执行的方向。",
   },
 ];
 
@@ -98,7 +52,7 @@ export default function AboutPage() {
         </div>
         <div>
           <p className="about-intro">
-            软件测试工程师 → AI 独立开发者。肖恩沃尔特（seanwalter），一个从测试岗转型到 AI 方向的开发者，正在学习和拥抱 AI，持续探索 AI Agent 产品化与自动化工作流。
+            软件测试工程师 → AI 独立开发者。我用测试工程建立判断力，也用 AI 把不确定的想法校准成可靠的产品。
           </p>
           <div className="about-contact">
             <ContactBar email="3310103904@qq.com" wechat="drmr2022" />
@@ -113,28 +67,14 @@ export default function AboutPage() {
             <span className="about-columns__label">01 / Identity</span>
             <div>
               <h3>我是谁</h3>
-              <p>肖恩沃尔特（seanwalter），一个从测试岗转型到 AI 方向的开发者，正在学习和拥抱 AI，持续探索 AI Agent 产品化与自动化工作流。</p>
+              <p>肖恩沃尔特（seanwalter），从测试工程走向 AI 产品化的开发者，关注产品是否真正可用、可信、值得继续迭代。</p>
             </div>
           </article>
           <article className="about-columns__item">
-            <span className="about-columns__label">02 / Site</span>
-            <div>
-              <h3>关于本站</h3>
-              <p>建立于 2026 年 5 月 1 日，是本人的博客技术站，免费托管于 Vercel，基于 Next.js 构建。持续记录与分享成长路上的点滴，欢迎收藏。</p>
-            </div>
-          </article>
-          <article className="about-columns__item">
-            <span className="about-columns__label">03 / Focus</span>
+            <span className="about-columns__label">02 / Focus</span>
             <div>
               <h3>当前方向</h3>
-              <p><strong>RAG 知识库</strong>和<strong>AI Agent 搭建</strong>。已有的项目：VoyageAI（旅行规划）、RAG Knowledge Base Demo、Coze 电商智能客服。「运营 AI 内容助手」已上线，支持小红书/抖音/公众号多平台内容生成。</p>
-            </div>
-          </article>
-          <article className="about-columns__item">
-            <span className="about-columns__label">04 / Explore</span>
-            <div>
-              <h3>正在探索</h3>
-              <p>AI 应用开发、AI 应用出海、AI 商业变现、AI 用户增长、AI 内容运营、AI 视频创作、AI 图文创作。</p>
+              <p>聚焦<strong>RAG 知识库</strong>和<strong>AI Agent 产品化</strong>：把模型能力、业务流程与质量判断连接起来，做出能持续验证的工具与服务。</p>
             </div>
           </article>
         </div>
@@ -156,62 +96,13 @@ export default function AboutPage() {
       </section>
 
       <section className="about-section">
-        <h2 className="about-section-heading">技能</h2>
+        <h2 className="about-section-heading">核心能力</h2>
         <div className="about-skill-grid">
-          {Object.entries(skills).map(([category, items]) => (
-            <article key={category} className="about-skill-grid__item">
-              <h3>{category}</h3>
-              <p>{items.join(" · ")}</p>
+          {coreAbilities.map((ability) => (
+            <article key={ability.title} className="about-skill-grid__item">
+              <h3>{ability.title}</h3>
+              <p>{ability.desc}</p>
             </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-section">
-        <h2 className="about-section-heading">能力矩阵</h2>
-        <p className="about-copy">除了写代码，我还构建了一套 Skill + Agent 能力体系，覆盖内容生产、产品设计、决策辅助和商业变现。</p>
-        <div className="about-columns">
-          {capabilityMatrix.map((item, index) => (
-            <article key={item.title} className="about-columns__item">
-              <span className="about-columns__label">Capability / {String(index + 1).padStart(2, "0")}</span>
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-                <div className="about-tags">
-                  {item.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-section">
-        <h2 className="about-section-heading">内容矩阵</h2>
-        <p className="about-copy">不同平台、不同名字、不同定位——多线作战，每条线都在跑。</p>
-        <div className="about-columns">
-          {contentMatrix.map((item) => (
-            <article key={item.name} className="about-columns__item">
-              <span className="about-columns__label">{item.platform}</span>
-              <div>
-                <h3>{item.name}</h3>
-                <p>{item.desc}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-section">
-        <h2 className="about-section-heading">工作之外</h2>
-        <p className="about-copy">
-          喜欢音乐，也喜欢去演唱会听现场。短短三个小时，沉浸在人群、旋律与氛围里，也在一首首熟悉的歌中回望青春。喜欢爬山徒步，周末常往山里跑，让身体在行走中重新找回节奏。旅行时习惯用镜头记录沿途风景，在陌生的城市与山海之间，暂时忘记日常里的身份，只专注于眼前的光影与当下的美好。也喜欢读哲学与心理学，在关于自我、选择与关系的思考中，理解自己，也寻找自己。
-        </p>
-        <div className="about-tags">
-          {['音乐 / 演唱会', '爬山 / 徒步', '旅行 / 摄影', '哲学 / 心理学', '阅读 / 寻找自我'].map((tag) => (
-            <span key={tag}>{tag}</span>
           ))}
         </div>
       </section>

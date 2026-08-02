@@ -39,9 +39,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   function toggle() {
     const next = theme === "dark" ? "light" : "dark";
-    localStorage.setItem("theme", next);
     document.documentElement.setAttribute("data-theme", next);
     window.dispatchEvent(new Event(THEME_EVENT));
+
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      // 存储不可用时，仍保留当前会话的主题切换。
+    }
   }
 
   return (

@@ -12,42 +12,48 @@ export const metadata: Metadata = buildPageMetadata({
 const projects = [
   {
     name: "VoyageAI",
-    desc: "AI 智能旅行规划系统，从需求输入、路线生成到结果导出形成完整闭环。",
+    desc: "把旅行偏好和预算，变成一份可以直接照着走的行程和清单。",
+    status: "已上线",
     tags: ["Vue 3", "FastAPI", "AI 应用"],
     github: "https://github.com/Dream22180971/VoyageAI",
-    result: "前后端完整联调，支持云端部署、移动端适配和结构化行程输出。",
+    result: "已支持完整前后端链路、云端部署和移动端适配，用户可直接在线生成行程。",
   },
   {
     name: "RAG 知识库问答",
-    desc: "企业级 RAG 演示项目，让大模型真正理解并检索你的私有文档。",
+    desc: "让团队把分散的私有文档，变成可追溯、可直接提问的知识入口。",
+    status: "已完成演示",
     tags: ["LangChain", "FAISS", "DashScope", "Streamlit"],
     github: "https://github.com/Dream22180971/rag-knowledge-base-demo",
-    result: "完成多来源问答、检索增强和答案溯源，索引缓存达到秒级加载。",
+    result: "已完成多来源问答、检索增强和答案溯源，索引缓存支持秒级加载。",
   },
   {
     name: "Coze 电商智能客服",
-    desc: "基于 Coze 的智能客服机器人，7×24 小时自动应答",
+    desc: "让电商常见问题在用户需要时得到稳定、可复用的即时回答。",
+    status: "已发布",
     tags: ["Coze", "Agent", "知识库"],
     github: "https://github.com/Dream22180971/coze-ecommerce-bot",
-    result: "已发布 Agent Store，16 条 Q&A + 3 份知识库文档",
+    result: "已发布至 Agent Store，沉淀 16 条 Q&A 与 3 份知识库文档。",
   },
   {
     name: "TestPilotAgent",
-    desc: "AI 驱动的自动化测试 Agent，探索用 LLM 辅助测试设计、场景拆解和验证流程。",
+    desc: "把测试设计、场景拆解和验证流程，变成可持续迭代的 AI 协作路径。",
+    status: "实验中",
     tags: ["Python", "AI Agent", "测试工程"],
     github: "https://github.com/Dream22180971/TestPilotAgent",
     result: "围绕测试工程经验延展出的 Agent 方向，持续验证生成式测试工作流。",
   },
   {
     name: "运营 AI 内容助手",
-    desc: "面向自媒体运营人的 AI 内容生成工具，支持账号定位、多平台内容创作和智能对话。",
+    desc: "从账号定位到多平台文案，一次对话完成内容生产闭环。",
+    status: "已开源",
     tags: ["React 18", "Vite", "OpenAI SDK"],
     github: "https://github.com/Dream22180971/operation-assistant",
-    result: "支持小红书/抖音/公众号多平台内容生成，集成通义千问/DeepSeek/Kimi 等国产模型。",
+    result: "已支持小红书、抖音、公众号多平台内容生成，并接入多种国产模型。",
   },
   {
     name: "Food Menu App",
-    desc: "面向日常决策的小型原型实验，验证 AI 辅助快速开发的效率边界。",
+    desc: "用一个轻量交互原型，验证 AI 辅助开发在日常决策场景中的交付边界。",
+    status: "实验中",
     tags: ["HTML", "Trae AI", "原型实验"],
     github: "https://github.com/Dream22180971/food-menu-app",
     result: "快速完成可交互界面雏形，用于验证单人快速交付模式。",
@@ -67,9 +73,12 @@ export default function ProjectsPage() {
             这里收录近阶段公开沉淀的 AI 应用、Agent 工作流、测试工程实验和工具类项目。
             我更关心它们是否真的可用、是否能解释清楚，以及是否值得继续迭代。
           </p>
-          <p className="project-row__result">
-            当前展示 6 个项目，其中 3 个聚焦 AI / Agent，1 个是测试 / 工具类项目。
-          </p>
+          <div className="project-principle">
+            <h2>我在项目里关注什么</h2>
+            <p>
+              我倾向于把「能跑」继续推进到「能解释、能维护、能继续迭代」，让每一次构建都能回答真实问题。
+            </p>
+          </div>
           <div className="project-row__tags" aria-label="项目方向">
             {filters.map((item) => (
               <span key={item}>{item}</span>
@@ -90,15 +99,16 @@ export default function ProjectsPage() {
             <span className="project-type">Project / {String(index + 1).padStart(2, "0")}</span>
             <div>
               <h2>{project.name}</h2>
-              <div className="project-row__tags">
-                {project.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
-              </div>
+              <span className="project-status">{project.status}</span>
             </div>
             <div>
               <p>{project.desc}</p>
               <p className="project-row__result">结果 / {project.result}</p>
+              <div className="project-row__tags project-row__tags--stack" aria-label={`${project.name} 技术栈`}>
+                {project.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
             </div>
             <span className="text-link">
               代码
@@ -110,13 +120,6 @@ export default function ProjectsPage() {
       </section>
 
       <section className="project-note-grid">
-        <div>
-          <h2>我在项目里关注什么</h2>
-          <p>
-            不管是 AI 应用、Agent 工具还是测试工程类仓库，我都倾向于把「能跑」继续推进到「能解释、能维护、能继续迭代」。
-            所以仓库里通常会同时保留实现、文档、部署思路和问题复盘。
-          </p>
-        </div>
         <div>
           <h2>下一步补充方向</h2>
           <p>

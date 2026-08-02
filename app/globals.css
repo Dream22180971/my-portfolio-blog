@@ -722,6 +722,16 @@ button {
   overflow-wrap: anywhere;
 }
 
+.work-status,
+.project-status {
+  display: inline-flex;
+  margin: 10px 0 0;
+  color: var(--signal);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
 .text-link {
   display: inline-flex;
   align-items: center;
@@ -1070,6 +1080,14 @@ button {
   letter-spacing: -0.035em;
 }
 
+.article-archive__excerpt {
+  max-width: 680px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
 .article-archive__item:hover {
   padding-left: 14px;
   color: var(--signal);
@@ -1131,6 +1149,33 @@ button {
   margin-top: 12px !important;
   color: var(--faint) !important;
   font-size: 12px !important;
+}
+
+.project-row__tags--stack {
+  margin-top: 14px;
+  color: var(--faint);
+}
+
+.project-principle {
+  max-width: 680px;
+  margin: 34px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.project-principle h2 {
+  margin: 0;
+  font-family: var(--display-cn);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.project-principle p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
 }
 
 .project-row:hover .project-row__result {

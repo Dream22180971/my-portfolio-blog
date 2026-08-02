@@ -7,21 +7,24 @@ const selectedWork = [
   {
     type: "AI Travel Planner",
     name: "VoyageAI",
-    description: "把偏好、预算与开放问题，收束成可直接执行的行程和清单。",
+    description: "输入偏好与预算，直接得到可执行的行程、费用拆分和行前清单。",
+    status: "已上线 · 可在线体验",
     href: "https://voyageai.seanwalter.top/",
     action: "在线体验",
   },
   {
     type: "Security Utility",
     name: "YouRenTool",
-    description: "把加密存储与一键填充，组织成更短、更可信的密码管理路径。",
+    description: "本地 AES-256 加密 + 一键填充，把密码管理从“记得住”变成“用得上”。",
+    status: "已上线 · 可在线体验",
     href: "https://youren.seanwalter.top/",
     action: "在线体验",
   },
   {
     type: "Content Workflow",
     name: "AI 内容助手",
-    description: "把账号定位、多平台创作与对话协作，连接成一套内容工作流。",
+    description: "从账号定位到多平台文案，一次对话完成内容生产闭环。",
+    status: "已开源",
     href: "https://github.com/Dream22180971/operation-assistant",
     action: "查看代码",
   },
@@ -41,7 +44,7 @@ const workingMethod = [
   {
     number: "03 · Build",
     title: "交付真实可用的闭环",
-    description: "从原型到上线持续验证。不只“能跑”，还要能理解、能信任、能完成。",
+    description: "从原型到上线持续验证。不只“能跑”，还要能理解、能信任、能完成。质量判断发生在写代码之前，AI 只是把判断变成产品的加速器。",
   },
 ];
 
@@ -94,6 +97,7 @@ export default function HomePage() {
               <div>
                 <p className="work-kind">{project.type}</p>
                 <h3 className="work-title">{project.name}</h3>
+                <p className="work-status">{project.status}</p>
               </div>
               <p className="work-copy">{project.description}</p>
               <a className="text-link" href={project.href} target="_blank" rel="noopener noreferrer">
@@ -147,10 +151,10 @@ export default function HomePage() {
           <span>04 · Start a Conversation</span>
           <span>Available for thoughtful collaborations</span>
         </div>
-        <h2 id="contact-title">想把一个好想法，<br />做成<em>可靠的产品</em>？</h2>
+        <h2 id="contact-title">有一个还不确定的想法？<br />我们可以先一起把它校准成<em>可验证的方向</em>。</h2>
         <div className="contact-panel__bottom">
           <a className="button-signal" href="mailto:3310103904@qq.com?subject=%E5%90%88%E4%BD%9C%E5%92%A8%E8%AF%A2">
-            告诉我你的想法
+            发一封邮件聊聊
             <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
           </a>
           <p className="contact-panel__note">
