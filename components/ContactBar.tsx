@@ -38,7 +38,7 @@ export function ContactBar({ email, wechat }: { email: string; wechat: string })
     <div className="flex flex-wrap items-center gap-4 pt-2 text-sm text-text-secondary">
       <span className="flex items-center gap-2">
         <MapPin className="w-4 h-4 text-neon-cyan" />
-        南京
+        杭州
       </span>
       <a
         href="https://github.com/Dream22180971"

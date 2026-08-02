@@ -54,7 +54,7 @@ export function KnowledgeLayout({
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [sections]);
 
   // Scroll active nav item into view
   useEffect(() => {
@@ -129,37 +129,34 @@ export function KnowledgeLayout({
   return (
     <>
       {/* Search */}
-      <div className="mb-6">
-        <div className="relative max-w-lg">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary text-sm">
-            🔍
-          </span>
+      <div className="knowledge-tools">
+        <label className="knowledge-search-field">
+          <span>Search</span>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="搜索命令关键词..."
-            className="w-full pl-10 pr-4 py-3 rounded-xl bg-space-card border border-space-border text-text-primary text-sm font-[inherit] outline-none focus:border-neon-cyan transition-colors placeholder:text-text-secondary"
           />
-        </div>
+        </label>
       </div>
 
       {/* Section Nav */}
       <div
         ref={navRef}
-        className="sticky top-0 z-30 -mx-5 px-5 sm:-mx-6 sm:px-6 md:-mx-8 md:px-8 py-3 mb-6 bg-space-bg/80 backdrop-blur-xl border-b border-space-border overflow-x-auto scrollbar-none"
+        className="knowledge-section-nav scrollbar-none"
       >
-        <div className="flex gap-1 min-w-max">
+        <div>
           {sections.map(({ id, label }) => (
             <button
               key={id}
               data-section={id}
               onClick={() => scrollToSection(id)}
               className={cn(
-                "flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium transition-all",
+                "knowledge-section-nav__item",
                 activeSection === id
-                  ? "bg-neon-cyan/10 text-neon-cyan"
-                  : "text-text-secondary hover:text-text-primary hover:bg-space-card"
+                  ? "is-active"
+                  : undefined
               )}
             >
               {label}

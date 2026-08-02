@@ -87,7 +87,7 @@ export default async function BlogArticlePage({
   };
 
   return (
-    <div className="mx-auto max-w-5xl animate-fade-in">
+    <div className="article-page animate-fade-in">
       <ReadingProgress />
       <script
         type="application/ld+json"
@@ -95,16 +95,16 @@ export default async function BlogArticlePage({
       />
       <Link
         href="/blog"
-        className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-neon-cyan transition-colors"
+        className="article-back"
       >
         <ArrowLeft className="h-4 w-4" />
         返回文章列表
       </Link>
 
-      <div className="flex gap-8">
-        <article className="flex-1 min-w-0 space-y-8">
-          <header className="space-y-4">
-            <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-text-muted">
+      <div className="article-layout">
+        <article className="min-w-0">
+          <header className="article-header">
+            <div className="article-meta text-text-muted font-mono text-[10px] tracking-[0.08em]">
               <span className="inline-flex items-center gap-1.5">
                 <CalendarDays className="h-3.5 w-3.5" />
                 {post.date}
@@ -120,18 +120,18 @@ export default async function BlogArticlePage({
               <ViewCount slug={slug} />
             </div>
 
-            <h1 className="text-3xl font-bold leading-tight text-text-primary md:text-4xl">
+            <h1 className="article-title">
               {post.title}
             </h1>
 
-            <p className="text-lg leading-8 text-text-secondary">
+            <p className="article-excerpt">
               {post.excerpt}
             </p>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="flex flex-wrap gap-2">
-                {post.tags.map((tag, index) => (
-                  <span key={tag} className={cn("tag", index % 2 === 0 ? "tag-cyan" : "tag-purple")}>
+            <div className="article-header__actions">
+              <div className="article-tags">
+                {post.tags.map((tag) => (
+                  <span key={tag} className={cn("tag", "tag-cyan")}>
                     {tag}
                   </span>
                 ))}
@@ -139,8 +139,6 @@ export default async function BlogArticlePage({
               <ShareButton title={post.title} />
             </div>
           </header>
-
-          <div className="h-px bg-space-border" />
 
           <div
             className="prose-blog"
@@ -150,7 +148,7 @@ export default async function BlogArticlePage({
           <MermaidRenderer />
         </article>
 
-        <div className="hidden xl:block">
+        <div className="article-toc">
           <TableOfContents content={post.content} />
         </div>
       </div>

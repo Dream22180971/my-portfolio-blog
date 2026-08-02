@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { cn } from "@/lib/cn";
 
 interface TocItem {
   id: string;
@@ -25,13 +26,8 @@ function extractHeadings(content: string): TocItem[] {
 }
 
 export function TableOfContents({ content }: { content: string }) {
-  const [headings, setHeadings] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
-
-  useEffect(() => {
-    const items = extractHeadings(content);
-    setHeadings(items);
-  }, [content]);
+  const headings = useMemo(() => extractHeadings(content), [content]);
 
   useEffect(() => {
     if (headings.length === 0) return;
@@ -65,21 +61,17 @@ export function TableOfContents({ content }: { content: string }) {
   }
 
   return (
-    <nav className="sticky top-24 w-56 shrink-0">
-      <div className="text-xs font-mono text-text-muted mb-3 uppercase tracking-wider">
-        目录
-      </div>
-      <ul className="space-y-1.5">
+    <nav className="table-of-contents w-52 shrink-0" aria-label="文章目录">
+      <p className="table-of-contents__title">文章目录</p>
+      <ul>
         {headings.map((heading) => (
           <li key={heading.id}>
             <button
+              type="button"
               onClick={() => handleClick(heading.id)}
               title={heading.title}
-              className={`block w-full text-left text-sm leading-5 pl-3 border-l-2 transition-all duration-200 truncate ${
-                activeId === heading.id
-                  ? "border-neon-cyan text-neon-cyan"
-                  : "border-transparent text-text-secondary hover:text-text-primary hover:border-space-border"
-              }`}
+              aria-current={activeId === heading.id ? "location" : undefined}
+              className={cn(activeId === heading.id && "is-active")}
             >
               {heading.title}
             </button>

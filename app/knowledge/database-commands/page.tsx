@@ -96,7 +96,7 @@ function CodeBlock({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-lg bg-[#0d1117] border border-space-border overflow-hidden">
+    <div className="knowledge-code-block rounded-lg border border-space-border overflow-hidden">
       <div className="px-4 py-2 border-b border-space-border bg-space-card/50">
         <span className="text-xs text-text-muted font-mono">{title}</span>
       </div>

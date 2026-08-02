@@ -12,6 +12,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const knowledgePages = [
+    "adb-commands",
+    "claude-code-commands",
+    "database-commands",
+    "linux-commands",
+    "performance-testing-analysis",
+  ].map((slug) => ({
+    url: `${SITE_URL}/knowledge/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   return [
     {
       url: SITE_URL,
@@ -43,6 +56,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.6,
     },
+    {
+      url: `${SITE_URL}/knowledge`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...knowledgePages,
     ...blogPosts,
   ];
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { ArrowUpRight, FlaskConical, Sparkles } from "lucide-react";
-import { buildPageMetadata } from "@/lib/site";
+import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { buildPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "实验",
@@ -15,7 +15,6 @@ const experiments = [
     desc: "把自动化测试经验和 LLM 结合，探索用 Agent 自动生成测试思路、用例草稿和验证流程。",
     tags: ["Python", "AI Agent", "Testing"],
     status: "active",
-    emoji: "🧪",
     href: "https://github.com/Dream22180971/TestPilotAgent",
   },
   {
@@ -23,7 +22,6 @@ const experiments = [
     desc: "面向自媒体运营人的 AI 内容生成工具，支持账号定位、多平台内容创作和智能对话。",
     tags: ["React 18", "Vite", "OpenAI SDK"],
     status: "active",
-    emoji: "⚙️",
     href: "https://github.com/Dream22180971/operation-assistant",
   },
   {
@@ -31,7 +29,6 @@ const experiments = [
     desc: "一个偏生活化的小实验，用 Trae AI 辅助快速搭建餐食决策工具，验证单人开发的提效边界。",
     tags: ["HTML", "Trae AI", "原型实验"],
     status: "paused",
-    emoji: "🍽️",
     href: "https://github.com/Dream22180971/food-menu-app",
   },
   {
@@ -39,77 +36,62 @@ const experiments = [
     desc: "继续研究基于图结构的代码理解与知识组织方式，关注比传统 RAG 更紧凑的上下文表达。",
     tags: ["Graph", "代码理解", "Research"],
     status: "research",
-    emoji: "🕸",
     href: "https://github.com/Dream22180971/my-portfolio-blog",
   },
 ];
 
 const statusMap = {
-  active: { label: "进行中", color: "text-neon-green" },
-  paused: { label: "暂缓中", color: "text-neon-amber" },
-  research: { label: "研究中", color: "text-neon-purple" },
+  active: "进行中",
+  paused: "暂缓中",
+  research: "研究中",
 };
 
 export default function ExperimentsPage() {
   return (
-    <div className="mx-auto max-w-5xl space-y-8 animate-fade-in">
-      <div className="space-y-3">
-        <div className="inline-flex items-center gap-2 rounded-full border border-neon-cyan/25 bg-neon-cyan/10 px-3 py-1 text-xs text-neon-cyan">
-          <Sparkles className="h-3.5 w-3.5" />
-          实验场 / 原型验证
+    <div className="editorial-page editorial-page--wide">
+      <header className="page-heading-wrap">
+        <p className="page-kicker">Experiments / In Progress</p>
+        <div>
+          <h1 className="page-heading">把想法做成实验，<br />让结果回答问题。</h1>
+          <p className="page-copy">
+            这里放的是正在试、值得试，或者暂时还没做成但很有价值的方向。大多都和现有仓库、Agent 工作流和真实开发习惯有关。
+          </p>
         </div>
-        <h1 className="text-3xl font-bold text-text-primary mb-2">实验</h1>
-        <p className="max-w-3xl leading-7 text-text-secondary">
-          这里放的是正在试、值得试、或者暂时还没做成但很有价值的方向。大多都和我现有仓库、Agent 工作流和真实开发习惯有关。
-        </p>
-      </div>
+      </header>
 
-      <div className="grid gap-4">
-        {experiments.map((exp, i) => {
-          const status = statusMap[exp.status as keyof typeof statusMap];
-          return (
-            <a
-              key={exp.name}
-              href={exp.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn("card-glow rounded-xl p-6 animate-slide-up", `stagger-${i + 1}`)}
-            >
-              <div className="flex items-start gap-4">
-                <span className="text-4xl">{exp.emoji}</span>
-                <div className="flex-1 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-lg text-text-primary">
-                      {exp.name}
-                    </h3>
-                    <div className="flex items-center gap-3">
-                      <span className={`text-xs font-mono ${status.color}`}>
-                        ● {status.label}
-                      </span>
-                      <ArrowUpRight className="h-4 w-4 text-text-muted" />
-                    </div>
-                  </div>
-                  <p className="text-sm leading-7 text-text-secondary">{exp.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {exp.tags.map((tag, index) => (
-                      <span key={tag} className={cn("tag", index === 0 ? "tag-cyan" : "tag-purple")}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+      <section className="experiment-list" aria-label="实验记录">
+        {experiments.map((experiment, index) => (
+          <a
+            key={experiment.name}
+            href={experiment.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="experiment-row"
+          >
+            <span className="project-type">Lab / {String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <h2>{experiment.name}</h2>
+              <span className={cn("experiment-status", experiment.status === "active" && "is-active")}>
+                {statusMap[experiment.status as keyof typeof statusMap]}
+              </span>
+              <div className="project-row__tags">
+                {experiment.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
               </div>
-            </a>
-          );
-        })}
-      </div>
+            </div>
+            <p>{experiment.desc}</p>
+            <span className="text-link">
+              查看实验
+              <ArrowUpRight className="h-4 w-4" />
+            </span>
+          </a>
+        ))}
+      </section>
 
-      <div className="card-glow rounded-xl p-6 text-center">
-        <FlaskConical className="w-8 h-8 text-neon-cyan mx-auto mb-3" />
-        <p className="text-text-secondary text-sm">
-          更多实验会继续补充，重点会围绕 AI 工作流、个人生产力工具和更真实的 Agent 使用场景展开。
-        </p>
-      </div>
+      <p className="page-copy">
+        更多实验会继续补充，重点会围绕 AI 工作流、个人生产力工具和更真实的 Agent 使用场景展开。
+      </p>
     </div>
   );
 }

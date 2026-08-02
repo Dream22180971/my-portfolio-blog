@@ -4,7 +4,7 @@ export const SITE_NAME = "seanwalter";
 export const SITE_URL = "https://seanwalter.top";
 export const SITE_TITLE = `${SITE_NAME} | AI 独立开发者`;
 export const SITE_DESCRIPTION =
-  "AI 独立开发者，专注 RAG 知识库与智能体搭建。南京，备考 IELTS 6.5+。";
+  "AI 独立开发者，专注 RAG 知识库与智能体搭建。杭州，备考 IELTS 6.5+。";
 export const SITE_LOCALE = "zh_CN";
 export const SITE_AUTHOR = "seanwalter";
 

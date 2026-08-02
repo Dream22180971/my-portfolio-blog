@@ -661,7 +661,7 @@ function Card({
 
 function CodeBlock({ title, children }: { title: string; children: string }) {
   return (
-    <div className="mb-3 last:mb-0 rounded-xl overflow-hidden border border-space-border bg-black/30">
+    <div className="knowledge-code-block mb-3 last:mb-0 rounded-xl overflow-hidden border border-space-border">
       <div className="px-4 py-2 border-b border-space-border bg-space-card/50">
         <span className="text-[11px] text-text-secondary uppercase tracking-wider">{title}</span>
       </div>

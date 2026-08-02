@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { CalendarDays } from "lucide-react";
 import { getRelatedPosts } from "@/lib/blog-data";
 
 export function RelatedPosts({
@@ -13,30 +12,34 @@ export function RelatedPosts({
   if (related.length === 0) return null;
 
   return (
-    <section className="mt-12 space-y-6">
-      <h2 className="text-xl font-bold text-text-primary">相关文章</h2>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="related-posts mt-24 border-t pt-7" aria-labelledby="related-posts-title">
+      <div className="mb-6 flex items-baseline justify-between gap-6">
+        <h2
+          id="related-posts-title"
+          className="related-posts__meta font-mono text-[10px] tracking-[0.12em] uppercase"
+        >
+          延伸阅读
+        </h2>
+        <span className="related-posts__meta font-mono text-[10px] tracking-[0.12em]">
+          {String(related.length).padStart(2, "0")} 篇
+        </span>
+      </div>
+      <div className="grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
         {related.map((post) => (
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="card-glow block rounded-xl p-5 space-y-3"
+            className="related-posts__item group block border-t py-6 first:pt-0 sm:first:pt-0"
           >
-            <h3 className="text-sm font-semibold text-text-primary leading-6 line-clamp-2">
+            <time className="related-posts__date font-mono text-[10px] tracking-[0.1em]">
+              {post.date}
+            </time>
+            <h3 className="related-posts__title mt-3 font-[family-name:var(--display-cn)] text-xl font-semibold leading-snug tracking-[-0.035em] transition-colors">
               {post.title}
             </h3>
-            <div className="flex items-center gap-1.5 text-xs text-text-muted">
-              <CalendarDays className="h-3 w-3" />
-              {post.date}
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {post.tags.slice(0, 2).map((t, i) => (
-                <span
-                  key={t}
-                  className={`tag text-[10px] px-2 py-0.5 ${
-                    i === 0 ? "tag-cyan" : "tag-purple"
-                  }`}
-                >
+            <div className="article-tags mt-4">
+              {post.tags.slice(0, 2).map((t) => (
+                <span key={t} className="tag">
                   {t}
                 </span>
               ))}

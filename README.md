@@ -45,7 +45,7 @@ DaydreamerBlog 是一个**技术主页**，把博客、项目展示、知识库�
 - 查阅 ADB / Claude Code / Linux 命令手册
 - 在文章评论区互动（基于 GitHub Discussions）
 
-它不是又一个 Hexo 模板——整个站点用 Next.js 16 构建，拥有沉浸式暗色主题、可交互桌面宠物、动态 OG 图生成等特性。
+它不是又一个 Hexo 模板——整个站点用 Next.js 16 构建，拥有沉浸式暗色主题、动态 OG 图生成等特性。
 
 ---
 
@@ -55,7 +55,7 @@ DaydreamerBlog 是一个**技术主页**，把博客、项目展示、知识库�
 
 我想要一个**能代表自己技术审美**的主页。不是"我用了什么技术"，而是"你打开就能感受到这是谁的网站"。
 
-于是有了 DaydreamerBlog：深空仪表盘配色、桌面宠物交互、TypeScript 内联博客内容、部署前自动回归检查。
+于是有了 DaydreamerBlog：深空仪表盘配色、TypeScript 内联博客内容、部署前自动回归检查。
 
 **这是一个技术名片，不是一个博客模板。**
 
@@ -70,7 +70,6 @@ DaydreamerBlog 是一个**技术主页**，把博客、项目展示、知识库�
 | **查知识库** | ADB / Claude Code / Linux 命令手册，随时查阅 |
 | **评论互动** | 基于 GitHub Discussions，登录即可评论 |
 | **切换主题** | 暗色 / 亮色一键切换 |
-| **和桌面宠物玩** | SVG 吉祥物会追踪你的眼睛，点击它还有粒子特效 |
 
 **开发者能看到的：**
 - 动态 OG 图（每篇文章自动生成社交分享图）
@@ -140,7 +139,7 @@ npm run check
 │  /knowledge │  /about     │  /experiments│
 │  命令手册   │  个人介绍   │  实验项目   │
 ├─────────────┴─────────────┴─────────────┤
-│  Components: DesktopPet · FadeIn · Giscus│
+│  Components: FadeIn · Giscus             │
 │  MarqueeTicker · ThemeToggle · Typewriter│
 ├─────────────────────────────────────────┤
 │  Blog Content: TS 内联（非 MDX）        │
@@ -157,7 +156,6 @@ npm run check
 
 - [x] 深空仪表盘主题
 - [x] 27 篇 AI 技术博客
-- [x] 桌面宠物（眼动追踪 + 粒子）
 - [x] Giscus 评论系统
 - [x] Cloudflare Worker 阅读计数
 - [x] 动态 OG 图生成
@@ -196,9 +194,6 @@ A: 文章以 TypeScript 文件形式内联在 `content/blog/` 目录下，不是
 
 **Q: 评论需要什么账号？**
 A: 评论基于 Giscus，需要 GitHub 账号。登录后即可在文章底部发表评论。
-
-**Q: 桌面宠物是什么？**
-A: 一个 SVG 吉祥物组件，会追踪鼠标位置（眼动），点击它会触发粒子特效，长时间不动会进入睡眠模式。
 
 **Q: 我能用这个模板搭自己的博客吗？**
 A: 可以。项目是 MIT 开源的，fork 后修改 `content/blog/` 下的文章、`app/projects/page.tsx` 的项目列表、`app/about/page.tsx` 的个人信息即可。

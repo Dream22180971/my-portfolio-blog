@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
+import { cn } from "@/lib/cn";
 
 export default function BackToTop() {
   const [show, setShow] = useState(false);
@@ -17,9 +18,12 @@ export default function BackToTop() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-space-border bg-space-card shadow-lg backdrop-blur transition-all hover:border-neon-cyan hover:text-neon-cyan ${
-        show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-      }`}
+      className={cn(
+        "fixed bottom-5 right-4 z-50 flex h-10 w-10 items-center justify-center border border-space-border bg-[var(--canvas)] text-text-muted transition-all hover:border-neon-cyan hover:text-neon-cyan focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neon-cyan sm:bottom-8 sm:right-8",
+        show
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-4 opacity-0"
+      )}
       aria-label="回到顶部"
     >
       <ArrowUp className="h-5 w-5" />

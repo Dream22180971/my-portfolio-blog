@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { DesktopPet } from "./DesktopPet";
 import { GithubIcon, MailIcon, WechatIcon } from "./SocialIcons";
 import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/cn";
@@ -74,10 +73,6 @@ export function Sidebar() {
             </Link>
           );
         })}
-        {/* 桌面宠物 */}
-        <div className="absolute bottom-1 left-1/2 -translate-x-1/2">
-          <DesktopPet />
-        </div>
       </nav>
 
       {/* 社交链接 */}
@@ -121,7 +116,7 @@ export function Sidebar() {
           </div>
         </div>
         <div className="mt-3 text-center text-xs text-text-muted">
-          © 2026 · 南京
+          © 2026 · 杭州
         </div>
       </div>
 

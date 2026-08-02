@@ -7,8 +7,8 @@ export function Comments() {
   const { theme } = useTheme();
 
   return (
-    <div className="mt-12 pt-8 border-t border-space-border">
-      <h2 className="text-xl font-semibold text-text-primary mb-6">评论</h2>
+    <div className="comments-section">
+      <h2 className="comments-section__title">评论</h2>
       <Giscus
         repo="Dream22180971/my-portfolio-blog"
         repoId="R_kgDOSQaYaQ"

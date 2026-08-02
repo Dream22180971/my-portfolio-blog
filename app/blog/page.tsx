@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import { Sparkles } from "lucide-react";
 import { getAllPosts } from "@/lib/blog-data";
 import { buildPageMetadata } from "@/lib/site";
 import BlogListClient from "./BlogListClient";
@@ -11,25 +9,25 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/blog",
 });
 
-export default function BlogPage() {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
   const articles = getAllPosts();
+  const { q } = await searchParams;
 
   return (
-    <div className="mx-auto max-w-4xl space-y-8 animate-fade-in">
-      <div className="space-y-3">
-        <div className="inline-flex items-center gap-2 rounded-full border border-neon-purple/25 bg-neon-purple/10 px-3 py-1 text-xs text-neon-purple-light">
-          <Sparkles className="h-3.5 w-3.5" />
-          技术沉淀 / 思考记录
-        </div>
-        <h1 className="text-3xl font-bold text-text-primary md:text-4xl">文章</h1>
-        <p className="max-w-2xl leading-7 text-text-secondary">
-          分享 AI 应用开发、Agent 工程实践，以及从测试转向产品化开发过程中的方法和判断。
+    <main className="editorial-page editorial-page--blog">
+      <header className="page-heading-wrap">
+        <p className="page-kicker">Archive / Notes</p>
+        <h1 className="page-heading">文章索引</h1>
+        <p className="page-copy">
+          关于 AI 应用、Agent 工程与产品质量的持续记录：把实践中形成的判断，整理成可以复用的文字。
         </p>
-      </div>
+      </header>
 
-      <Suspense>
-        <BlogListClient articles={articles} />
-      </Suspense>
-    </div>
+      <BlogListClient articles={articles} initialQuery={q ?? ""} />
+    </main>
   );
 }

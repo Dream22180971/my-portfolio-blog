@@ -9,7 +9,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="flex items-center gap-2 rounded-lg border border-space-border px-3 py-2 text-sm text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/30 transition-all"
+      className="theme-toggle"
       aria-label={`切换到${theme === "dark" ? "亮色" : "暗色"}主题`}
     >
       {theme === "dark" ? (
@@ -17,7 +17,7 @@ export function ThemeToggle() {
       ) : (
         <Moon className="h-4 w-4" />
       )}
-      <span className="font-mono text-xs">
+      <span>
         {theme === "dark" ? "亮色模式" : "暗色模式"}
       </span>
     </button>

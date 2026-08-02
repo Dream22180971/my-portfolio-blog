@@ -5,32 +5,20 @@ const PORT = 3100;
 const BASE_URL = `http://${HOST}:${PORT}`;
 const START_TIMEOUT_MS = 30000;
 
-function getNpmCommand() {
-  return process.platform === "win32" ? "npm.cmd" : "npm";
-}
-
 function createStartProcess() {
-  if (process.platform === "win32") {
-    return spawn(
-      "cmd.exe",
-      ["/d", "/s", "/c", `npm run start -- --hostname ${HOST} --port ${PORT}`],
-      {
-        env: process.env,
-        stdio: "inherit",
-        cwd: process.cwd(),
-      }
-    );
-  }
-
   return spawn(
-    getNpmCommand(),
-    ["run", "start", "--", "--hostname", HOST, "--port", String(PORT)],
+    process.execPath,
+    ["node_modules/next/dist/bin/next", "start", "--hostname", HOST, "--port", String(PORT)],
     {
       env: process.env,
       stdio: "inherit",
       cwd: process.cwd(),
     }
   );
+}
+
+function stopServer(server) {
+  server.kill();
 }
 
 function sleep(ms) {
@@ -107,8 +95,33 @@ async function runChecks() {
   const experiments = await fetchText("/experiments");
   assertIncludes(experiments, "<title>实验 | seanwalter</title>", "experiments title");
 
+  const knowledge = await fetchText("/knowledge");
+  assertIncludes(knowledge, "<title>手册 | seanwalter</title>", "knowledge title");
+
+  for (const pathname of [
+    "/knowledge/linux-commands",
+    "/knowledge/performance-testing-analysis",
+  ]) {
+    const page = await fetchText(pathname);
+    assertIncludes(
+      page,
+      `rel="canonical" href="https://seanwalter.top${pathname}"`,
+      `${pathname} canonical`
+    );
+  }
+
   const sitemap = await fetchText("/sitemap.xml");
   assertIncludes(sitemap, "https://seanwalter.top/blog", "sitemap blog url");
+  assertIncludes(
+    sitemap,
+    "https://seanwalter.top/knowledge/linux-commands",
+    "sitemap linux manual url"
+  );
+  assertIncludes(
+    sitemap,
+    "https://seanwalter.top/knowledge/performance-testing-analysis",
+    "sitemap performance manual url"
+  );
 
   const robots = await fetchText("/robots.txt");
   assertIncludes(robots, "Sitemap: https://seanwalter.top/sitemap.xml", "robots sitemap");
@@ -125,5 +138,5 @@ try {
   await waitForServer();
   await runChecks();
 } finally {
-  server.kill();
+  stopServer(server);
 }
