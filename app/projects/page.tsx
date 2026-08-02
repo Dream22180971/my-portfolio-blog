@@ -58,6 +58,14 @@ const projects = [
     github: "https://github.com/Dream22180971/food-menu-app",
     result: "快速完成可交互界面雏形，用于验证单人快速交付模式。",
   },
+  {
+    name: "00后动画记忆馆",
+    desc: "把放学后的动画记忆，整理成一间可以慢慢逛的数字展厅。",
+    status: "已上线",
+    tags: ["Next.js 16", "React 19", "Framer Motion", "Tailwind CSS"],
+    github: "https://github.com/Dream22180971/animation-memory-museum",
+    result: "已完成海报轮播、年代时间线、名台词回放、动画歌曲等完整模块，收录 6 部经典国产动画。",
+  },
 ];
 
 const filters = ["AI 应用", "Agent 工作流", "测试工程", "工具产品"];
