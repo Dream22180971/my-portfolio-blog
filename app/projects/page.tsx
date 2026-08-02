@@ -16,7 +16,7 @@ const projects = [
     status: "已上线",
     tags: ["Vue 3", "FastAPI", "AI 应用"],
     github: "https://github.com/Dream22180971/VoyageAI",
-    demo: "",
+    demo: "https://voyageai.seanwalter.top/",
     result: "已支持完整前后端链路、云端部署和移动端适配，用户可直接在线生成行程。",
   },
   {
@@ -81,6 +81,15 @@ const projects = [
     github: "https://github.com/Dream22180971/project-showcase",
     demo: "https://projects.seanwalter.top/",
     result: "支持中英双语、项目详情页、GitHub API 实时数据，已部署至 projects.seanwalter.top。",
+  },
+  {
+    name: "YouRenTool",
+    desc: "为有仁团队打造的内部工具集合，覆盖日常运营和协作中的高频操作。",
+    status: "已上线",
+    tags: ["Python", "FastAPI", "工具集"],
+    github: "https://github.com/Dream22180971/YouRenTool",
+    demo: "https://youren.seanwalter.top/",
+    result: "已上线至 youren.seanwalter.top，持续迭代中。",
   },
 ];
 
