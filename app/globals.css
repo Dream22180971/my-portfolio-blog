@@ -1165,12 +1165,22 @@ button {
 }
 
 .project-row__demo {
-  color: var(--signal) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--signal);
+  color: var(--signal);
+  font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
+  transition: background 200ms ease, color 200ms ease;
 }
 
 .project-row__demo:hover {
-  color: var(--ink) !important;
+  background: var(--signal);
+  color: var(--canvas);
 }
 
 .project-principle {
