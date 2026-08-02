@@ -1,225 +1,132 @@
-# DaydreamerBlog
+# seanwalter
 
-> 一个深空仪表盘风格的技术主页——博客、项目展示、知识库，一站集成。
+> 以测试工程建立判断力，用 AI 把不确定的想法校准成可靠产品。
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?style=flat&logo=vercel)](https://seanwalter.top)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Production](https://img.shields.io/badge/Production-seanwalter.top-147984?style=flat&logo=vercel)](https://seanwalter.top)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js)](https://nextjs.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-**[seanwalter.top](https://seanwalter.top)** · [Blog](https://seanwalter.top/blog) · [Projects](https://seanwalter.top/projects) · [Knowledge](https://seanwalter.top/knowledge)
-
----
-
-## 目录
-
-- [截图](#截图)
-- [它是什么](#它是什么)
-- [为什么做](#为什么做)
-- [核心功能](#核心功能)
-- [快速开始](#快速开始)
-- [使用示例](#使用示例)
-- [技术架构](#技术架构)
-- [Roadmap](#roadmap)
-- [FAQ](#faq)
-- [谁适合看这个](#谁适合看这个)
-- [关于我](#关于我)
-
----
-
-## 截图
-
-<img width="2536" height="1346" alt="首页" src="https://github.com/user-attachments/assets/9ef8af31-20bb-4672-93ce-c02b51b82c51" />
-<img width="2522" height="1272" alt="博客" src="https://github.com/user-attachments/assets/f0a09709-8535-4d20-819d-9fc9491ca660" />
-<img width="2547" height="1346" alt="项目" src="https://github.com/user-attachments/assets/b41a7294-1ef9-4e6f-995f-7dc3275ba734" />
-<img width="2551" height="1346" alt="知识库" src="https://github.com/user-attachments/assets/aec3787c-8b94-4b9e-a7d2-f693ca83093d" />
+**[访问网站](https://seanwalter.top)** · **[阅读文章](https://seanwalter.top/blog)** · **[查看项目](https://seanwalter.top/projects)** · **[浏览手册](https://seanwalter.top/knowledge)**
 
 ---
 
 ## 它是什么
 
-DaydreamerBlog 是一个**技术主页**，把博客、项目展示、知识库打包成一个深空仪表盘风格的网站。
+`seanwalter.top` 是肖恩沃尔特的个人产品与技术站。它不是一个展示技术名词的模板，而是把**质量工程、AI 产品化、公开写作与可验证交付**放在同一条工作链路中的实践档案。
 
-**你可以用它来：**
-- 阅读 27 篇 AI 主题的技术博客文章
-- 浏览 6 个项目的详细介绍和技术栈
-- 查阅 ADB / Claude Code / Linux 命令手册
-- 在文章评论区互动（基于 GitHub Discussions）
+这里记录三类内容：
 
-它不是又一个 Hexo 模板——整个站点用 Next.js 16 构建，拥有沉浸式暗色主题、动态 OG 图生成等特性。
+- **产品**：从旅行规划、密码管理到内容工作流，展示问题如何被收敛成可用的产品。
+- **判断**：以测试工程的视角处理边界、风险、体验与交付，而不把测试留到最后一步。
+- **沉淀**：公开文章、命令手册、实验记录与项目复盘，保留可追溯的学习和构建过程。
 
----
+## 站点内容
 
-## 为什么做
-
-市面上的开发者博客大多长得一样——Hexo 主题、千篇一律的卡片布局、没有记忆点。
-
-我想要一个**能代表自己技术审美**的主页。不是"我用了什么技术"，而是"你打开就能感受到这是谁的网站"。
-
-于是有了 DaydreamerBlog：深空仪表盘配色、TypeScript 内联博客内容、部署前自动回归检查。
-
-**这是一个技术名片，不是一个博客模板。**
-
----
+| 页面 | 内容 |
+| --- | --- |
+| `/` | 首页：代表作品、工作方法、精选写作与合作入口 |
+| `/projects` | AI 应用、Agent 工作流、测试工程和工具产品；统一按“问题 → 结果 → 技术栈”呈现 |
+| `/blog` | 30 篇公开文章，支持按标题、摘要和标签搜索 |
+| `/knowledge` | ADB、Claude Code、数据库、Linux、性能压测等实用手册 |
+| `/experiments` | AI Agent、自动化测试与产品原型的探索记录 |
+| `/about` | 当前方向、经历、核心能力与名字由来 |
 
 ## 核心功能
 
-| 你能做什么 | 说明 |
-|-----------|------|
-| **读博客** | 27 篇文章，支持搜索过滤、阅读进度条、目录导航 |
-| **看项目** | 6 个作品展示，每个带技术标签和 GitHub 链接 |
-| **查知识库** | ADB / Claude Code / Linux 命令手册，随时查阅 |
-| **评论互动** | 基于 GitHub Discussions，登录即可评论 |
-| **切换主题** | 暗色 / 亮色一键切换 |
+- **文章阅读体验**：文章搜索、阅读进度、目录导航、延伸阅读、代码块增强与 Mermaid 图表渲染。
+- **亮暗主题**：一键切换亮色或暗色主题；浏览器可用时会记住主题偏好。
+- **项目表达**：用用户问题和当前结果说明项目价值，技术栈作为辅助信息。
+- **交互与反馈**：基于 Giscus / GitHub Discussions 的文章评论。
+- **搜索引擎友好**：站点地图、图片站点地图、`robots.txt`、RSS、规范链接、Open Graph、JSON-LD 与动态分享图。
+- **发布前校验**：一条命令完成 Lint、生产构建与核心路由 / 元数据检查。
 
-**开发者能看到的：**
-- 动态 OG 图（每篇文章自动生成社交分享图）
-- 阅读计数（Cloudflare Worker + KV 持久化）
-- SEO 全套（sitemap / robots / manifest / RSS / JSON-LD）
-- 回归检查脚本（`npm run check` 自动验证所有页面）
+## 技术实现
 
----
+| 范畴 | 方案 |
+| --- | --- |
+| 框架 | Next.js 16（App Router）+ React 19 + TypeScript |
+| 样式 | Tailwind CSS 4 + 自定义设计令牌与响应式 CSS |
+| 内容 | `content/blog/` 中的 TypeScript 文章数据 + 自定义 Markdown 渲染 |
+| 图表 | Mermaid 客户端渲染 |
+| 评论 | Giscus（GitHub Discussions） |
+| 数据与分析 | Vercel Analytics；`workers/views-counter/` 提供 Cloudflare Workers + KV 阅读计数实现 |
+| 部署 | GitHub `main` 推送触发 Vercel 生产部署 |
 
-## 快速开始
+## 本地开发
+
+### 环境要求
+
+- Node.js 20+
+- npm
+
+### 启动
 
 ```bash
-# 1. 下载项目
 git clone https://github.com/Dream22180971/my-portfolio-blog.git
 cd my-portfolio-blog
-
-# 2. 安装依赖
 npm install
-
-# 3. 启动开发服务器
 npm run dev
 ```
 
-打开浏览器访问 `http://localhost:3000` 就能看到界面了。
+默认在 [http://localhost:3000](http://localhost:3000) 预览。
 
-### 部署前检查
+### 完整校验
 
 ```bash
 npm run check
 ```
 
-自动执行 lint → build → 验证所有页面渲染和元数据，确保没问题再推送。
+该命令会依次执行：
 
----
-
-## 使用示例
-
-### 阅读博客
-
-1. 访问 [seanwalter.top/blog](https://seanwalter.top/blog)
-2. 用搜索框或标签过滤文章
-3. 点击文章进入阅读，左侧有目录导航，底部有评论区
-
-### 写一篇新博客
-
-1. 在 `content/blog/` 下新建一个 TypeScript 文件
-2. 导出 `BlogPost` 对象（slug、title、date、tags、content）
-3. 在 `content/blog/index.ts` 中导入并注册
-4. 运行 `npm run check` 验证无误后推送
-
-### 添加新项目
-
-在 `app/projects/page.tsx` 的项目数组中添加一条，填上项目名、描述、技术栈和 GitHub 链接即可。
-
----
-
-## 技术架构
-
-```
-┌─────────────────────────────────────────┐
-│              Frontend (Next.js 16)       │
-│  App Router · TypeScript · Tailwind 4   │
-├─────────────┬─────────────┬─────────────┤
-│  /          │  /blog      │  /projects  │
-│  首页       │  博客列表   │  项目展示   │
-├─────────────┼─────────────┼─────────────┤
-│  /knowledge │  /about     │  /experiments│
-│  命令手册   │  个人介绍   │  实验项目   │
-├─────────────┴─────────────┴─────────────┤
-│  Components: FadeIn · Giscus             │
-│  MarqueeTicker · ThemeToggle · Typewriter│
-├─────────────────────────────────────────┤
-│  Blog Content: TS 内联（非 MDX）        │
-│  自定义 Markdown Parser (lib/markdown.ts)│
-├─────────────────────────────────────────┤
-│  Cloudflare Worker: 阅读计数 (KV)       │
-│  Vercel: 部署 + Analytics               │
-└─────────────────────────────────────────┘
+```text
+eslint → next build → scripts/verify-site.mjs
 ```
 
----
+它会检查代码规范、生产构建、关键路由、文章页面和元数据输出。提交或部署前请保持该命令通过。
 
-## Roadmap
+## 内容维护
 
-- [x] 深空仪表盘主题
-- [x] 27 篇 AI 技术博客
-- [x] Giscus 评论系统
-- [x] Cloudflare Worker 阅读计数
-- [x] 动态 OG 图生成
-- [x] RSS Feed + Image Sitemap
-- [x] 回归检查脚本
-- [ ] 博客文章配图优化
-- [ ] 知识库内容扩充
-- [ ] 实验项目页完善
-- [ ] 多语言支持（中/英）
+### 新增文章
 
----
+1. 在 `content/blog/` 新建文章 TypeScript 文件，提供 `slug`、`title`、`date`、`excerpt`、`tags` 和 `content`。
+2. 在 `content/blog/index.ts` 导入并注册文章。
+3. 执行 `npm run check`。
 
-## 技术栈
+文章会自动进入博客列表、站点地图、RSS、图片站点地图和相关推荐计算。
 
-| 类别 | 技术 |
-|------|------|
-| 框架 | Next.js 16 (App Router) |
-| 语言 | TypeScript |
-| 样式 | Tailwind CSS 4 |
-| 图标 | Lucide React |
-| 评论 | Giscus (GitHub Discussions) |
-| 分析 | Vercel Analytics + Google Tag |
-| 计数 | Cloudflare Workers + KV |
-| 部署 | Vercel (主站) · Cloudflare (Worker) |
-| 字体 | Inter (正文) · JetBrains Mono (代码) |
+### 新增项目
 
----
+在 `app/projects/page.tsx` 的 `projects` 数组中补充以下信息：
 
-## FAQ
+- 项目名称和用户视角的一句话描述
+- 当前状态与已经做到的结果
+- GitHub 地址和少量技术标签
 
-**Q: 这个博客用的什么主题？**
-A: 不是任何现成主题。整个前端是用 Next.js 16 + Tailwind CSS 4 从零搭建的，深空仪表盘配色是自定义的。
+项目页会以“问题 → 结果 → 技术栈”的顺序展示它。
 
-**Q: 博客文章是怎么存储的？**
-A: 文章以 TypeScript 文件形式内联在 `content/blog/` 目录下，不是 MDX 也不是 Markdown 文件。这样做是为了兼容 Cloudflare Workers（无文件系统）。
+## 部署
 
-**Q: 评论需要什么账号？**
-A: 评论基于 Giscus，需要 GitHub 账号。登录后即可在文章底部发表评论。
+仓库已绑定 Vercel 项目。通过以下流程发布：
 
-**Q: 我能用这个模板搭自己的博客吗？**
-A: 可以。项目是 MIT 开源的，fork 后修改 `content/blog/` 下的文章、`app/projects/page.tsx` 的项目列表、`app/about/page.tsx` 的个人信息即可。
+```bash
+npm run check
+git add <已验证的文件>
+git commit -m "feat: 描述本次更新"
+git push origin main
+```
 
----
+推送到 `main` 后，Vercel 会自动构建并发布到 [seanwalter.top](https://seanwalter.top)。发布后可检查：
 
-## 谁适合看这个
+- [首页](https://seanwalter.top)
+- [robots.txt](https://seanwalter.top/robots.txt)
+- [sitemap.xml](https://seanwalter.top/sitemap.xml)
+- [RSS](https://seanwalter.top/feed.xml)
 
-- **想搭个人技术主页的开发者**：可以直接参考或 fork 改造
-- **对 AI + 前端感兴趣的同行**：博客里有 27 篇实战文章
-- **想了解 Next.js 16 App Router 的人**：项目本身就是 App Router 的实战案例
-- **面试官 / 招聘方**：About 页面有完整的技能矩阵和项目经历
+## 关于
 
----
+我是肖恩沃尔特（seanwalter），从软件测试工程走向 AI 产品化的开发者。
 
-## 关于我
-
-我是**肖恩沃尔特**（Sean Walter），一个从测试工程师正在转型为 AI 独立开发者的程序员。
-
-我相信：测试不是验证代码的手段，而是理解产品的视角。AI 不是替代人的工具，而是放大能力的杠杆。
-
-- GitHub: [Dream22180971](https://github.com/Dream22180971)
-- Twitter/X: [@sean_walter0717](https://x.com/sean_walter0717)
-- 博客: [seanwalter.top](https://seanwalter.top)
-
----
+我关心的不只是产品能否运行，也关心它是否能解释、可信、可维护，并值得持续迭代。欢迎通过网站联系入口交流 AI 产品、Agent 工作流、质量工程与从 0 到 1 的产品验证。
 
 ## License
 
