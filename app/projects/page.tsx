@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { GithubIcon } from "@/components/SocialIcons";
 import { buildPageMetadata } from "@/lib/site";
 
@@ -16,6 +16,7 @@ const projects = [
     status: "已上线",
     tags: ["Vue 3", "FastAPI", "AI 应用"],
     github: "https://github.com/Dream22180971/VoyageAI",
+    demo: "",
     result: "已支持完整前后端链路、云端部署和移动端适配，用户可直接在线生成行程。",
   },
   {
@@ -24,6 +25,7 @@ const projects = [
     status: "已完成演示",
     tags: ["LangChain", "FAISS", "DashScope", "Streamlit"],
     github: "https://github.com/Dream22180971/rag-knowledge-base-demo",
+    demo: "",
     result: "已完成多来源问答、检索增强和答案溯源，索引缓存支持秒级加载。",
   },
   {
@@ -32,6 +34,7 @@ const projects = [
     status: "已发布",
     tags: ["Coze", "Agent", "知识库"],
     github: "https://github.com/Dream22180971/coze-ecommerce-bot",
+    demo: "",
     result: "已发布至 Agent Store，沉淀 16 条 Q&A 与 3 份知识库文档。",
   },
   {
@@ -40,6 +43,7 @@ const projects = [
     status: "实验中",
     tags: ["Python", "AI Agent", "测试工程"],
     github: "https://github.com/Dream22180971/TestPilotAgent",
+    demo: "",
     result: "围绕测试工程经验延展出的 Agent 方向，持续验证生成式测试工作流。",
   },
   {
@@ -48,6 +52,7 @@ const projects = [
     status: "已开源",
     tags: ["React 18", "Vite", "OpenAI SDK"],
     github: "https://github.com/Dream22180971/operation-assistant",
+    demo: "",
     result: "已支持小红书、抖音、公众号多平台内容生成，并接入多种国产模型。",
   },
   {
@@ -56,6 +61,7 @@ const projects = [
     status: "实验中",
     tags: ["HTML", "Trae AI", "原型实验"],
     github: "https://github.com/Dream22180971/food-menu-app",
+    demo: "",
     result: "快速完成可交互界面雏形，用于验证单人快速交付模式。",
   },
   {
@@ -64,6 +70,7 @@ const projects = [
     status: "已上线",
     tags: ["Next.js 16", "React 19", "Framer Motion", "Tailwind CSS"],
     github: "https://github.com/Dream22180971/animation-memory-museum",
+    demo: "https://museum.seanwalter.top/",
     result: "已完成海报轮播、年代时间线、名台词回放、动画歌曲等完整模块，收录 6 部经典国产动画。",
   },
   {
@@ -72,6 +79,7 @@ const projects = [
     status: "已上线",
     tags: ["Next.js 16", "React 19", "Framer Motion", "i18n"],
     github: "https://github.com/Dream22180971/project-showcase",
+    demo: "https://projects.seanwalter.top/",
     result: "支持中英双语、项目详情页、GitHub API 实时数据，已部署至 projects.seanwalter.top。",
   },
 ];
@@ -105,13 +113,7 @@ export default function ProjectsPage() {
 
       <section className="project-list" aria-label="仓库项目">
         {projects.map((project, index) => (
-          <a
-            key={project.name}
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="project-row"
-          >
+          <div key={project.name} className="project-row">
             <span className="project-type">Project / {String(index + 1).padStart(2, "0")}</span>
             <div>
               <h2>{project.name}</h2>
@@ -126,12 +128,30 @@ export default function ProjectsPage() {
                 ))}
               </div>
             </div>
-            <span className="text-link">
-              代码
-              <GithubIcon className="h-4 w-4" />
-              <ArrowUpRight className="h-4 w-4" />
+            <span className="project-row__actions">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-link"
+              >
+                代码
+                <GithubIcon className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-link project-row__demo"
+                >
+                  在线体验
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              )}
             </span>
-          </a>
+          </div>
         ))}
       </section>
 
