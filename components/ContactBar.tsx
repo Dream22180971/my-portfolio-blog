@@ -63,6 +63,8 @@ export function ContactBar({ email, wechat }: { email: string; wechat: string })
       <span className="relative group">
         <a
           href={`mailto:${email}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center gap-2 hover:text-neon-cyan transition-colors"
         >
           <MailIcon className="w-4 h-4" />

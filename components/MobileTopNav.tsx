@@ -23,6 +23,8 @@ export function MobileTopNav() {
           <Link
             key={item.href}
             href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-current={isActive ? "page" : undefined}
             className={`rounded-lg px-3 py-1 text-xs font-mono transition-colors ${
               isActive

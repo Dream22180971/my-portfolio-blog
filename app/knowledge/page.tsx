@@ -54,7 +54,7 @@ export default function KnowledgePage() {
         <div>
           <h1 className="page-heading">手册</h1>
           <p className="page-copy">软件测试、AI 测试、开发工具等实用知识沉淀，持续更新中。</p>
-          <Link href="/" className="text-link">
+          <Link href="/" target="_blank" rel="noopener noreferrer" className="text-link">
             <ArrowLeft className="h-4 w-4" />
             返回首页
           </Link>
@@ -63,7 +63,7 @@ export default function KnowledgePage() {
 
       <section className="knowledge-list" aria-label="知识手册">
         {knowledgeArticles.map((article, index) => (
-          <Link key={article.slug} href={`/knowledge/${article.slug}`} className="knowledge-row">
+          <Link key={article.slug} href={`/knowledge/${article.slug}`} target="_blank" rel="noopener noreferrer" className="knowledge-row">
             <span className="project-type">Manual / {String(index + 1).padStart(2, "0")}</span>
             <div>
               <h2>{article.title}</h2>

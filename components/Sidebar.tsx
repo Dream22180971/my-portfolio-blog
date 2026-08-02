@@ -45,7 +45,7 @@ export function Sidebar() {
     <aside className="hidden md:flex fixed left-0 top-0 bottom-0 z-40 w-64 flex-col border-r border-space-border bg-space-bg/80 backdrop-blur-xl">
       {/* Logo */}
       <div className="p-6 border-b border-space-border">
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center text-white font-bold font-mono">
             肖
           </div>
@@ -66,6 +66,8 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className={cn("nav-item", isActive && "active")}
             >
               <span className="text-sm opacity-60">{item.icon}</span>
@@ -89,6 +91,8 @@ export function Sidebar() {
           </a>
           <a
             href="mailto:3310103904@qq.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex-1 flex items-center justify-center py-2 rounded-lg border border-space-border text-text-secondary hover:text-neon-cyan hover:border-neon-cyan/30 transition-all"
             title="邮箱"
           >

@@ -95,6 +95,8 @@ export default async function BlogArticlePage({
       />
       <Link
         href="/blog"
+        target="_blank"
+        rel="noopener noreferrer"
         className="article-back"
       >
         <ArrowLeft className="h-4 w-4" />
