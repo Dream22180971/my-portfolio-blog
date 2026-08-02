@@ -66,6 +66,14 @@ const projects = [
     github: "https://github.com/Dream22180971/animation-memory-museum",
     result: "已完成海报轮播、年代时间线、名台词回放、动画歌曲等完整模块，收录 6 部经典国产动画。",
   },
+  {
+    name: "Project Showcase",
+    desc: "用一个干净的多语言展示站，把所有项目串成一个可对外分享的入口。",
+    status: "已上线",
+    tags: ["Next.js 16", "React 19", "Framer Motion", "i18n"],
+    github: "https://github.com/Dream22180971/project-showcase",
+    result: "支持中英双语、项目详情页、GitHub API 实时数据，已部署至 projects.seanwalter.top。",
+  },
 ];
 
 const filters = ["AI 应用", "Agent 工作流", "测试工程", "工具产品"];
