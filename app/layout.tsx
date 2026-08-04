@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { ArticleImageEnhance } from "@/components/ArticleImageEnhance";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -111,6 +112,7 @@ export default function RootLayout({
           <SiteHeader />
           <main className="site-main">{children}</main>
           <SiteFooter />
+          <ArticleImageEnhance />
           <Analytics />
         </ThemeProvider>
       </body>

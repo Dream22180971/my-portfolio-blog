@@ -1792,6 +1792,60 @@ code,
   height: auto;
 }
 
+.prose-blog .blog-image {
+  display: block;
+  margin: 2rem auto;
+  cursor: zoom-in;
+}
+
+.prose-blog .blog-figure {
+  margin: 2rem 0;
+}
+
+.prose-blog .blog-figure .blog-image {
+  margin: 0 auto;
+}
+
+.prose-blog .blog-figure figcaption {
+  margin-top: 0.75rem;
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.article-image-lightbox {
+  position: fixed;
+  z-index: 80;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background: rgb(0 0 0 / 88%);
+  cursor: zoom-out;
+}
+
+.article-image-lightbox img {
+  max-width: min(1200px, 100%);
+  max-height: calc(100vh - 4rem);
+  object-fit: contain;
+  cursor: default;
+}
+
+.article-image-lightbox__close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 999px;
+  color: white;
+  background: rgb(0 0 0 / 35%);
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
 .prose-blog .blog-table {
   display: block;
   width: 100%;

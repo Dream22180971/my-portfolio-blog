@@ -1,6 +1,6 @@
 const rules: [RegExp, string | ((...args: string[]) => string)][] = [
-  // Images (must be before links)
-  [/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" class="blog-image" />'],
+  // Images (must be before links). Supports optional Markdown titles as captions.
+  [/!\[([^\]]*)\]\((\S+?)(?:\s+"([^"]+)")?\)/g, renderImage],
   // Headers (with ids for anchor links)
   [/^### (.+)$/gm, "<h3>$1</h3>"],
   [/^## (.+)$/gm, (_match: string, title: string) => {
@@ -34,6 +34,14 @@ function escapeHtml(text: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function renderImage(_match: string, alt: string, src: string, caption?: string): string {
+  const image = `<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" class="blog-image" />`;
+
+  if (!caption) return image;
+
+  return `<figure class="blog-figure">${image}<figcaption>${escapeHtml(caption)}</figcaption></figure>`;
 }
 
 function wrapParagraphs(html: string): string {
@@ -70,6 +78,7 @@ function wrapParagraphs(html: string): string {
       trimmed.startsWith("<blockquote") ||
       trimmed.startsWith("<table") ||
       trimmed.startsWith("<img") ||
+      trimmed.startsWith("<figure") ||
       trimmed.startsWith("<li") ||
       trimmed.startsWith("</")
     ) {
