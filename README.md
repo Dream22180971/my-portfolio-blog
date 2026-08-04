@@ -94,21 +94,19 @@ eslint → next build → scripts/verify-site.mjs
 
 文章会自动进入博客列表、站点地图、RSS、图片站点地图和相关推荐计算。
 
-### 文章配图与图床
+### 文章配图
 
-文章支持直接使用 Markdown 图片链接。图片建议统一存放于 Cloudflare R2，并通过绑定后的自有域名 `img.seanwalter.top` 访问：
+文章图片直接存放在 `public/images/blog/`，随 Git 推送由 Vercel CDN 自动发布，无需单独的图床账户或支付方式：
 
 ```md
-![Agent 工具调用循环](https://img.seanwalter.top/blog/ai-agent-build-steps/agent-loop-v1.webp "一个最小可用 Agent 的核心循环")
+![Agent 工具调用循环](/images/blog/ai-agent-build-steps/agent-loop-v1.webp "一个最小可用 Agent 的核心循环")
 ```
 
-- R2 对象路径：`blog/<文章-slug>/<用途>-v<版本号>.webp`，例如 `blog/ai-agent-build-steps/agent-loop-v1.webp`。
+- 图片路径：`public/images/blog/<文章-slug>/<用途>-v<版本号>.webp`，例如 `public/images/blog/ai-agent-build-steps/agent-loop-v1.webp`。
+- 已发布图片的线上地址为 `https://seanwalter.top/images/blog/<文章-slug>/<文件名>`。
 - 使用 `WebP` 作为位图默认格式；流程图优先 Mermaid，必须使用矢量图时使用 `SVG`。
 - 每张图都必须有说明性 Alt 文本；可选的 Markdown 标题会渲染为图注。
-- 不覆盖已发布文件。上传新版本并更新文章 URL，例如从 `agent-loop-v1.webp` 改为 `agent-loop-v2.webp`，避免 CDN 缓存旧图。
-- 正式环境只使用 `https://img.seanwalter.top`，不要在文章中使用 R2 的 `r2.dev` 开发地址。
-
-首次启用时，在 Cloudflare 创建一个 Standard R2 bucket，例如 `seanwalter-assets`，并将 `img.seanwalter.top` 作为 Custom Domain 连接到该 bucket。域名绑定完成后，即可上传文件并复制公开 URL 到文章中。
+- 不覆盖已发布文件。新增版本并更新文章路径，例如从 `agent-loop-v1.webp` 改为 `agent-loop-v2.webp`，避免浏览器缓存旧图。
 
 ### 新增项目
 
