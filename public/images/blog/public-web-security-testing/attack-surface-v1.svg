@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">公网网站攻击面与安全测试</title><desc id="desc">互联网访问者通过登录、接口、上传和后台等入口访问网站，安全测试验证这些入口能否抵抗风险。</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6Z" fill="#2d73d5"/></marker></defs>
+  <style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#17335d}.title{font-size:32px;font-weight:700}.sub{font-size:17px;fill:#52719a}.label{font-size:21px;font-weight:700}.small{font-size:16px}.note{font-size:18px;font-weight:700;fill:#fff}.warn{fill:#b84b46}</style>
+  <rect width="1200" height="675" rx="28" fill="#f5f9ff"/><text x="60" y="68" class="title">网站部署到公网后，攻击会从哪些入口进来？</text><text x="60" y="102" class="sub">安全测试的任务：逐个验证入口是否能拦住异常请求、错误身份和危险操作。</text>
+  <rect x="55" y="180" width="220" height="350" rx="24" fill="#e7f0ff" stroke="#9dc3ff" stroke-width="2"/><text x="165" y="230" text-anchor="middle" class="label">公网</text><text x="165" y="262" text-anchor="middle" class="sub">任何人都能访问</text>
+  <rect x="85" y="305" width="160" height="46" rx="23" fill="#fff0ee"/><text x="165" y="336" text-anchor="middle" class="small warn">让网站变慢</text><rect x="85" y="370" width="160" height="46" rx="23" fill="#fff0ee"/><text x="165" y="401" text-anchor="middle" class="small warn">偷看数据</text><rect x="85" y="435" width="160" height="46" rx="23" fill="#fff0ee"/><text x="165" y="466" text-anchor="middle" class="small warn">冒充用户</text>
+  <path d="M285 350 H420" stroke="#2d73d5" stroke-width="5" marker-end="url(#arrow)"/><path d="M285 410 H420" stroke="#2d73d5" stroke-width="5" marker-end="url(#arrow)"/>
+  <circle cx="485" cy="380" r="78" fill="#2d73d5"/><path d="M485 320 l47 18 v40 c0 38-28 64-47 73-19-9-47-35-47-73v-40z" fill="#fff" opacity=".96"/><path d="M461 383 l17 17 34-38" fill="none" stroke="#2d73d5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><text x="485" y="490" text-anchor="middle" class="label">安全测试</text>
+  <path d="M565 380 H650" stroke="#2d73d5" stroke-width="5" marker-end="url(#arrow)"/>
+  <rect x="680" y="165" width="455" height="390" rx="26" fill="#fff" stroke="#c9dcf8" stroke-width="2"/><text x="907" y="215" text-anchor="middle" class="label">网站的常见入口</text>
+  <g><rect x="720" y="250" width="165" height="95" rx="16" fill="#e7f0ff"/><text x="802" y="292" text-anchor="middle" class="label">登录账号</text><text x="802" y="320" text-anchor="middle" class="small">身份是否可靠？</text></g>
+  <g><rect x="930" y="250" width="165" height="95" rx="16" fill="#e7f0ff"/><text x="1012" y="292" text-anchor="middle" class="label">API 接口</text><text x="1012" y="320" text-anchor="middle" class="small">参数能否篡改？</text></g>
+  <g><rect x="720" y="385" width="165" height="95" rx="16" fill="#e7f0ff"/><text x="802" y="427" text-anchor="middle" class="label">文件上传</text><text x="802" y="455" text-anchor="middle" class="small">文件是否安全？</text></g>
+  <g><rect x="930" y="385" width="165" height="95" rx="16" fill="#e7f0ff"/><text x="1012" y="427" text-anchor="middle" class="label">管理后台</text><text x="1012" y="455" text-anchor="middle" class="small">权限是否越界？</text></g>
+  <rect x="60" y="585" width="1080" height="52" rx="14" fill="#17335d"/><text x="600" y="618" text-anchor="middle" class="note">核心问题：请求能否伪造？参数能否修改？换个用户还能成功吗？</text>
+</svg>

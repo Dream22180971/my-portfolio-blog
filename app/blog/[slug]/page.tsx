@@ -148,6 +148,25 @@ export default async function BlogArticlePage({
           />
           <CodeBlockEnhance />
           <MermaidRenderer />
+          <section className="article-disclaimer" aria-labelledby="article-disclaimer-title">
+            <h2 id="article-disclaimer-title">版权与声明</h2>
+            <p>
+              本站所有内容仅代表作者个人观点，与作者供职的公司、客户或其他关联机构无关。
+            </p>
+            <p>
+              本文除特别声明外，采用
+              {" "}
+              <a
+                href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                CC BY-NC-SA 4.0
+              </a>
+              {" "}
+              许可协议。转载或改编请署名、附原文与许可证链接，并标明改动；不得用于商业用途，演绎作品须以相同许可发布。
+            </p>
+          </section>
         </article>
 
         <div className="article-toc">
