@@ -108,6 +108,13 @@ export default function AboutPage() {
       </section>
 
       <section className="about-section">
+        <h2 className="about-section-heading">内容与版权声明</h2>
+        <p className="about-copy">
+          本站所有内容仅代表作者个人观点，与作者供职的公司、客户或其他关联机构无关。文章的转载、改编与授权规则以各文章末尾的版权说明为准。
+        </p>
+      </section>
+
+      <section className="about-section">
         <h2 className="about-section-heading">名字的由来</h2>
         <blockquote className="about-quote">
           <p>&ldquo;To see the world, things dangerous to come to, to see behind walls, draw closer, to find each other, and to feel. That is the purpose of life.&rdquo;</p>
