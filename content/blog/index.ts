@@ -1,4 +1,4 @@
-import post01 from "./why-build-personal-site-2026";
+﻿import post01 from "./why-build-personal-site-2026";
 import post02 from "./blog-seo-geo-optimization";
 import post03 from "./ai-testing-automation-system";
 import post04 from "./quality-system-from-zero";
@@ -29,6 +29,7 @@ import post28 from "./ai-maintain-legacy-project";
 import post29 from "./ai-npl-disposal-2026";
 import post30 from "./kuaishou-genrec-testing-paradigm";
 import post31 from "./ai-agent-rag-yolo-e2e-testing";
+import post32 from "./public-web-security-testing";
 
 export const posts = [
   post01,
@@ -62,4 +63,5 @@ export const posts = [
   post29,
   post30,
   post31,
+  post32,
 ];
