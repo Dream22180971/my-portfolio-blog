@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const knowledgePages = [
+    "testing-engineer-roadmap",
+    "etl-testing-manual",
     "e2e-data-consistency-testing",
     "compatibility-testing-manual",
     "api-testing-manual",

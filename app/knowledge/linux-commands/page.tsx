@@ -45,7 +45,7 @@ export default function LinuxCommandsPage() {
         className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-neon-cyan transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
-        返回手册列表
+        返回知识库
       </Link>
 
       <KnowledgeLayout sections={sections}>
