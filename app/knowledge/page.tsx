@@ -137,12 +137,13 @@ export default function KnowledgePage() {
         <div className="knowledge-tutorial-modules" aria-label="系统教程六大模块">
           {tutorialTracks.map((track, index) => {
             const trackTutorials = getTutorialsByTrack(track.slug);
+            const publishedTutorials = trackTutorials.filter((tutorial) => tutorial.status === "published");
 
             return (
               <article key={track.slug} className="knowledge-tutorial-module">
                 <div className="knowledge-tutorial-module__meta">
                   <span className="project-type">Module / {String(index + 1).padStart(2, "0")}</span>
-                  <span>{trackTutorials.length > 0 ? `${trackTutorials.length} 篇规划` : "待规划"}</span>
+                  <span>{trackTutorials.length === 0 ? "待规划" : publishedTutorials.length > 0 ? `${publishedTutorials.length} 已发布 / ${trackTutorials.length} 篇` : `${trackTutorials.length} 篇规划`}</span>
                 </div>
                 <span className="knowledge-tutorial-module__eyebrow">{track.eyebrow}</span>
                 <h3>{track.title}</h3>
