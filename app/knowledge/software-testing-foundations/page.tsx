@@ -55,7 +55,7 @@ const defectRows = [
 export default function SoftwareTestingFoundationsPage() {
   return (
     <div className="mx-auto max-w-5xl animate-fade-in">
-      <Link href="/knowledge/tutorials?track=foundations" target="_blank" rel="noopener noreferrer" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-neon-cyan">
+      <Link href="/knowledge/tutorials?track=foundations" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-neon-cyan">
         <ArrowLeft className="h-4 w-4" />返回测试基础模块
       </Link>
 
@@ -64,24 +64,24 @@ export default function SoftwareTestingFoundationsPage() {
           <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-neon-cyan">Foundations / Tutorial 01</div>
           <h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">软件测试基础教程</h1>
           <p className="mb-6 text-lg leading-8 text-text-secondary">从“我点了一遍没问题”走向“我能用证据说明风险是否可接受”。</p>
-          <div className="flex flex-wrap gap-6 text-sm text-text-secondary"><span>10 个章节</span><span>1 个贯穿案例</span><span>图解 + 实战 + 练习</span></div>
+          <div className="flex flex-wrap gap-6 text-sm text-text-secondary"><span>10 个章节</span><span>1 条完整下单流程</span><span>图解 + 实战 + 练习</span></div>
         </header>
 
         <section id="start" data-knowledge-section className="mb-14">
-          <SectionHeader number="01" title="先知道这篇教程怎么学" badge="零基础起点" />
+          <SectionHeader number="01" title="从商城下单开始学习测试" badge="零基础起点" />
           <div className="grid gap-4 md:grid-cols-3">
-            <Card title="先理解"><p>先用“看要求、想意外、做验证”三个动作理解测试，不急着背术语。</p></Card>
-            <Card title="再代入"><p>每一章都回到“商城下单”案例，把抽象概念放进真实业务。</p></Card>
-            <Card title="最后动手"><p>完成文末练习，真正输出风险清单、用例和缺陷报告。</p></Card>
+            <Card title="先看懂"><p>先用“看要求、想意外、做验证”三个动作理解测试，不急着背术语。</p></Card>
+            <Card title="放进业务"><p>接下来，你会通过商城下单流程理解每个测试概念，并看到它在真实业务中如何应用。</p></Card>
+            <Card title="动手验证"><p>学完后，亲自整理风险、编写用例和缺陷报告，把理解变成可以执行的测试工作。</p></Card>
           </div>
-          <Card title="贯穿案例：在线商城下单">
-            <p>用户选择商品，填写地址，使用优惠券并提交订单。系统需要校验库存、计算金额、创建订单并扣减库存。这个流程看起来只有一个按钮，背后却包含业务规则、数据一致性、异常恢复和权限安全。</p>
+          <Card title="案例：完成一次在线商城下单">
+            <p>现在，你要测试一条完整的下单流程：用户选择商品，填写地址，使用优惠券并提交订单；系统校验库存、计算金额、创建订单并扣减库存。表面上只是点击一次“提交订单”，实际上需要同时保证业务规则、数据一致性、异常恢复和权限安全。</p>
           </Card>
         </section>
 
         <section id="mindset" data-knowledge-section className="mb-14">
           <SectionHeader number="02" title="软件测试到底是什么" badge="先看、再想、再验证" />
-          <Card title="先用一句人话说明">
+          <Card title="先记住一句话">
             <p>软件测试就是：先弄清楚功能正常时应该是什么样，再想想用户可能遇到哪些意外，最后亲自操作并检查结果是否正确。</p>
             <p className="mt-3">例如产品说“用户可以提交订单”。测试人员不会只成功下一单，还会继续确认：库存为 0 能不能提交？连续点两次会不会生成两单？优惠券过期后金额是否正确？</p>
           </Card>
@@ -97,7 +97,7 @@ export default function SoftwareTestingFoundationsPage() {
           <SectionHeader number="03" title="质量不只是功能正确" badge="六个观察角度" />
           <p className="mb-5 text-sm leading-7 text-text-secondary">“可以下单”只说明主功能可能可用。真正的软件质量还需要从稳定性、体验、速度、环境和安全等角度观察。</p>
           <QualityDimensionsFigure />
-          <TableCard title="把质量维度放进下单案例" headers={["维度", "要回答的问题", "下单案例"]} rows={qualityRows} />
+          <TableCard title="用六个角度检查下单质量" headers={["维度", "要回答的问题", "下单时检查什么"]} rows={qualityRows} />
         </section>
 
         <section id="lifecycle" data-knowledge-section className="mb-14">
@@ -125,13 +125,13 @@ export default function SoftwareTestingFoundationsPage() {
             <BulletList ordered items={["用户是谁：游客、普通用户、会员和管理员的权限有什么不同？", "规则是什么：库存、价格、优惠券、状态流转如何计算？", "失败怎么办：断网、超时、重复请求和下游异常如何处理？", "数据去哪了：页面、接口、数据库、缓存和消息是否需要保持一致？"]} />
           </Card>
           <RiskMatrixFigure />
-          <Card title="下单流程的高风险点"><BulletList items={["重复提交产生两笔订单或重复扣款。", "优惠计算错误导致用户少付或多付。", "库存扣减失败造成超卖。", "用户修改订单 ID 后访问他人订单。", "支付成功但订单状态没有更新。"]} /></Card>
+          <Card title="下单时优先检查这些风险"><BulletList items={["重复提交产生两笔订单或重复扣款。", "优惠计算错误导致用户少付或多付。", "库存扣减失败造成超卖。", "用户修改订单 ID 后访问他人订单。", "支付成功但订单状态没有更新。"]} /></Card>
         </section>
 
         <section id="cases" data-knowledge-section className="mb-14">
           <SectionHeader number="07" title="把风险变成可执行用例" badge="条件、动作、结果" />
           <Card title="一条好用例应让别人也能执行"><BulletList items={["标题使用“当……时，……”说明条件和预期行为。", "前置条件明确账号、数据和系统状态。", "步骤只写必要动作，不把多个验证目标塞进一条用例。", "预期结果同时检查页面、接口和关键数据变化。", "优先级由业务影响和发生可能性决定，不按固定比例凑数。"]} /></Card>
-          <TableCard title="商城下单示例用例" headers={["优先级", "用例标题", "关键预期"]} rows={caseRows} />
+          <TableCard title="商城下单用例" headers={["优先级", "用例标题", "关键预期"]} rows={caseRows} />
           <Callout>先覆盖 P0 核心交易与资金数据，再覆盖 P1 主要规则和异常，最后考虑 P2 低频体验。优先级准确比用例数量漂亮更重要。</Callout>
         </section>
 
@@ -146,7 +146,7 @@ export default function SoftwareTestingFoundationsPage() {
 
         <section id="defects" data-knowledge-section className="mb-14">
           <SectionHeader number="09" title="缺陷报告与回归测试" badge="把问题说清楚" />
-          <TableCard title="一份可复现的缺陷报告" headers={["字段", "下单案例", "写作目的"]} rows={defectRows} />
+          <TableCard title="一份可复现的缺陷报告" headers={["字段", "下单问题", "为什么要写"]} rows={defectRows} />
           <div className="grid gap-4 md:grid-cols-2">
             <Card title="修复后为什么还要回归"><BulletList items={["确认原缺陷在相同条件下已经消失。", "验证修复没有破坏相邻业务。", "覆盖同类输入和相反路径，防止只修一个样例。", "核心链路重新执行，确认版本仍可发布。"]} /></Card>
             <Card title="缺陷严重程度与优先级"><BulletList items={["严重程度描述对系统和用户造成的影响。", "修复优先级描述团队需要多快处理。", "严重但低频的问题也可能必须阻断发布。", "不要用情绪争论等级，要用影响范围和证据沟通。"]} /></Card>
@@ -155,8 +155,8 @@ export default function SoftwareTestingFoundationsPage() {
 
         <section id="practice" data-knowledge-section className="mb-14">
           <SectionHeader number="10" title="完成一次真正的基础练习" badge="从阅读走向执行" />
-          <Card title="练习：测试一个登录功能">
-            <BulletList ordered items={["画出登录从输入账号到进入首页的流程。", "列出至少 8 个风险，覆盖规则、异常、权限和数据。", "按“当……时，……”格式编写 10 条用例。", "为每条用例设置优先级，并写出判断理由。", "假设出现“错误密码仍登录成功”，写一份完整缺陷报告。", "说明修复后需要回归哪些相邻功能。"]} />
+          <Card title="练习：独立完成一次商城下单测试">
+            <BulletList ordered items={["画出从选择商品到订单创建成功的完整流程。", "列出至少 8 个风险，覆盖规则、异常、权限和数据。", "按“当……时，……”格式编写 10 条用例。", "为每条用例设置优先级，并写出判断理由。", "假设出现“重复点击后生成两笔订单”，写一份完整缺陷报告。", "说明修复后需要回归哪些相邻功能。"]} />
           </Card>
           <div className="grid gap-4 md:grid-cols-3">
             <ChecklistCard title="理解需求" items={["用户和目标明确", "规则和边界明确", "异常处理明确", "数据流向明确"]} />
@@ -165,8 +165,8 @@ export default function SoftwareTestingFoundationsPage() {
           </div>
           <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-space-border py-6">
             <p className="text-sm text-text-secondary">完成这些输出后，你已经具备进入“测试用例设计实战教程”的基础。</p>
-            <Link href="/knowledge/tutorials?track=business-testing" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-neon-cyan">
-              查看下一模块 <ArrowRight className="h-4 w-4" />
+            <Link href="/knowledge/test-case-design" className="inline-flex items-center gap-2 text-sm text-neon-cyan">
+              继续学习测试用例设计 <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </section>

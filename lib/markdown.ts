@@ -25,7 +25,7 @@ const rules: [RegExp, string | ((...args: string[]) => string)][] = [
   // Ordered list items
   [/^\d+\. (.+)$/gm, "<li>$1</li>"],
   // Links
-  [/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'],
+  [/\[([^\]]+)\]\(([^)]+)\)/g, renderLink],
 ];
 
 function escapeHtml(text: string): string {
@@ -42,6 +42,12 @@ function renderImage(_match: string, alt: string, src: string, caption?: string)
   if (!caption) return image;
 
   return `<figure class="blog-figure">${image}<figcaption>${escapeHtml(caption)}</figcaption></figure>`;
+}
+
+function renderLink(_match: string, label: string, href: string): string {
+  const external = /^(?:https?:)?\/\//i.test(href) && !/^https?:\/\/(?:www\.)?seanwalter\.top(?:[/?#:]|$)/i.test(href);
+  const externalAttributes = external ? ' target="_blank" rel="noopener noreferrer"' : "";
+  return `<a href="${href}"${externalAttributes}>${label}</a>`;
 }
 
 function wrapParagraphs(html: string): string {

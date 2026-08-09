@@ -106,8 +106,6 @@ export default function BlogListClient({
             <Link
               key={article.slug}
               href={`/blog/${article.slug}`}
-              target="_blank"
-              rel="noopener noreferrer"
               className="article-archive__item"
             >
               <time className="article-archive__date" dateTime={article.date}>

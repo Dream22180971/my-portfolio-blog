@@ -55,7 +55,7 @@ const statusRows = [
 export default function ApiTestingManualPage() {
   return (
     <div className="mx-auto max-w-5xl animate-fade-in">
-      <Link href="/knowledge" target="_blank" rel="noopener noreferrer" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-neon-cyan transition-colors">
+      <Link href="/knowledge" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-neon-cyan transition-colors">
         <ArrowLeft className="h-4 w-4" />返回知识库
       </Link>
       <KnowledgeLayout sections={sections}>
