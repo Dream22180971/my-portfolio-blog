@@ -85,6 +85,10 @@ const toolReferences = [
   },
 ];
 
+const mainTutorialTracks = tutorialTracks.filter((track) => track.slug !== "test-development" && track.slug !== "ai-testing");
+const testDevelopmentTutorials = getTutorialsByTrack("test-development");
+const aiTestingTutorials = getTutorialsByTrack("ai-testing");
+
 export default function KnowledgePage() {
   return (
     <div className="editorial-page editorial-page--wide">
@@ -92,8 +96,8 @@ export default function KnowledgePage() {
         <p className="page-kicker">Knowledge Base</p>
         <div>
           <h1 className="page-heading">知识库</h1>
-          <p className="page-copy">从成长路线开始系统学习，通过图文教程掌握方法，再按工作场景查阅实战手册和工具命令。</p>
-          <Link href="/" target="_blank" rel="noopener noreferrer" className="text-link">
+          <p className="page-copy">你可以从成长路线开始系统学习，通过图文教程掌握方法，再按工作场景查阅实战手册和工具命令。</p>
+          <Link href="/" className="text-link">
             <ArrowLeft className="h-4 w-4" />
             返回首页
           </Link>
@@ -104,20 +108,66 @@ export default function KnowledgePage() {
         <div>
           <span className="project-type">Start Here / 01</span>
           <h2 id="roadmap-heading">测试工程师成长路线</h2>
-          <p>六个阶段串联测试基础、业务测试、自动化、分布式与数据链路、质量体系和 AI 应用测试。</p>
+          <p>五个阶段串联测试基础、业务测试、自动化、分布式与数据链路，以及测试架构与质量体系。</p>
         </div>
-        <ol className="knowledge-roadmap__stages" aria-label="六阶段学习路线">
+        <ol className="knowledge-roadmap__stages" aria-label="五阶段学习路线">
           <li>测试基本功</li>
           <li>Web / App 业务测试</li>
           <li>自动化测试工程化</li>
           <li>分布式与数据链路</li>
           <li>测试架构与质量体系</li>
-          <li>AI 应用测试</li>
         </ol>
-        <Link href="/knowledge/testing-engineer-roadmap" target="_blank" rel="noopener noreferrer" className="text-link">
+        <Link href="/knowledge/testing-engineer-roadmap" className="text-link">
           查看成长路线
           <ArrowUpRight className="h-4 w-4" />
         </Link>
+      </section>
+
+      <section className="knowledge-branch-card" aria-labelledby="test-development-heading">
+        <div className="knowledge-branch-card__intro">
+          <span className="project-type">Optional Track / SDET</span>
+          <h2 id="test-development-heading">测试开发工程师强化支线</h2>
+          <p>如果你想从自动化测试继续进阶，可以按照以下路线学习编程、代码级测试、云原生环境和测试平台开发，逐步成长为测试开发工程师。</p>
+        </div>
+        <ul className="knowledge-branch-card__tasks" aria-label="测试开发强化支线待办">
+          {testDevelopmentTutorials.map((tutorial) => (
+            <li key={tutorial.slug}>
+              <span>{tutorial.title}</span>
+              <small>待办</small>
+            </li>
+          ))}
+        </ul>
+        <div className="knowledge-branch-card__action">
+          <span>{testDevelopmentTutorials.length} 项进阶内容</span>
+          <Link href="/knowledge/tutorials?track=test-development" className="text-link">
+            查看强化支线
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
+      <section className="knowledge-branch-card" aria-labelledby="ai-testing-heading">
+        <div className="knowledge-branch-card__intro">
+          <span className="project-type">Optional Track / AI Quality</span>
+          <h2 id="ai-testing-heading">AI 测试工程师强化支线</h2>
+          <p>如果你想测试大模型、RAG、Agent 或文档智能应用，可以按照以下路线学习评估方法、安全验证和线上质量保障，逐步成长为 AI 测试工程师。</p>
+        </div>
+        <ul className="knowledge-branch-card__tasks" aria-label="AI 测试工程师强化支线内容">
+          {aiTestingTutorials.slice(0, 5).map((tutorial) => (
+            <li key={tutorial.slug}>
+              <span>{tutorial.title}</span>
+              <small>{tutorial.status === "published" ? "可学习" : "待办"}</small>
+            </li>
+          ))}
+          {aiTestingTutorials.length > 5 && <li><span>更多测试提效与工程化内容</span><small>+{aiTestingTutorials.length - 5}</small></li>}
+        </ul>
+        <div className="knowledge-branch-card__action">
+          <span>{aiTestingTutorials.filter((tutorial) => tutorial.status === "published").length} 篇可学习 · {aiTestingTutorials.filter((tutorial) => tutorial.status === "planned").length} 项待办</span>
+          <Link href="/knowledge/tutorials?track=ai-testing" className="text-link">
+            查看 AI 测试支线
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
       </section>
 
       <section className="knowledge-section" aria-labelledby="tutorial-heading">
@@ -125,7 +175,7 @@ export default function KnowledgePage() {
           <p className="page-kicker">System Tutorials</p>
           <div>
             <h2 id="tutorial-heading">系统教程</h2>
-            <p>按学习顺序讲清一项能力，每篇教程都采用图解原理、贯穿案例、代码演示和练习检查的完整结构。</p>
+            <p>你可以按学习顺序掌握每项能力，并通过图解原理、贯穿案例、代码演示和练习检查完成实践。</p>
           </div>
         </header>
         <div className="knowledge-tutorial-standard" aria-label="教程内容标准">
@@ -134,8 +184,8 @@ export default function KnowledgePage() {
           <span>代码演示</span>
           <span>练习与检查清单</span>
         </div>
-        <div className="knowledge-tutorial-modules" aria-label="系统教程六大模块">
-          {tutorialTracks.map((track, index) => {
+        <div className="knowledge-tutorial-modules" aria-label="系统教程五个主线模块">
+          {mainTutorialTracks.map((track, index) => {
             const trackTutorials = getTutorialsByTrack(track.slug);
             const publishedTutorials = trackTutorials.filter((tutorial) => tutorial.status === "published");
 
@@ -143,7 +193,7 @@ export default function KnowledgePage() {
               <article key={track.slug} className="knowledge-tutorial-module">
                 <div className="knowledge-tutorial-module__meta">
                   <span className="project-type">Module / {String(index + 1).padStart(2, "0")}</span>
-                  <span>{trackTutorials.length === 0 ? "待规划" : publishedTutorials.length > 0 ? `${publishedTutorials.length} 已发布 / ${trackTutorials.length} 篇` : `${trackTutorials.length} 篇规划`}</span>
+                  <span>{trackTutorials.length === 0 ? "即将补充" : publishedTutorials.length > 0 ? `${publishedTutorials.length} 篇可学习 / 共 ${trackTutorials.length} 篇` : `${trackTutorials.length} 篇即将推出`}</span>
                 </div>
                 <span className="knowledge-tutorial-module__eyebrow">{track.eyebrow}</span>
                 <h3>{track.title}</h3>
@@ -154,9 +204,9 @@ export default function KnowledgePage() {
                 </div>
                 <ul aria-label={`${track.title}首批教程`}>
                   {trackTutorials.slice(0, 2).map((tutorial) => <li key={tutorial.slug}>{tutorial.title}</li>)}
-                  {trackTutorials.length === 0 && <li>该模块将在后续内容周期中规划</li>}
+                  {trackTutorials.length === 0 && <li>更多学习内容即将补充</li>}
                 </ul>
-                <Link href={`/knowledge/tutorials?track=${track.slug}`} target="_blank" rel="noopener noreferrer" className="text-link">
+                <Link href={`/knowledge/tutorials?track=${track.slug}`} className="text-link">
                   进入模块
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
@@ -165,8 +215,8 @@ export default function KnowledgePage() {
           })}
         </div>
         <div className="knowledge-tutorial-index-link">
-          <p>首页始终只展示模块摘要，完整教程通过独立索引按分类、关键词和页码查询。</p>
-          <Link href="/knowledge/tutorials" target="_blank" rel="noopener noreferrer" className="text-link">
+          <p>想查找某篇教程时，可以按分类、关键词或页码浏览完整目录。</p>
+          <Link href="/knowledge/tutorials" className="text-link">
             查看全部教程
             <ArrowUpRight className="h-4 w-4" />
           </Link>
@@ -191,7 +241,7 @@ export default function KnowledgePage() {
         action="查看速查"
       />
 
-      <p className="page-copy knowledge-page-note">知识库会沿着成长路线持续补充图文教程、实战项目和 AI 测试专题。</p>
+      <p className="page-copy knowledge-page-note">你可以先完成测试工程师成长主线，再根据职业目标选择测试开发或 AI 测试强化支线。</p>
     </div>
   );
 }
@@ -224,7 +274,7 @@ function KnowledgeSection({
       </header>
       <div className="knowledge-list">
         {items.map((article, index) => (
-          <Link key={article.slug} href={`/knowledge/${article.slug}`} target="_blank" rel="noopener noreferrer" className="knowledge-row">
+          <Link key={article.slug} href={`/knowledge/${article.slug}`} className="knowledge-row">
             <span className="project-type">{label} / {String(index + 1).padStart(2, "0")}</span>
             <div>
               <h2>{article.title}</h2>

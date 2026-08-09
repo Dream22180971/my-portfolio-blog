@@ -42,8 +42,8 @@ export default async function TutorialsPage({ searchParams }: TutorialsPageProps
         <p className="page-kicker">Tutorial Library</p>
         <div>
           <h1 className="page-heading">系统教程</h1>
-          <p className="page-copy">教程按能力模块长期维护。首页负责导航，这里负责检索、筛选和分页，不让内容规模影响浏览效率。</p>
-          <Link href="/knowledge" target="_blank" rel="noopener noreferrer" className="text-link">
+          <p className="page-copy">你可以按能力模块浏览教程，也可以通过关键词和页码快速找到想学的内容。</p>
+          <Link href="/knowledge" className="text-link">
             <ArrowLeft className="h-4 w-4" />
             返回知识库
           </Link>
@@ -55,7 +55,7 @@ export default async function TutorialsPage({ searchParams }: TutorialsPageProps
           <div>
             <span className="project-type">Index / {String(filteredTutorials.length).padStart(2, "0")}</span>
             <h2 id="catalog-heading">{selectedTrack?.title ?? "全部教程"}</h2>
-            <p>{selectedTrack?.description ?? "从六个能力模块中查找教程，每次只呈现当前筛选结果的一页内容。"}</p>
+            <p>{selectedTrack?.description ?? "选择适合你的能力模块，按照教程顺序逐步学习；如果目标是测试开发或 AI 测试岗位，还可以进入对应的强化支线。"}</p>
           </div>
           <dl>
             <div><dt>模块</dt><dd>{tutorialTracks.length}</dd></div>
@@ -130,21 +130,21 @@ function TutorialCatalogItem({ tutorial, number }: { tutorial: Tutorial; number:
         <div className="tutorial-catalog__item-meta">
           <span>{track?.title}</span>
           <span>{tutorial.level}</span>
-          <span>{tutorial.status === "published" ? "已发布" : "建设中"}</span>
+          <span>{tutorial.status === "published" ? "可学习" : "即将推出"}</span>
         </div>
         <h3>{tutorial.title}</h3>
         <span className="knowledge-row__subtitle">{tutorial.subtitle}</span>
       </div>
       <p>{tutorial.description}</p>
       <span className="text-link">
-        {tutorial.status === "published" ? "开始学习" : "已列入计划"}
+        {tutorial.status === "published" ? "开始学习" : "内容筹备中"}
         {tutorial.status === "published" && <ArrowUpRight className="h-4 w-4" />}
       </span>
     </>
   );
 
   if (tutorial.status === "published" && tutorial.href) {
-    return <Link href={tutorial.href} target="_blank" rel="noopener noreferrer" className="tutorial-catalog__item">{content}</Link>;
+    return <Link href={tutorial.href} className="tutorial-catalog__item">{content}</Link>;
   }
 
   return <article className="tutorial-catalog__item">{content}</article>;

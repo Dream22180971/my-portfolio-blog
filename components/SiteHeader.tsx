@@ -27,7 +27,7 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <Link href="/" target="_blank" rel="noopener noreferrer" className="site-wordmark" aria-label="Sean Walter 首页">
+        <Link href="/" className="site-wordmark" aria-label="Sean Walter 首页">
           <span className="site-wordmark__mark" aria-hidden="true">肖</span>
           <span>Sean Walter</span>
         </Link>
@@ -37,8 +37,6 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
               aria-current={isCurrentPath(pathname, item.href) ? "page" : undefined}
               className={cn(isCurrentPath(pathname, item.href) && "is-active")}
             >
@@ -49,7 +47,7 @@ export function SiteHeader() {
 
         <div className="site-header__actions">
           <ThemeToggle />
-          <a className="header-contact" href="mailto:3310103904@qq.com?subject=%E5%90%88%E4%BD%9C%E5%92%A8%E8%AF%A2" target="_blank" rel="noopener noreferrer">
+          <a className="header-contact" href="mailto:3310103904@qq.com?subject=%E5%90%88%E4%BD%9C%E5%92%A8%E8%AF%A2">
             联系合作
             <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
           </a>
@@ -75,8 +73,6 @@ export function SiteHeader() {
           <Link
             key={item.href}
             href={item.href}
-            target="_blank"
-            rel="noopener noreferrer"
             aria-current={isCurrentPath(pathname, item.href) ? "page" : undefined}
             className={cn(isCurrentPath(pathname, item.href) && "is-active")}
             onClick={() => setIsOpen(false)}

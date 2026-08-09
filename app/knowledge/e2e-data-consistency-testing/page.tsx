@@ -59,7 +59,7 @@ const priorityRows: TableRow[] = [
 export default function E2EDataConsistencyTestingPage() {
   return (
     <div className="mx-auto max-w-5xl animate-fade-in">
-      <Link href="/knowledge" target="_blank" rel="noopener noreferrer" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-neon-cyan">
+      <Link href="/knowledge" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-neon-cyan">
         <ArrowLeft className="h-4 w-4" />返回知识库
       </Link>
 
@@ -76,7 +76,7 @@ export default function E2EDataConsistencyTestingPage() {
             <p>页面弹出“操作成功”，只能证明前端收到了成功响应。真正的 E2E 数据一致性测试，还要继续验证业务数据是否在所有相关系统中正确落地。</p>
             <List items={["用户最终看到的状态正确。", "接口返回、数据库记录和缓存数据表达同一业务事实。", "异步消息被正确消费，下游系统在约定时间内完成处理。", "请求重试、消息重复和并发操作不会产生重复业务结果。", "中途失败后系统能够重试、补偿、告警和追踪。"]} />
           </Card>
-          <Card title="贯穿案例"><p>本手册使用“已支付订单使用优惠券后被用户取消”作为案例。目标是验证订单终止履约、库存释放、优惠券只返还一次、退款总额等于实付金额，并且缓存和下游状态最终一致。</p></Card>
+          <Card title="贯穿案例"><p>以“使用优惠券的已支付订单被用户取消”为例，你需要验证订单终止履约、库存释放、优惠券只返还一次、退款总额等于实付金额，并且缓存和下游状态最终一致。</p></Card>
         </section>
 
         <section id="model" data-knowledge-section className="mb-14">

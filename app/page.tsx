@@ -67,11 +67,11 @@ export default function HomePage() {
             让风险、体验与交付进入同一条工作链路。
           </p>
           <div className="hero-actions">
-            <a className="button-signal" href="mailto:3310103904@qq.com?subject=%E5%90%88%E4%BD%9C%E5%92%A8%E8%AF%A2" target="_blank" rel="noopener noreferrer">
+            <a className="button-signal" href="mailto:3310103904@qq.com?subject=%E5%90%88%E4%BD%9C%E5%92%A8%E8%AF%A2">
               发起合作
               <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
             </a>
-            <Link className="button-quiet" href="#selected-work" target="_blank" rel="noopener noreferrer">
+            <Link className="button-quiet" href="#selected-work">
               查看代表项目
               <ArrowDown aria-hidden="true" className="h-4 w-4" />
             </Link>
@@ -137,7 +137,7 @@ export default function HomePage() {
         </div>
         <div className="writing-list">
           {articles.map((article) => (
-            <Link className="article-list-row" href={`/blog/${article.slug}`} target="_blank" rel="noopener noreferrer" key={article.slug}>
+            <Link className="article-list-row" href={`/blog/${article.slug}`} key={article.slug}>
               <time className="writing-date">{article.date.replaceAll("-", ".")}</time>
               <h2>{article.title}</h2>
               <ArrowUpRight aria-hidden="true" className="article-list-row__arrow h-5 w-5" />
@@ -153,7 +153,7 @@ export default function HomePage() {
         </div>
         <h2 id="contact-title">有一个还不确定的想法？<br />我们可以先一起把它校准成<em>可验证的方向</em>。</h2>
         <div className="contact-panel__bottom">
-          <a className="button-signal" href="mailto:3310103904@qq.com?subject=%E5%90%88%E4%BD%9C%E5%92%A8%E8%AF%A2" target="_blank" rel="noopener noreferrer">
+          <a className="button-signal" href="mailto:3310103904@qq.com?subject=%E5%90%88%E4%BD%9C%E5%92%A8%E8%AF%A2">
             发一封邮件聊聊
             <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
           </a>

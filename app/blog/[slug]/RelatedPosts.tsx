@@ -29,8 +29,6 @@ export function RelatedPosts({
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            target="_blank"
-            rel="noopener noreferrer"
             className="related-posts__item group block border-t py-6 first:pt-0 sm:first:pt-0"
           >
             <time className="related-posts__date font-mono text-[10px] tracking-[0.1em]">
