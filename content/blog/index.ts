@@ -30,6 +30,7 @@ import post29 from "./ai-npl-disposal-2026";
 import post30 from "./kuaishou-genrec-testing-paradigm";
 import post31 from "./ai-agent-rag-yolo-e2e-testing";
 import post32 from "./public-web-security-testing";
+import post33 from "./ai-generated-test-cases-human-review";
 
 export const posts = [
   post01,
@@ -64,4 +65,5 @@ export const posts = [
   post30,
   post31,
   post32,
+  post33,
 ];
