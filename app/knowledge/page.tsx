@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { buildPageMetadata } from "@/lib/site";
+import { getTutorialsByTrack, tutorialTracks } from "@/content/knowledge/tutorials";
 
 export const metadata = buildPageMetadata({
   title: "知识库",
-  description: "面向测试工程师的成长路线、实战手册与工具速查知识库",
+  description: "面向测试工程师的成长路线、系统教程、实战手册与工具速查知识库",
   path: "/knowledge",
 });
 
@@ -91,7 +92,7 @@ export default function KnowledgePage() {
         <p className="page-kicker">Knowledge Base</p>
         <div>
           <h1 className="page-heading">知识库</h1>
-          <p className="page-copy">从成长路线开始系统学习，也可以按工作场景查阅测试手册和工具命令。</p>
+          <p className="page-copy">从成长路线开始系统学习，通过图文教程掌握方法，再按工作场景查阅实战手册和工具命令。</p>
           <Link href="/" target="_blank" rel="noopener noreferrer" className="text-link">
             <ArrowLeft className="h-4 w-4" />
             返回首页
@@ -119,9 +120,61 @@ export default function KnowledgePage() {
         </Link>
       </section>
 
+      <section className="knowledge-section" aria-labelledby="tutorial-heading">
+        <header className="knowledge-section__head">
+          <p className="page-kicker">System Tutorials</p>
+          <div>
+            <h2 id="tutorial-heading">系统教程</h2>
+            <p>按学习顺序讲清一项能力，每篇教程都采用图解原理、贯穿案例、代码演示和练习检查的完整结构。</p>
+          </div>
+        </header>
+        <div className="knowledge-tutorial-standard" aria-label="教程内容标准">
+          <span>图解原理</span>
+          <span>贯穿案例</span>
+          <span>代码演示</span>
+          <span>练习与检查清单</span>
+        </div>
+        <div className="knowledge-tutorial-modules" aria-label="系统教程六大模块">
+          {tutorialTracks.map((track, index) => {
+            const trackTutorials = getTutorialsByTrack(track.slug);
+
+            return (
+              <article key={track.slug} className="knowledge-tutorial-module">
+                <div className="knowledge-tutorial-module__meta">
+                  <span className="project-type">Module / {String(index + 1).padStart(2, "0")}</span>
+                  <span>{trackTutorials.length > 0 ? `${trackTutorials.length} 篇规划` : "待规划"}</span>
+                </div>
+                <span className="knowledge-tutorial-module__eyebrow">{track.eyebrow}</span>
+                <h3>{track.title}</h3>
+                <p>{track.description}</p>
+                <div className="knowledge-tutorial-module__outcome">
+                  <span>能力出口</span>
+                  <p>{track.outcome}</p>
+                </div>
+                <ul aria-label={`${track.title}首批教程`}>
+                  {trackTutorials.slice(0, 2).map((tutorial) => <li key={tutorial.slug}>{tutorial.title}</li>)}
+                  {trackTutorials.length === 0 && <li>该模块将在后续内容周期中规划</li>}
+                </ul>
+                <Link href={`/knowledge/tutorials?track=${track.slug}`} target="_blank" rel="noopener noreferrer" className="text-link">
+                  进入模块
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </article>
+            );
+          })}
+        </div>
+        <div className="knowledge-tutorial-index-link">
+          <p>首页始终只展示模块摘要，完整教程通过独立索引按分类、关键词和页码查询。</p>
+          <Link href="/knowledge/tutorials" target="_blank" rel="noopener noreferrer" className="text-link">
+            查看全部教程
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
       <KnowledgeSection
         kicker="Testing Manuals"
-        title="测试实战手册"
+        title="实战手册"
         description="围绕具体质量风险和交付场景，提供可以直接执行的测试方法、案例与检查清单。"
         items={testingManuals}
         label="Manual"
@@ -137,7 +190,7 @@ export default function KnowledgePage() {
         action="查看速查"
       />
 
-      <p className="page-copy knowledge-page-note">知识库会沿着成长路线持续补充基础教程、实战项目和 AI 测试专题。</p>
+      <p className="page-copy knowledge-page-note">知识库会沿着成长路线持续补充图文教程、实战项目和 AI 测试专题。</p>
     </div>
   );
 }
