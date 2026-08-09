@@ -69,10 +69,6 @@ export default function RootLayout({
                   });
                 }
 
-                document.addEventListener('DOMContentLoaded', function() {
-                  syncThemeToggle(root.getAttribute('data-theme'));
-                });
-
                 document.addEventListener('click', function(event) {
                   var target = event.target;
                   if (!target || !target.closest) return;
