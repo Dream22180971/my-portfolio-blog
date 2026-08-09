@@ -146,7 +146,7 @@ export default function TestingEngineerRoadmapPage() {
         <header className="mb-10">
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-neon-cyan">Learning Roadmap</p>
           <h1 className="mb-3 text-3xl font-bold text-text-primary md:text-4xl">测试工程师成长路线</h1>
-          <p className="mb-6 max-w-3xl text-lg leading-8 text-text-secondary">这不是一张需要一次学完的技能清单，而是一条从“会执行测试”走向“能设计质量体系和验证AI应用”的实践路线。</p>
+          <p className="mb-6 text-lg leading-8 text-text-secondary">这不是一张需要一次学完的技能清单，而是一条从“会执行测试”走向“能设计质量体系和验证AI应用”的实践路线。</p>
           <div className="flex flex-wrap gap-6 text-sm text-text-secondary"><span>6 个成长阶段</span><span>现有手册直接关联</span><span>每阶段都有实践产出与完成标准</span></div>
         </header>
 
