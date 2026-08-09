@@ -67,8 +67,9 @@ export const tutorials: readonly Tutorial[] = [
     description: "从质量风险、测试流程和常见测试类型开始，建立完整的软件测试认知。",
     track: "foundations",
     level: "入门",
-    status: "planned",
+    status: "published",
     order: 1,
+    href: "/knowledge/software-testing-foundations",
   },
   {
     slug: "test-case-design",

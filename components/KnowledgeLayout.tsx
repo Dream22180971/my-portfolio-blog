@@ -27,9 +27,11 @@ export type SectionItem = { id: string; label: string };
 export function KnowledgeLayout({
   children,
   sections = defaultSections,
+  searchPlaceholder = "搜索命令关键词...",
 }: {
   children: ReactNode;
   sections?: SectionItem[];
+  searchPlaceholder?: string;
 }) {
   const [activeSection, setActiveSection] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -136,7 +138,7 @@ export function KnowledgeLayout({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="搜索命令关键词..."
+            placeholder={searchPlaceholder}
           />
         </label>
       </div>
