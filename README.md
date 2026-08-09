@@ -3,10 +3,11 @@
 > 以测试工程建立判断力，用 AI 把不确定的想法校准成可靠产品。
 
 [![Production](https://img.shields.io/badge/Production-seanwalter.top-147984?style=flat&logo=vercel)](https://seanwalter.top)
+[![Version](https://img.shields.io/badge/Version-v0.2.0-6f8f8b?style=flat)](./package.json)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js)](https://nextjs.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-**[访问网站](https://seanwalter.top)** · **[阅读文章](https://seanwalter.top/blog)** · **[查看项目](https://seanwalter.top/projects)** · **[浏览手册](https://seanwalter.top/knowledge)**
+**[访问网站](https://seanwalter.top)** · **[阅读文章](https://seanwalter.top/blog)** · **[查看项目](https://seanwalter.top/projects)** · **[浏览知识库](https://seanwalter.top/knowledge)**
 
 ---
 
@@ -18,7 +19,16 @@
 
 - **产品**：从旅行规划、密码管理到内容工作流，展示问题如何被收敛成可用的产品。
 - **判断**：以测试工程的视角处理边界、风险、体验与交付，而不把测试留到最后一步。
-- **沉淀**：公开文章、命令手册、实验记录与项目复盘，保留可追溯的学习和构建过程。
+- **沉淀**：公开文章、系统教程、实战手册、实验记录与项目复盘，保留可追溯的学习和构建过程。
+
+## 当前版本
+
+### v0.2.0 · 测试工程师成长路线
+
+- 建立从测试基本功、业务测试、自动化工程、分布式与数据、质量体系到 AI 应用测试的六阶段主线。
+- 发布 23 篇系统教程，并为测试开发强化支线和 AI 测试阶段记录 15 篇后续教程。
+- 增加教程模块筛选、关键词搜索、分页和成长路线关联，内容规模扩大后仍可持续维护。
+- 保留实战手册与工具速查作为主线学习的场景补充，并统一教程的读者口吻与亮暗主题体验。
 
 ## 站点内容
 
@@ -26,14 +36,16 @@
 | --- | --- |
 | `/` | 首页：代表作品、工作方法、精选写作与合作入口 |
 | `/projects` | AI 应用、Agent 工作流、测试工程和工具产品；统一按“问题 → 结果 → 技术栈”呈现 |
-| `/blog` | 30 篇公开文章，支持按标题、摘要和标签搜索 |
-| `/knowledge` | ADB、Claude Code、数据库、Linux、性能压测等实用手册 |
+| `/blog` | 33 篇公开文章，支持按标题、摘要和标签搜索 |
+| `/knowledge` | 六阶段测试工程师成长路线、23 篇系统教程、测试开发强化支线、实战手册与工具速查 |
+| `/knowledge/tutorials` | 按能力模块、关键词和页码浏览全部已发布与计划中的教程 |
 | `/experiments` | AI Agent、自动化测试与产品原型的探索记录 |
 | `/about` | 当前方向、经历、核心能力与名字由来 |
 
 ## 核心功能
 
 - **文章阅读体验**：文章搜索、阅读进度、目录导航、延伸阅读、代码块增强与 Mermaid 图表渲染。
+- **系统学习路径**：成长路线、教程模块、测试开发强化支线、搜索筛选和分页共同组织长期学习内容。
 - **亮暗主题**：一键切换亮色或暗色主题；浏览器可用时会记住主题偏好。
 - **项目表达**：用用户问题和当前结果说明项目价值，技术栈作为辅助信息。
 - **交互与反馈**：基于 Giscus / GitHub Discussions 的文章评论。
@@ -46,7 +58,7 @@
 | --- | --- |
 | 框架 | Next.js 16（App Router）+ React 19 + TypeScript |
 | 样式 | Tailwind CSS 4 + 自定义设计令牌与响应式 CSS |
-| 内容 | `content/blog/` 中的 TypeScript 文章数据 + 自定义 Markdown 渲染 |
+| 内容 | `content/blog/` 文章数据、`content/knowledge/tutorials.ts` 教程索引与 App Router 教程页面 |
 | 图表 | Mermaid 客户端渲染 |
 | 评论 | Giscus（GitHub Discussions） |
 | 数据与分析 | Vercel Analytics；`workers/views-counter/` 提供 Cloudflare Workers + KV 阅读计数实现 |
@@ -86,6 +98,15 @@ eslint → next build → scripts/verify-site.mjs
 
 ## 内容维护
 
+### 新增系统教程
+
+1. 在 `app/knowledge/<教程-slug>/page.tsx` 创建教程页面，沿用 `KnowledgeLayout`、章节导航和现有主题令牌。
+2. 在 `content/knowledge/tutorials.ts` 注册标题、简介、能力模块、难度、状态、顺序和访问路径。
+3. 使用 `published` 表示可以学习的内容，使用 `planned` 保留后续学习入口；未完成的教程不要配置访问路径。
+4. 检查亮暗主题、桌面端与移动端布局、上一篇/下一篇关系，再执行 `npm run check`。
+
+系统教程通过统一索引自动进入知识库模块、筛选结果和分页列表。
+
 ### 新增文章
 
 1. 在 `content/blog/` 新建文章 TypeScript 文件，提供 `slug`、`title`、`date`、`excerpt`、`tags` 和 `content`。
@@ -124,14 +145,17 @@ eslint → next build → scripts/verify-site.mjs
 
 ```bash
 npm run check
+git checkout -b agent/<更新主题>
 git add <已验证的文件>
-git commit -m "feat: 描述本次更新"
-git push origin main
+git commit -m "描述本次更新"
+git push -u origin agent/<更新主题>
 ```
 
-推送到 `main` 后，Vercel 会自动构建并发布到 [seanwalter.top](https://seanwalter.top)。发布后可检查：
+分支推送后通过 Pull Request 合并到 `main`。GitHub CI 与 Vercel 检查通过后合并，Vercel 会自动构建并发布到 [seanwalter.top](https://seanwalter.top)。发布后可检查：
 
 - [首页](https://seanwalter.top)
+- [知识库](https://seanwalter.top/knowledge)
+- [系统教程](https://seanwalter.top/knowledge/tutorials)
 - [robots.txt](https://seanwalter.top/robots.txt)
 - [sitemap.xml](https://seanwalter.top/sitemap.xml)
 - [RSS](https://seanwalter.top/feed.xml)
