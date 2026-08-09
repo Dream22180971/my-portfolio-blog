@@ -13,6 +13,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const knowledgePages = [
+    "e2e-data-consistency-testing",
+    "compatibility-testing-manual",
+    "api-testing-manual",
+    "security-testing-manual",
     "adb-commands",
     "claude-code-commands",
     "database-commands",
