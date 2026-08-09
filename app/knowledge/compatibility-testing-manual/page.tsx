@@ -71,7 +71,7 @@ const networkRows = [
 
 export default function CompatibilityTestingManualPage() {
   return <div className="mx-auto max-w-5xl animate-fade-in">
-    <Link href="/knowledge" target="_blank" rel="noopener noreferrer" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-neon-cyan"><ArrowLeft className="h-4 w-4" />返回手册列表</Link>
+    <Link href="/knowledge" target="_blank" rel="noopener noreferrer" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-neon-cyan"><ArrowLeft className="h-4 w-4" />返回知识库</Link>
     <KnowledgeLayout sections={sections}>
       <header className="mb-10"><h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">兼容性测试实战手册</h1><p className="mb-6 text-lg text-text-secondary">不是把所有设备都测一遍，而是用真实用户占比和业务风险，选出最值得验证的组合。</p><div className="flex flex-wrap gap-6 text-sm text-text-secondary"><span>10 个章节</span><span>Web + App</span><span>浏览器、设备、网络与数据</span></div></header>
 

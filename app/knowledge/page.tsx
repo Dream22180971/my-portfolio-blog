@@ -3,12 +3,19 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { buildPageMetadata } from "@/lib/site";
 
 export const metadata = buildPageMetadata({
-  title: "手册",
-  description: "软件测试、AI 测试、开发工具等实用知识手册",
+  title: "知识库",
+  description: "面向测试工程师的成长路线、实战手册与工具速查知识库",
   path: "/knowledge",
 });
 
-const knowledgeArticles = [
+const testingManuals = [
+  {
+    slug: "etl-testing-manual",
+    title: "ETL 数据测试体系",
+    subtitle: "12 章数据质量指南",
+    description: "从数据抽取、转换、加载和字段映射，到增量同步、控制总额、数据质量与金融AI数据链路的完整测试体系",
+    tags: ["ETL测试", "数据质量", "数据仓库", "SQL", "金融数据"],
+  },
   {
     slug: "e2e-data-consistency-testing",
     title: "E2E 数据一致性测试实战手册",
@@ -44,6 +51,9 @@ const knowledgeArticles = [
     description: "面向 Web 接口、数据库、缓存、消息队列、微服务和云原生环境的性能测试实战参考，覆盖压测方案设计、工具选型、监控采集、瓶颈定位和测试报告输出",
     tags: ["性能测试", "压测", "k6", "JMeter", "性能分析"],
   },
+];
+
+const toolReferences = [
   {
     slug: "linux-commands",
     title: "Linux 企业级命令手册",
@@ -78,10 +88,10 @@ export default function KnowledgePage() {
   return (
     <div className="editorial-page editorial-page--wide">
       <header className="page-heading-wrap">
-        <p className="page-kicker">Knowledge / Field Manuals</p>
+        <p className="page-kicker">Knowledge Base</p>
         <div>
-          <h1 className="page-heading">手册</h1>
-          <p className="page-copy">软件测试、AI 测试、开发工具等实用知识沉淀，持续更新中。</p>
+          <h1 className="page-heading">知识库</h1>
+          <p className="page-copy">从成长路线开始系统学习，也可以按工作场景查阅测试手册和工具命令。</p>
           <Link href="/" target="_blank" rel="noopener noreferrer" className="text-link">
             <ArrowLeft className="h-4 w-4" />
             返回首页
@@ -89,29 +99,94 @@ export default function KnowledgePage() {
         </div>
       </header>
 
-      <section className="knowledge-list" aria-label="知识手册">
-        {knowledgeArticles.map((article, index) => (
+      <section className="knowledge-roadmap" aria-labelledby="roadmap-heading">
+        <div>
+          <span className="project-type">Start Here / 01</span>
+          <h2 id="roadmap-heading">测试工程师成长路线</h2>
+          <p>六个阶段串联测试基础、业务测试、自动化、分布式与数据链路、质量体系和 AI 应用测试。</p>
+        </div>
+        <ol className="knowledge-roadmap__stages" aria-label="六阶段学习路线">
+          <li>测试基本功</li>
+          <li>Web / App 业务测试</li>
+          <li>自动化测试工程化</li>
+          <li>分布式与数据链路</li>
+          <li>测试架构与质量体系</li>
+          <li>AI 应用测试</li>
+        </ol>
+        <Link href="/knowledge/testing-engineer-roadmap" target="_blank" rel="noopener noreferrer" className="text-link">
+          查看成长路线
+          <ArrowUpRight className="h-4 w-4" />
+        </Link>
+      </section>
+
+      <KnowledgeSection
+        kicker="Testing Manuals"
+        title="测试实战手册"
+        description="围绕具体质量风险和交付场景，提供可以直接执行的测试方法、案例与检查清单。"
+        items={testingManuals}
+        label="Manual"
+        action="阅读手册"
+      />
+
+      <KnowledgeSection
+        kicker="Tool References"
+        title="工具速查"
+        description="面向日常开发、测试和排障工作的命令参考，需要时快速定位，不作为成长路线主干。"
+        items={toolReferences}
+        label="Reference"
+        action="查看速查"
+      />
+
+      <p className="page-copy knowledge-page-note">知识库会沿着成长路线持续补充基础教程、实战项目和 AI 测试专题。</p>
+    </div>
+  );
+}
+
+type KnowledgeItem = (typeof testingManuals)[number] | (typeof toolReferences)[number];
+
+function KnowledgeSection({
+  kicker,
+  title,
+  description,
+  items,
+  label,
+  action,
+}: {
+  kicker: string;
+  title: string;
+  description: string;
+  items: readonly KnowledgeItem[];
+  label: string;
+  action: string;
+}) {
+  return (
+    <section className="knowledge-section" aria-labelledby={`${label.toLowerCase()}-heading`}>
+      <header className="knowledge-section__head">
+        <p className="page-kicker">{kicker}</p>
+        <div>
+          <h2 id={`${label.toLowerCase()}-heading`}>{title}</h2>
+          <p>{description}</p>
+        </div>
+      </header>
+      <div className="knowledge-list">
+        {items.map((article, index) => (
           <Link key={article.slug} href={`/knowledge/${article.slug}`} target="_blank" rel="noopener noreferrer" className="knowledge-row">
-            <span className="project-type">Manual / {String(index + 1).padStart(2, "0")}</span>
+            <span className="project-type">{label} / {String(index + 1).padStart(2, "0")}</span>
             <div>
               <h2>{article.title}</h2>
               <span className="knowledge-row__subtitle">{article.subtitle}</span>
               <div className="project-row__tags">
-                {article.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
+                {article.tags.map((tag) => <span key={tag}>{tag}</span>)}
               </div>
             </div>
             <p>{article.description}</p>
             <span className="text-link">
-              阅读手册
+              {action}
               <ArrowUpRight className="h-4 w-4" />
             </span>
           </Link>
         ))}
-      </section>
-
-      <p className="page-copy">更多知识文章正在整理中...</p>
-    </div>
+      </div>
+    </section>
   );
 }

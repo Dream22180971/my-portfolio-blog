@@ -17,7 +17,7 @@ const vulnerabilityRows = [["注入", "SQL、命令、模板注入", "参数化�
 
 export default function SecurityTestingManualPage() {
   return <div className="mx-auto max-w-5xl animate-fade-in">
-    <Link href="/knowledge" target="_blank" rel="noopener noreferrer" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-neon-cyan transition-colors"><ArrowLeft className="h-4 w-4" />返回手册列表</Link>
+    <Link href="/knowledge" target="_blank" rel="noopener noreferrer" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-neon-cyan transition-colors"><ArrowLeft className="h-4 w-4" />返回知识库</Link>
     <KnowledgeLayout sections={sections}>
       <header className="mb-10"><h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">安全测试实战手册</h1><p className="mb-6 text-lg text-text-secondary">不靠“扫一遍工具”碰运气，而是从攻击面、权限边界和业务风险出发，验证系统是否真正守得住。</p><div className="flex flex-wrap gap-6 text-sm text-text-secondary"><span>10 个章节</span><span>Web + API</span><span>适用于测试、开发与产品负责人</span></div></header>
       <section id="overview" data-knowledge-section className="mb-14"><Header icon="🛡️" title="安全测试的目标" badge="保护资产，而非刷漏洞数" /><Card title="先问：我们到底在保护什么？"><p>安全测试的核心不是证明系统“绝对安全”，而是识别攻击者最可能利用的路径，在上线前把高影响、低成本利用的问题消掉。</p><List items={["账户与权限：别人能否冒充用户，或获得不该有的能力？", "业务资产：金额、库存、优惠券、积分、订单能否被篡改或重复使用？", "敏感数据：个人资料、Token、密钥和内部配置会不会泄露？", "可用性：恶意请求能否拖垮服务、耗尽资源或绕过限流？"]} /></Card><Card title="测试边界"><List items={["只在已授权的系统、环境、账号和时间窗口内测试。", "优先使用测试环境、测试数据和非真实支付渠道。", "发现高危问题立即停止扩大验证并同步负责人。"]} /></Card></section>

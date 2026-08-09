@@ -11,7 +11,7 @@ const navigation = [
   { href: "/", label: "首页" },
   { href: "/blog", label: "文章" },
   { href: "/projects", label: "项目" },
-  { href: "/knowledge", label: "手册" },
+  { href: "/knowledge", label: "知识库" },
   { href: "/about", label: "关于" },
   { href: "/experiments", label: "实验" },
 ];

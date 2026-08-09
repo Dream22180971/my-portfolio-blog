@@ -96,9 +96,16 @@ async function runChecks() {
   assertIncludes(experiments, "<title>实验 | seanwalter</title>", "experiments title");
 
   const knowledge = await fetchText("/knowledge");
-  assertIncludes(knowledge, "<title>手册 | seanwalter</title>", "knowledge title");
+  assertIncludes(knowledge, "<title>知识库 | seanwalter</title>", "knowledge title");
+  assertIncludes(
+    knowledge,
+    'href="/knowledge/testing-engineer-roadmap"',
+    "knowledge roadmap link"
+  );
 
   for (const pathname of [
+    "/knowledge/testing-engineer-roadmap",
+    "/knowledge/etl-testing-manual",
     "/knowledge/linux-commands",
     "/knowledge/performance-testing-analysis",
   ]) {
@@ -112,6 +119,16 @@ async function runChecks() {
 
   const sitemap = await fetchText("/sitemap.xml");
   assertIncludes(sitemap, "https://seanwalter.top/blog", "sitemap blog url");
+  assertIncludes(
+    sitemap,
+    "https://seanwalter.top/knowledge/testing-engineer-roadmap",
+    "sitemap testing roadmap url"
+  );
+  assertIncludes(
+    sitemap,
+    "https://seanwalter.top/knowledge/etl-testing-manual",
+    "sitemap ETL manual url"
+  );
   assertIncludes(
     sitemap,
     "https://seanwalter.top/knowledge/linux-commands",

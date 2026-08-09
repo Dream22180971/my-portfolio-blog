@@ -11,7 +11,7 @@ const navItems = [
   { href: "/", label: "首页", icon: "⌘" },
   { href: "/blog", label: "文章", icon: "◇" },
   { href: "/projects", label: "项目", icon: "◈" },
-  { href: "/knowledge", label: "手册", icon: "⊞" },
+  { href: "/knowledge", label: "知识库", icon: "⊞" },
   { href: "/about", label: "关于", icon: "○" },
   { href: "/experiments", label: "实验", icon: "△" },
 ];

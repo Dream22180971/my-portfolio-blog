@@ -1252,6 +1252,82 @@ button {
   letter-spacing: 0.1em;
 }
 
+.knowledge-roadmap {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.9fr) minmax(360px, 1.1fr) auto;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  margin-bottom: clamp(84px, 10vw, 144px);
+  padding: clamp(34px, 5vw, 62px) 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+}
+
+.knowledge-roadmap h2,
+.knowledge-section__head h2 {
+  margin: 8px 0 14px;
+  font-family: var(--display-cn);
+  font-size: clamp(30px, 3.5vw, 52px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+
+.knowledge-roadmap p,
+.knowledge-section__head p {
+  max-width: 620px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.knowledge-roadmap__stages {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: roadmap-stage;
+}
+
+.knowledge-roadmap__stages li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  counter-increment: roadmap-stage;
+}
+
+.knowledge-roadmap__stages li::before {
+  color: var(--signal);
+  font-family: var(--mono);
+  font-size: 10px;
+  content: "0" counter(roadmap-stage);
+}
+
+.knowledge-section {
+  margin-bottom: clamp(84px, 10vw, 144px);
+}
+
+.knowledge-section__head {
+  display: grid;
+  grid-template-columns: 0.34fr minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+  margin-bottom: 36px;
+}
+
+.knowledge-section__head .page-kicker {
+  margin-top: 12px;
+}
+
+.knowledge-page-note {
+  margin-bottom: clamp(72px, 9vw, 120px);
+}
+
 .experiment-status.is-active {
   color: var(--signal);
 }
@@ -2144,6 +2220,19 @@ code,
     gap: 17px;
   }
 
+  .knowledge-roadmap {
+    grid-template-columns: 1fr;
+  }
+
+  .knowledge-roadmap .text-link {
+    width: fit-content;
+  }
+
+  .knowledge-section__head {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
   .editorial-page--blog .page-heading-wrap {
     grid-template-columns: 1fr;
     gap: 18px;
@@ -2300,6 +2389,10 @@ code,
   .experiment-row h2,
   .knowledge-row h2 {
     font-size: 28px;
+  }
+
+  .knowledge-roadmap__stages {
+    grid-template-columns: 1fr;
   }
 
   .work-copy,
