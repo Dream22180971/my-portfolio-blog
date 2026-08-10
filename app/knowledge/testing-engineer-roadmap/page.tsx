@@ -65,11 +65,12 @@ const stages: Stage[] = [
     title: "Web / App 业务测试",
     subtitle: "把页面、接口和数据看成一条业务链",
     goal: "能够独立负责一个 Web 或 App 功能，从用户操作一直验证到接口、数据库和异常状态。",
-    focus: ["业务流程、页面状态和异常分支", "接口契约、鉴权、数据准备与断言", "浏览器、设备、分辨率和网络兼容", "抓包、SQL查询、日志定位与移动端调试"],
+    focus: ["业务流程、页面状态和异常分支", "角色权限、数据范围、越权与访问留痕", "接口契约、鉴权、数据准备与断言", "浏览器、设备、抓包、SQL与移动端调试"],
     project: "完成一个登录—下单—取消订单流程的 Web/App 测试，覆盖接口、数据和兼容性。",
     done: ["能从页面问题继续定位到接口或数据层", "能覆盖正常、异常、边界、权限和状态流转", "能使用SQL、日志和抓包信息提供定位证据"],
     resources: [
       { title: "Web 功能测试实战教程", href: "/knowledge/web-functional-testing", note: "页面到数据" },
+      { title: "权限、数据隔离与访问审计测试教程", href: "/knowledge/access-control-testing", note: "角色、数据与操作边界" },
       { title: "业务状态流转测试实战教程", href: "/knowledge/business-state-machine-testing", note: "状态、并发与补偿" },
       { title: "移动端 App 测试实战教程", href: "/knowledge/mobile-app-testing", note: "设备与移动场景" },
       { title: "接口测试实战手册", href: "/knowledge/api-testing-manual", note: "鉴权、断言与异常" },
@@ -85,12 +86,13 @@ const stages: Stage[] = [
     title: "自动化测试工程化",
     subtitle: "从会写脚本到能稳定回归",
     goal: "把稳定、重复、价值高的测试场景沉淀为可维护的自动化资产，并接入持续集成。",
-    focus: ["Python、pytest、fixture与测试数据管理", "接口客户端封装、分层断言和测试桩", "Playwright页面对象与稳定定位", "失败报告、并行执行、环境配置和CI门禁"],
+    focus: ["Python、pytest、fixture与测试数据设计", "造数、隔离、清理、脱敏与环境漂移治理", "接口客户端、Playwright、分层断言和测试桩", "失败报告、并行执行、环境配置和CI门禁"],
     project: "为一个业务模块建立接口与UI自动化回归，做到一条命令执行并输出可定位的报告。",
     done: ["自动化用例可以重复运行且互不依赖", "失败信息能区分环境、脚本和产品问题", "知道哪些场景值得自动化，哪些应保留人工验证"],
     resources: [
       { title: "接口测试实战手册", href: "/knowledge/api-testing-manual", note: "pytest与CI章节" },
       { title: "E2E 数据一致性测试实战手册", href: "/knowledge/e2e-data-consistency-testing", note: "跨层数据核对" },
+      { title: "测试数据设计与环境治理教程", href: "/knowledge/test-data-management", note: "造数、清理与可重复环境" },
       { title: "Python 与 pytest 测试开发教程", href: "/knowledge/python-pytest-testing", note: "测试代码与项目结构" },
       { title: "接口自动化测试教程", href: "/knowledge/api-test-automation", note: "请求、断言与持续集成" },
       { title: "Mock 与测试桩实战教程", href: "/knowledge/mock-test-doubles", note: "依赖隔离与异常复现" },
@@ -124,13 +126,14 @@ const stages: Stage[] = [
     title: "测试架构与质量体系",
     subtitle: "从执行测试升级为经营质量",
     goal: "能够基于业务风险制定测试策略，设计质量门禁、可观测指标和团队级测试资产。",
-    focus: ["风险驱动的测试策略和分层测试", "质量指标、发布准入和回归范围", "日志、指标、链路追踪和线上质量", "测试资产治理、评审机制和效能度量"],
-    project: "为一个真实项目设计质量保障方案，包括风险矩阵、分层测试、CI门禁、指标看板和复盘机制。",
-    done: ["能解释测试投入与业务风险的对应关系", "能用数据说明质量变化而不是只汇报用例数", "能让质量保障流程在团队内稳定运行"],
+    focus: ["风险驱动的测试策略和分层测试", "规则、测试点、风险、用例和缺陷的版本追溯", "质量指标、发布准入、可观测性和复盘", "测试资产库、机器校验、评审机制和效能度量"],
+    project: "为一个真实项目设计质量保障方案，并建立从需求规则、风险、用例到缺陷与版本总结的可追溯资产链。",
+    done: ["能解释测试投入与业务风险的对应关系", "能回答每条用例来自哪条规则、在哪个版本发生变化", "能用数据说明质量变化并让保障流程稳定运行"],
     resources: [
       { title: "测试策略与质量门禁教程", href: "/knowledge/test-strategy-quality-gates", note: "风险、准入与发布" },
       { title: "日志、监控与可观测性测试教程", href: "/knowledge/observability-testing", note: "线上质量证据链" },
       { title: "测试报告、效能度量与质量复盘教程", href: "/knowledge/test-metrics-quality-review", note: "数据驱动改进" },
+      { title: "测试资产工程与版本追溯教程", href: "/knowledge/test-assets-traceability", note: "规则、风险与交付闭环" },
     ],
   },
 ];
@@ -146,6 +149,9 @@ const aiTestingPlan: Resource[] = getTutorialsByTrack("ai-testing").map((tutoria
   href: tutorial.href,
   note: tutorial.status === "published" ? "开始学习" : "即将推出",
 }));
+
+const aiAssistedPlan = aiTestingPlan.filter((resource) => getTutorialsByTrack("ai-testing").find((tutorial) => tutorial.title === resource.title)?.phase === "用 AI 做测试");
+const aiSystemQualityPlan = aiTestingPlan.filter((resource) => getTutorialsByTrack("ai-testing").find((tutorial) => tutorial.title === resource.title)?.phase === "测试 AI 系统");
 
 export default function TestingEngineerRoadmapPage() {
   return (
@@ -187,13 +193,16 @@ export default function TestingEngineerRoadmapPage() {
         <section id="ai-testing" data-knowledge-section className="mb-14">
           <SectionHeader number="AI" title="AI 测试工程师强化支线" subtitle="面向大模型与智能应用的可选进阶路线" />
           <Card title="什么时候进入这条支线">
-            <p>如果你想测试大模型、RAG、Agent 或文档智能应用，可以沿着这条支线学习评估集、人工审核、安全测试、多模态质量以及成本与可观测性。</p>
+            <p>这条支线分成两个阶段：先把需求材料、测试规则和人工经验变成 AI 可以可靠使用的测试资产；再学习评估大模型、OCR、RAG、Agent 与线上 AI 应用质量。</p>
             <Link href="/knowledge/tutorials?track=ai-testing" className="mt-4 inline-flex items-center gap-2 text-neon-cyan transition-colors hover:text-text-primary">
               查看 AI 测试支线内容
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </Card>
-          <ResourceList resources={aiTestingPlan} />
+          <h3 className="mb-3 mt-6 text-base font-bold text-text-primary">第一段：用 AI 做测试</h3>
+          <ResourceList resources={aiAssistedPlan} />
+          <h3 className="mb-3 mt-8 text-base font-bold text-text-primary">第二段：测试 AI 系统</h3>
+          <ResourceList resources={aiSystemQualityPlan} />
         </section>
 
         <section id="practice" data-knowledge-section className="mb-14">

@@ -150,7 +150,7 @@ export default function KnowledgePage() {
         <div className="knowledge-branch-card__intro">
           <span className="project-type">Optional Track / AI Quality</span>
           <h2 id="ai-testing-heading">AI 测试工程师强化支线</h2>
-          <p>如果你想测试大模型、RAG、Agent 或文档智能应用，可以按照以下路线学习评估方法、安全验证和线上质量保障，逐步成长为 AI 测试工程师。</p>
+          <p>先学习如何用 AI 分析需求、生产和校验测试资产，再学习如何评估大模型、OCR、RAG、Agent 与线上 AI 应用，逐步成长为 AI 测试工程师。</p>
         </div>
         <ul className="knowledge-branch-card__tasks" aria-label="AI 测试工程师强化支线内容">
           {aiTestingTutorials.slice(0, 5).map((tutorial) => (

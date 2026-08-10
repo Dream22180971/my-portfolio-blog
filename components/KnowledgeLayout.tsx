@@ -60,10 +60,14 @@ export function KnowledgeLayout({
 
   // Scroll active nav item into view
   useEffect(() => {
-    if (!navRef.current || !activeSection) return;
-    const btn = navRef.current.querySelector(`[data-section="${activeSection}"]`);
+    const nav = navRef.current;
+    if (!nav || !activeSection) return;
+    const btn = nav.querySelector<HTMLElement>(`[data-section="${activeSection}"]`);
     if (btn) {
-      btn.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+      const navRect = nav.getBoundingClientRect();
+      const btnRect = btn.getBoundingClientRect();
+      const left = nav.scrollLeft + btnRect.left - navRect.left - (nav.clientWidth - btnRect.width) / 2;
+      nav.scrollTo({ left, behavior: "smooth" });
     }
   }, [activeSection]);
 
@@ -151,6 +155,7 @@ export function KnowledgeLayout({
         <div>
           {sections.map(({ id, label }) => (
             <button
+              type="button"
               key={id}
               data-section={id}
               onClick={() => scrollToSection(id)}
