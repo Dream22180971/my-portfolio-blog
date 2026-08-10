@@ -3,7 +3,7 @@
 > 以测试工程建立判断力，用 AI 把不确定的想法校准成可靠产品。
 
 [![Production](https://img.shields.io/badge/Production-seanwalter.top-147984?style=flat&logo=vercel)](https://seanwalter.top)
-[![Version](https://img.shields.io/badge/Version-v0.2.0-6f8f8b?style=flat)](./package.json)
+[![Version](https://img.shields.io/badge/Version-v0.3.0-6f8f8b?style=flat)](./package.json)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js)](https://nextjs.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
@@ -23,12 +23,12 @@
 
 ## 当前版本
 
-### v0.2.0 · 测试工程师成长路线
+### v0.3.0 · AI 测试与测试资产工程
 
-- 建立从测试基本功、业务测试、自动化工程、分布式与数据、质量体系到 AI 应用测试的六阶段主线。
-- 发布 23 篇系统教程，并为测试开发强化支线和 AI 测试阶段记录 15 篇后续教程。
-- 增加教程模块筛选、关键词搜索、分页和成长路线关联，内容规模扩大后仍可持续维护。
-- 保留实战手册与工具速查作为主线学习的场景补充，并统一教程的读者口吻与亮暗主题体验。
+- AI 测试强化支线形成 10 篇连续教程，分为“用 AI 做测试”和“测试 AI 系统”两个阶段。
+- 发布大模型基础、评估体系、OCR、RAG、Agent 与 MCP、安全红队、性能成本和可观测性教程。
+- 补充权限与数据隔离、测试数据治理、测试资产追溯和测试平台开发，完善测试开发进阶路线。
+- 将系统教程扩展到 36 篇，并保留 4 篇后续规划；同步修复章节定位、亮暗主题和旧教程地址跳转。
 
 ## 站点内容
 
@@ -37,7 +37,7 @@
 | `/` | 首页：代表作品、工作方法、精选写作与合作入口 |
 | `/projects` | AI 应用、Agent 工作流、测试工程和工具产品；统一按“问题 → 结果 → 技术栈”呈现 |
 | `/blog` | 33 篇公开文章，支持按标题、摘要和标签搜索 |
-| `/knowledge` | 六阶段测试工程师成长路线、23 篇系统教程、测试开发强化支线、实战手册与工具速查 |
+| `/knowledge` | 六阶段测试工程师成长路线、36 篇系统教程、测试开发与 AI 测试强化支线、实战手册和工具速查 |
 | `/knowledge/tutorials` | 按能力模块、关键词和页码浏览全部已发布与计划中的教程 |
 | `/experiments` | AI Agent、自动化测试与产品原型的探索记录 |
 | `/about` | 当前方向、经历、核心能力与名字由来 |

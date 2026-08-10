@@ -66,6 +66,17 @@ async function fetchText(pathname) {
   return text;
 }
 
+async function assertRedirect(pathname, destination) {
+  const response = await fetch(`${BASE_URL}${pathname}`, { redirect: "manual" });
+  const location = response.headers.get("location");
+
+  if (response.status !== 308 || location !== destination) {
+    throw new Error(
+      `Expected ${pathname} to redirect to ${destination}, received ${response.status} ${location}`
+    );
+  }
+}
+
 async function runChecks() {
   const home = await fetchText("/");
   assertIncludes(home, "<title>seanwalter | AI 独立开发者</title>", "home title");
@@ -103,11 +114,34 @@ async function runChecks() {
     "knowledge roadmap link"
   );
 
+  const aiTutorials = await fetchText("/knowledge/tutorials?track=ai-testing");
+  assertIncludes(aiTutorials, "从用 AI 做测试，到测试 AI 系统", "AI testing roadmap title");
+  assertIncludes(
+    aiTutorials,
+    'href="/knowledge/llm-foundations-testing"',
+    "AI testing foundations link"
+  );
+  assertIncludes(
+    aiTutorials,
+    'href="/knowledge/ai-agent-testing"',
+    "AI Agent testing link"
+  );
+
   for (const pathname of [
     "/knowledge/testing-engineer-roadmap",
     "/knowledge/etl-testing-manual",
     "/knowledge/linux-commands",
     "/knowledge/performance-testing-analysis",
+    "/knowledge/traditional-automation-to-ai-testing",
+    "/knowledge/ai-testing-workflow-orchestration",
+    "/knowledge/testing-skills-design",
+    "/knowledge/llm-foundations-testing",
+    "/knowledge/ai-application-testing-system",
+    "/knowledge/multimodal-ocr-testing",
+    "/knowledge/rag-knowledge-base-testing",
+    "/knowledge/ai-agent-testing",
+    "/knowledge/llm-security-red-teaming",
+    "/knowledge/ai-performance-cost-observability",
   ]) {
     const page = await fetchText(pathname);
     assertIncludes(
@@ -116,6 +150,15 @@ async function runChecks() {
       `${pathname} canonical`
     );
   }
+
+  await assertRedirect(
+    "/knowledge/prompt-context-engineering-for-testing",
+    "/knowledge/ai-testing-workflow-orchestration"
+  );
+  await assertRedirect(
+    "/knowledge/mcp-testing-integration",
+    "/knowledge/ai-agent-testing"
+  );
 
   const sitemap = await fetchText("/sitemap.xml");
   assertIncludes(sitemap, "https://seanwalter.top/blog", "sitemap blog url");
@@ -138,6 +181,16 @@ async function runChecks() {
     sitemap,
     "https://seanwalter.top/knowledge/performance-testing-analysis",
     "sitemap performance manual url"
+  );
+  assertIncludes(
+    sitemap,
+    "https://seanwalter.top/knowledge/llm-foundations-testing",
+    "sitemap AI testing foundations url"
+  );
+  assertIncludes(
+    sitemap,
+    "https://seanwalter.top/knowledge/ai-agent-testing",
+    "sitemap AI Agent testing url"
   );
 
   const robots = await fetchText("/robots.txt");
