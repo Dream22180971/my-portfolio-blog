@@ -66,17 +66,6 @@ async function fetchText(pathname) {
   return text;
 }
 
-async function assertRedirect(pathname, destination) {
-  const response = await fetch(`${BASE_URL}${pathname}`, { redirect: "manual" });
-  const location = response.headers.get("location");
-
-  if (response.status !== 308 || location !== destination) {
-    throw new Error(
-      `Expected ${pathname} to redirect to ${destination}, received ${response.status} ${location}`
-    );
-  }
-}
-
 async function runChecks() {
   const home = await fetchText("/");
   assertIncludes(home, "<title>seanwalter | AI 独立开发者</title>", "home title");
@@ -115,7 +104,10 @@ async function runChecks() {
   );
 
   const aiTutorials = await fetchText("/knowledge/tutorials?track=ai-testing");
-  assertIncludes(aiTutorials, "从用 AI 做测试，到测试 AI 系统", "AI testing roadmap title");
+  assertIncludes(aiTutorials, "AI 测试工程师五阶段成长路线", "AI testing roadmap title");
+  for (const phaseTitle of ["AI 质量基础", "AI 应用专项质量", "智能体质量保障", "AI 可靠性与安全", "AI 原生测试工程"]) {
+    assertIncludes(aiTutorials, phaseTitle, `AI testing phase: ${phaseTitle}`);
+  }
   assertIncludes(
     aiTutorials,
     'href="/knowledge/llm-foundations-testing"',
@@ -140,8 +132,10 @@ async function runChecks() {
     "/knowledge/multimodal-ocr-testing",
     "/knowledge/rag-knowledge-base-testing",
     "/knowledge/ai-agent-testing",
+    "/knowledge/mcp-testing-integration",
     "/knowledge/llm-security-red-teaming",
     "/knowledge/ai-performance-cost-observability",
+    "/knowledge/prompt-context-engineering-for-testing",
   ]) {
     const page = await fetchText(pathname);
     assertIncludes(
@@ -150,15 +144,6 @@ async function runChecks() {
       `${pathname} canonical`
     );
   }
-
-  await assertRedirect(
-    "/knowledge/prompt-context-engineering-for-testing",
-    "/knowledge/ai-testing-workflow-orchestration"
-  );
-  await assertRedirect(
-    "/knowledge/mcp-testing-integration",
-    "/knowledge/ai-agent-testing"
-  );
 
   const sitemap = await fetchText("/sitemap.xml");
   assertIncludes(sitemap, "https://seanwalter.top/blog", "sitemap blog url");
@@ -191,6 +176,16 @@ async function runChecks() {
     sitemap,
     "https://seanwalter.top/knowledge/ai-agent-testing",
     "sitemap AI Agent testing url"
+  );
+  assertIncludes(
+    sitemap,
+    "https://seanwalter.top/knowledge/mcp-testing-integration",
+    "sitemap MCP testing url"
+  );
+  assertIncludes(
+    sitemap,
+    "https://seanwalter.top/knowledge/prompt-context-engineering-for-testing",
+    "sitemap prompt and context engineering url"
   );
 
   const robots = await fetchText("/robots.txt");

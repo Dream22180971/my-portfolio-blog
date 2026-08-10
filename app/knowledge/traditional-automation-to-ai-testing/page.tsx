@@ -25,7 +25,7 @@ const sections: SectionItem[] = [
 
 export default function TraditionalAutomationToAiTestingPage() {
   return <div className="mx-auto max-w-5xl animate-fade-in">
-    <Link href="/knowledge/tutorials?track=ai-testing" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-neon-cyan"><ArrowLeft className="h-4 w-4" />返回 AI 测试工程师强化支线</Link>
+    <Link href="/knowledge/tutorials?track=test-development" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-neon-cyan"><ArrowLeft className="h-4 w-4" />返回测试开发强化支线</Link>
     <KnowledgeLayout sections={sections} searchPlaceholder="搜索 pytest、Playwright、适配器与迁移门禁...">
       <Header />
 
@@ -202,7 +202,7 @@ human_gate: "测试负责人检查业务预期与失败归因"`}</Code>
   </div>;
 }
 
-function Header() { return <header className="mb-10"><div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-neon-cyan">AI Testing Roadmap / Step 01</div><h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">从传统自动化到 AI 辅助测试迁移指南</h1><p className="text-lg leading-8 text-text-secondary">不推倒现有 pytest 与 Playwright，而是把经过验证的脚本、数据和失败证据封装为 Agent 能检索、能受控调用、能被人工审计的团队资产。</p></header>; }
+function Header() { return <header className="mb-10"><div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-neon-cyan">SDET Track / AI Migration</div><h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">从传统自动化到 AI 辅助测试迁移指南</h1><p className="text-lg leading-8 text-text-secondary">不推倒现有 pytest 与 Playwright，而是把经过验证的脚本、数据和失败证据封装为 Agent 能检索、能受控调用、能被人工审计的团队资产。</p></header>; }
 function S({ id, n, t, b, children }: { id: string; n: string; t: string; b: string; children: React.ReactNode }) { return <section id={id} data-knowledge-section className="mb-14"><div className="mb-5 flex items-center gap-3 border-b-2 border-space-border pb-4"><div className="flex h-10 w-10 items-center justify-center rounded-xl bg-neon-cyan/10 font-mono text-xs text-neon-cyan">{n}</div><div className="flex flex-wrap items-center gap-3"><h2 className="text-xl font-bold text-text-primary">{t}</h2><span className="rounded-full bg-neon-cyan/10 px-2 py-0.5 text-[10px] text-neon-cyan">{b}</span></div></div>{children}</section>; }
 function Card({ title, children }: { title?: string; children: React.ReactNode }) { return <div className="card-glow mb-4 rounded-xl p-5 text-sm leading-7 text-text-secondary">{title && <h3 className="mb-3 text-base font-bold text-text-primary">{title}</h3>}{children}</div>; }
 function List({ items, ordered = false }: { items: string[]; ordered?: boolean }) { const Tag = ordered ? "ol" : "ul"; return <Tag className={`mt-3 space-y-2 pl-5 ${ordered ? "list-decimal" : "list-disc"}`}>{items.map((item) => <li key={item}>{item}</li>)}</Tag>; }
@@ -211,4 +211,4 @@ function Callout({ children }: { children: React.ReactNode }) { return <div clas
 function Code({ title, children }: { title: string; children: string }) { return <div className="knowledge-code-block mb-4 overflow-hidden rounded-xl border border-space-border"><div className="border-b border-space-border bg-space-card/50 px-4 py-2 text-[11px] uppercase tracking-wider text-text-secondary">{title}</div><pre className="overflow-x-auto p-4 text-[13px] leading-relaxed"><code className="text-neon-cyan/80">{children}</code></pre></div>; }
 function Flow({ items }: { items: string[][] }) { return <Card title="从资产到计划"><div className="grid gap-3 md:grid-cols-5">{items.map((item, index) => <div key={item[0]} className={`rounded-lg border p-4 ${index === 3 ? "border-neon-cyan/50 bg-neon-cyan/10" : "border-space-border bg-space-card/50"}`}><b className="block text-xs text-text-primary">{item[0]}</b><span className="text-[11px]">{item[1]}</span></div>)}</div></Card>; }
 function Check({ items }: { items: string[] }) { return <Card title="迁移完成检查">{items.map((item) => <div key={item} className="mb-2 flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-neon-cyan" />{item}</div>)}</Card>; }
-function Next() { return <div className="mt-8 flex justify-end border-y border-space-border py-6"><Link href="/knowledge/ai-testing-workflow-orchestration" className="inline-flex items-center gap-2 text-sm text-neon-cyan">下一篇：AI 测试资产生产与人机审核<ArrowRight className="h-4 w-4" /></Link></div>; }
+function Next() { return <div className="mt-8 flex justify-end border-y border-space-border py-6"><Link href="/knowledge/prompt-context-engineering-for-testing" className="inline-flex items-center gap-2 text-sm text-neon-cyan">继续学习：测试提示词与上下文工程<ArrowRight className="h-4 w-4" /></Link></div>; }

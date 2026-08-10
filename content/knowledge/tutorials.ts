@@ -45,12 +45,57 @@ export const tutorialTracks = [
     slug: "ai-testing",
     title: "AI 测试工程师强化支线",
     eyebrow: "AI Quality Track",
-    description: "先学习如何用 AI 生产可信测试资产，再学习如何评估大模型、OCR、RAG、Agent、安全与线上质量。",
-    outcome: "既能用 AI 提升测试生产效率，也能为概率性 AI 应用建立可评估、可回归、可审核的质量体系。",
+    description: "从 AI 评估基础出发，依次掌握应用链路、智能体、可靠性与安全，以及 AI 原生测试工程。",
+    outcome: "能够评估概率性 AI 系统，并把测试经验封装成可复用、可编排、有人机门禁的工程能力。",
   },
 ] as const;
 
 export type TutorialTrackSlug = (typeof tutorialTracks)[number]["slug"];
+
+export const aiTestingPhaseDefinitions = [
+  {
+    id: "foundation",
+    number: "01",
+    title: "AI 质量基础",
+    eyebrow: "AI Quality Foundation",
+    description: "先理解概率性输出为什么不能只用 Expected = Actual，再学会构建评估集、金标、评分器、人工复核和回归机制。",
+    outcome: "你可以独立设计一套最小 AI 评估体系。",
+  },
+  {
+    id: "application",
+    number: "02",
+    title: "AI 应用专项质量",
+    eyebrow: "AI Application Quality",
+    description: "沿 RAG 与文档智能处理链逐层定位问题，区分解析、切分、检索、生成、引用、识别、抽取和业务校验失败。",
+    outcome: "你可以沿应用链路定位质量问题，而不是只判断最终答案对错。",
+  },
+  {
+    id: "agent",
+    number: "03",
+    title: "智能体质量保障",
+    eyebrow: "Agent Quality",
+    description: "从回答进入执行，验证工具选择、参数、轨迹、状态、副作用、权限、终止条件和人工审批。",
+    outcome: "你可以评估一个会调用工具并改变系统状态的 Agent。",
+  },
+  {
+    id: "reliability",
+    number: "04",
+    title: "AI 可靠性与安全",
+    eyebrow: "AI Reliability & Safety",
+    description: "把安全、稳定、性能、成本、可观测性、模型漂移和线上评估纳入生产质量。",
+    outcome: "你可以为生产 AI 系统设计非功能质量门禁。",
+  },
+  {
+    id: "native-qa",
+    number: "05",
+    title: "AI 原生测试工程",
+    eyebrow: "AI-Native QA Engineering",
+    description: "把需求、规范、缺陷和业务规则组织成高质量上下文，再封装为 Skill，并编排成有人机门禁的测试工作流。",
+    outcome: "你可以设计 AI-assisted QA workflow，而不是只做一次性的 AI 对话。",
+  },
+] as const;
+
+export type AiTestingPhaseId = (typeof aiTestingPhaseDefinitions)[number]["id"];
 
 export type TutorialStatus = "planned" | "published";
 
@@ -64,7 +109,7 @@ export type Tutorial = {
   status: TutorialStatus;
   order: number;
   href?: string;
-  phase?: string;
+  aiPhase?: AiTestingPhaseId;
   phaseStep?: number;
 };
 
@@ -403,9 +448,9 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "入门",
     status: "published",
-    order: 22.9,
+    order: 23.01,
     href: "/knowledge/llm-foundations-testing",
-    phase: "测试 AI 系统",
+    aiPhase: "foundation",
     phaseStep: 1,
   },
   {
@@ -413,51 +458,23 @@ export const tutorials: readonly Tutorial[] = [
     title: "从传统自动化到 AI 辅助测试迁移指南",
     subtitle: "复用 pytest 与 Playwright 资产",
     description: "盘点现有脚本、夹具、Page Object、断言和报告，把确定性自动化逐步封装为 Agent 可安全调用的测试能力。",
-    track: "ai-testing",
+    track: "test-development",
     level: "进阶",
     status: "published",
-    order: 22.51,
+    order: 22.45,
     href: "/knowledge/traditional-automation-to-ai-testing",
-    phase: "用 AI 做测试",
-    phaseStep: 1,
-  },
-  {
-    slug: "ai-testing-workflow-orchestration",
-    title: "AI 测试资产生产与人机审核教程",
-    subtitle: "从可靠输入到可信资产",
-    description: "整合系统 Prompt、上下文证据、任务拆解、候选用例、机器校验、人工审核和版本回归，跑通可追踪的测试资产生产流程。",
-    track: "ai-testing",
-    level: "专项",
-    status: "published",
-    order: 22.7,
-    phase: "用 AI 做测试",
-    href: "/knowledge/ai-testing-workflow-orchestration",
-    phaseStep: 2,
-  },
-  {
-    slug: "testing-skills-design",
-    title: "测试 Skill 与知识资产封装教程",
-    subtitle: "把经验封装成可复用能力",
-    description: "把规范、风险规则、缺陷模式、脚本和领域经验封装成可组合 Skill，并用历史样本验证边界与稳定性。",
-    track: "ai-testing",
-    level: "进阶",
-    status: "published",
-    order: 22.8,
-    phase: "用 AI 做测试",
-    href: "/knowledge/testing-skills-design",
-    phaseStep: 3,
   },
   {
     slug: "ai-application-testing-system",
-    title: "AI 应用评估体系教程",
+    title: "AI 应用测试体系教程",
     subtitle: "评估集、金标与版本回归",
     description: "建立分层评估集、人工金标、多维评分、机器 Check、人工评审路由和可复现的 AI 回归体系。",
     track: "ai-testing",
     level: "专项",
     status: "published",
-    order: 23,
+    order: 23.02,
     href: "/knowledge/ai-application-testing-system",
-    phase: "测试 AI 系统",
+    aiPhase: "foundation",
     phaseStep: 2,
   },
   {
@@ -468,36 +485,10 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "专项",
     status: "published",
-    order: 23.2,
+    order: 23.03,
     href: "/knowledge/rag-knowledge-base-testing",
-    phase: "测试 AI 系统",
-    phaseStep: 4,
-  },
-  {
-    slug: "ai-agent-testing",
-    title: "AI Agent 与 MCP 工具测试实战教程",
-    subtitle: "任务轨迹、工具协议与副作用",
-    description: "验证多轮规划、MCP 能力发现、工具选择与参数、鉴权权限、重试幂等、人工审批和安全回退。",
-    track: "ai-testing",
-    level: "专项",
-    status: "published",
-    order: 23.3,
-    href: "/knowledge/ai-agent-testing",
-    phase: "测试 AI 系统",
-    phaseStep: 5,
-  },
-  {
-    slug: "llm-security-red-teaming",
-    title: "大模型安全与红队测试教程",
-    subtitle: "提示词攻击与安全边界",
-    description: "覆盖提示词注入、越狱、敏感信息泄露、工具滥用、内容安全和权限绕过。",
-    track: "ai-testing",
-    level: "专项",
-    status: "published",
-    order: 23.4,
-    href: "/knowledge/llm-security-red-teaming",
-    phase: "测试 AI 系统",
-    phaseStep: 6,
+    aiPhase: "application",
+    phaseStep: 1,
   },
   {
     slug: "multimodal-ocr-testing",
@@ -507,10 +498,49 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "专项",
     status: "published",
-    order: 23.1,
-    phase: "测试 AI 系统",
+    order: 23.04,
+    aiPhase: "application",
     href: "/knowledge/multimodal-ocr-testing",
-    phaseStep: 3,
+    phaseStep: 2,
+  },
+  {
+    slug: "ai-agent-testing",
+    title: "AI Agent 测试实战教程",
+    subtitle: "任务轨迹、状态与副作用",
+    description: "验证多轮规划、工具选择与参数、状态变化、重试幂等、人工审批、终止条件和安全回退。",
+    track: "ai-testing",
+    level: "专项",
+    status: "published",
+    order: 23.05,
+    href: "/knowledge/ai-agent-testing",
+    aiPhase: "agent",
+    phaseStep: 1,
+  },
+  {
+    slug: "mcp-testing-integration",
+    title: "MCP 工具接入与安全测试教程",
+    subtitle: "协议契约、权限与工具安全",
+    description: "验证 MCP 能力协商、工具 Schema、鉴权授权、会话传输、内容污染、审计和协议回归。",
+    track: "ai-testing",
+    level: "专项",
+    status: "published",
+    order: 23.06,
+    href: "/knowledge/mcp-testing-integration",
+    aiPhase: "agent",
+    phaseStep: 2,
+  },
+  {
+    slug: "llm-security-red-teaming",
+    title: "大模型安全与红队测试教程",
+    subtitle: "提示词攻击与安全边界",
+    description: "覆盖提示词注入、越狱、敏感信息泄露、工具滥用、内容安全和权限绕过。",
+    track: "ai-testing",
+    level: "专项",
+    status: "published",
+    order: 23.07,
+    href: "/knowledge/llm-security-red-teaming",
+    aiPhase: "reliability",
+    phaseStep: 1,
   },
   {
     slug: "ai-performance-cost-observability",
@@ -520,10 +550,49 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "进阶",
     status: "published",
-    order: 23.5,
+    order: 23.08,
     href: "/knowledge/ai-performance-cost-observability",
-    phase: "测试 AI 系统",
-    phaseStep: 7,
+    aiPhase: "reliability",
+    phaseStep: 2,
+  },
+  {
+    slug: "prompt-context-engineering-for-testing",
+    title: "AI 时代测试提示词与上下文工程教程",
+    subtitle: "从需求证据到稳定输入",
+    description: "把需求、规则、代码、缺陷和示例组织成有边界、可追溯、可回归的 Prompt 与上下文。",
+    track: "ai-testing",
+    level: "进阶",
+    status: "published",
+    order: 23.09,
+    href: "/knowledge/prompt-context-engineering-for-testing",
+    aiPhase: "native-qa",
+    phaseStep: 1,
+  },
+  {
+    slug: "testing-skills-design",
+    title: "测试 Skill 设计与资产封装教程",
+    subtitle: "把经验封装成可复用能力",
+    description: "把规范、风险规则、缺陷模式、脚本和领域经验封装成可组合 Skill，并用历史样本验证边界与稳定性。",
+    track: "ai-testing",
+    level: "进阶",
+    status: "published",
+    order: 23.1,
+    aiPhase: "native-qa",
+    href: "/knowledge/testing-skills-design",
+    phaseStep: 2,
+  },
+  {
+    slug: "ai-testing-workflow-orchestration",
+    title: "AI 测试工作流编排与人机协作教程",
+    subtitle: "从单次能力到持续工作流",
+    description: "把需求分析、候选生成、机器校验、人工裁决、执行、回归和报告编排成可恢复、可审计的测试工作流。",
+    track: "ai-testing",
+    level: "专项",
+    status: "published",
+    order: 23.11,
+    aiPhase: "native-qa",
+    href: "/knowledge/ai-testing-workflow-orchestration",
+    phaseStep: 3,
   },
 ];
 
@@ -536,13 +605,16 @@ export const aiTestingCaseStudies = [
   },
 ] as const;
 
-export const aiAssistedTestingTutorials = tutorials
-  .filter((tutorial) => tutorial.phase === "用 AI 做测试")
-  .sort((a, b) => (a.phaseStep ?? 0) - (b.phaseStep ?? 0));
+export const aiTestingRoadmap = aiTestingPhaseDefinitions.map((phase) => ({
+  ...phase,
+  tutorials: tutorials
+    .filter((tutorial) => tutorial.aiPhase === phase.id)
+    .sort((a, b) => (a.phaseStep ?? 0) - (b.phaseStep ?? 0)),
+}));
 
-export const aiSystemQualityTutorials = tutorials
-  .filter((tutorial) => tutorial.phase === "测试 AI 系统")
-  .sort((a, b) => (a.phaseStep ?? 0) - (b.phaseStep ?? 0));
+export function getAiTestingPhase(id: AiTestingPhaseId | undefined) {
+  return aiTestingPhaseDefinitions.find((phase) => phase.id === id);
+}
 
 export function getTutorialTrack(slug: string) {
   return tutorialTracks.find((track) => track.slug === slug);
