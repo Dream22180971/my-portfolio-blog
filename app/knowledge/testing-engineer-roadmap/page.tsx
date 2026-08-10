@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, CheckCircle2, CircleDashed } from "lucide-react";
 import { KnowledgeLayout, type SectionItem } from "@/components/KnowledgeLayout";
-import { getTutorialsByTrack } from "@/content/knowledge/tutorials";
+import { aiTestingRoadmap, getTutorialsByTrack } from "@/content/knowledge/tutorials";
 import { buildPageMetadata } from "@/lib/site";
 
 export const metadata = buildPageMetadata({
@@ -144,15 +144,6 @@ const testDevelopmentPlan: Resource[] = getTutorialsByTrack("test-development").
   note: tutorial.status === "published" ? "开始学习" : "即将推出",
 }));
 
-const aiTestingPlan: Resource[] = getTutorialsByTrack("ai-testing").map((tutorial) => ({
-  title: tutorial.title,
-  href: tutorial.href,
-  note: tutorial.status === "published" ? "开始学习" : "即将推出",
-}));
-
-const aiAssistedPlan = aiTestingPlan.filter((resource) => getTutorialsByTrack("ai-testing").find((tutorial) => tutorial.title === resource.title)?.phase === "用 AI 做测试");
-const aiSystemQualityPlan = aiTestingPlan.filter((resource) => getTutorialsByTrack("ai-testing").find((tutorial) => tutorial.title === resource.title)?.phase === "测试 AI 系统");
-
 export default function TestingEngineerRoadmapPage() {
   return (
     <div className="mx-auto max-w-5xl animate-fade-in">
@@ -193,16 +184,25 @@ export default function TestingEngineerRoadmapPage() {
         <section id="ai-testing" data-knowledge-section className="mb-14">
           <SectionHeader number="AI" title="AI 测试工程师强化支线" subtitle="面向大模型与智能应用的可选进阶路线" />
           <Card title="什么时候进入这条支线">
-            <p>这条支线分成两个阶段：先把需求材料、测试规则和人工经验变成 AI 可以可靠使用的测试资产；再学习评估大模型、OCR、RAG、Agent 与线上 AI 应用质量。</p>
+            <p>当你已经掌握测试基础、接口、数据与自动化后，可以沿五个阶段继续学习：先建立 AI 评估体系，再深入应用链路、智能体、生产可靠性与 AI 原生测试工程。</p>
             <Link href="/knowledge/tutorials?track=ai-testing" className="mt-4 inline-flex items-center gap-2 text-neon-cyan transition-colors hover:text-text-primary">
               查看 AI 测试支线内容
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </Card>
-          <h3 className="mb-3 mt-6 text-base font-bold text-text-primary">第一段：用 AI 做测试</h3>
-          <ResourceList resources={aiAssistedPlan} />
-          <h3 className="mb-3 mt-8 text-base font-bold text-text-primary">第二段：测试 AI 系统</h3>
-          <ResourceList resources={aiSystemQualityPlan} />
+          <div className="mt-6 space-y-6">
+            {aiTestingRoadmap.map((phase) => (
+              <div key={phase.id}>
+                <div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="font-mono text-xs text-neon-cyan">Phase {phase.number}</span>
+                  <h3 className="text-base font-bold text-text-primary">{phase.title}</h3>
+                  <span className="text-xs text-text-secondary">{phase.eyebrow}</span>
+                </div>
+                <p className="mb-3 text-sm leading-7 text-text-secondary">{phase.description}</p>
+                <ResourceList resources={phase.tutorials.map((tutorial) => ({ title: tutorial.title, href: tutorial.href, note: `第 ${tutorial.phaseStep} 步` }))} />
+              </div>
+            ))}
+          </div>
         </section>
 
         <section id="practice" data-knowledge-section className="mb-14">

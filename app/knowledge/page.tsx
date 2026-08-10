@@ -150,7 +150,7 @@ export default function KnowledgePage() {
         <div className="knowledge-branch-card__intro">
           <span className="project-type">Optional Track / AI Quality</span>
           <h2 id="ai-testing-heading">AI 测试工程师强化支线</h2>
-          <p>先学习如何用 AI 分析需求、生产和校验测试资产，再学习如何评估大模型、OCR、RAG、Agent 与线上 AI 应用，逐步成长为 AI 测试工程师。</p>
+          <p>从 AI 质量基础开始，依次学习 RAG 与文档智能、Agent 与 MCP、可靠性与安全，再把测试经验封装成 Prompt、Skill 和人机协作工作流。</p>
         </div>
         <ul className="knowledge-branch-card__tasks" aria-label="AI 测试工程师强化支线内容">
           {aiTestingTutorials.slice(0, 5).map((tutorial) => (
@@ -159,7 +159,7 @@ export default function KnowledgePage() {
               <small>{tutorial.status === "published" ? "可学习" : "待办"}</small>
             </li>
           ))}
-          {aiTestingTutorials.length > 5 && <li><span>更多测试提效与工程化内容</span><small>+{aiTestingTutorials.length - 5}</small></li>}
+          {aiTestingTutorials.length > 5 && <li><span>继续学习智能体、可靠性与 AI 原生测试工程</span><small>+{aiTestingTutorials.length - 5}</small></li>}
         </ul>
         <div className="knowledge-branch-card__action">
           <span>{aiTestingTutorials.filter((tutorial) => tutorial.status === "published").length} 篇可学习 · {aiTestingTutorials.filter((tutorial) => tutorial.status === "planned").length} 项待办</span>

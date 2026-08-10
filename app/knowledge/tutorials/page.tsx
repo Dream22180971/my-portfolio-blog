@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Search, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Search } from "lucide-react";
 import { buildPageMetadata } from "@/lib/site";
 import {
-  aiAssistedTestingTutorials,
-  aiSystemQualityTutorials,
+  aiTestingRoadmap,
+  getAiTestingPhase,
   getTutorialTrack,
   tutorialTracks,
   tutorials,
@@ -98,32 +98,20 @@ export default async function TutorialsPage({ searchParams }: TutorialsPageProps
             <div className="pointer-events-none absolute -left-20 top-40 h-64 w-64 rounded-full bg-[var(--signal-soft)] blur-3xl" />
             <div className="relative mb-9 grid gap-6 border-b border-[var(--rule)] pb-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
               <div className="max-w-3xl">
-                <span className="project-type">AI Quality / 10-Step Roadmap</span>
-                <h3 id="ai-path-heading" className="mt-3 text-2xl font-bold leading-tight text-[var(--ink)] md:text-3xl">从用 AI 做测试，到测试 AI 系统</h3>
-                <p className="mt-3 text-sm leading-7 text-[var(--muted)]">先学习如何用 AI 生成、审核和沉淀测试资产，再学习如何验证大模型、OCR、RAG、Agent、安全与线上质量。你可以从第一步开始，逐步建立完整的 AI 测试能力。</p>
+                <span className="project-type">AI Quality / 5-Phase Roadmap</span>
+                <h3 id="ai-path-heading" className="mt-3 text-2xl font-bold leading-tight text-[var(--ink)] md:text-3xl">AI 测试工程师五阶段成长路线</h3>
+                <p className="mt-3 text-sm leading-7 text-[var(--muted)]">从评估基础开始，依次掌握应用链路、智能体、生产可靠性和 AI 原生测试工程。每一阶段都有明确的学习结果，你可以按顺序完成，也可以从当前工作最需要的阶段开始。</p>
               </div>
               <dl className="grid grid-cols-2 gap-2 text-center">
-                <div className="min-w-20 rounded-xl border border-[var(--rule)] bg-[var(--canvas)] px-3 py-3"><dt className="text-[10px] text-[var(--muted)]">教程</dt><dd className="mt-1 font-mono text-lg text-[var(--signal)]">10</dd></div>
-                <div className="min-w-20 rounded-xl border border-[var(--rule)] bg-[var(--canvas)] px-3 py-3"><dt className="text-[10px] text-[var(--muted)]">阶段</dt><dd className="mt-1 font-mono text-lg text-[var(--signal)]">02</dd></div>
+                <div className="min-w-20 rounded-xl border border-[var(--rule)] bg-[var(--canvas)] px-3 py-3"><dt className="text-[10px] text-[var(--muted)]">教程</dt><dd className="mt-1 font-mono text-lg text-[var(--signal)]">11</dd></div>
+                <div className="min-w-20 rounded-xl border border-[var(--rule)] bg-[var(--canvas)] px-3 py-3"><dt className="text-[10px] text-[var(--muted)]">阶段</dt><dd className="mt-1 font-mono text-lg text-[var(--signal)]">05</dd></div>
               </dl>
             </div>
 
-            <div className="relative space-y-10">
-              <AiPhase
-                eyebrow="Part A / Assisted Testing"
-                title="第一段：用 AI 做测试"
-                description="先复用现有自动化资产，再建立有证据、有人审、可回归的生产流程，最后封装成团队可复用能力。"
-                tutorials={aiAssistedTestingTutorials}
-              />
-
-              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-[var(--muted)]"><span className="h-px flex-1 bg-[var(--rule)]" /><Sparkles className="h-4 w-4 text-[var(--signal)]" /><span>完成第一段后，开始测试 AI 系统本身</span><span className="h-px flex-1 bg-[var(--rule)]" /></div>
-
-              <AiPhase
-                eyebrow="Part B / AI System Quality"
-                title="第二段：测试 AI 系统"
-                description="先建立概率性系统的测试思维，再依次掌握评估、文档智能、RAG、Agent 工具链、安全与线上运行质量。"
-                tutorials={aiSystemQualityTutorials}
-              />
+            <div className="relative space-y-7">
+              {aiTestingRoadmap.map((phase) => (
+                <AiPhase key={phase.id} phase={phase} />
+              ))}
             </div>
           </section>
         )}
@@ -165,21 +153,22 @@ export default async function TutorialsPage({ searchParams }: TutorialsPageProps
   );
 }
 
-function AiPhase({ eyebrow, title, description, tutorials: phaseTutorials }: { eyebrow: string; title: string; description: string; tutorials: readonly Tutorial[] }) {
+function AiPhase({ phase }: { phase: (typeof aiTestingRoadmap)[number] }) {
   return (
-    <div className="grid gap-5 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
+    <article className="grid gap-5 rounded-2xl border border-[var(--rule)] bg-[var(--canvas)]/70 p-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-8 lg:p-6">
       <div>
-        <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--signal)]">{eyebrow}</span>
-        <h4 className="mt-2 text-lg font-bold text-[var(--ink)]">{title}</h4>
-        <p className="mt-2 text-xs leading-6 text-[var(--muted)]">{description}</p>
+        <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--signal)]">Phase {phase.number} / {phase.eyebrow}</span>
+        <h4 className="mt-2 text-lg font-bold text-[var(--ink)]">{phase.title}</h4>
+        <p className="mt-2 text-xs leading-6 text-[var(--muted)]">{phase.description}</p>
+        <div className="mt-4 rounded-xl bg-[var(--signal-soft)] px-3 py-3 text-xs leading-6 text-[var(--muted)]"><strong className="mr-1 text-[var(--signal)]">完成后</strong>{phase.outcome}</div>
       </div>
       <ol className="relative space-y-3 before:absolute before:bottom-5 before:left-[21px] before:top-5 before:w-px before:bg-[var(--rule)]">
-        {phaseTutorials.map((tutorial, index) => {
+        {phase.tutorials.map((tutorial, index) => {
           const item = <><span className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--signal)] bg-[var(--canvas)] font-mono text-xs text-[var(--signal)]">{String(tutorial.phaseStep ?? index + 1).padStart(2, "0")}</span><span className="min-w-0 flex-1"><span className="flex flex-wrap items-center gap-2"><strong className="text-sm text-[var(--ink)]">{tutorial.title}</strong><span className="rounded-full bg-[var(--signal-soft)] px-2 py-0.5 text-[9px] text-[var(--signal)]">{tutorial.level}</span></span><span className="mt-1 block text-xs leading-6 text-[var(--muted)]">{tutorial.description}</span></span><ArrowRight className="hidden h-4 w-4 shrink-0 text-[var(--muted)] transition-colors group-hover:text-[var(--signal)] sm:block" /></>;
           return tutorial.href ? <li key={tutorial.slug}><Link href={tutorial.href} className="group flex items-center gap-4 rounded-2xl border border-[var(--rule)] bg-[var(--canvas)] p-4 transition-all hover:-translate-y-0.5 hover:border-[var(--signal)] hover:bg-[var(--surface-strong)]">{item}</Link></li> : <li key={tutorial.slug} className="flex items-center gap-4 rounded-2xl border border-[var(--rule)] bg-[var(--canvas)] p-4">{item}</li>;
         })}
       </ol>
-    </div>
+    </article>
   );
 }
 
@@ -191,7 +180,7 @@ function TutorialCatalogItem({ tutorial, number }: { tutorial: Tutorial; number:
       <div>
         <div className="tutorial-catalog__item-meta">
           <span>{track?.title}</span>
-          {tutorial.phase && <span>{tutorial.phase}</span>}
+          {tutorial.aiPhase && <span>{getAiTestingPhase(tutorial.aiPhase)?.title}</span>}
           <span>{tutorial.level}</span>
           <span>{tutorial.status === "published" ? "可学习" : "即将推出"}</span>
         </div>
