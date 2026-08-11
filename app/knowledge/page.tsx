@@ -134,10 +134,10 @@ export default function KnowledgePage() {
       <section className="knowledge-branch-card" aria-labelledby="ai-testing-heading">
         <div className="knowledge-branch-card__intro">
           <span className="project-type">Specialization / AI Quality</span>
-          <h2 id="ai-testing-heading">AI 质量专项</h2>
+          <h2 id="ai-testing-heading">AI 测试工程师强化支线</h2>
           <p>从 AI 质量基础开始，依次学习 RAG 与文档智能、Agent 与 MCP、可靠性与安全，再把测试经验封装成 Prompt、Skill 和人机协作工作流。</p>
         </div>
-        <ul className="knowledge-branch-card__tasks" aria-label="AI 质量专项内容">
+        <ul className="knowledge-branch-card__tasks" aria-label="AI 测试工程师强化支线内容">
           {aiTestingTutorials.slice(0, 5).map((tutorial) => (
             <li key={tutorial.slug}>
               <span>{tutorial.title}</span>
@@ -149,7 +149,7 @@ export default function KnowledgePage() {
         <div className="knowledge-branch-card__action">
           <span>{aiTestingTutorials.filter((tutorial) => tutorial.status === "published").length} 篇可学习 · {aiTestingTutorials.filter((tutorial) => tutorial.status === "planned").length} 项待办</span>
           <Link href="/knowledge/tutorials?track=ai-testing" className="text-link">
-            查看 AI 质量专项
+            查看 AI 测试工程师强化支线
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
@@ -226,7 +226,7 @@ export default function KnowledgePage() {
         action="查看速查"
       />
 
-      <p className="page-copy knowledge-page-note">你可以先完成测试工程师成长主线，再根据职业目标选择测试开发工程化、数据质量或 AI 质量专项路线。</p>
+      <p className="page-copy knowledge-page-note">你可以先完成测试工程师成长主线，再根据职业目标选择测试开发工程化、数据质量或 AI 测试工程师强化支线。</p>
     </div>
   );
 }

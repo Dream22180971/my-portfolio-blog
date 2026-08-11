@@ -20,7 +20,7 @@ const sections: SectionItem[] = [
   { id: "stage-5", label: "05 质量体系" },
   { id: "test-development", label: "SDET 工程化" },
   { id: "data-quality", label: "数据质量专项" },
-  { id: "ai-testing", label: "AI 测试专项" },
+  { id: "ai-testing", label: "AI测试支线" },
   { id: "practice", label: "实践方法" },
 ];
 
@@ -212,7 +212,7 @@ export default function TestingEngineerRoadmapPage() {  return (
         </section>
 
         <section id="ai-testing" data-knowledge-section className="mb-14">
-          <SectionHeader number="AI" title="AI 质量专项" subtitle="面向大模型与智能应用的质量保障路线" />
+          <SectionHeader number="AI" title="AI 测试工程师强化支线" subtitle="面向大模型与智能应用的可选进阶路线" />
           <Card title="什么时候进入这条支线">
             <p>当你已经掌握测试基础、接口、数据与自动化后，可以沿五个阶段继续学习：先建立 AI 评估体系，再深入应用链路、智能体、生产可靠性与 AI 原生测试工程。</p>
             <Link href="/knowledge/tutorials?track=ai-testing" className="mt-4 inline-flex items-center gap-2 text-neon-cyan transition-colors hover:text-text-primary">
