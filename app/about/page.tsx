@@ -1,12 +1,41 @@
 import type { Metadata } from "next";
 import { ContactBar } from "@/components/ContactBar";
-import { buildPageMetadata } from "@/lib/site";
+import {
+  PERSON_ID,
+  SITE_AUTHOR,
+  SITE_AUTHOR_URL,
+  SITE_DESCRIPTION,
+  SITE_KEYWORDS,
+  serializeJsonLd,
+  buildPageMetadata,
+} from "@/lib/site";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "关于我",
   description: "AI Agent 开发者，从测试工程师转型。专注 RAG 知识库、AI Agent 产品化与自动化工作流。",
   path: "/about",
+  tags: ["肖恩沃尔特", "软件测试工程师", "AI 独立开发者", "RAG", "AI Agent"],
 });
+
+const profileJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${SITE_AUTHOR_URL}#profile`,
+  url: SITE_AUTHOR_URL,
+  name: `关于 ${SITE_AUTHOR}`,
+  description: SITE_DESCRIPTION,
+  inLanguage: "zh-CN",
+  mainEntity: {
+    "@type": "Person",
+    "@id": PERSON_ID,
+    name: SITE_AUTHOR,
+    alternateName: ["seanwalter", "Sean Walter", "肖恩"],
+    url: SITE_AUTHOR_URL,
+    description: "从软件测试工程走向 AI 产品化的独立开发者。",
+    sameAs: ["https://github.com/Dream22180971"],
+    knowsAbout: [...SITE_KEYWORDS, "LangChain", "LLM"],
+  },
+};
 
 const timeline = [
   {
@@ -44,6 +73,10 @@ const coreAbilities = [
 export default function AboutPage() {
   return (
     <div className="editorial-page editorial-page--wide">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(profileJsonLd) }}
+      />
       <header className="about-hero">
         <div>
           <p className="page-kicker">About / Sean Walter</p>

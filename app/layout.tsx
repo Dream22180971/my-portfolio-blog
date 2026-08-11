@@ -11,7 +11,8 @@ import {
   SITE_TITLE,
   SITE_URL,
   buildPageMetadata,
-  personJsonLd,
+  serializeJsonLd,
+  siteJsonLd,
 } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -99,7 +100,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(personJsonLd),
+            __html: serializeJsonLd(siteJsonLd),
           }}
         />
       </head>

@@ -126,6 +126,17 @@ export const tutorials: readonly Tutorial[] = [
     href: "/knowledge/software-testing-foundations",
   },
   {
+    slug: "software-testing-glossary",
+    title: "软件测试术语表",
+    subtitle: "流程术语与易混概念",
+    description: "按测试流程集中解释中英文术语、使用场景和易混概念，需要时快速检索。",
+    track: "foundations",
+    level: "入门",
+    status: "published",
+    order: 1.5,
+    href: "/knowledge/software-testing-glossary",
+  },
+  {
     slug: "test-case-design",
     title: "测试用例设计实战教程",
     subtitle: "需求到用例",

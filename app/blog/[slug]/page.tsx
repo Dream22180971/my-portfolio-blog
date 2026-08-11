@@ -12,7 +12,16 @@ import { MermaidRenderer } from "@/components/MermaidRenderer";
 import { TableOfContents } from "./TableOfContents";
 import { getPostBySlug, getAllPosts } from "@/lib/blog-data";
 import { markdownToHtml } from "@/lib/markdown";
-import { SITE_AUTHOR, SITE_NAME, SITE_URL, buildPageMetadata, getCanonicalUrl } from "@/lib/site";
+import {
+  PERSON_ID,
+  SITE_AUTHOR,
+  SITE_AUTHOR_URL,
+  SITE_URL,
+  WEBSITE_ID,
+  buildPageMetadata,
+  getCanonicalUrl,
+  serializeJsonLd,
+} from "@/lib/site";
 import { cn } from "@/lib/cn";
 
 function countWords(md: string): string {
@@ -47,6 +56,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     publishedTime: post.date,
     modifiedTime: post.lastModified ?? post.date,
     tags: post.tags,
+    imagePath: `/blog/${slug}/opengraph-image`,
   });
 }
 
@@ -64,21 +74,31 @@ export default async function BlogArticlePage({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${getCanonicalUrl(`/blog/${slug}`)}#article`,
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
     dateModified: post.lastModified ?? post.date,
-    image: `${SITE_URL}/blog/${slug}/opengraph-image`,
+    inLanguage: "zh-CN",
+    image: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/blog/${slug}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     author: {
       "@type": "Person",
+      "@id": PERSON_ID,
       name: SITE_AUTHOR,
-      url: SITE_URL,
+      url: SITE_AUTHOR_URL,
     },
     publisher: {
       "@type": "Person",
-      name: SITE_NAME,
-      url: SITE_URL,
+      "@id": PERSON_ID,
+      name: SITE_AUTHOR,
+      url: SITE_AUTHOR_URL,
     },
+    isPartOf: { "@id": WEBSITE_ID },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": getCanonicalUrl(`/blog/${slug}`),
@@ -91,7 +111,7 @@ export default async function BlogArticlePage({
       <ReadingProgress />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <Link
         href="/blog"
