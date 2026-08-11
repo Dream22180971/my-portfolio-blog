@@ -1,12 +1,19 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import { buildPageMetadata } from "@/lib/site";
+import {
+  SITE_NAME,
+  WEBSITE_ID,
+  buildPageMetadata,
+  getCanonicalUrl,
+  serializeJsonLd,
+} from "@/lib/site";
 import { getTutorialsByTrack, tutorialTracks } from "@/content/knowledge/tutorials";
 
 export const metadata = buildPageMetadata({
   title: "知识库",
   description: "面向测试工程师的成长路线、系统教程、实战手册与工具速查知识库",
   path: "/knowledge",
+  tags: ["软件测试教程", "自动化测试", "测试开发", "AI 测试", "质量工程"],
 });
 
 const testingManuals = [
@@ -89,9 +96,57 @@ const mainTutorialTracks = tutorialTracks.filter((track) => track.slug !== "test
 const testDevelopmentTutorials = getTutorialsByTrack("test-development");
 const aiTestingTutorials = getTutorialsByTrack("ai-testing");
 
+const featuredKnowledgeItems = [
+  {
+    name: "测试工程师成长路线",
+    path: "/knowledge/testing-engineer-roadmap",
+  },
+  {
+    name: "软件测试与 AI 测试系统教程",
+    path: "/knowledge/tutorials",
+  },
+  ...testingManuals.map((item) => ({
+    name: item.title,
+    path: `/knowledge/${item.slug}`,
+  })),
+  ...toolReferences.map((item) => ({
+    name: item.title,
+    path: `/knowledge/${item.slug}`,
+  })),
+];
+
+const knowledgeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${getCanonicalUrl("/knowledge")}#collection`,
+  url: getCanonicalUrl("/knowledge"),
+  name: `测试工程与 AI 质量知识库 | ${SITE_NAME}`,
+  description: "面向测试工程师和学习者的成长路线、系统教程、实战手册与工具速查。",
+  inLanguage: "zh-CN",
+  isPartOf: { "@id": WEBSITE_ID },
+  about: ["软件测试", "自动化测试", "测试开发", "AI 测试", "RAG 测试", "Agent 测试"].map((name) => ({
+    "@type": "Thing",
+    name,
+  })),
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: featuredKnowledgeItems.length,
+    itemListElement: featuredKnowledgeItems.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: getCanonicalUrl(item.path),
+    })),
+  },
+};
+
 export default function KnowledgePage() {
   return (
     <div className="editorial-page editorial-page--wide">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(knowledgeJsonLd) }}
+      />
       <header className="page-heading-wrap">
         <p className="page-kicker">Knowledge Base</p>
         <div>

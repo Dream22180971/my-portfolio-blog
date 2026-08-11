@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogPosts = posts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: new Date(post.lastModified ?? post.date),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
@@ -34,45 +34,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const knowledgePages = [...new Set([...referencePages, ...tutorialPages])].map((path) => ({
     url: `${SITE_URL}${path}`,
-    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
 
+  const latestPostModified = posts.reduce<string | undefined>((latest, post) => {
+    const current = post.lastModified ?? post.date;
+    return !latest || new Date(current) > new Date(latest) ? current : latest;
+  }, undefined);
+
   return [
     {
       url: SITE_URL,
-      lastModified: new Date(),
+      ...(latestPostModified ? { lastModified: new Date(latestPostModified) } : {}),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${SITE_URL}/about`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/blog`,
-      lastModified: new Date(),
+      ...(latestPostModified ? { lastModified: new Date(latestPostModified) } : {}),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${SITE_URL}/projects`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/experiments`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${SITE_URL}/knowledge`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
     },

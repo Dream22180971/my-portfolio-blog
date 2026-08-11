@@ -66,10 +66,29 @@ async function fetchText(pathname) {
   return text;
 }
 
+async function fetchOk(pathname) {
+  const response = await fetch(`${BASE_URL}${pathname}`);
+  if (!response.ok) {
+    throw new Error(`Request failed for ${pathname}: ${response.status}`);
+  }
+  return response;
+}
+
+function extractSitemapEntry(sitemap, url) {
+  return extractFirstMatch(
+    sitemap,
+    new RegExp(`<url>\\s*<loc>${url.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}<\\/loc>([\\s\\S]*?)<\\/url>`),
+    `sitemap entry for ${url}`
+  );
+}
+
 async function runChecks() {
   const home = await fetchText("/");
-  assertIncludes(home, "<title>seanwalter | AI 独立开发者</title>", "home title");
+  assertIncludes(home, "<title>seanwalter | 软件测试、AI 测试与独立开发</title>", "home title");
   assertIncludes(home, 'rel="canonical" href="https://seanwalter.top"', "home canonical");
+  assertIncludes(home, 'content="https://seanwalter.top/opengraph-image"', "home OG image");
+  assertIncludes(home, '"@type":"WebSite"', "website JSON-LD");
+  assertIncludes(home, '"@type":"Person"', "person JSON-LD");
 
   const blog = await fetchText("/blog");
   assertIncludes(blog, "<title>博客 | seanwalter</title>", "blog title");
@@ -85,18 +104,22 @@ async function runChecks() {
     "article canonical"
   );
   assertIncludes(article, '"@type":"Article"', "article JSON-LD");
+  assertIncludes(article, '"url":"https://seanwalter.top/about"', "article author URL");
 
   const projects = await fetchText("/projects");
   assertIncludes(projects, "<title>项目 | seanwalter</title>", "projects title");
 
   const about = await fetchText("/about");
   assertIncludes(about, "<title>关于我 | seanwalter</title>", "about title");
+  assertIncludes(about, '"@type":"ProfilePage"', "profile page JSON-LD");
 
   const experiments = await fetchText("/experiments");
   assertIncludes(experiments, "<title>实验 | seanwalter</title>", "experiments title");
 
   const knowledge = await fetchText("/knowledge");
   assertIncludes(knowledge, "<title>知识库 | seanwalter</title>", "knowledge title");
+  assertIncludes(knowledge, 'content="https://seanwalter.top/opengraph-image"', "knowledge OG image");
+  assertIncludes(knowledge, '"@type":"CollectionPage"', "knowledge collection JSON-LD");
   assertIncludes(
     knowledge,
     'href="/knowledge/testing-engineer-roadmap"',
@@ -187,9 +210,29 @@ async function runChecks() {
     "https://seanwalter.top/knowledge/prompt-context-engineering-for-testing",
     "sitemap prompt and context engineering url"
   );
+  const knowledgeSitemapEntry = extractSitemapEntry(sitemap, "https://seanwalter.top/knowledge");
+  if (knowledgeSitemapEntry.includes("<lastmod>")) {
+    throw new Error("Knowledge sitemap entry must not claim an unverified lastModified date.");
+  }
 
   const robots = await fetchText("/robots.txt");
   assertIncludes(robots, "Sitemap: https://seanwalter.top/sitemap.xml", "robots sitemap");
+  assertIncludes(robots, "Sitemap: https://seanwalter.top/image-sitemap.xml", "robots image sitemap");
+  for (const crawler of ["OAI-SearchBot", "Claude-SearchBot", "PerplexityBot"]) {
+    assertIncludes(robots, `User-Agent: ${crawler}`, `${crawler} access`);
+  }
+
+  const llms = await fetchText("/llms.txt");
+  assertIncludes(llms, "# seanwalter", "llms site name");
+  assertIncludes(llms, "## Published tutorials", "llms tutorial index");
+  assertIncludes(
+    llms,
+    "https://seanwalter.top/knowledge/software-testing-foundations",
+    "llms testing foundations url"
+  );
+
+  const ogImage = await fetchOk("/opengraph-image");
+  assertIncludes(ogImage.headers.get("content-type") ?? "", "image/png", "OG image content type");
 
   const manifest = await fetchText("/manifest.webmanifest");
   assertIncludes(manifest, '"name":"seanwalter"', "manifest name");
