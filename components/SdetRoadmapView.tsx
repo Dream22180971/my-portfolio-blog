@@ -26,7 +26,7 @@ export function SdetRoadmapView() {
       </div>
 
       {/* 步骤条 */}
-      <div className="relative mb-6 grid grid-cols-5 gap-2" role="tablist" aria-label="选择阶段">
+      <div className="relative mb-6 grid grid-cols-5 gap-1.5 md:gap-2" role="tablist" aria-label="选择阶段">
         {sdetTestingRoadmap.map((item, index) => (
           <button
             key={item.id}
@@ -35,13 +35,13 @@ export function SdetRoadmapView() {
             aria-selected={index === activeIndex}
             aria-controls="sdet-active-phase"
             onClick={() => setActiveIndex(index)}
-            className={`flex flex-col items-center gap-1 rounded-xl border px-2 py-3 transition-colors ${
+            className={`flex flex-col items-center gap-0.5 rounded-xl border px-1 py-2.5 transition-colors md:gap-1 md:px-2 md:py-3 ${
               index === activeIndex
                 ? "border-[var(--signal)] bg-[var(--signal-soft)] text-[var(--signal)]"
                 : "border-[var(--rule)] bg-[var(--canvas)] text-[var(--muted)] hover:border-[var(--signal)]"
             }`}
           >
-            <span className="font-mono text-sm font-bold">{item.number}</span>
+            <span className="font-mono text-xs font-bold md:text-sm">{item.number}</span>
             <span className={`hidden text-[10px] leading-tight md:block ${index === activeIndex ? "text-[var(--signal)]" : "text-[var(--muted)]"}`}>{item.title}</span>
           </button>
         ))}
