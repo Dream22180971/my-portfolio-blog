@@ -89,7 +89,7 @@ MEMORY USAGE test:order:aggregate:1001
       <Section id="practice" number="09" title="完成一次缓存测试小项目" badge="练习与检查清单">
         <Card title="练习"><List ordered items={["为商品、库存和订单画出 Key、TTL、读写模式与事实来源。","执行命中、未命中、过期、更新和删除的基线用例。","分别设计一条穿透、击穿、雪崩、热 Key 和大 Key 用例。","模拟订单取消与缓存回填竞态，保留完整时间线。","注入 Redis 延迟，输出业务影响、告警、降级与恢复报告。"]} /></Card>
         <div className="grid gap-4 md:grid-cols-3"><Check title="设计前" items={["Key 与 TTL 明确","一致性 SLA 明确","测试数据隔离","故障边界批准"]} /><Check title="执行中" items={["业务与技术指标齐全","并发与竞态已覆盖","不使用危险清库命令","证据带订单与 traceId"]} /><Check title="完成后" items={["缓存与数据库一致","资源恢复基线","测试 Key 已清理","高风险场景进入回归"]} /></div>
-        <Next href="/knowledge/resilience-disaster-recovery-testing" text="下一篇：稳定性、容灾与故障演练教程" />
+        
       </Section>
     </KnowledgeLayout>
   </div>;
@@ -104,4 +104,3 @@ function Callout({ children }: { children: React.ReactNode }) { return <div clas
 function Flow({ title, items }: { title: string; items: readonly (readonly [string,string])[] }) { return <figure className="card-glow mb-4 rounded-xl p-5"><figcaption className="mb-5 text-sm font-bold text-text-primary">{title}</figcaption><div className="grid gap-2 md:grid-cols-7 md:items-center">{items.map((x,i) => <div className="contents" key={x[0]}><div className="rounded-lg border border-space-border bg-space-card/50 p-4 text-center"><strong className="block text-sm text-text-primary">{x[0]}</strong><span className="mt-2 block text-xs text-text-secondary">{x[1]}</span></div>{i < items.length-1 && <ArrowRight className="mx-auto hidden h-4 w-4 text-neon-cyan md:block" />}</div>)}</div></figure>; }
 function Timeline({ title, items }: { title: string; items: readonly (readonly [string,string])[] }) { return <Card title={title}><div className="grid gap-3 md:grid-cols-4">{items.map(x => <div key={x[0]} className="rounded-lg border border-space-border bg-space-card/50 p-4"><span className="font-mono text-[10px] text-neon-cyan">{x[0]}</span><p className="mt-2 text-xs text-text-primary">{x[1]}</p></div>)}</div></Card>; }
 function Check({ title, items }: { title: string; items: readonly string[] }) { return <Card title={title}><ul className="space-y-3">{items.map(x => <li key={x} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-neon-cyan" />{x}</li>)}</ul></Card>; }
-function Next({ href, text }: { href: string; text: string }) { return <div className="mt-8 flex justify-end border-y border-space-border py-6"><Link href={href} className="inline-flex items-center gap-2 text-sm text-neon-cyan">{text}<ArrowRight className="h-4 w-4" /></Link></div>; }

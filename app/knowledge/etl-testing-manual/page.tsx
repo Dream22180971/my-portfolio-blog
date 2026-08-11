@@ -6,7 +6,7 @@ import { buildPageMetadata } from "@/lib/site";
 type TableRow = readonly string[];
 
 export const metadata = buildPageMetadata({
-  title: "ETL 数据测试体系：从数据流转到数据质量保障",
+  title: "数据质量测试实战：从数据流转到数据质量保障",
   description: "面向测试工程师的数据测试手册，覆盖ETL链路、字段映射、转换规则、增量同步、对账、数据质量与金融AI案例。",
   path: "/knowledge/etl-testing-manual",
   tags: ["ETL测试", "数据质量", "数据仓库", "SQL", "金融数据测试"],
@@ -102,7 +102,7 @@ export default function EtlTestingManualPage() {
 
       <KnowledgeLayout sections={sections}>
         <header className="mb-10">
-          <h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">ETL 数据测试体系：从数据流转到数据质量保障</h1>
+          <h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">数据质量测试实战：从数据流转到数据质量保障</h1>
           <p className="mb-6 text-lg text-text-secondary">从源系统一路追到报表、BI与AI应用，证明每一次抽取、转换、加载和汇总都没有让业务事实走样。</p>
           <div className="flex flex-wrap gap-6 text-sm text-text-secondary"><span>12 个章节</span><span>SQL + 数据仓库</span><span>金融 / BI / AI 数据链路</span></div>
         </header>

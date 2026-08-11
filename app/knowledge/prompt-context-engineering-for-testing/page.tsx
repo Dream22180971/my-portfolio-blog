@@ -161,7 +161,6 @@ export default function PromptContextEngineeringForTestingPage() {
       <S id="practice" n="10" t="把一个真实需求整理成可回归的上下文包" b="练习与检查">
         <Card title="练习"><List ordered items={["选择一个含 3～5 条规则变更的脱敏需求，登记来源、版本和优先级。", "定义 AI 的职责、允许证据、禁止事项、停止条件和输出 Schema。", "建立资产索引，只装载与当前规则相关的接口、代码、用例和缺陷。", "准备正例、反例、信息缺失、来源冲突和文档注入样本。", "生成候选测试点，运行结构、证据、覆盖和编造检查。", "调整一次 Prompt 或上下文策略，用同一评估集比较新旧版本。"]} /></Card>
         <div className="grid gap-4 md:grid-cols-3"><Check title="输入可信" items={["版本明确", "证据有优先级", "权限已过滤", "缺失会停止"]} /><Check title="输出可用" items={["结构固定", "来源可回查", "未知不编造", "脚本可校验"]} /><Check title="变更可控" items={["Prompt有版本", "样本可复现", "指标可比较", "退化可回滚"]} /></div>
-        <Next />
       </S>
     </KnowledgeLayout>
   </div>;
@@ -176,4 +175,3 @@ function Code({ title, children }: { title: string; children: string }) { return
 function Callout({ children }: { children: React.ReactNode }) { return <div className="mb-4 border-l-2 border-neon-cyan bg-neon-cyan/5 px-5 py-4 text-sm leading-7 text-text-secondary">{children}</div>; }
 function Flow({ title, items }: { title: string; items: string[][] }) { return <Card title={title}><div className="grid gap-2 md:grid-cols-9 md:items-center">{items.map((item, index) => <div className="contents" key={item[0]}><div className="rounded-lg border border-space-border bg-neon-cyan/5 p-4 text-center"><b className="block text-xs text-text-primary">{item[0]}</b><span className="text-[11px]">{item[1]}</span></div>{index < items.length - 1 && <ArrowRight className="mx-auto hidden h-4 w-4 text-neon-cyan md:block" />}</div>)}</div></Card>; }
 function Check({ title, items }: { title: string; items: string[] }) { return <Card title={title}><ul className="space-y-3">{items.map((item) => <li key={item} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-neon-cyan" />{item}</li>)}</ul></Card>; }
-function Next() { return <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-space-border py-6"><p className="text-sm text-text-secondary">下一步：把已经验证的 Prompt、规则、检查器和案例封装成可复用测试 Skill。</p><Link href="/knowledge/testing-skills-design" className="inline-flex items-center gap-2 text-sm text-neon-cyan">测试 Skill 设计与资产封装<ArrowRight className="h-4 w-4" /></Link></div>; }

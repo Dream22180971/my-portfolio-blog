@@ -101,7 +101,7 @@ export default function RequirementsTestPlanningPage() {
           <SectionHeader number="09" title="完成一份退款测试方案" badge="从评审到决策" />
           <Card title="练习"><BulletList ordered items={["为“支付成功订单支持整单退款”列出 10 个评审问题。", "画出登录、下单、支付、退款的主流程和三条异常分支。", "列出 6 个风险并给出优先级与理由。", "分别写出本次测试、关联回归和不测范围。", "按单元、接口、集成和端到端设计测试策略。", "定义准入、准出和阻断发布条件。"]} /></Card>
           <div className="grid gap-4 md:grid-cols-3"><ChecklistCard title="需求可测" items={["角色清楚", "规则无歧义", "异常有约定", "验收有证据"]} /><ChecklistCard title="方案可执行" items={["范围明确", "风险已排序", "资源已确认", "依赖有负责人"]} /><ChecklistCard title="结论可决策" items={["准入准出明确", "阻断条件明确", "剩余风险明确", "记录可追溯"]} /></div>
-          <NextLink text="下一篇将把评审中发现的问题转化为可复现、可跟踪、可复盘的缺陷。" href="/knowledge/defect-management-analysis" label="继续学习 Bug 管理与缺陷分析" />
+          
         </section>
       </KnowledgeLayout>
     </div>
@@ -117,4 +117,3 @@ function FlowFigure({ id, title, items }: { id: string; title: string; items: re
 function RiskFigure() { const items = [["高影响 × 高概率", "立即覆盖并设置阻断条件"], ["高影响 × 低概率", "验证容灾、监控和补偿"], ["低影响 × 高概率", "纳入主要回归"], ["低影响 × 低概率", "记录并按资源安排"]]; return <figure className="card-glow mb-4 rounded-xl p-5" aria-labelledby="risk-title"><figcaption id="risk-title" className="mb-5 text-sm font-bold text-text-primary">风险矩阵决定验证深度</figcaption><div className="grid gap-3 md:grid-cols-2">{items.map((item, index) => <div key={item[0]} className={cn("rounded-lg border p-4", index === 0 ? "border-neon-cyan/60 bg-neon-cyan/10" : "border-space-border bg-space-card/50")}><strong className="text-sm text-text-primary">{item[0]}</strong><p className="mt-2 text-xs text-text-secondary">{item[1]}</p></div>)}</div></figure>; }
 function ScopeFigure() { return <FlowFigure id="scope-title" title="范围从变更向外扩散，但必须有边界" items={[["需求变更", "退款规则"], ["直接影响", "退款接口"], ["关联回归", "订单与支付"], ["明确不测", "真实资金渠道"]]} />; }
 function ChecklistCard({ title, items }: { title: string; items: readonly string[] }) { return <Card title={title}><ul className="space-y-3">{items.map((item) => <li key={item} className="flex items-start gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-neon-cyan" /><span>{item}</span></li>)}</ul></Card>; }
-function NextLink({ text, href, label }: { text: string; href: string; label: string }) { return <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-space-border py-6"><p className="text-sm text-text-secondary">{text}</p><Link href={href} className="inline-flex items-center gap-2 text-sm text-neon-cyan">{label}<ArrowRight className="h-4 w-4" /></Link></div>; }

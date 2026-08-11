@@ -181,7 +181,6 @@ assert isolated_by(session_id, actor_id, tenant_id)`}</Code>
         ]} />
         <Card title="练习"><List ordered items={["建立 25 条售后任务，覆盖正常、缺参、冲突、撤回、超时、限流、权限和内容污染。", "为三个工具定义严格输入输出，并准备成功、拒绝、超时和结果未知样本。", "标记允许工具、必要步骤、禁止边、参数来源和合格终态。", "用模拟工具注入响应丢失、处理中和业务拒绝，验证幂等与终止。", "演练模型、检索和工具降级，禁止伪报成功。", "输出版本差异、失败分类、人工裁决和回退记录。"]} /></Card>
         <div className="grid gap-4 md:grid-cols-3"><Check title="轨迹质量" items={["目标未漂移", "必要步骤完成", "状态迁移合法", "终态可验证"]} /><Check title="工具安全" items={["Schema 严格", "身份参数绑定", "副作用先审批", "重试保持幂等"]} /><Check title="发布交付" items={["故障注入通过", "指标不低于基线", "人工队列可用", "版本可回退"]} /></div>
-        <Next />
       </S>
     </KnowledgeLayout>
   </div>;
@@ -196,4 +195,3 @@ function Code({ title, children }: { title: string; children: string }) { return
 function Callout({ children }: { children: React.ReactNode }) { return <div className="mb-4 border-l-2 border-neon-cyan bg-neon-cyan/5 px-5 py-4 text-sm leading-7 text-text-secondary">{children}</div>; }
 function Flow({ title, items }: { title: string; items: string[][] }) { return <Card title={title}><div className="grid gap-2 md:grid-cols-9 md:items-center">{items.map((item, index) => <div className="contents" key={item[0]}><div className="rounded-lg border border-space-border bg-space-card/50 p-4 text-center"><b className="block text-xs text-text-primary">{item[0]}</b><span className="text-[11px]">{item[1]}</span></div>{index < items.length - 1 && <ArrowRight className="mx-auto hidden h-4 w-4 text-neon-cyan md:block" />}</div>)}</div></Card>; }
 function Check({ title, items }: { title: string; items: string[] }) { return <Card title={title}><ul className="space-y-3">{items.map((item) => <li key={item} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-neon-cyan" />{item}</li>)}</ul></Card>; }
-function Next() { return <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-space-border py-6"><p className="text-sm text-text-secondary">下一步：继续学习 Agent 通过 MCP 接入工具后，协议、权限和内容边界应该怎样验证。</p><Link href="/knowledge/mcp-testing-integration" className="inline-flex items-center gap-2 text-sm text-neon-cyan">MCP 工具接入与安全测试<ArrowRight className="h-4 w-4" /></Link></div>; }

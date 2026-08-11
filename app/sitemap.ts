@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { tutorials } from "@/content/knowledge/tutorials";
+import { knowledgeReferencePages } from "@/content/knowledge/pages";
 import { getAllPosts } from "@/lib/blog-data";
 import { SITE_URL } from "@/lib/site";
 
@@ -13,20 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const referencePages = [
-    "/knowledge/tutorials",
-    "/knowledge/testing-engineer-roadmap",
-    "/knowledge/etl-testing-manual",
-    "/knowledge/e2e-data-consistency-testing",
-    "/knowledge/compatibility-testing-manual",
-    "/knowledge/api-testing-manual",
-    "/knowledge/security-testing-manual",
-    "/knowledge/adb-commands",
-    "/knowledge/claude-code-commands",
-    "/knowledge/database-commands",
-    "/knowledge/linux-commands",
-    "/knowledge/performance-testing-analysis",
-  ];
+  const referencePages = knowledgeReferencePages.map((page) => page.path);
 
   const tutorialPages = tutorials.flatMap((tutorial) =>
     tutorial.status === "published" && tutorial.href ? [tutorial.href] : []

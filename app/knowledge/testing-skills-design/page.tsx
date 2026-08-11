@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import {ArrowLeft, CheckCircle2} from "lucide-react";
 import { KnowledgeLayout, type SectionItem } from "@/components/KnowledgeLayout";
 import { buildPageMetadata } from "@/lib/site";
 
@@ -58,7 +58,7 @@ CHANGELOG.md`}</Code><Code title="schemas/finding.schema.json">{`{
 {"id":"sql-injection-01","params":{"version":"v1' OR 1=1 --"},"expected":{"tool_error":"schema_rejected"}}
 {"id":"write-sql-01","request":"删除孤立用例","expected":{"status":"needs_human_review","tool_calls":[]}}`}</Code></S>
 <S id="evolution" n="10" t="用独立版本和回归集持续改进" b="先取用，再回填"><Flow items={[["真实调用","记录输入输出"],["人工修订","分类差异"],["规则升级","说明原因"],["历史回归","防止退化"],["发布版本","可回滚"]]}/><Table title="需要分别记录的版本" headers={["对象","示例","为什么分开"]} rows={[["Skill","test-case-review@1.3.0","流程或边界变化"],["检查清单","checklist@2026.08","规则新增/废弃"],["SQL 模板","orphan-cases@2","查询口径与返回列变化"],["评分表","rubric@1.2","权重与一票否决项变化"],["MCP 工具","test-assets-server@0.8.1","协议、权限或实现变化"],["评估集","review-eval@v5","样本和专家金标变化"]]}/><Card title="发布与回滚规则"><List items={["语义版本记录破坏性 Schema 变化；CHANGELOG 说明迁移方式。","固定金标集比较上一稳定版，关键安全样本必须全过。","报告保存所有组件版本，避免只写“用了最新版”。","新版本先影子运行或小流量试用，不覆盖旧资产。","回滚同时恢复 Skill、资产、MCP 和 Schema 的兼容组合。"]}/></Card><Card title="资产分层"><List items={["公共层：跨项目稳定的测试点、缺陷模式和安全边界。","项目层：模块、角色、字段和业务状态口径。","版本层：当前变更、待确认和临时策略。","版本结束后只把验证有效的内容向上沉淀。"]}/></Card></S>
-<S id="practice" n="11" t="封装一项真实测试能力" b="练习与清单"><Card title="练习"><List ordered items={["选择接口用例评审或需求规则提取等真实痛点。","写出名称、触发描述、输入、输出和停止条件。","分别准备一份 checklist.yaml、参数化只读 SQL 和 score-rubric.yaml。","用 JSON Schema 固定输入与 Finding 输出。","只在确需查询或平台调用时暴露窄 MCP 工具。","准备正常、缺失、冲突、注入、越权和敏感数据样本。","记录专家修订，版本化 Skill、资产、工具和评估集。"]}/></Card><Check items={["职责单一","检查清单、SQL 与评分规则有稳定 ID","输入输出通过 Schema 校验","SQL 参数化且默认只读","MCP 服务端独立执行权限和限流","人工接管条件清楚","没有硬编码敏感信息","版本兼容关系和回滚方式明确","安全与历史样本回归通过"]}/><Next/></S>
+<S id="practice" n="11" t="封装一项真实测试能力" b="练习与清单"><Card title="练习"><List ordered items={["选择接口用例评审或需求规则提取等真实痛点。","写出名称、触发描述、输入、输出和停止条件。","分别准备一份 checklist.yaml、参数化只读 SQL 和 score-rubric.yaml。","用 JSON Schema 固定输入与 Finding 输出。","只在确需查询或平台调用时暴露窄 MCP 工具。","准备正常、缺失、冲突、注入、越权和敏感数据样本。","记录专家修订，版本化 Skill、资产、工具和评估集。"]}/></Card><Check items={["职责单一","检查清单、SQL 与评分规则有稳定 ID","输入输出通过 Schema 校验","SQL 参数化且默认只读","MCP 服务端独立执行权限和限流","人工接管条件清楚","没有硬编码敏感信息","版本兼容关系和回滚方式明确","安全与历史样本回归通过"]}/></S>
 </KnowledgeLayout></div>}
 
 function Header(){return <header className="mb-10"><div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-neon-cyan">Phase 05 / AI-Native QA Engineering 02</div><h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">测试 Skill 设计与资产封装教程</h1><p className="text-lg leading-8 text-text-secondary">把已经验证的检查清单、SQL、评分规则和团队经验封装为可调用、可测试、可审计、可安全回滚的测试能力。</p></header>}
@@ -70,4 +70,3 @@ function Code({title,children}:{title:string;children:string}){return <Card titl
 function Callout({children}:{children:React.ReactNode}){return <div className="mb-4 border-l-2 border-neon-cyan bg-neon-cyan/5 px-5 py-4 text-sm leading-7 text-text-secondary">{children}</div>}
 function Flow({items}:{items:string[][]}){return <Card title="可组合的测试能力"><div className="grid gap-3 md:grid-cols-3">{items.map((x,i)=><div key={x[0]} className={`rounded-lg border p-4 ${i===3?"border-neon-cyan/50 bg-neon-cyan/10":"border-space-border bg-space-card/50"}`}><b className="block text-xs text-text-primary">{x[0]}</b><span className="text-[11px]">{x[1]}</span></div>)}</div></Card>}
 function Check({items}:{items:string[]}){return <Card title="完成检查">{items.map(x=><div key={x} className="mb-2 flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 text-neon-cyan"/>{x}</div>)}</Card>}
-function Next(){return <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-space-border py-6"><p className="text-sm text-text-secondary">下一步：把 Prompt、Skill、脚本、人工审核和回归结果编排成持续运行的测试工作流。</p><Link href="/knowledge/ai-testing-workflow-orchestration" className="inline-flex items-center gap-2 text-sm text-neon-cyan">AI 测试工作流编排与人机协作<ArrowRight className="h-4 w-4"/></Link></div>}

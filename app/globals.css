@@ -2983,3 +2983,96 @@ code,
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ========== Knowledge 页脚:上一篇/下一篇 + 回到顶部 ========== */
+.knowledge-prev-next {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.knowledge-prev-next__item {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  min-width: 0;
+  padding: 26px 2px;
+  transition: padding 180ms ease, color 180ms ease;
+}
+
+.knowledge-prev-next__item--next {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.knowledge-prev-next__mark {
+  flex-shrink: 0;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.knowledge-prev-next__title {
+  min-width: 0;
+  color: var(--ink);
+  font-family: var(--display-cn);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 180ms ease;
+}
+
+.knowledge-prev-next__item:hover {
+  padding-left: 10px;
+}
+
+.knowledge-prev-next__item--next:hover {
+  padding-left: 2px;
+  padding-right: 10px;
+}
+
+.knowledge-prev-next__item:hover .knowledge-prev-next__mark,
+.knowledge-prev-next__item:hover .knowledge-prev-next__title {
+  color: var(--signal);
+}
+
+.knowledge-footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+}
+
+.knowledge-updated {
+  margin: 0;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.knowledge-back-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ink);
+  font-size: 12px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.knowledge-back-top:hover {
+  color: var(--signal);
+}

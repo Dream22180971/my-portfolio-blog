@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import {ArrowLeft, CheckCircle2} from "lucide-react";
 import { KnowledgeLayout, type SectionItem } from "@/components/KnowledgeLayout";
 import { buildPageMetadata } from "@/lib/site";
 
@@ -25,7 +25,7 @@ const sections: SectionItem[] = [
 
 export default function TraditionalAutomationToAiTestingPage() {
   return <div className="mx-auto max-w-5xl animate-fade-in">
-    <Link href="/knowledge/tutorials?track=test-development" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-neon-cyan"><ArrowLeft className="h-4 w-4" />返回测试开发强化支线</Link>
+    <Link href="/knowledge/tutorials?track=test-development" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-neon-cyan"><ArrowLeft className="h-4 w-4" />返回测试开发工程化路线</Link>
     <KnowledgeLayout sections={sections} searchPlaceholder="搜索 pytest、Playwright、适配器与迁移门禁...">
       <Header />
 
@@ -196,7 +196,6 @@ human_gate: "测试负责人检查业务预期与失败归因"`}</Code>
       <S id="practice" n="10" t="用两周试点完成一次可回退迁移" b="检查清单">
         <Card title="实施顺序"><List ordered items={["选一个无生产写入、失败证据完整的 pytest + Playwright 模块。", "生成资产 manifest，并人工核对 Page Object、Fixture、数据和副作用。", "封装只读检索、子集执行和报告读取三个窄工具。", "准备至少 20 个历史变更任务作为回归评估集。", "先让 Agent 只给计划，与专家回归集合对比。", "门禁通过后开放 test 环境的白名单执行。", "记录质量、人工修订、Token、P95 与测试分钟数。", "演练模型故障、超时、越界调用和一键退回确定性 CI。"]} /></Card>
         <Check items={["现有 pytest 与 Playwright 没有被重复重写", "Page Object、Fixture、断言与测试数据都有资产 ID", "trace、JUnit 和 HTML 报告可按 run_id 追溯", "Agent 不能执行任意 Shell", "确定性脚本与 Agent 的职责已分开", "迁移阶段有量化退出条件", "生产、密钥和高副作用动作在工具层隔离", "成本上限、人工审批和降级路线已演练", "传统 CI 始终是可用回退基线"]} />
-        <Next />
       </S>
     </KnowledgeLayout>
   </div>;
@@ -211,4 +210,3 @@ function Callout({ children }: { children: React.ReactNode }) { return <div clas
 function Code({ title, children }: { title: string; children: string }) { return <div className="knowledge-code-block mb-4 overflow-hidden rounded-xl border border-space-border"><div className="border-b border-space-border bg-space-card/50 px-4 py-2 text-[11px] uppercase tracking-wider text-text-secondary">{title}</div><pre className="overflow-x-auto p-4 text-[13px] leading-relaxed"><code className="text-neon-cyan/80">{children}</code></pre></div>; }
 function Flow({ items }: { items: string[][] }) { return <Card title="从资产到计划"><div className="grid gap-3 md:grid-cols-5">{items.map((item, index) => <div key={item[0]} className={`rounded-lg border p-4 ${index === 3 ? "border-neon-cyan/50 bg-neon-cyan/10" : "border-space-border bg-space-card/50"}`}><b className="block text-xs text-text-primary">{item[0]}</b><span className="text-[11px]">{item[1]}</span></div>)}</div></Card>; }
 function Check({ items }: { items: string[] }) { return <Card title="迁移完成检查">{items.map((item) => <div key={item} className="mb-2 flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-neon-cyan" />{item}</div>)}</Card>; }
-function Next() { return <div className="mt-8 flex justify-end border-y border-space-border py-6"><Link href="/knowledge/prompt-context-engineering-for-testing" className="inline-flex items-center gap-2 text-sm text-neon-cyan">继续学习：测试提示词与上下文工程<ArrowRight className="h-4 w-4" /></Link></div>; }

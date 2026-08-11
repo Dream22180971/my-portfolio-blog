@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import {ArrowLeft, CheckCircle2} from "lucide-react";
 import { KnowledgeLayout, type SectionItem } from "@/components/KnowledgeLayout";
 import { buildPageMetadata } from "@/lib/site";
 
@@ -43,7 +43,7 @@ expect(run.audit.originalFileHash).toBeDefined();`}</Code></S>
   "model_version": "ocr-v7", "schema_version": "invoice-v4",
   "reconciliation_status": "PASS"
 }`}</Code><Card title="回流闭环"><List ordered items={["线上对账差异先冻结批次，保留原文件与全链路证据。","定位为 OCR、版面、字段、规则或入库类别。","人工裁决形成金标，加入困难样本或失败注入集。","修复后回放原批次，使用业务键幂等写入。","比较版本差量并通过门禁后再恢复自动直通。"]}/></Card></S>
-<S id="practice" n="11" t="搭建一套金融单据文档智能评估" b="练习与交付清单"><Card title="练习"><List ordered items={["选择一类脱敏发票或流水，确定字段 Schema、P0 字段和舍入口径。","覆盖图片、文本/扫描 PDF、复杂版面、跨页表格和低质梯度样本。","完成双人精标、可读性标签与字段证据坐标。","计算字段准确率、召回率、F1、整单通过率和人工复核率。","实现页数、格式、金额/日期、跨页连续性、去重和入库对账检查。","注入漏页、半截 JSON、脏数据、队列不可用和提交状态未知。","输出字段、困难子类、版本差量、人工裁决与批次对账报告。"]}/></Card><div className="grid gap-4 md:grid-cols-3"><Check title="样本与金标" items={["真实分布分层","跨页与低质覆盖","字段有证据坐标","污染样本隔离"]}/><Check title="质量与门禁" items={["准确率召回率拆分","P0 硬失败","合计日期有规则","不可读不猜测"]}/><Check title="ETL 与治理" items={["每层证据可回放","复核有边界","入库幂等","批次金额对平"]}/></div><Next/></S>
+<S id="practice" n="11" t="搭建一套金融单据文档智能评估" b="练习与交付清单"><Card title="练习"><List ordered items={["选择一类脱敏发票或流水，确定字段 Schema、P0 字段和舍入口径。","覆盖图片、文本/扫描 PDF、复杂版面、跨页表格和低质梯度样本。","完成双人精标、可读性标签与字段证据坐标。","计算字段准确率、召回率、F1、整单通过率和人工复核率。","实现页数、格式、金额/日期、跨页连续性、去重和入库对账检查。","注入漏页、半截 JSON、脏数据、队列不可用和提交状态未知。","输出字段、困难子类、版本差量、人工裁决与批次对账报告。"]}/></Card><div className="grid gap-4 md:grid-cols-3"><Check title="样本与金标" items={["真实分布分层","跨页与低质覆盖","字段有证据坐标","污染样本隔离"]}/><Check title="质量与门禁" items={["准确率召回率拆分","P0 硬失败","合计日期有规则","不可读不猜测"]}/><Check title="ETL 与治理" items={["每层证据可回放","复核有边界","入库幂等","批次金额对平"]}/></div></S>
 </KnowledgeLayout></div>}
 
 function Header(){return <header className="mb-10"><div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-neon-cyan">Phase 02 / AI Application Quality 02</div><h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">多模态、OCR 与文档智能测试教程</h1><p className="mb-6 text-lg leading-8 text-text-secondary">让发票图片、扫描 PDF 和跨页流水从 OCR 一直走到数据库：字段有证据、金额能对平、低质不猜测、失败可转人工。</p><div className="flex flex-wrap gap-6 text-sm text-text-secondary"><span>11 个章节</span><span>金融单据 ETL 案例</span><span>识别 + 规则 + 入库对账</span></div></header>}
@@ -54,4 +54,3 @@ function Table({title,headers,rows}:{title:string;headers:string[];rows:string[]
 function Code({title,children}:{title:string;children:string}){return <div className="knowledge-code-block mb-4 overflow-hidden rounded-xl border border-space-border"><div className="border-b border-space-border bg-space-card/50 px-4 py-2 text-xs text-text-secondary">{title}</div><pre className="overflow-x-auto p-4 text-[13px]"><code className="text-neon-cyan/80">{children}</code></pre></div>}
 function Callout({children}:{children:React.ReactNode}){return <div className="mb-4 border-l-2 border-neon-cyan bg-neon-cyan/5 px-5 py-4 text-sm leading-7 text-text-secondary">{children}</div>}
 function Check({title="完成检查",items}:{title?:string;items:string[]}){return <Card title={title}>{items.map(x=><div key={x} className="mb-2 flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-neon-cyan"/>{x}</div>)}</Card>}
-function Next(){return <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-space-border py-6"><p className="text-sm text-text-secondary">下一阶段：从生成内容进入执行动作，验证 Agent 的规划、工具、状态和副作用。</p><Link href="/knowledge/ai-agent-testing" className="inline-flex items-center gap-2 text-sm text-neon-cyan">AI Agent 测试<ArrowRight className="h-4 w-4"/></Link></div>}

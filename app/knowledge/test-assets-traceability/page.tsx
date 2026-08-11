@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import {ArrowLeft, CheckCircle2} from "lucide-react";
 import { KnowledgeLayout, type SectionItem } from "@/components/KnowledgeLayout";
 import { buildPageMetadata } from "@/lib/site";
 
@@ -16,7 +16,7 @@ export default function TestAssetsPage(){return <div className="mx-auto max-w-5x
 <S id="deliverables" n="06" t="七类交付物围绕同一条主线" b="不是七份孤立文档"><Table title="交付物与责任" headers={["交付物","回答的问题","必须关联"]} rows={[["测试点清单","测什么","规则、风险"],["风险清单","哪里可能出错","测试点、回归检查点"],["测试用例","怎样验证","规则、测试点、来源"],["冒烟清单","版本是否值得继续测","主用例 P0 编号"],["评审记录","哪些问题被发现和修订","用例、决议、行动项"],["待确认清单","哪些口径尚未确定","需求章节、影响用例"],["版本总结","结果与下一版行动","前六类产物统计"]]}/><Card title="交付前先对账"><p>测试点数量、风险关闭情况、用例来源分布、冒烟编号、评审修订和总结中的统计必须互相对得上。数字对不上，通常意味着追溯链已经断了。</p></Card></S>
 <S id="gates" n="07" t="机器查确定性问题，人判断业务语义" b="双层质量门禁"><Table title="机器适合检查" headers={["门禁","硬问题"]} rows={[["完整性","模块存在用例却没有规则或测试设计"],["需求追溯","确定规则没有任何用例证据"],["冲突","用例违背需求数值、枚举或权限约束"],["格式与去重","编号重复、弱标题、必填字段缺失、疑似重复"],["分布","优先级或来源分布异常，仅作为复核信号"]]}/><Table title="人工必须判断" headers={["问题","原因"]} rows={[["场景是否真正有价值","脚本只能看到字段，理解不了业务损失"],["优先级是否准确","比例不是标准答案，必须结合风险"],["待确认如何裁决","需要产品、开发和业务证据"],["哪些资产值得长期保留","临时规则进入公共库会制造噪声"]]}/></S>
 <S id="reuse" n="08" t="先取用，再把验证过的经验回填" b="资产会越用越准"><Flow items={[["版本开始","查规则与模式库"],["测试设计","匹配并裁剪"],["执行评审","记录有效与误报"],["版本结束","回填新增资产"]]}/><Card title="回填准入"><List items={["至少在真实任务中被验证，不把一次性猜测放进公共资产。","说明适用范围和不适用范围，避免跨项目误用。","关联来源缺陷、需求或评审证据。","修改公共规则时运行历史样本回归，防止旧能力退化。"]}/></Card></S>
-<S id="practice" n="09" t="为一个旧版本补齐资产链" b="练习与检查清单"><Card title="练习"><List ordered items={["选择一个已有用例但追溯不完整的模块。","把当前需求拆成规则注册表，并标出待确认项。","从历史缺陷提炼至少 3 个模式和回归检查点。","做一次新旧版本差异表与覆盖核对表。","补齐缺口后运行完整性、冲突、去重和格式检查。","输出版本总结，明确取用、修改、回归与废弃的资产。"]}/></Card><Check items={["规则是覆盖率分母","用例可追溯到版本与来源","待确认项有负责人和结论","校验能发现缺失而非只发现错误","交付物数字互相一致","回填资产经过真实验证"]}/><Next/></S>
+<S id="practice" n="09" t="为一个旧版本补齐资产链" b="练习与检查清单"><Card title="练习"><List ordered items={["选择一个已有用例但追溯不完整的模块。","把当前需求拆成规则注册表，并标出待确认项。","从历史缺陷提炼至少 3 个模式和回归检查点。","做一次新旧版本差异表与覆盖核对表。","补齐缺口后运行完整性、冲突、去重和格式检查。","输出版本总结，明确取用、修改、回归与废弃的资产。"]}/></Card><Check items={["规则是覆盖率分母","用例可追溯到版本与来源","待确认项有负责人和结论","校验能发现缺失而非只发现错误","交付物数字互相一致","回填资产经过真实验证"]}/></S>
 </KnowledgeLayout></div>}
 
 function Header(){return <header className="mb-10"><div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-neon-cyan">Quality Architecture / Tutorial 23</div><h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">测试资产工程与版本追溯教程</h1><p className="text-lg leading-8 text-text-secondary">把零散文档升级为能跨版本取用、机器校验和人工裁决的测试证据链，为自动化与 AI 辅助测试打好共同地基。</p></header>}
@@ -27,4 +27,3 @@ function Table({title,headers,rows}:{title:string;headers:string[];rows:string[]
 function Callout({children}:{children:React.ReactNode}){return <div className="mb-4 border-l-2 border-neon-cyan bg-neon-cyan/5 px-5 py-4 text-sm leading-7 text-text-secondary">{children}</div>}
 function Flow({items}:{items:string[][]}){return <Card title="资产流转"><div className="grid gap-3 md:grid-cols-5">{items.map((x,i)=><div key={x[0]} className={`rounded-lg border p-4 ${i===1?"border-neon-cyan/50 bg-neon-cyan/10":"border-space-border bg-space-card/50"}`}><b className="block text-xs text-text-primary">{x[0]}</b><span className="text-[11px]">{x[1]}</span></div>)}</div></Card>}
 function Check({items}:{items:string[]}){return <Card title="完成检查">{items.map(x=><div key={x} className="mb-2 flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 text-neon-cyan"/>{x}</div>)}</Card>}
-function Next(){return <div className="mt-8 flex justify-end border-y border-space-border py-6"><Link href="/knowledge/tutorials?track=ai-testing" className="inline-flex items-center gap-2 text-sm text-neon-cyan">下一步：把测试资产交给 AI 可靠使用<ArrowRight className="h-4 w-4"/></Link></div>}

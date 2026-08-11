@@ -180,7 +180,6 @@ export default function AiTestingAssetProductionPage() {
           "调整一个工作流节点，用锁定集比较新旧版本并决定发布或回滚。",
         ]} /></Card>
         <Check items={["材料未静默丢失", "当前证据优先", "未知信息不编造", "每条用例可追溯", "机器和人工职责分开", "审核结论有账本", "版本可以回放", "中断能够恢复"]} />
-        <Next />
       </S>
     </KnowledgeLayout>
   </div>;
@@ -195,4 +194,3 @@ function Callout({ children }: { children: React.ReactNode }) { return <div clas
 function Code({ title, children }: { title: string; children: string }) { return <div className="knowledge-code-block mb-4 overflow-hidden rounded-xl border border-space-border"><div className="border-b border-space-border bg-space-card/50 px-4 py-2 text-xs text-text-secondary">{title}</div><pre className="overflow-x-auto p-4 text-[13px]"><code className="text-neon-cyan/80">{children}</code></pre></div>; }
 function Flow({ title, items }: { title: string; items: string[][] }) { return <Card title={title}><div className="grid gap-2 md:grid-cols-9 md:items-center">{items.map((item, index) => <div className="contents" key={item[0]}><div className="rounded-lg border border-space-border bg-space-card/50 p-4 text-center"><b className="block text-xs text-text-primary">{item[0]}</b><span className="text-[11px]">{item[1]}</span></div>{index < items.length - 1 && <ArrowRight className="mx-auto hidden h-4 w-4 text-neon-cyan md:block" />}</div>)}</div></Card>; }
 function Check({ items }: { items: string[] }) { return <Card title="完成检查">{items.map((item) => <div key={item} className="mb-2 flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-neon-cyan" />{item}</div>)}</Card>; }
-function Next() { return <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-space-border py-6"><p className="text-sm text-text-secondary">你已经完成五阶段 AI 测试成长路线，可以回到目录复习薄弱环节或选择专项案例继续实践。</p><Link href="/knowledge/tutorials?track=ai-testing" className="inline-flex items-center gap-2 text-sm text-neon-cyan">返回 AI 测试成长路线<ArrowRight className="h-4 w-4" /></Link></div>; }

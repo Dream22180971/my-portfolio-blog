@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, CheckCircle2, CircleDashed } from "lucide-react";
 import { KnowledgeLayout, type SectionItem } from "@/components/KnowledgeLayout";
-import { aiTestingRoadmap, getTutorialsByTrack } from "@/content/knowledge/tutorials";
+import { aiTestingRoadmap, dataQualityRoadmap, sdetTestingRoadmap } from "@/content/knowledge/tutorials";
 import { buildPageMetadata } from "@/lib/site";
 
 export const metadata = buildPageMetadata({
   title: "测试工程师成长路线",
-  description: "从测试基本功、Web与App业务测试、自动化工程化，到分布式数据链路和质量体系的五阶段主线，并提供测试开发与AI测试两条强化支线。",
+  description: "从测试基本功、Web与App业务测试、自动化工程化，到分布式数据链路和质量体系的五阶段主线，并提供测试开发工程化、数据质量与AI测试三条专项路线。",
   path: "/knowledge/testing-engineer-roadmap",
   tags: ["测试工程师", "成长路线", "自动化测试", "数据测试", "AI测试"],
 });
@@ -18,8 +18,9 @@ const sections: SectionItem[] = [
   { id: "stage-3", label: "03 自动化工程" },
   { id: "stage-4", label: "04 分布式与数据" },
   { id: "stage-5", label: "05 质量体系" },
-  { id: "test-development", label: "测开支线" },
-  { id: "ai-testing", label: "AI测试支线" },
+  { id: "test-development", label: "SDET 工程化" },
+  { id: "data-quality", label: "数据质量专项" },
+  { id: "ai-testing", label: "AI 测试专项" },
   { id: "practice", label: "实践方法" },
 ];
 
@@ -77,7 +78,7 @@ const stages: Stage[] = [
       { title: "兼容性测试实战手册", href: "/knowledge/compatibility-testing-manual", note: "多端与环境差异" },
       { title: "抓包与网络请求分析实战教程", href: "/knowledge/network-packet-capture", note: "页面到接口定位" },
       { title: "ADB 命令使用手册", href: "/knowledge/adb-commands", note: "工具速查" },
-      { title: "企业级数据库命令手册", href: "/knowledge/database-commands", note: "工具速查" },
+      { title: "SQL 命令手册", href: "/knowledge/database-commands", note: "工具速查" },
     ],
   },
   {
@@ -91,7 +92,7 @@ const stages: Stage[] = [
     done: ["自动化用例可以重复运行且互不依赖", "失败信息能区分环境、脚本和产品问题", "知道哪些场景值得自动化，哪些应保留人工验证"],
     resources: [
       { title: "接口测试实战手册", href: "/knowledge/api-testing-manual", note: "pytest与CI章节" },
-      { title: "E2E 数据一致性测试实战手册", href: "/knowledge/e2e-data-consistency-testing", note: "跨层数据核对" },
+      { title: "端到端数据一致性测试实战手册", href: "/knowledge/e2e-data-consistency-testing", note: "跨层数据核对" },
       { title: "测试数据设计与环境治理教程", href: "/knowledge/test-data-management", note: "造数、清理与可重复环境" },
       { title: "Python 与 pytest 测试开发教程", href: "/knowledge/python-pytest-testing", note: "测试代码与项目结构" },
       { title: "接口自动化测试教程", href: "/knowledge/api-test-automation", note: "请求、断言与持续集成" },
@@ -114,8 +115,8 @@ const stages: Stage[] = [
       { title: "消息队列与异步任务测试教程", href: "/knowledge/message-queue-testing", note: "异步与最终一致" },
       { title: "缓存测试实战教程", href: "/knowledge/cache-testing", note: "Redis 与一致性" },
       { title: "稳定性、容灾与故障演练教程", href: "/knowledge/resilience-disaster-recovery-testing", note: "故障到恢复" },
-      { title: "E2E 数据一致性测试实战手册", href: "/knowledge/e2e-data-consistency-testing", note: "跨系统一致性" },
-      { title: "ETL 数据测试体系", href: "/knowledge/etl-testing-manual", note: "抽取、转换与加载" },
+      { title: "端到端数据一致性测试实战手册", href: "/knowledge/e2e-data-consistency-testing", note: "跨系统一致性" },
+      { title: "数据质量测试实战", href: "/knowledge/etl-testing-manual", note: "抽取、转换与加载" },
       { title: "性能压测与性能分析实战手册", href: "/knowledge/performance-testing-analysis", note: "压测与瓶颈定位" },
       { title: "安全测试实战手册", href: "/knowledge/security-testing-manual", note: "攻击面与风险验证" },
     ],
@@ -138,14 +139,7 @@ const stages: Stage[] = [
   },
 ];
 
-const testDevelopmentPlan: Resource[] = getTutorialsByTrack("test-development").map((tutorial) => ({
-  title: tutorial.title,
-  href: tutorial.href,
-  note: tutorial.status === "published" ? "开始学习" : "即将推出",
-}));
-
-export default function TestingEngineerRoadmapPage() {
-  return (
+export default function TestingEngineerRoadmapPage() {  return (
     <div className="mx-auto max-w-5xl animate-fade-in">
       <Link href="/knowledge" className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-neon-cyan">
         <ArrowLeft className="h-4 w-4" />返回知识库
@@ -155,7 +149,7 @@ export default function TestingEngineerRoadmapPage() {
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-neon-cyan">Learning Roadmap</p>
           <h1 className="mb-3 text-3xl font-bold text-text-primary md:text-4xl">测试工程师成长路线</h1>
           <p className="mb-6 text-lg leading-8 text-text-secondary">这不是一张需要一次学完的技能清单，而是一条从“会执行测试”走向“能设计质量体系”的实践路线；完成主线后，还可以根据职业目标继续进阶。</p>
-          <div className="flex flex-wrap gap-6 text-sm text-text-secondary"><span>5 个成长阶段</span><span>2 条职业强化支线</span><span>每阶段都有实践产出与完成标准</span></div>
+          <div className="flex flex-wrap gap-6 text-sm text-text-secondary"><span>5 个成长阶段</span><span>3 条专项路线</span><span>每阶段都有实践产出与完成标准</span></div>
         </header>
 
         <section id="overview" data-knowledge-section className="mb-14">
@@ -170,19 +164,55 @@ export default function TestingEngineerRoadmapPage() {
         {stages.slice(0, 5).map((stage) => <StageSection key={stage.id} stage={stage} />)}
 
         <section id="test-development" data-knowledge-section className="mb-14">
-          <SectionHeader number="S" title="测试开发强化支线" subtitle="面向测试开发岗位的可选进阶路线" />
-          <Card title="什么时候进入这条支线">
-            <p>如果你想从自动化测试继续进阶，可以沿着这条支线补齐编程、代码级测试、云原生环境和测试平台开发能力。</p>
+          <SectionHeader number="S" title="测试开发工程化路线" subtitle="从测试工程师到质量工程师的工程能力进阶" />
+          <Card title="什么时候进入这条路线">
+            <p>SDET 是 AI Quality 的工程底座：没有自动化执行、CI/CD 门禁、测试平台和数据治理能力，就无法建设可持续运行的 AI 评估与回归体系。这条路线补齐编程基础、接口与服务自动化、测试基础设施、质量平台与高级质量工程能力。</p>
             <Link href="/knowledge/tutorials?track=test-development" className="mt-4 inline-flex items-center gap-2 text-neon-cyan transition-colors hover:text-text-primary">
-              查看强化支线待办
+              查看路线教程
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </Card>
-          <ResourceList resources={testDevelopmentPlan} />
+          <div className="mt-6 space-y-6">
+            {sdetTestingRoadmap.map((phase) => (
+              <div key={phase.id}>
+                <div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="font-mono text-xs text-neon-cyan">Phase {phase.number}</span>
+                  <h3 className="text-base font-bold text-text-primary">{phase.title}</h3>
+                  <span className="text-xs text-text-secondary">{phase.eyebrow}</span>
+                </div>
+                <p className="mb-3 text-sm leading-7 text-text-secondary">{phase.description}</p>
+                <ResourceList resources={phase.tutorials.map((tutorial) => ({ title: tutorial.title, href: tutorial.href, note: tutorial.status === "published" ? "开始学习" : "待办" }))} />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="data-quality" data-knowledge-section className="mb-14">
+          <SectionHeader number="D" title="数据质量专项" subtitle="从数据链路到数据智能的企业级质量保障" />
+          <Card title="什么时候进入这个专项">
+            <p>数据质量是连接 SDET 与 AI Quality 的桥梁：ETL、数据一致性、数据治理和文档智能，既是传统测试的深水区，也是 RAG、OCR 等 AI 应用的质量基础。结合金融与数据交付场景，这是最具差异化的专项能力。</p>
+            <Link href="/knowledge/tutorials?track=data-systems" className="mt-4 inline-flex items-center gap-2 text-neon-cyan transition-colors hover:text-text-primary">
+              查看数据相关教程
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </Card>
+          <div className="mt-6 space-y-6">
+            {dataQualityRoadmap.map((phase) => (
+              <div key={phase.id}>
+                <div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="font-mono text-xs text-neon-cyan">Phase {phase.number}</span>
+                  <h3 className="text-base font-bold text-text-primary">{phase.title}</h3>
+                  <span className="text-xs text-text-secondary">{phase.eyebrow}</span>
+                </div>
+                <p className="mb-3 text-sm leading-7 text-text-secondary">{phase.description}</p>
+                <ResourceList resources={phase.tutorials.map((tutorial) => ({ title: tutorial.title, href: tutorial.href, note: tutorial.status === "published" ? "开始学习" : "待办" }))} />
+              </div>
+            ))}
+          </div>
         </section>
 
         <section id="ai-testing" data-knowledge-section className="mb-14">
-          <SectionHeader number="AI" title="AI 测试工程师强化支线" subtitle="面向大模型与智能应用的可选进阶路线" />
+          <SectionHeader number="AI" title="AI 质量专项" subtitle="面向大模型与智能应用的质量保障路线" />
           <Card title="什么时候进入这条支线">
             <p>当你已经掌握测试基础、接口、数据与自动化后，可以沿五个阶段继续学习：先建立 AI 评估体系，再深入应用链路、智能体、生产可靠性与 AI 原生测试工程。</p>
             <Link href="/knowledge/tutorials?track=ai-testing" className="mt-4 inline-flex items-center gap-2 text-neon-cyan transition-colors hover:text-text-primary">

@@ -5,7 +5,7 @@ import { KnowledgeLayout } from "@/components/KnowledgeLayout";
 import type { SectionItem } from "@/components/KnowledgeLayout";
 
 export const metadata = buildPageMetadata({
-  title: "企业级数据库命令手册 — 5大数据库 350+ 命令",
+  title: "SQL 命令手册 — 5大数据库 350+ 命令",
   description: "MySQL/PostgreSQL/Redis/MongoDB/Elasticsearch 企业级命令一站式参考，覆盖连接管理、CRUD、索引优化、备份恢复、高可用、性能调优等场景",
   path: "/knowledge/database-commands",
   tags: ["MySQL", "PostgreSQL", "Redis", "MongoDB", "Elasticsearch", "数据库"],
@@ -140,8 +140,8 @@ export default function DatabaseCommandsPage() {
       <KnowledgeLayout sections={sections}>
         {/* Hero */}
         <div className="mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
-            企业级数据库命令手册
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
+            SQL 命令手册
           </h1>
           <p className="text-text-secondary text-lg mb-6">
             MySQL / PostgreSQL / Redis / MongoDB / Elasticsearch — 连接管理、CRUD、索引优化、备份恢复、高可用、性能调优一站式参考

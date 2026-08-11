@@ -190,7 +190,6 @@ expect(result.trace.errorCode).toBe("MODEL_TIMEOUT");`}</Code>
           <Check title="观测与报告" items={["Trace 可串联", "版本可归因", "成本可复核", "隐私已脱敏"]} />
           <Check title="上线治理" items={["门禁有负责人", "灰度有停止线", "降级守边界", "回退已演练"]} />
         </div>
-        <Next />
       </S>
     </KnowledgeLayout>
   </div>;
@@ -205,4 +204,3 @@ function Code({ title, children }: { title: string; children: string }) { return
 function Callout({ children }: { children: React.ReactNode }) { return <div className="mb-4 border-l-2 border-neon-cyan bg-neon-cyan/5 px-5 py-4 text-sm leading-7 text-text-secondary">{children}</div>; }
 function Flow({ items }: { items: string[][] }) { return <Card title="一次请求的关键阶段"><div className="grid gap-2 md:grid-cols-9 md:items-center">{items.map((item, index) => <div className="contents" key={item[0]}><div className="rounded-lg border border-space-border bg-space-card/50 p-4 text-center"><b className="block text-xs text-text-primary">{item[0]}</b><span className="text-[11px]">{item[1]}</span></div>{index < items.length - 1 && <ArrowRight className="mx-auto hidden h-4 w-4 text-neon-cyan md:block" />}</div>)}</div></Card>; }
 function Check({ title, items }: { title: string; items: string[] }) { return <Card title={title}><ul className="space-y-3">{items.map((item) => <li key={item} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-neon-cyan" />{item}</li>)}</ul></Card>; }
-function Next() { return <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-space-border py-6"><p className="text-sm text-text-secondary">下一阶段：开始用 Prompt 和上下文把需求、规范、缺陷与测试资产稳定地交给 AI。</p><Link href="/knowledge/prompt-context-engineering-for-testing" className="inline-flex items-center gap-2 text-sm text-neon-cyan">测试提示词与上下文工程<ArrowRight className="h-4 w-4" /></Link></div>; }

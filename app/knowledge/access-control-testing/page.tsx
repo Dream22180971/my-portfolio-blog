@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import {ArrowLeft, CheckCircle2} from "lucide-react";
 import { KnowledgeLayout, type SectionItem } from "@/components/KnowledgeLayout";
 import { buildPageMetadata } from "@/lib/site";
 
@@ -16,7 +16,7 @@ export default function AccessControlPage(){return <div className="mx-auto max-w
 <S id="export" n="06" t="附件、导出与统计同样受权限控制" b="隐蔽泄露点"><Table title="高风险资源" headers={["资源","测试重点"]} rows={[["附件直链","替换文件 ID、复制 URL、Token 失效后访问"],["批量导出","导出范围、字段脱敏、任务下载权限"],["统计报表","数量与金额只计算授权数据"],["搜索联想","不可通过关键词探测无权记录"],["错误提示","不暴露资源是否存在、真实路径和内部标识"]]}/><Card title="用例标题示例"><p>当个人数据范围用户替换导出任务 ID 下载他人文件时，系统拒绝下载且不返回文件名、大小或临时地址。</p></Card></S>
 <S id="audit" n="07" t="把运维访问也纳入授权与审计" b="统一入口与留痕"><Flow items={[["个人身份","一人一账号"],["访问审批","服务器与时段"],["代理登录","不直接暴露密码"],["操作留痕","命令与会话记录"],["高危拦截","确认或拒绝"]]}/><Card title="堡垒机解决的边界"><p>堡垒机主要治理内部运维访问：统一入口、个人身份、最小权限、会话审计和高危操作拦截。它不替代 WAF、漏洞修复或抗 DDoS，测试时要区分内部访问治理与外部攻击防护。</p></Card><Table title="访问审计测试" headers={["检查","预期"]} rows={[["未授权服务器","资产列表不可见，直连被网络策略阻断"],["授权过期","审批时段外无法建立会话"],["高危命令","按策略拦截、二次审批或完整告警"],["审计回放","能关联个人、目标、时间、输入和结果"],["账号离职","个人入口及时停用，目标密码无需散发"]]}/></S>
 <S id="cases" n="08" t="用清点、结对、断言生成权限用例" b="矩阵化设计"><Flow items={[["清点入口","菜单/URL/接口/文件"],["准备身份","有权/无权/跨域"],["准备数据","本人/下级/平级/他人"],["执行断言","状态/内容/业务结果"]]}/><Card title="优先级判断"><List items={["P0/P1：越权访问、数据隔离、敏感字段与高危操作。","P1：权限变更残留、导出范围与统计泄露。","P2：低风险入口展示、多设备体验；仍按真实业务影响调整。","优先级来源于损失和暴露面，不按用例复杂度决定。"]}/></Card></S>
-<S id="practice" n="09" t="为一个业务模块完成权限验收" b="练习与检查清单"><Card title="练习"><List ordered items={["列出一个业务模块的菜单、按钮、URL、接口、附件和导出入口。","准备有权、无权、同级他人和跨机构账号与数据。","画出角色 × 数据归属 × 操作矩阵。","执行水平、垂直和跨租户越权，并核对数据库结果。","修改角色和用户状态，验证当前会话与重新登录后的差异。","若项目使用堡垒机，验证审批、会话审计与高危命令策略。"]}/></Card><Check items={["四层入口全部覆盖","列表详情操作分别断言","拒绝时零内容泄露","越权操作未写入业务结果","权限生效时机有需求依据","导出统计遵守数据范围","运维访问可关联到个人"]}/><Next/></S>
+<S id="practice" n="09" t="为一个业务模块完成权限验收" b="练习与检查清单"><Card title="练习"><List ordered items={["列出一个业务模块的菜单、按钮、URL、接口、附件和导出入口。","准备有权、无权、同级他人和跨机构账号与数据。","画出角色 × 数据归属 × 操作矩阵。","执行水平、垂直和跨租户越权，并核对数据库结果。","修改角色和用户状态，验证当前会话与重新登录后的差异。","若项目使用堡垒机，验证审批、会话审计与高危命令策略。"]}/></Card><Check items={["四层入口全部覆盖","列表详情操作分别断言","拒绝时零内容泄露","越权操作未写入业务结果","权限生效时机有需求依据","导出统计遵守数据范围","运维访问可关联到个人"]}/></S>
 </KnowledgeLayout></div>}
 
 function Header(){return <header className="mb-10"><div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-neon-cyan">Business Testing / Tutorial 07</div><h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">权限、数据隔离与访问审计测试教程</h1><p className="text-lg leading-8 text-text-secondary">从用户页面一直测到接口、数据范围和运维入口，验证任何身份对任何资源都只能做被授权的事，并留下可追溯证据。</p></header>}
@@ -27,4 +27,3 @@ function Table({title,headers,rows}:{title:string;headers:string[];rows:string[]
 function Callout({children}:{children:React.ReactNode}){return <div className="mb-4 border-l-2 border-neon-cyan bg-neon-cyan/5 px-5 py-4 text-sm leading-7 text-text-secondary">{children}</div>}
 function Flow({items}:{items:string[][]}){return <Card title="访问控制链路"><div className="grid gap-3 md:grid-cols-5">{items.map((x,i)=><div key={x[0]} className={`rounded-lg border p-4 ${i===3?"border-neon-cyan/50 bg-neon-cyan/10":"border-space-border bg-space-card/50"}`}><b className="block text-xs text-text-primary">{x[0]}</b><span className="text-[11px]">{x[1]}</span></div>)}</div></Card>}
 function Check({items}:{items:string[]}){return <Card title="完成检查">{items.map(x=><div key={x} className="mb-2 flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 text-neon-cyan"/>{x}</div>)}</Card>}
-function Next(){return <div className="mt-8 flex justify-end border-y border-space-border py-6"><Link href="/knowledge/security-testing-manual" className="inline-flex items-center gap-2 text-sm text-neon-cyan">继续查阅安全测试实战手册<ArrowRight className="h-4 w-4"/></Link></div>}

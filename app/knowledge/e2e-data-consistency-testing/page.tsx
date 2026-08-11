@@ -6,7 +6,7 @@ import { buildPageMetadata } from "@/lib/site";
 type TableRow = readonly string[];
 
 export const metadata = buildPageMetadata({
-  title: "E2E 数据一致性测试实战手册",
+  title: "端到端数据一致性测试实战手册",
   description: "从页面操作、接口响应到数据库、缓存、消息队列和下游系统的端到端数据一致性测试方法。",
   path: "/knowledge/e2e-data-consistency-testing",
   tags: ["E2E 测试", "数据一致性", "Playwright", "消息队列", "自动化测试"],
@@ -65,14 +65,14 @@ export default function E2EDataConsistencyTestingPage() {
 
       <KnowledgeLayout sections={sections}>
         <header className="mb-10">
-          <h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">E2E 数据一致性测试实战手册</h1>
+          <h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">端到端数据一致性测试实战手册</h1>
           <p className="mb-6 text-lg text-text-secondary">从用户操作一路检查到数据库、缓存、消息队列和下游系统，证明整条业务链最终说的是同一件事。</p>
           <div className="flex flex-wrap gap-6 text-sm text-text-secondary"><span>10 个章节</span><span>页面 + API + 数据层</span><span>Playwright / 数据库 / MQ</span></div>
         </header>
 
         <section id="overview" data-knowledge-section className="mb-14">
           <Header icon="🔗" title="测试目标" badge="页面成功不等于业务成功" />
-          <Card title="E2E 数据一致性到底测什么？">
+          <Card title="端到端数据一致性到底测什么？">
             <p>页面弹出“操作成功”，只能证明前端收到了成功响应。真正的 E2E 数据一致性测试，还要继续验证业务数据是否在所有相关系统中正确落地。</p>
             <List items={["用户最终看到的状态正确。", "接口返回、数据库记录和缓存数据表达同一业务事实。", "异步消息被正确消费，下游系统在约定时间内完成处理。", "请求重试、消息重复和并发操作不会产生重复业务结果。", "中途失败后系统能够重试、补偿、告警和追踪。"]} />
           </Card>
@@ -171,7 +171,7 @@ assertions/
         </section>
 
         <section id="checklist" data-knowledge-section className="mb-14">
-          <Header icon="✅" title="E2E 数据一致性检查清单" badge="设计 / 执行 / 收尾" />
+          <Header icon="✅" title="端到端数据一致性检查清单" badge="设计 / 执行 / 收尾" />
           <div className="grid gap-4 md:grid-cols-3">
             <Card title="设计前"><List items={["已定义业务事实来源", "已区分强一致与最终一致", "已明确 SLA 和优先级", "已画出数据流向"]} /></Card>
             <Card title="执行中"><List items={["使用唯一关联标识", "正向与反向断言齐全", "异步状态使用轮询", "重复、超时、并发已覆盖"]} /></Card>

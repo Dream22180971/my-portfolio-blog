@@ -1,3 +1,5 @@
+import { knowledgeReferencePages } from "./pages";
+
 export const tutorialTracks = [
   {
     slug: "foundations",
@@ -36,10 +38,10 @@ export const tutorialTracks = [
   },
   {
     slug: "test-development",
-    title: "测试开发强化支线",
+    title: "测试开发工程化路线",
     eyebrow: "SDET Track",
-    description: "面向测试开发岗位，补齐编程基础、代码级测试、云原生环境、测试平台和项目作品。",
-    outcome: "能够把测试能力扩展为可开发、可部署、可展示的工程实践。",
+    description: "面向测试开发岗位，把测试能力工程化：编程基础、代码级测试、云原生环境、测试平台与质量工程基础设施。",
+    outcome: "能够建设可开发、可部署、可展示的测试工程基础设施。",
   },
   {
     slug: "ai-testing",
@@ -109,6 +111,7 @@ export type Tutorial = {
   status: TutorialStatus;
   order: number;
   href?: string;
+  updated?: string;
   aiPhase?: AiTestingPhaseId;
   phaseStep?: number;
 };
@@ -122,6 +125,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "foundations",
     level: "入门",
     status: "published",
+    updated: "2026-08-10",
     order: 1,
     href: "/knowledge/software-testing-foundations",
   },
@@ -133,6 +137,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "foundations",
     level: "入门",
     status: "published",
+    updated: "2026-08-11",
     order: 1.5,
     href: "/knowledge/software-testing-glossary",
   },
@@ -144,6 +149,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "business-testing",
     level: "入门",
     status: "published",
+    updated: "2026-08-10",
     order: 2,
     href: "/knowledge/test-case-design",
   },
@@ -155,6 +161,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "business-testing",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 3,
     href: "/knowledge/test-design-method-map",
   },
@@ -166,6 +173,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "foundations",
     level: "入门",
     status: "published",
+    updated: "2026-08-10",
     order: 4,
     href: "/knowledge/requirements-test-planning",
   },
@@ -177,6 +185,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "foundations",
     level: "入门",
     status: "published",
+    updated: "2026-08-10",
     order: 5,
     href: "/knowledge/defect-management-analysis",
   },
@@ -188,6 +197,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "business-testing",
     level: "入门",
     status: "published",
+    updated: "2026-08-10",
     order: 6,
     href: "/knowledge/web-functional-testing",
   },
@@ -199,6 +209,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "business-testing",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 6.5,
     href: "/knowledge/access-control-testing",
   },
@@ -210,6 +221,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "business-testing",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 7,
     href: "/knowledge/business-state-machine-testing",
   },
@@ -221,6 +233,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "business-testing",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 8,
     href: "/knowledge/mobile-app-testing",
   },
@@ -232,6 +245,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "business-testing",
     level: "入门",
     status: "published",
+    updated: "2026-08-10",
     order: 9,
     href: "/knowledge/network-packet-capture",
   },
@@ -243,6 +257,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "data-systems",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 10,
     href: "/knowledge/sql-database-testing",
   },
@@ -254,6 +269,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "data-systems",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 10.5,
     href: "/knowledge/test-data-management",
   },
@@ -265,6 +281,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "automation",
     level: "入门",
     status: "published",
+    updated: "2026-08-10",
     order: 11,
     href: "/knowledge/python-pytest-testing",
   },
@@ -276,6 +293,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "automation",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 12,
     href: "/knowledge/api-test-automation",
   },
@@ -287,6 +305,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "automation",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 13,
     href: "/knowledge/mock-test-doubles",
   },
@@ -298,6 +317,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "automation",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 14,
     href: "/knowledge/playwright-test-automation",
   },
@@ -309,6 +329,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "automation",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 15,
     href: "/knowledge/continuous-testing-cicd",
   },
@@ -320,6 +341,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "data-systems",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 16,
     href: "/knowledge/microservices-testing",
   },
@@ -331,6 +353,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "data-systems",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 17,
     href: "/knowledge/message-queue-testing",
   },
@@ -342,6 +365,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "data-systems",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 18,
     href: "/knowledge/cache-testing",
   },
@@ -353,8 +377,21 @@ export const tutorials: readonly Tutorial[] = [
     track: "data-systems",
     level: "专项",
     status: "published",
+    updated: "2026-08-10",
     order: 19,
     href: "/knowledge/resilience-disaster-recovery-testing",
+  },
+  {
+    slug: "data-quality-engineering",
+    title: "数据质量六维度实战教程",
+    subtitle: "六维度、规则与对账",
+    description: "以金融资产数据为贯穿案例，用完整性、准确性、一致性、唯一性、时效性、有效性六个维度定义数据质量，把维度落地为校验规则、监控与对账。",
+    track: "data-systems",
+    level: "进阶",
+    status: "published",
+    updated: "2026-08-12",
+    order: 19.5,
+    href: "/knowledge/data-quality-engineering",
   },
   {
     slug: "test-strategy-quality-gates",
@@ -364,6 +401,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "quality-architecture",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 20,
     href: "/knowledge/test-strategy-quality-gates",
   },
@@ -375,6 +413,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "quality-architecture",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 21,
     href: "/knowledge/observability-testing",
   },
@@ -386,6 +425,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "quality-architecture",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 22,
     href: "/knowledge/test-metrics-quality-review",
   },
@@ -397,6 +437,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "quality-architecture",
     level: "进阶",
     status: "published",
+    updated: "2026-08-10",
     order: 22.01,
     href: "/knowledge/test-assets-traceability",
   },
@@ -404,11 +445,25 @@ export const tutorials: readonly Tutorial[] = [
     slug: "test-development-programming",
     title: "测试开发编程基础教程",
     subtitle: "数据结构、算法与代码质量",
-    description: "补齐测试开发岗位常见的编程基本功，建立代码阅读、问题拆解和工程质量意识。",
+    description: "从测试工程师的视角补齐测试开发需要的编程能力：数据处理、HTTP 请求、数据库操作、日志与异常，并把它们串成可运行的测试脚本。",
     track: "test-development",
     level: "进阶",
-    status: "planned",
+    status: "published",
     order: 22.1,
+    href: "/knowledge/test-development-programming",
+    updated: "2026-08-12",
+  },
+  {
+    slug: "service-chain-testing",
+    title: "服务链路自动化测试实战教程",
+    subtitle: "跨服务业务链路",
+    description: "以金融贷款业务链路为贯穿案例，从单接口测试升级为跨服务业务链路测试：链路建模、数据流转、状态验证、幂等与异常恢复，以及链路测试自动化。",
+    track: "test-development",
+    level: "进阶",
+    status: "published",
+    order: 22.15,
+    href: "/knowledge/service-chain-testing",
+    updated: "2026-08-12",
   },
   {
     slug: "unit-component-integration-testing",
@@ -424,11 +479,13 @@ export const tutorials: readonly Tutorial[] = [
     slug: "docker-kubernetes-testing",
     title: "Docker 与 Kubernetes 测试环境实战教程",
     subtitle: "容器化测试环境",
-    description: "学习容器、网络、日志、配置和临时环境，建立可重复部署与排障的测试环境。",
+    description: "用容器化方式搭建可重复、可排障的测试环境：镜像与容器、docker-compose 编排、数据初始化、Kubernetes 临时环境与常见排障。",
     track: "test-development",
     level: "进阶",
-    status: "planned",
+    status: "published",
     order: 22.3,
+    href: "/knowledge/docker-kubernetes-testing",
+    updated: "2026-08-12",
   },
   {
     slug: "test-platform-development",
@@ -438,6 +495,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "test-development",
     level: "专项",
     status: "published",
+    updated: "2026-08-10",
     order: 22.4,
     href: "/knowledge/test-platform-development",
   },
@@ -459,10 +517,25 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "入门",
     status: "published",
+    updated: "2026-08-11",
     order: 23.01,
     href: "/knowledge/llm-foundations-testing",
     aiPhase: "foundation",
     phaseStep: 1,
+  },
+  {
+    slug: "ml-statistics-for-test-engineers",
+    title: "测试工程师需要的机器学习与统计基础教程",
+    subtitle: "指标、样本与显著性",
+    description: "以智能客服工单分类与回答评估为案例，掌握混淆矩阵、Precision/Recall/F1、准确率陷阱、类别不平衡、置信区间、分层抽样、A/B 显著性、标注者一致性与 LLM Grader 偏差。",
+    track: "ai-testing",
+    level: "入门",
+    status: "published",
+    updated: "2026-08-12",
+    order: 23.015,
+    href: "/knowledge/ml-statistics-for-test-engineers",
+    aiPhase: "foundation",
+    phaseStep: 2,
   },
   {
     slug: "traditional-automation-to-ai-testing",
@@ -472,6 +545,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "test-development",
     level: "进阶",
     status: "published",
+    updated: "2026-08-11",
     order: 22.45,
     href: "/knowledge/traditional-automation-to-ai-testing",
   },
@@ -483,10 +557,11 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "专项",
     status: "published",
+    updated: "2026-08-11",
     order: 23.02,
     href: "/knowledge/ai-application-testing-system",
     aiPhase: "foundation",
-    phaseStep: 2,
+    phaseStep: 3,
   },
   {
     slug: "rag-knowledge-base-testing",
@@ -496,6 +571,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "专项",
     status: "published",
+    updated: "2026-08-11",
     order: 23.03,
     href: "/knowledge/rag-knowledge-base-testing",
     aiPhase: "application",
@@ -509,6 +585,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "专项",
     status: "published",
+    updated: "2026-08-11",
     order: 23.04,
     aiPhase: "application",
     href: "/knowledge/multimodal-ocr-testing",
@@ -522,6 +599,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "专项",
     status: "published",
+    updated: "2026-08-11",
     order: 23.05,
     href: "/knowledge/ai-agent-testing",
     aiPhase: "agent",
@@ -535,6 +613,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "专项",
     status: "published",
+    updated: "2026-08-11",
     order: 23.06,
     href: "/knowledge/mcp-testing-integration",
     aiPhase: "agent",
@@ -548,6 +627,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "专项",
     status: "published",
+    updated: "2026-08-11",
     order: 23.07,
     href: "/knowledge/llm-security-red-teaming",
     aiPhase: "reliability",
@@ -561,6 +641,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "进阶",
     status: "published",
+    updated: "2026-08-11",
     order: 23.08,
     href: "/knowledge/ai-performance-cost-observability",
     aiPhase: "reliability",
@@ -574,6 +655,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "进阶",
     status: "published",
+    updated: "2026-08-11",
     order: 23.09,
     href: "/knowledge/prompt-context-engineering-for-testing",
     aiPhase: "native-qa",
@@ -587,6 +669,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "进阶",
     status: "published",
+    updated: "2026-08-11",
     order: 23.1,
     aiPhase: "native-qa",
     href: "/knowledge/testing-skills-design",
@@ -600,6 +683,7 @@ export const tutorials: readonly Tutorial[] = [
     track: "ai-testing",
     level: "专项",
     status: "published",
+    updated: "2026-08-11",
     order: 23.11,
     aiPhase: "native-qa",
     href: "/knowledge/ai-testing-workflow-orchestration",
@@ -634,3 +718,128 @@ export function getTutorialTrack(slug: string) {
 export function getTutorialsByTrack(track: TutorialTrackSlug) {
   return tutorials.filter((tutorial) => tutorial.track === track).sort((a, b) => a.order - b.order);
 }
+
+// ============ SDET 工程化路线(5 Phase) ============
+
+export const sdetTestingPhaseDefinitions = [
+  {
+    id: "foundation",
+    number: "01",
+    title: "自动化测试基础",
+    eyebrow: "Automation Foundation",
+    description: "把重复验证变成可持续执行的工程能力：先补测试需要的编程功底，再学会把测试组织成可维护的框架，而不是只会写脚本。",
+    outcome: "能够搭建一个结构清晰、可维护的自动化测试项目。",
+  },
+  {
+    id: "api-engineering",
+    number: "02",
+    title: "接口与服务自动化",
+    eyebrow: "API Engineering",
+    description: "从发送请求升级为验证整条服务链路：参数、状态、数据、业务规则、幂等与异常恢复，并用契约控制服务演进。",
+    outcome: "能够设计企业级接口自动化框架，并验证服务间协作的正确性。",
+  },
+  {
+    id: "infrastructure",
+    number: "03",
+    title: "测试基础设施",
+    eyebrow: "Infrastructure",
+    description: "把测试环境、执行和反馈接入工程基础设施：容器化可重复环境与 CI/CD 质量门禁。",
+    outcome: "能够一键起测试环境，并把测试结果变成发布决策依据。",
+  },
+  {
+    id: "platform",
+    number: "04",
+    title: "质量平台工程",
+    eyebrow: "Quality Platform",
+    description: "从脚本走向平台：用例管理、自动执行、报告中心、规则引擎与资产追溯，让测试资产可治理、可复用。",
+    outcome: "能够设计并交付一个可持续维护的测试基础设施。",
+  },
+  {
+    id: "advanced",
+    number: "05",
+    title: "高级质量工程",
+    eyebrow: "Advanced SDET",
+    description: "面向分布式系统、数据链路与企业级质量体系，从执行测试升级为设计质量保障系统。",
+    outcome: "能够为复杂系统设计端到端的质量保障方案。",
+  },
+] as const;
+
+export type SdetTestingPhaseId = (typeof sdetTestingPhaseDefinitions)[number]["id"];
+
+export type RoadmapTutorial = {
+  slug: string;
+  title: string;
+  href?: string;
+  status: TutorialStatus;
+};
+
+function resolveRoadmapTutorial(slug: string): RoadmapTutorial | undefined {
+  const tutorial = tutorials.find((item) => item.slug === slug);
+  if (tutorial) {
+    return { slug: tutorial.slug, title: tutorial.title, href: tutorial.href, status: tutorial.status };
+  }
+  const page = knowledgeReferencePages.find((item) => item.path === `/knowledge/${slug}`);
+  if (page) {
+    return { slug, title: page.title, href: page.path, status: "published" };
+  }
+  return undefined;
+}
+
+const sdetPhaseTutorialSlugs: Record<SdetTestingPhaseId, readonly string[]> = {
+  foundation: ["test-development-programming", "python-pytest-testing"],
+  "api-engineering": ["api-test-automation", "service-chain-testing", "microservices-testing"],
+  infrastructure: ["docker-kubernetes-testing", "continuous-testing-cicd"],
+  platform: ["test-platform-development", "test-assets-traceability"],
+  advanced: ["message-queue-testing", "etl-testing-manual", "test-strategy-quality-gates"],
+};
+
+export const sdetTestingRoadmap = sdetTestingPhaseDefinitions.map((phase) => ({
+  ...phase,
+  tutorials: (sdetPhaseTutorialSlugs[phase.id] ?? [])
+    .map(resolveRoadmapTutorial)
+    .filter((item): item is RoadmapTutorial => Boolean(item)),
+}));
+
+// ============ 数据质量专项(Data Quality) ============
+
+export const dataQualityPhaseDefinitions = [
+  {
+    id: "data-foundation",
+    number: "01",
+    title: "数据基础与治理",
+    eyebrow: "Data Foundation",
+    description: "从 SQL 查询与数据核对开始，把测试数据作为工程资产管理：造数、隔离、脱敏、清理与跨层一致性。",
+    outcome: "能够准备可信测试数据，并验证数据库层正确性。",
+  },
+  {
+    id: "data-consistency",
+    number: "02",
+    title: "数据链路一致性",
+    eyebrow: "Data Consistency",
+    description: "验证从页面、接口到数据库、缓存、消息队列和下游系统的端到端数据一致性，定位跨系统差异。",
+    outcome: "能够定位跨系统数据差异和链路故障。",
+  },
+  {
+    id: "etl-quality",
+    number: "03",
+    title: "ETL 与数据质量体系",
+    eyebrow: "ETL Quality",
+    description: "围绕抽取、转换、加载、增量同步、控制总额与质量校验，建立完整的数据质量保障体系。",
+    outcome: "能够为数据管道设计质量门禁与对账机制。",
+  },
+] as const;
+
+export type DataQualityPhaseId = (typeof dataQualityPhaseDefinitions)[number]["id"];
+
+const dataQualityPhaseTutorialSlugs: Record<DataQualityPhaseId, readonly string[]> = {
+  "data-foundation": ["sql-database-testing", "test-data-management"],
+  "data-consistency": ["e2e-data-consistency-testing"],
+  "etl-quality": ["etl-testing-manual", "data-quality-engineering"],
+};
+
+export const dataQualityRoadmap = dataQualityPhaseDefinitions.map((phase) => ({
+  ...phase,
+  tutorials: (dataQualityPhaseTutorialSlugs[phase.id] ?? [])
+    .map(resolveRoadmapTutorial)
+    .filter((item): item is RoadmapTutorial => Boolean(item)),
+}));

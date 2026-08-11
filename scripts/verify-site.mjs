@@ -1,9 +1,14 @@
 import { spawn } from "node:child_process";
+import { existsSync, readdirSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const HOST = "127.0.0.1";
 const PORT = 3100;
 const BASE_URL = `http://${HOST}:${PORT}`;
 const START_TIMEOUT_MS = 30000;
+
+const KNOWLEDGE_PAGES_DIR = fileURLToPath(new URL("../app/knowledge", import.meta.url));
 
 function createStartProcess() {
   return spawn(
@@ -151,6 +156,12 @@ async function runChecks() {
     "/knowledge/ai-testing-workflow-orchestration",
     "/knowledge/testing-skills-design",
     "/knowledge/llm-foundations-testing",
+    "/knowledge/ml-statistics-for-test-engineers",
+    "/knowledge/test-development-programming",
+    "/knowledge/docker-kubernetes-testing",
+    "/knowledge/service-chain-testing",
+    "/knowledge/data-quality-engineering",
+    "/knowledge/reliability-testing-manual",
     "/knowledge/ai-application-testing-system",
     "/knowledge/multimodal-ocr-testing",
     "/knowledge/rag-knowledge-base-testing",
@@ -197,6 +208,11 @@ async function runChecks() {
   );
   assertIncludes(
     sitemap,
+    "https://seanwalter.top/knowledge/ml-statistics-for-test-engineers",
+    "sitemap ML statistics url"
+  );
+  assertIncludes(
+    sitemap,
     "https://seanwalter.top/knowledge/ai-agent-testing",
     "sitemap AI Agent testing url"
   );
@@ -213,6 +229,17 @@ async function runChecks() {
   const knowledgeSitemapEntry = extractSitemapEntry(sitemap, "https://seanwalter.top/knowledge");
   if (knowledgeSitemapEntry.includes("<lastmod>")) {
     throw new Error("Knowledge sitemap entry must not claim an unverified lastModified date.");
+  }
+
+  // 断言 app/knowledge 下每个页面都出现在 sitemap 中，防止新增知识页面漏登记
+  const knowledgeSlugs = readdirSync(KNOWLEDGE_PAGES_DIR, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && existsSync(path.join(KNOWLEDGE_PAGES_DIR, entry.name, "page.tsx")))
+    .map((entry) => entry.name);
+  for (const slug of knowledgeSlugs) {
+    const pageUrl = `https://seanwalter.top/knowledge/${slug}`;
+    if (!sitemap.includes(pageUrl)) {
+      throw new Error(`Knowledge page /knowledge/${slug} is missing from sitemap. Add it to content/knowledge/pages.ts or tutorials.ts.`);
+    }
   }
 
   const robots = await fetchText("/robots.txt");

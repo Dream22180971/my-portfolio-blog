@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ArrowUp } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { getKnowledgeReferencePage, knowledgeReferencePages } from "@/content/knowledge/pages";
+import { tutorials } from "@/content/knowledge/tutorials";
 
 const defaultSections = [
   { id: "sec-env", label: "环境准备" },
@@ -36,6 +41,15 @@ export function KnowledgeLayout({
   const [activeSection, setActiveSection] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const navRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  // 内容最近更新：优先取教程记录，其次取独立知识页面注册表
+  const updated =
+    tutorials.find((tutorial) => tutorial.href === pathname)?.updated ??
+    getKnowledgeReferencePage(pathname)?.updated;
+
+  // 上一篇 / 下一篇：教程按同 track 的 order 排序，独立页面按注册表顺序
+  const { prev, next } = useAdjacentPages(pathname);
 
   // Section observer for active state
   useEffect(() => {
@@ -174,8 +188,80 @@ export function KnowledgeLayout({
 
       {/* Content */}
       <div className="prose-knowledge">{children}</div>
+
+      {/* Footer: 上一篇/下一篇 + 最近更新 + 回到顶部 */}
+      <footer className="knowledge-footer">
+        <nav className="knowledge-prev-next" aria-label="上一篇 / 下一篇">
+          {prev ? (
+            <Link href={prev.href} className="knowledge-prev-next__item">
+              <span className="knowledge-prev-next__mark">← 上一篇</span>
+              <strong className="knowledge-prev-next__title">{prev.title}</strong>
+            </Link>
+          ) : (
+            <span aria-hidden="true" />
+          )}
+          {next ? (
+            <Link href={next.href} className="knowledge-prev-next__item knowledge-prev-next__item--next">
+              <strong className="knowledge-prev-next__title">{next.title}</strong>
+              <span className="knowledge-prev-next__mark">下一篇 →</span>
+            </Link>
+          ) : (
+            <span aria-hidden="true" />
+          )}
+        </nav>
+        <div className="knowledge-footer-meta">
+          {updated && (
+            <p className="knowledge-updated">最近更新 · {updated}</p>
+          )}
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="knowledge-back-top"
+          >
+            <ArrowUp className="h-3.5 w-3.5" />
+            回到顶部
+          </button>
+        </div>
+      </footer>
     </>
   );
+}
+
+type AdjacentPage = { href: string; title: string };
+
+function useAdjacentPages(pathname: string): { prev?: AdjacentPage; next?: AdjacentPage } {
+  const tutorial = tutorials.find((t) => t.href === pathname);
+  if (tutorial) {
+    const siblings = tutorials
+      .filter(
+        (t): t is typeof t & { href: string } =>
+          t.track === tutorial.track && t.status === "published" && Boolean(t.href)
+      )
+      .sort((a, b) => a.order - b.order);
+    const index = siblings.findIndex((t) => t.href === pathname);
+    if (index >= 0) {
+      return {
+        prev: index > 0 ? { href: siblings[index - 1].href, title: siblings[index - 1].title } : undefined,
+        next: index < siblings.length - 1 ? { href: siblings[index + 1].href, title: siblings[index + 1].title } : undefined,
+      };
+    }
+    return {};
+  }
+
+  const refIndex = knowledgeReferencePages.findIndex((page) => page.path === pathname);
+  if (refIndex >= 0) {
+    const pages = knowledgeReferencePages;
+    return {
+      prev: refIndex > 0 ? { href: pages[refIndex - 1].path, title: pages[refIndex - 1].title } : undefined,
+      next: refIndex < pages.length - 1 ? { href: pages[refIndex + 1].path, title: pages[refIndex + 1].title } : undefined,
+    };
+  }
+
+  return {};
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function showToast(msg: string) {

@@ -155,7 +155,6 @@ export default function McpTestingIntegrationPage() {
       <S id="practice" n="10" t="用三个工具跑通一套 MCP 接入验收" b="练习与检查">
         <Card title="练习"><List ordered items={["准备订单查询、政策检索和创建工单三个工具，明确只读与写入边界。", "为每个工具建立严格输入输出 Schema 和错误语义。", "覆盖初始化、tools/list、版本不兼容和破坏性 Schema 变化。", "用不同角色、租户、订单归属和审批状态验证授权。", "向描述、资源和返回值注入不可信指令，确认不会改变系统目标。", "注入断线、超时、重复响应和结果未知，验证幂等、回读与审计。"]} /></Card>
         <div className="grid gap-4 md:grid-cols-3"><Check title="协议契约" items={["协商结果明确", "Schema 严格", "版本差异可识别", "错误可诊断"]} /><Check title="安全边界" items={["身份资源绑定", "写操作先审批", "不可信内容隔离", "敏感字段最小化"]} /><Check title="运行治理" items={["会话不串线", "重试保持幂等", "结果未知先回读", "审计可重放"]} /></div>
-        <Next />
       </S>
     </KnowledgeLayout>
   </div>;
@@ -170,4 +169,3 @@ function Code({ title, children }: { title: string; children: string }) { return
 function Callout({ children }: { children: React.ReactNode }) { return <div className="mb-4 border-l-2 border-neon-cyan bg-neon-cyan/5 px-5 py-4 text-sm leading-7 text-text-secondary">{children}</div>; }
 function Flow({ title, items }: { title: string; items: string[][] }) { return <Card title={title}><div className="grid gap-2 md:grid-cols-9 md:items-center">{items.map((item, index) => <div className="contents" key={item[0]}><div className="rounded-lg border border-space-border bg-neon-cyan/5 p-4 text-center"><b className="block text-xs text-text-primary">{item[0]}</b><span className="text-[11px]">{item[1]}</span></div>{index < items.length - 1 && <ArrowRight className="mx-auto hidden h-4 w-4 text-neon-cyan md:block" />}</div>)}</div></Card>; }
 function Check({ title, items }: { title: string; items: string[] }) { return <Card title={title}><ul className="space-y-3">{items.map((item) => <li key={item} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-neon-cyan" />{item}</li>)}</ul></Card>; }
-function Next() { return <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-space-border py-6"><p className="text-sm text-text-secondary">下一阶段：在授权环境中系统验证提示注入、越权、泄漏和工具滥用。</p><Link href="/knowledge/llm-security-red-teaming" className="inline-flex items-center gap-2 text-sm text-neon-cyan">大模型安全与红队测试<ArrowRight className="h-4 w-4" /></Link></div>; }

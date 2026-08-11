@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import {ArrowLeft, CheckCircle2} from "lucide-react";
 import { KnowledgeLayout, type SectionItem } from "@/components/KnowledgeLayout";
 import { buildPageMetadata } from "@/lib/site";
 
@@ -16,7 +16,7 @@ export default function TestDataPage(){return <div className="mx-auto max-w-5xl 
 <S id="privacy" n="06" t="脱敏要换值不换测试特征" b="真实但不暴露"><Table title="脱敏校验" headers={["要求","检查"]} rows={[["不可逆","无法从脱敏值反推真实身份"],["一致性","同一实体跨表、跨字段保持可关联"],["格式有效","证件号、手机号等仍通过格式校验"],["分布保真","金额、长度、空值和长尾特征仍能支撑测试"],["最小权限","只有需要的人和系统可以访问样本"]]}/><Callout>把真实姓名统一替换成“张三”会破坏唯一性和关联测试。脱敏后的数据仍应保留长度、格式、重复关系和业务分布。</Callout></S>
 <S id="consistency" n="07" t="数据准备之后还要验证四层一致" b="页面到数据库"><Table title="一致性对照" headers={["对照","常见问题"]} rows={[["列表 ↔ 详情","点开后不是同一记录或字段口径不同"],["页面 ↔ 接口","前端缓存、写死或二次计算错误"],["接口 ↔ 数据库","查错表、漏过滤条件、字段转换错误"],["主表 ↔ 附属表","状态更新了，消息或流水没有生成"],["本系统 ↔ 外部系统","全量、增量、时间窗或失败重放不一致"]]}/><Card title="状态变更的固定动作"><p>每次写操作都核对页面、详情、接口、主表和附属表。若存在异步同步，再验证处理中的中间态、最终状态和失败补偿。</p></Card></S>
 <S id="automation" n="08" t="让数据准备成为自动化的一部分" b="准备、验证、清理"><Card title="用例数据四件套"><List items={["准备：调用哪个接口、SQL 或脚本，参数是什么。","标记：使用唯一 run_id，便于识别和回收。","验证：先证明数据已到位，再执行正式断言。","清理：后置步骤按 run_id 删除，并确认无残留。"]}/></Card><Table title="AI 生成用例时的约束" headers={["不要输出","应该输出"]} rows={[["前置：已有测试数据","调用数据工厂创建 3 条待处理记录并校验编号唯一"],["准备大量订单","按分页大小生成 N 条，N 来自页面配置或需求"],["使用生产数据测试","使用脱敏样本，并说明敏感字段校验方式"]]}/></S>
-<S id="practice" n="09" t="完成一次可重复的数据方案" b="练习与检查清单"><Card title="练习"><List ordered items={["为一个状态流转功能列出正常、边界、异常与并发数据。","分别选择接口、SQL 或脚本造数，并说明原因。","给每组数据添加 run_id、到位断言和清理步骤。","验证页面、接口、主表、附属表四层一致。","模拟同步失败，验证重放、对账与告警。"]}/></Card><Check items={["前置数量与状态精确","造数方式可重复","测试数据彼此隔离","清理只作用于本次数据","真实数据已合规脱敏","环境漂移有巡检","跨层一致性有证据"]}/><Next/></S>
+<S id="practice" n="09" t="完成一次可重复的数据方案" b="练习与检查清单"><Card title="练习"><List ordered items={["为一个状态流转功能列出正常、边界、异常与并发数据。","分别选择接口、SQL 或脚本造数，并说明原因。","给每组数据添加 run_id、到位断言和清理步骤。","验证页面、接口、主表、附属表四层一致。","模拟同步失败，验证重放、对账与告警。"]}/></Card><Check items={["前置数量与状态精确","造数方式可重复","测试数据彼此隔离","清理只作用于本次数据","真实数据已合规脱敏","环境漂移有巡检","跨层一致性有证据"]}/></S>
 </KnowledgeLayout></div>}
 
 function Header(){return <header className="mb-10"><div className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-neon-cyan">Data & Systems / Tutorial 11</div><h1 className="mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-3xl font-bold text-transparent md:text-4xl">测试数据设计与环境治理教程</h1><p className="text-lg leading-8 text-text-secondary">把“临时找几条数据”升级为可准备、可验证、可清理、可审计的工程资产，让手工测试、自动化和 AI 生成用例都能真正执行。</p></header>}
@@ -27,4 +27,3 @@ function Table({title,headers,rows}:{title:string;headers:string[];rows:string[]
 function Callout({children}:{children:React.ReactNode}){return <div className="mb-4 border-l-2 border-neon-cyan bg-neon-cyan/5 px-5 py-4 text-sm leading-7 text-text-secondary">{children}</div>}
 function Flow({items}:{items:string[][]}){return <Card title="测试数据生命周期"><div className="grid gap-3 md:grid-cols-5">{items.map((x,i)=><div key={x[0]} className={`rounded-lg border p-4 ${i===2?"border-neon-cyan/50 bg-neon-cyan/10":"border-space-border bg-space-card/50"}`}><b className="block text-xs text-text-primary">{x[0]}</b><span className="text-[11px]">{x[1]}</span></div>)}</div></Card>}
 function Check({items}:{items:string[]}){return <Card title="完成检查">{items.map(x=><div key={x} className="mb-2 flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 text-neon-cyan"/>{x}</div>)}</Card>}
-function Next(){return <div className="mt-8 flex justify-end border-y border-space-border py-6"><Link href="/knowledge/sql-database-testing" className="inline-flex items-center gap-2 text-sm text-neon-cyan">继续学习 SQL 与数据库测试<ArrowRight className="h-4 w-4"/></Link></div>}

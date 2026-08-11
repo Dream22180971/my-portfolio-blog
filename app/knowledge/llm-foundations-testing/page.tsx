@@ -135,7 +135,6 @@ dataset: after-sale-eval@v5`}</Code>
           "把失败归入输入、检索、生成、工具、安全或运行层，再决定修复位置。",
         ]} /></Card>
         <Check items={["知道模型不是完整系统", "能区分硬断言和质量评估", "理解上下文截断风险", "不把一次输出当稳定结论", "失败有分类而非只记错答", "实验版本可追溯", "锁定集与开发集分开"]} />
-        <Next />
       </S>
     </KnowledgeLayout>
   </div>;
@@ -150,4 +149,3 @@ function Callout({ children }: { children: React.ReactNode }) { return <div clas
 function Code({ title, children }: { title: string; children: string }) { return <div className="knowledge-code-block mb-4 overflow-hidden rounded-xl border border-space-border"><div className="border-b border-space-border bg-space-card/50 px-4 py-2 text-xs text-text-secondary">{title}</div><pre className="overflow-x-auto p-4 text-[13px]"><code className="text-neon-cyan/80">{children}</code></pre></div>; }
 function Flow({ items }: { items: string[][] }) { return <Card title="AI 系统质量链"><div className="grid gap-2 md:grid-cols-9 md:items-center">{items.map((item, index) => <div className="contents" key={item[0]}><div className="rounded-lg border border-space-border bg-space-card/50 p-4 text-center"><b className="block text-xs text-text-primary">{item[0]}</b><span className="text-[11px]">{item[1]}</span></div>{index < items.length - 1 && <ArrowRight className="mx-auto hidden h-4 w-4 text-neon-cyan md:block" />}</div>)}</div></Card>; }
 function Check({ items }: { items: string[] }) { return <Card title="完成检查">{items.map((item) => <div key={item} className="mb-2 flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-neon-cyan" />{item}</div>)}</Card>; }
-function Next() { return <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-space-border py-6"><p className="text-sm text-text-secondary">下一步：把评估集、人工金标、机器检查和版本回归组成完整体系。</p><Link href="/knowledge/ai-application-testing-system" className="inline-flex items-center gap-2 text-sm text-neon-cyan">AI 应用测试体系教程<ArrowRight className="h-4 w-4" /></Link></div>; }
