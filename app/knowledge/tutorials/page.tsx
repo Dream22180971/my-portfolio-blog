@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Search } from "lucide-react";
+import { SdetRoadmapView } from "@/components/SdetRoadmapView";
 import { buildPageMetadata } from "@/lib/site";
 import {
   aiTestingRoadmap,
@@ -43,6 +44,7 @@ export default async function TutorialsPage({ searchParams }: TutorialsPageProps
   const pageTutorials = filteredTutorials.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
   const selectedTrack = activeTrack ? getTutorialTrack(activeTrack) : undefined;
   const isAiRoadmapView = activeTrack === "ai-testing" && !query;
+  const isSdetRoadmapView = activeTrack === "test-development" && !query;
 
   return (
     <div className="editorial-page editorial-page--wide">
@@ -116,7 +118,9 @@ export default async function TutorialsPage({ searchParams }: TutorialsPageProps
           </section>
         )}
 
-        {!isAiRoadmapView && (pageTutorials.length > 0 ? (
+        {isSdetRoadmapView && <SdetRoadmapView />}
+
+        {!isAiRoadmapView && !isSdetRoadmapView && (pageTutorials.length > 0 ? (
           <div className="tutorial-catalog__list">
             {pageTutorials.map((tutorial, index) => (
               <TutorialCatalogItem
@@ -135,7 +139,7 @@ export default async function TutorialsPage({ searchParams }: TutorialsPageProps
           </div>
         ))}
 
-        {!isAiRoadmapView && <nav className="tutorial-catalog__pagination" aria-label="教程分页">
+        {!isAiRoadmapView && !isSdetRoadmapView && <nav className="tutorial-catalog__pagination" aria-label="教程分页">
           {currentPage > 1 ? (
             <Link href={buildTutorialsUrl({ track: activeTrack, q: query, page: currentPage - 1 })}>
               <ArrowLeft className="h-4 w-4" /> 上一页

@@ -169,7 +169,24 @@ export default function KnowledgePage() {
           <span>代码演示</span>
           <span>练习与检查清单</span>
         </div>
-        <div className="knowledge-tutorial-modules" aria-label="系统教程五个主线模块">
+        <div className="knowledge-tutorial-modules" aria-label="推荐学习路径与系统教程五大主线模块">
+          <article className="knowledge-tutorial-module" aria-labelledby="recommended-path-heading">
+            <div className="knowledge-tutorial-module__meta">
+              <span className="project-type">Start / 01</span>
+              <span>入门引导</span>
+            </div>
+            <span className="knowledge-tutorial-module__eyebrow">Recommended Path</span>
+            <h3 id="recommended-path-heading">从哪里开始学</h3>
+            <p>第一次来知识库，不确定从哪入手？按下面的顺序建立完整能力，之后回到工作中按需查漏补缺。</p>
+            <div className="knowledge-tutorial-module__outcome">
+              <span>学习节奏</span>
+              <p>五步：认知 → 业务 → 自动化 → 数据链路 → 质量体系</p>
+            </div>
+            <Link href="/knowledge/testing-engineer-roadmap" className="text-link">
+              查看完整成长路线
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </article>
           {mainTutorialTracks.map((track, index) => {
             const trackTutorials = getTutorialsByTrack(track.slug);
             const publishedTutorials = trackTutorials.filter((tutorial) => tutorial.status === "published");

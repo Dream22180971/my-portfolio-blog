@@ -6,7 +6,7 @@ import type { SectionItem } from "@/components/KnowledgeLayout";
 import { cn } from "@/lib/cn";
 
 export const metadata = buildPageMetadata({
-  title: "Linux 企业级命令手册 — 22章 260+命令",
+  title: "Linux 命令手册 — 22章 260+命令",
   description: "服务器运维、DevOps自动化、安全审计、性能调优一站式参考，覆盖CentOS/Ubuntu/RHEL，18个企业实战场景",
   path: "/knowledge/linux-commands",
   tags: ["Linux", "运维", "DevOps", "Docker", "Kubernetes", "Nginx"],
@@ -50,7 +50,7 @@ export default function LinuxCommandsPage() {
         {/* Hero */}
         <div className="mb-10">
           <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
-            Linux 企业级命令手册
+            Linux 命令手册
           </h1>
           <p className="text-text-secondary text-lg mb-6">
             服务器运维、DevOps 自动化、安全审计、性能调优一站式参考 — 面向测试工程师、运维工程师、后端开发者
