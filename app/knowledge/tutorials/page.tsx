@@ -47,7 +47,7 @@ export default async function TutorialsPage({ searchParams }: TutorialsPageProps
   const isSdetRoadmapView = activeTrack === "test-development" && !query;
 
   return (
-    <div className="editorial-page editorial-page--wide">
+    <div className="editorial-page editorial-page--wide editorial-page--knowledge">
       <header className="page-heading-wrap knowledge-catalog-heading">
         <p className="page-kicker">Tutorial Library</p>
         <div>
