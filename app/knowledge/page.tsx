@@ -72,7 +72,7 @@ const knowledgeJsonLd = {
 
 export default function KnowledgePage() {
   return (
-    <div className="editorial-page editorial-page--wide">
+    <div className="editorial-page editorial-page--wide editorial-page--knowledge">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(knowledgeJsonLd) }}

@@ -147,7 +147,7 @@ export function KnowledgeLayout({
   }
 
   return (
-    <>
+    <div className="knowledge-layout">
       {/* Search */}
       <div className="knowledge-tools">
         <label className="knowledge-search-field">
@@ -223,7 +223,7 @@ export function KnowledgeLayout({
           </button>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 
