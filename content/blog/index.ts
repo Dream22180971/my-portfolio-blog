@@ -32,6 +32,7 @@ import post31 from "./ai-agent-rag-yolo-e2e-testing";
 import post32 from "./public-web-security-testing";
 import post33 from "./ai-generated-test-cases-human-review";
 import post34 from "./testing-requirement-analysis-five-step-method";
+import post35 from "./ai-agent-qa-engineer-verification-framework";
 
 export const posts = [
   post01,
@@ -68,4 +69,5 @@ export const posts = [
   post32,
   post33,
   post34,
+  post35,
 ];
