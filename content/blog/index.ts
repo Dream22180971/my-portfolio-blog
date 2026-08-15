@@ -33,6 +33,7 @@ import post32 from "./public-web-security-testing";
 import post33 from "./ai-generated-test-cases-human-review";
 import post34 from "./testing-requirement-analysis-five-step-method";
 import post35 from "./ai-agent-qa-engineer-verification-framework";
+import post36 from "./deepseek-harness-testing-insights";
 
 export const posts = [
   post01,
@@ -70,4 +71,5 @@ export const posts = [
   post33,
   post34,
   post35,
+  post36,
 ];
