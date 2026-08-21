@@ -35,6 +35,7 @@ import post34 from "./testing-requirement-analysis-five-step-method";
 import post35 from "./ai-agent-qa-engineer-verification-framework";
 import post36 from "./deepseek-harness-testing-insights";
 import post37 from "./gui-agent-atomicity-testing";
+import post38 from "./ai-code-security-drift";
 
 export const posts = [
   post01,
@@ -74,4 +75,5 @@ export const posts = [
   post35,
   post36,
   post37,
+  post38,
 ];
